@@ -2,18 +2,31 @@
 Oppgave 1
 
 - Vi trenger teamlead, andre roller?
+
 •	Teamlead -> Andreas
+
 o	Ble teamlead fordi ingen andre meldte seg, og fordi vi trenger(?)
+
 o	Oppgaver, få det i gang.
+
 o	Sørge for innleveringsfrister blir nådd
+
 •	Kundekontakt -> Heine
+
 o	Tar kontakt med kunden om det skulle være behov
+
 •	Utvikler -> Vebjørn
+
 o	Skriver kode
+
 o	Kan ta på seg mer ansvar om det skulle være behov.
+
 •	Utvikler/Grafikk designer -> Otso
+
 o	Skriver Kode
+
 o	Kan ta på seg mer ansvar om det skulle være behov.
+
 o	Kan designe enkle ting
 
 
