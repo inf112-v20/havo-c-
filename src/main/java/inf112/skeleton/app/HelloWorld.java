@@ -4,18 +4,38 @@ import com.badlogic.gdx.ApplicationListener;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL30;
+import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.maps.tiled.TiledMap;
+import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
+import com.badlogic.gdx.maps.tiled.TmxMapLoader;
+import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 
 public class HelloWorld implements ApplicationListener {
     private SpriteBatch batch;
     private BitmapFont font;
+    private TiledMap tiledMap;
+    private TiledMapTileLayer boardLayer;
+    private  TiledMapTileLayer playerLayer;
+    private  TiledMapTileLayer holeLayer;
+    private  TiledMapTileLayer flagLayer;
+    private OrthogonalTiledMapRenderer mapRenderer;
+    private OrthographicCamera camera;
+    private float unitScale = 1 / 300;
+    private TmxMapLoader mapLoader;
+
 
     @Override
     public void create() {
         batch = new SpriteBatch();
         font = new BitmapFont();
-        font.setColor(Color.RED);
+        font.setColor(Color.MAGENTA);
+        mapLoader.load("assets/map.tmx");
+        boardLayer = (TiledMapTileLayer) tiledMap.getLayers().get("Board");
+        camera.setToOrtho(false, 5, 5);
+        camera.update();
+        mapRenderer.setView(camera);
     }
 
     @Override
@@ -29,9 +49,7 @@ public class HelloWorld implements ApplicationListener {
         Gdx.gl.glClearColor(1, 1, 1, 1);
         Gdx.gl.glClear(GL30.GL_COLOR_BUFFER_BIT);
 
-        batch.begin();
-        font.draw(batch, "Hello World", 200, 200);
-        batch.end();
+        mapRenderer.render();
     }
 
     @Override
