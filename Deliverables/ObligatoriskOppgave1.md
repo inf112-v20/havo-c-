@@ -158,44 +158,35 @@ vi kommer til å organisere meste parten av prosjektet på gruppetiemene sammen.
 
 Oppgave 4
 
-
-Prosjektmetodikker
-Vi har valgt å benytte oss av følgene prosjektmetoder. De er valgt etter hvilke vi tror kommer til å bli mest nyttig i utvikling av spillet. Det noe usikkerhet rundt hvordan de forskjellige strategiene under skal benyttes og hva som kommer til å funke, men vi er åpne for mulige endringer.
-Extreme programming(XP)
-Det er flere elementer innen extreme programming som vi kommer til å benyttes av. Blant annet kommer vi til å sitte mye sammen og løse oppgaver. Det også slik vi kommer til å bli enige hvordan vi skal bygge opp spillet. Vi kommer nok også til å bruke noe parprogrammering. Extreme programming beskriver også kommunikasjon, respekt og hvordan en individer i en gruppe bør jobbe sammen. Dette virker også veldig nyttig.
-
-Kanban
-Vi kommer til å sette opp en kanban tavle på github. Den kommer vi til å delegere oppgavene fra. Vi kommer foreløpig til å dele den inn i fire seksjoner. 
-To do -> In progress -> Needs testing/peer review -> Done
-Denne inndelingen kan bli endret hvis det skal være behov for det senere.
- 
-Testing
-Vi kommer til å drive en test dreven utvikling. Som betyr at vi kommer til bygge tester i j-unit før vi utvikler koden. Dette håper vi føre til færre feil.
+Brukerhistorier: Som spiller trenger jeg å se et brett for å lettere kunne følge med på hva som skjer i spillet.
 
 
-Diskuter i teamet hvilke metoder som hjelper teamet med å utvikle fungerende og veldokumentert programvare under prosjektet.
-
-En kombinasjon av de nevnte prosjektmetodikkene ovenfor vil nok gi et godt rammeverk for veldokumentert programvare. Både samarbeid i gruppen med tydelig kommunikasjon, og gode tester vil føre redusert feil og veldokumentert kode. Være obs på at det blir brukt gode variabel, funksjons og klasse navn som igjen også er tilstrekkelig kommentert også gjøre koden lettere og forstå. Vi kommer også til å ta i bruk UML-diagram for å få et overblikk av strukturen til koden.
-
-
-
-Diskuter i teamet hvordan dere skal organisere dere under prosjektet. Noen viktige
-elementer:
-● Møter og hyppighet av dem
-● Kommunikasjon mellom møter
-● Arbeidsfordeling
-● Oppfølging av arbeid
-● Deling og oppbevaring av felles dokumenter, diagram og kodebase 
-(mye av det følgende under ble først beskrevet i det første referatet fra møtet 31.01.20)
-Avtale møter over slack og at vi har appen slik at vi kan nå hverandre lettere.
-Prøve at alle gjør ca. like store oppgaver og ting føles rettferdig.
-Dynamisk med arbeidsmengde og at vi har en klar agenda på møter.
-Hvis noen gjør veldig mye til en innlevering, bør den personen få mindre arbeid til neste innlevering.
-Bruker kun git til deling og oppbevaring
-Vi kommer også til å hjelpe hverandre om nødvendig og vurdere andre i gruppen sin kode.
+Akseptansekriterie: 
+-	Brettet må være 5 * 5 tiles (300px).
+-	Hver rute må ha grafikk. 
+-	Programmet må kjøre i et eget vindu.
 
 
-Skriv en kort beskrivelse av hvordan teamet ditt planlegger å organisere prosjektet den
-første tiden
+Arbeidsoppgaver: 
+-	Lage et brett i Tiled.
+-	Lage et prosjekt i gdx.
+-	Få brettet i Tiled til å fungere med prosjektet i libgdx (Implementere brett-klasse).
+-	Strukturere kode.
 
-vi kommer til å organisere meste parten av prosjektet på gruppetiemene sammen. Eventuelt kan noe diskuteres over slack.
+
+Brukerhistorier: Som spiller må jeg kunne plassere en brikke på brettet slik at roboter kan flyttes.
+
+
+Akseptansekriterie: 
+-	Brikken må kunne plasseres valgfritt på brettet.
+-	Brikkens posisjon kan endres etter den er plassert på brettet.
+
+
+Arbeidsoppgaver:
+-	Kunne plassere brikken på brettet (oppgi brikkens posisjon).
+-	Representere brikkens posisjon visuelt.
+-	Representere brikkens posisjon i kode.
+-	Oppdatere brikkens posisjon visuelt.
+-	Oppdatere brikkens posisjon i kode.
+
+
