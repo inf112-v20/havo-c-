@@ -18,6 +18,7 @@ public class HelloWorld implements ApplicationListener {
     private TiledMap tiledMap;
     private TiledMapTileLayer Board1;
     private TiledMapTileLayer Board2;
+    private TiledMapTileLayer playerLayer;
     private OrthogonalTiledMapRenderer mapRenderer;
     private OrthographicCamera camera = new OrthographicCamera();
     private TmxMapLoader mapLoader;
