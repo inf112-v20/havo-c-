@@ -33,7 +33,7 @@ o	Kan designe enkle ting
 Oppgave 2
 
 ● En kort beskrivelse av det overordnede målet for applikasjonen
-o	Det overordnede målet er at vi har roboter i et «produksjonslokale» som blir programmert ved bruk av kort. Kortene skal kunne si hvilke veier roboten skal gå. Roboten skal gjennom flagpunkter, og må gjennom gitt antall(3) flagpunkter for å vinne. Roboten skal kunne ta skade og kunne dø og bli gjenopplivet 3 ganger. Det skal også være mulig å spille dette spillet på flere maskiner.
+o	 Det overordnede målet er at vi har roboter i et «produksjonslokale» som blir programmert ved bruk av kort. Kortene skal kunne si hvilke veier roboten skal gå. Roboten skal gjennom flagpunkter, og må gjennom gitt antall(3) flagpunkter for å vinne. Roboten skal kunne ta skade og kunne dø og bli gjenopplivet 3 ganger. Det skal også være mulig å spille dette spillet på flere maskiner.
 ● En liste over krav til systemet basert på høynivåkravene gjennomgått i forelesning.
 o	Spillebrett
 o	Roboter som kan plassers på bordet
