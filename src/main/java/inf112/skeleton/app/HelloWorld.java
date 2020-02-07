@@ -29,7 +29,7 @@ public class HelloWorld implements ApplicationListener {
     private TiledMapTileLayer PlayerLayer;
     private OrthogonalTiledMapRenderer mapRenderer;
     private OrthographicCamera camera = new OrthographicCamera();
-    private TmxMapLoader mapLoader;
+    private TmxMapLoader mapLoader = new TmxMapLoader();
     // Variables for Player
     private TiledMapTileLayer.Cell playerWonCell = new TiledMapTileLayer.Cell();
     private TiledMapTileLayer.Cell playerDiedCell = new TiledMapTileLayer.Cell();
@@ -42,7 +42,7 @@ public class HelloWorld implements ApplicationListener {
         font = new BitmapFont();
         font.setColor(Color.MAGENTA);
         // Code for setting up map
-        tiledMap = new TmxMapLoader().load("assets/map.tmx");
+        tiledMap = mapLoader.load("assets/map.tmx");
         PlayerLayer = (TiledMapTileLayer) tiledMap.getLayers().get("PlayerLayer");
         camera.setToOrtho(false, 5, 5);
         camera.update();
