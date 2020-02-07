@@ -50,12 +50,12 @@
   <build>
     <resources>
       <resource>
-        <directory>>${basedir}/assets</directory>
+        <directory>${basedir}/assets</directory>
       </resource>
     </resources>
     <testResources>
       <testResource>
-        <directory>>${basedir}/assets</directory>
+        <directory>${basedir}/assets</directory>
       </testResource>
     </testResources>
     <pluginManagement><!-- lock down plugins versions to avoid using Maven defaults (may be moved to parent pom) -->
@@ -101,5 +101,17 @@
         </plugin>
       </plugins>
     </pluginManagement>
+
+    <resources>
+      <resource>
+        <directory>${basedir}/assets</directory>
+      </resource>
+    </resources>
+    <testResources>
+      <testResource>
+        <directory>${basedir}/assets</directory>
+      </testResource>
+    </testResources>
+
   </build>
 </project>

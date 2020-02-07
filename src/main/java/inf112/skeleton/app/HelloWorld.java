@@ -16,10 +16,8 @@ public class HelloWorld implements ApplicationListener {
     private SpriteBatch batch;
     private BitmapFont font;
     private TiledMap tiledMap;
-    private TiledMapTileLayer boardLayer;
-    private  TiledMapTileLayer playerLayer;
-    private  TiledMapTileLayer holeLayer;
-    private  TiledMapTileLayer flagLayer;
+    private TiledMapTileLayer Board1;
+    private TiledMapTileLayer Board2;
     private OrthogonalTiledMapRenderer mapRenderer;
     private OrthographicCamera camera = new OrthographicCamera();
     private TmxMapLoader mapLoader;
@@ -30,9 +28,9 @@ public class HelloWorld implements ApplicationListener {
         batch = new SpriteBatch();
         font = new BitmapFont();
         font.setColor(Color.MAGENTA);
-        tiledMap = new TmxMapLoader().load("map.tmx");
+        tiledMap = new TmxMapLoader().load("assets/map.tmx");
        // mapLoader.load("assets/map.tmx");
-        boardLayer = (TiledMapTileLayer) tiledMap.getLayers().get("Board");
+        Board1 = (TiledMapTileLayer) tiledMap.getLayers().get("Board");
         camera.setToOrtho(false, 5, 5);
         camera.update();
         mapRenderer = new OrthogonalTiledMapRenderer(tiledMap, 1/300f);
