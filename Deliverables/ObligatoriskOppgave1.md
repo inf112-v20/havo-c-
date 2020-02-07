@@ -151,6 +151,7 @@ første tiden
 
 vi kommer til å organisere meste parten av prosjektet på gruppetiemene sammen. Eventuelt kan noe diskuteres over slack.
 
+Retrospektiv: Vi har kun hovedsaklig jobbet sammen, der deriblant problemmer med koden, ble i større eller mindre grad løst med parprogrammering. Ellers har vi diskutert alt sammen som en gruppe. Vi har ikke fått project boradet på github opp 100%. Dette kunne vi sikkert gjort bedre, men vi trodde ikke vi skulle ha problemer med tiled og libgdx i den stor grad.
 
 
 
