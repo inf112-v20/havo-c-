@@ -2,6 +2,8 @@ package inf112.skeleton.app;
 
 import com.badlogic.gdx.ApplicationListener;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
+import com.badlogic.gdx.InputAdapter;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL30;
 import com.badlogic.gdx.graphics.OrthographicCamera;
@@ -15,10 +17,11 @@ import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.maps.tiled.tiles.StaticTiledMapTile;
 import com.badlogic.gdx.math.Vector2;
+import com.sun.prism.impl.ps.CachingEllipseRep;
 
 import javax.print.attribute.IntegerSyntax;
 
-public class HelloWorld implements ApplicationListener {
+public class HelloWorld extends InputAdapter implements ApplicationListener {
     private SpriteBatch batch;
     private BitmapFont font;
     // Variables for Gameboard
@@ -41,6 +44,8 @@ public class HelloWorld implements ApplicationListener {
         batch = new SpriteBatch();
         font = new BitmapFont();
         font.setColor(Color.MAGENTA);
+        // Input adapter shenanigans (!)
+        Gdx.input.setInputProcessor(this);
         // Code for setting up map
         tiledMap = mapLoader.load("assets/map.tmx");
         PlayerLayer = (TiledMapTileLayer) tiledMap.getLayers().get("PlayerLayer");
@@ -73,6 +78,43 @@ public class HelloWorld implements ApplicationListener {
         Integer xLoc = Math.round(playerLoc.x);
         Integer yLoc = Math.round(playerLoc.y);
         PlayerLayer.setCell(xLoc,yLoc, playerCell);
+    }
+
+    @Override
+    public boolean keyUp(int keycode) {
+        if (keycode == Input.Keys.W){
+            Integer xLoc = Math.round(playerLoc.x);
+            Integer newYLoc = Math.round(playerLoc.y + 1);
+            Integer oldYLoc = Math.round(playerLoc.y);
+            PlayerLayer.setCell(xLoc, oldYLoc, null);
+            playerLoc.set(xLoc,newYLoc);
+            PlayerLayer.setCell(xLoc, newYLoc, playerCell);
+        }
+        else if (keycode == Input.Keys.S){
+            Integer xLoc = Math.round(playerLoc.x);
+            Integer newYLoc = Math.round(playerLoc.y - 1);
+            Integer oldYLoc = Math.round(playerLoc.y);
+            PlayerLayer.setCell(xLoc, oldYLoc, null);
+            playerLoc.set(xLoc,newYLoc);
+            PlayerLayer.setCell(xLoc, newYLoc, playerCell);
+        }
+        else if (keycode == Input.Keys.A){
+            Integer yLoc = Math.round(playerLoc.y);
+            Integer newXLoc = Math.round(playerLoc.x - 1);
+            Integer oldXLoc = Math.round(playerLoc.x);
+            PlayerLayer.setCell(oldXLoc,yLoc, null);
+            playerLoc.set(newXLoc,yLoc);
+            PlayerLayer.setCell(newXLoc,yLoc, playerCell);
+        }
+        else if (keycode == Input.Keys.D){
+            Integer yLoc = Math.round(playerLoc.y);
+            Integer newXLoc = Math.round(playerLoc.x + 1);
+            Integer oldXLoc = Math.round(playerLoc.x);
+            PlayerLayer.setCell(oldXLoc,yLoc, null);
+            playerLoc.set(newXLoc,yLoc);
+            PlayerLayer.setCell(newXLoc,yLoc, playerCell);
+        }
+        return true;
     }
 
     @Override
