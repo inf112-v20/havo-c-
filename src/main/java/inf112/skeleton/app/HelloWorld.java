@@ -27,8 +27,9 @@ public class HelloWorld extends InputAdapter implements ApplicationListener {
     // Variables for Gameboard
     private TiledMap tiledMap;
     // Board1 and 2 are not yet in use but are going to be relevant later in development
-    private TiledMapTileLayer Board1;
-    private TiledMapTileLayer Board2;
+    private TiledMapTileLayer Board;
+    private TiledMapTileLayer Holes;
+    private TiledMapTileLayer Flags;
     private TiledMapTileLayer PlayerLayer;
     private OrthogonalTiledMapRenderer mapRenderer;
     private OrthographicCamera camera = new OrthographicCamera();
@@ -48,6 +49,8 @@ public class HelloWorld extends InputAdapter implements ApplicationListener {
         Gdx.input.setInputProcessor(this);
         // Code for setting up map
         tiledMap = mapLoader.load("assets/map.tmx");
+        Holes = (TiledMapTileLayer) tiledMap.getLayers().get("Holes");
+        Flags = (TiledMapTileLayer) tiledMap.getLayers().get("Flags");
         PlayerLayer = (TiledMapTileLayer) tiledMap.getLayers().get("PlayerLayer");
         camera.setToOrtho(false, 5, 5);
         camera.update();
@@ -78,6 +81,13 @@ public class HelloWorld extends InputAdapter implements ApplicationListener {
         Integer xLoc = Math.round(playerLoc.x);
         Integer yLoc = Math.round(playerLoc.y);
         PlayerLayer.setCell(xLoc,yLoc, playerCell);
+        //Special Tiles
+        if (Flags.getCell(xLoc,yLoc) != null){
+            PlayerLayer.setCell(xLoc,yLoc, playerWonCell);
+        }
+        else if (Holes.getCell(xLoc,yLoc) != null){
+            PlayerLayer.setCell(xLoc,yLoc, playerDiedCell);
+        }
     }
 
     @Override
