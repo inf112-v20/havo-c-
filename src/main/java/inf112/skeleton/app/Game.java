@@ -21,12 +21,12 @@ import com.sun.prism.impl.ps.CachingEllipseRep;
 
 import javax.print.attribute.IntegerSyntax;
 
-public class HelloWorld extends InputAdapter implements ApplicationListener {
+public class Game extends InputAdapter implements ApplicationListener {
     private SpriteBatch batch;
     private BitmapFont font;
     // Variables for Gameboard
     private TiledMap tiledMap;
-    // Board1 and 2 are not yet in use but are going to be relevant later in development
+    // Board is not yet in use but are going to be relevant later in development
     private TiledMapTileLayer Board;
     private TiledMapTileLayer Holes;
     private TiledMapTileLayer Flags;
@@ -35,17 +35,14 @@ public class HelloWorld extends InputAdapter implements ApplicationListener {
     private OrthographicCamera camera = new OrthographicCamera();
     private TmxMapLoader mapLoader = new TmxMapLoader();
     // Variables for Player
-    private TiledMapTileLayer.Cell playerWonCell = new TiledMapTileLayer.Cell();
-    private TiledMapTileLayer.Cell playerDiedCell = new TiledMapTileLayer.Cell();
-    private TiledMapTileLayer.Cell playerCell = new TiledMapTileLayer.Cell();
-    private Vector2 playerLoc;
+    private Player player;
 
     @Override
     public void create() {
         batch = new SpriteBatch();
         font = new BitmapFont();
         font.setColor(Color.MAGENTA);
-        // Input adapter shenanigans (!)
+        // Input adapter shenanigans
         Gdx.input.setInputProcessor(this);
         // Code for setting up map
         tiledMap = mapLoader.load("assets/map.tmx");
@@ -57,11 +54,8 @@ public class HelloWorld extends InputAdapter implements ApplicationListener {
         mapRenderer = new OrthogonalTiledMapRenderer(tiledMap, 1/300f);
         mapRenderer.setView(camera);
         // Code for defining player graphics and start location
-        TextureRegion[][] spiller = new TextureRegion(new Texture("assets/player.png")).split(300,300);
-        playerCell.setTile(new StaticTiledMapTile(spiller[0][0]));
-        playerDiedCell.setTile(new StaticTiledMapTile(spiller[0][1]));
-        playerWonCell.setTile(new StaticTiledMapTile(spiller[0][2]));
-        playerLoc = new Vector2(0,0);
+        Vector2 startLoc = new Vector2(0,0);
+        player = new Player(startLoc, PlayerLayer);
     }
 
     @Override
@@ -78,52 +72,21 @@ public class HelloWorld extends InputAdapter implements ApplicationListener {
         //Renders map
         mapRenderer.render();
         //Sets in player
-        Integer xLoc = Math.round(playerLoc.x);
-        Integer yLoc = Math.round(playerLoc.y);
-        PlayerLayer.setCell(xLoc,yLoc, playerCell);
-        //Special Tiles
+        player.setPlayerState(PlayerState.ALIVE);
+        Integer xLoc = player.getX();
+        Integer yLoc = player.getY();
+        //Checks for Special Tiles
         if (Flags.getCell(xLoc,yLoc) != null){
-            PlayerLayer.setCell(xLoc,yLoc, playerWonCell);
+            player.setPlayerState(PlayerState.WINNER);
         }
         else if (Holes.getCell(xLoc,yLoc) != null){
-            PlayerLayer.setCell(xLoc,yLoc, playerDiedCell);
+            player.setPlayerState(PlayerState.DEAD);
         }
     }
 
     @Override
     public boolean keyUp(int keycode) {
-        if (keycode == Input.Keys.W){
-            Integer xLoc = Math.round(playerLoc.x);
-            Integer newYLoc = Math.round(playerLoc.y + 1);
-            Integer oldYLoc = Math.round(playerLoc.y);
-            PlayerLayer.setCell(xLoc, oldYLoc, null);
-            playerLoc.set(xLoc,newYLoc);
-            PlayerLayer.setCell(xLoc, newYLoc, playerCell);
-        }
-        else if (keycode == Input.Keys.S){
-            Integer xLoc = Math.round(playerLoc.x);
-            Integer newYLoc = Math.round(playerLoc.y - 1);
-            Integer oldYLoc = Math.round(playerLoc.y);
-            PlayerLayer.setCell(xLoc, oldYLoc, null);
-            playerLoc.set(xLoc,newYLoc);
-            PlayerLayer.setCell(xLoc, newYLoc, playerCell);
-        }
-        else if (keycode == Input.Keys.A){
-            Integer yLoc = Math.round(playerLoc.y);
-            Integer newXLoc = Math.round(playerLoc.x - 1);
-            Integer oldXLoc = Math.round(playerLoc.x);
-            PlayerLayer.setCell(oldXLoc,yLoc, null);
-            playerLoc.set(newXLoc,yLoc);
-            PlayerLayer.setCell(newXLoc,yLoc, playerCell);
-        }
-        else if (keycode == Input.Keys.D){
-            Integer yLoc = Math.round(playerLoc.y);
-            Integer newXLoc = Math.round(playerLoc.x + 1);
-            Integer oldXLoc = Math.round(playerLoc.x);
-            PlayerLayer.setCell(oldXLoc,yLoc, null);
-            playerLoc.set(newXLoc,yLoc);
-            PlayerLayer.setCell(newXLoc,yLoc, playerCell);
-        }
+        player.Move(keycode);
         return true;
     }
 
