@@ -53,7 +53,7 @@ public class Game extends InputAdapter implements ApplicationListener {
         camera.update();
         mapRenderer = new OrthogonalTiledMapRenderer(tiledMap, 1/300f);
         mapRenderer.setView(camera);
-        // Code for defining player graphics and start location
+        // Code for defining player and start location
         Vector2 startLoc = new Vector2(0,0);
         player = new Player(startLoc, PlayerLayer);
     }
@@ -73,9 +73,10 @@ public class Game extends InputAdapter implements ApplicationListener {
         mapRenderer.render();
         //Sets in player
         player.setPlayerState(PlayerState.ALIVE);
+        //Checks if the player is on any Special Tiles
         Integer xLoc = player.getX();
         Integer yLoc = player.getY();
-        //Checks for Special Tiles
+
         if (Flags.getCell(xLoc,yLoc) != null){
             player.setPlayerState(PlayerState.WINNER);
         }
@@ -86,7 +87,11 @@ public class Game extends InputAdapter implements ApplicationListener {
 
     @Override
     public boolean keyUp(int keycode) {
-        player.Move(keycode);
+        // Not done yet, will get possiblity of returning False when illegal moves are coded in
+        // Logic gate for movement related input
+        if (keycode == Input.Keys.W || keycode == Input.Keys.A || keycode == Input.Keys.S || keycode == Input.Keys.D){
+            player.Move(keycode);
+        }
         return true;
     }
 
