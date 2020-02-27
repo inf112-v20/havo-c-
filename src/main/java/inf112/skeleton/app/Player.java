@@ -10,8 +10,11 @@ import com.badlogic.gdx.math.Vector2;
 public class Player {
     // Lives are not yet utilized but are required for the eventual death and respawn mechanics
     private Integer lives = 3;
+    // Control class
+    private dirCtrl dirController = new dirCtrl();
     // Elements the Player needs to function on the board
     private Vector2 playerLoc;
+    private Direction playerDir;
     private PlayerState playerState = PlayerState.ALIVE;
     private TiledMapTileLayer playerLayer;
     // Player icon objects
@@ -20,8 +23,9 @@ public class Player {
     private TiledMapTileLayer.Cell playerWonCell = new TiledMapTileLayer.Cell();
 
     // Constructor
-    public Player(Vector2 location, TiledMapTileLayer layer){
+    public Player(Vector2 location, Direction dir, TiledMapTileLayer layer){
         this.playerLoc = location;
+        this.playerDir = dir;
         this.playerLayer = layer;
 
         // Graphics for the player
@@ -37,6 +41,7 @@ public class Player {
             Integer xLoc = getX();
             Integer newYLoc = getY() + 1;
             Integer oldYLoc = getY();
+
             playerLayer.setCell(xLoc, oldYLoc, null);
             playerLoc.set(xLoc,newYLoc);
             playerLayer.setCell(xLoc, newYLoc, playerCell);
@@ -45,6 +50,7 @@ public class Player {
             Integer xLoc = getX();
             Integer newYLoc = getY() - 1;
             Integer oldYLoc = getY();
+
             playerLayer.setCell(xLoc, oldYLoc, null);
             playerLoc.set(xLoc,newYLoc);
             playerLayer.setCell(xLoc, newYLoc, playerCell);
@@ -53,6 +59,7 @@ public class Player {
             Integer yLoc = getY();
             Integer newXLoc = getX() - 1;
             Integer oldXLoc = getX();
+
             playerLayer.setCell(oldXLoc,yLoc, null);
             playerLoc.set(newXLoc,yLoc);
             playerLayer.setCell(newXLoc,yLoc, playerCell);
@@ -61,6 +68,7 @@ public class Player {
             Integer yLoc = getY();
             Integer newXLoc = getX() + 1;
             Integer oldXLoc = getX();
+
             playerLayer.setCell(oldXLoc,yLoc, null);
             playerLoc.set(newXLoc,yLoc);
             playerLayer.setCell(newXLoc,yLoc, playerCell);
@@ -70,11 +78,49 @@ public class Player {
             setPlayerState(PlayerState.DEAD);
         }
     }
+    public void Turn(int keycode){
+        if (keycode == Input.Keys.Q){
+            playerDir = dirController.turnLeft(playerDir);
+        }
+        else if (keycode == Input.Keys.E){
+            playerDir = dirController.turnRight(playerDir);
+        }
+
+        updateIconRotation();
+    }
+
+    private void updateIconRotation() {
+        if (playerDir == Direction.NORTH){
+            playerCell.setRotation(TiledMapTileLayer.Cell.ROTATE_0);
+            playerDiedCell.setRotation(TiledMapTileLayer.Cell.ROTATE_0);
+            playerWonCell.setRotation(TiledMapTileLayer.Cell.ROTATE_0);
+        }
+        else if (playerDir == Direction.EAST){
+            playerCell.setRotation(TiledMapTileLayer.Cell.ROTATE_270);
+            playerDiedCell.setRotation(TiledMapTileLayer.Cell.ROTATE_270);
+            playerWonCell.setRotation(TiledMapTileLayer.Cell.ROTATE_270);
+        }
+        else if (playerDir == Direction.SOUTH){
+            playerCell.setRotation(TiledMapTileLayer.Cell.ROTATE_180);
+            playerDiedCell.setRotation(TiledMapTileLayer.Cell.ROTATE_180);
+            playerWonCell.setRotation(TiledMapTileLayer.Cell.ROTATE_180);
+        }
+        else if (playerDir == Direction.WEST){
+            playerCell.setRotation(TiledMapTileLayer.Cell.ROTATE_90);
+            playerDiedCell.setRotation(TiledMapTileLayer.Cell.ROTATE_90);
+            playerWonCell.setRotation(TiledMapTileLayer.Cell.ROTATE_90);
+        }
+        setPlayerState(playerState);
+    }
     // Sets the player to the provided PlayerState and updates player icon accordingly
     public void setPlayerState(PlayerState newState) {
         // Sets player to the new PlayerState
         playerState = newState;
-        // Coordinates required to change player icon
+
+        updatePlayerIcon();
+    }
+    public void updatePlayerIcon(){
+        // Coordinates required to update player icon
         Integer xLoc = getX();
         Integer yLoc = getY();
         // Updates player icon based on PlayerState

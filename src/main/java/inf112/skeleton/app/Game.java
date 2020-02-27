@@ -55,7 +55,7 @@ public class Game extends InputAdapter implements ApplicationListener {
         mapRenderer.setView(camera);
         // Code for defining player and start location
         Vector2 startLoc = new Vector2(0,0);
-        player = new Player(startLoc, PlayerLayer);
+        player = new Player(startLoc, Direction.NORTH, PlayerLayer);
     }
 
     @Override
@@ -71,8 +71,6 @@ public class Game extends InputAdapter implements ApplicationListener {
 
         //Renders map
         mapRenderer.render();
-        //Sets in player
-        player.setPlayerState(PlayerState.ALIVE);
         //Checks if the player is on any Special Tiles
         Integer xLoc = player.getX();
         Integer yLoc = player.getY();
@@ -83,6 +81,12 @@ public class Game extends InputAdapter implements ApplicationListener {
         else if (Holes.getCell(xLoc,yLoc) != null){
             player.setPlayerState(PlayerState.DEAD);
         }
+        //Not how its going to be in the final product, but here to showcase that the system tracks the location of the player
+        else {
+            player.setPlayerState(PlayerState.ALIVE);
+        }
+        //Sets in player
+        player.updatePlayerIcon();
     }
 
     @Override
@@ -91,6 +95,9 @@ public class Game extends InputAdapter implements ApplicationListener {
         // Logic gate for movement related input
         if (keycode == Input.Keys.W || keycode == Input.Keys.A || keycode == Input.Keys.S || keycode == Input.Keys.D){
             player.Move(keycode);
+        }
+        else if (keycode == Input.Keys.Q || keycode == Input.Keys.E){
+            player.Turn(keycode);
         }
         return true;
     }
