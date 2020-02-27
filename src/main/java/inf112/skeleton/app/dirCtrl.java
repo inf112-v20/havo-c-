@@ -1,5 +1,7 @@
 package inf112.skeleton.app;
-
+/*
+    This class control the direction control/system.
+ */
 public class dirCtrl {
     public Direction turnLeft(Direction dir){
         if (dir == Direction.NORTH){
