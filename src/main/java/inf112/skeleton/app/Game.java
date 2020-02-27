@@ -24,9 +24,7 @@ import javax.print.attribute.IntegerSyntax;
 public class Game extends InputAdapter implements ApplicationListener {
     private SpriteBatch batch;
     private BitmapFont font;
-    // Variables for Gameboard
-    private TiledMap tiledMap;
-    // Board is not yet in use but are going to be relevant later in development
+    // Map related elements
     private Board gameBoard;
     private OrthogonalTiledMapRenderer mapRenderer;
     private OrthographicCamera camera = new OrthographicCamera();
