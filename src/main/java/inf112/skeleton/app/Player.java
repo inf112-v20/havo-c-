@@ -35,44 +35,28 @@ public class Player {
         playerWonCell.setTile(new StaticTiledMapTile(playerIcon[0][2]));
     }
 
-    public void Move(int keycode) {
-        // Moves the player into the appropriate direction after keyinput from WASD
-        if (keycode == Input.Keys.W){
-            Integer xLoc = getX();
-            Integer newYLoc = getY() + 1;
-            Integer oldYLoc = getY();
-
-            playerLayer.setCell(xLoc, oldYLoc, null);
-            playerLoc.set(xLoc,newYLoc);
-            playerLayer.setCell(xLoc, newYLoc, playerCell);
+    public void Move() {
+        // Moves the player forward based on the player direction
+        // Player location coordinates
+        Integer xLoc = getX();
+        Integer yLoc = getY();
+        //Clears player icon from old location
+        playerLayer.setCell(xLoc, yLoc, null);
+        // Changes coordinates in the correct manner
+        if (playerDir == Direction.NORTH){
+            playerLoc.set(xLoc,yLoc + 1);
         }
-        else if (keycode == Input.Keys.S){
-            Integer xLoc = getX();
-            Integer newYLoc = getY() - 1;
-            Integer oldYLoc = getY();
-
-            playerLayer.setCell(xLoc, oldYLoc, null);
-            playerLoc.set(xLoc,newYLoc);
-            playerLayer.setCell(xLoc, newYLoc, playerCell);
+        else if (playerDir == Direction.SOUTH){
+            playerLoc.set(xLoc,yLoc - 1);
         }
-        else if (keycode == Input.Keys.A){
-            Integer yLoc = getY();
-            Integer newXLoc = getX() - 1;
-            Integer oldXLoc = getX();
-
-            playerLayer.setCell(oldXLoc,yLoc, null);
-            playerLoc.set(newXLoc,yLoc);
-            playerLayer.setCell(newXLoc,yLoc, playerCell);
+        else if (playerDir == Direction.WEST){
+            playerLoc.set(xLoc - 1,yLoc);
         }
-        else if (keycode == Input.Keys.D){
-            Integer yLoc = getY();
-            Integer newXLoc = getX() + 1;
-            Integer oldXLoc = getX();
-
-            playerLayer.setCell(oldXLoc,yLoc, null);
-            playerLoc.set(newXLoc,yLoc);
-            playerLayer.setCell(newXLoc,yLoc, playerCell);
+        else if (playerDir == Direction.EAST){
+            playerLoc.set(xLoc + 1,yLoc);
         }
+        // Updates the player icon so that is lands in the correct location
+        updatePlayerIcon();
         // Sets PlayerState of the player to dead if it is out of bounds
         if (getX() < 0 || getX() > playerLayer.getWidth() || getY() < 0 || getY() > playerLayer.getHeight()){
             setPlayerState(PlayerState.DEAD);

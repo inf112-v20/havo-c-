@@ -75,8 +75,8 @@ public class Game extends InputAdapter implements ApplicationListener {
     public boolean keyUp(int keycode) {
         // Not done yet, will get possiblity of returning False when illegal moves are coded in
         // Logic gate for movement related input
-        if (keycode == Input.Keys.W || keycode == Input.Keys.A || keycode == Input.Keys.S || keycode == Input.Keys.D){
-            player.Move(keycode);
+        if (keycode == Input.Keys.W){
+            player.Move();
         }
         else if (keycode == Input.Keys.Q || keycode == Input.Keys.E){
             player.Turn(keycode);
