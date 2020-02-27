@@ -27,10 +27,7 @@ public class Game extends InputAdapter implements ApplicationListener {
     // Variables for Gameboard
     private TiledMap tiledMap;
     // Board is not yet in use but are going to be relevant later in development
-    private TiledMapTileLayer Board;
-    private TiledMapTileLayer Holes;
-    private TiledMapTileLayer Flags;
-    private TiledMapTileLayer PlayerLayer;
+    private Board gameBoard;
     private OrthogonalTiledMapRenderer mapRenderer;
     private OrthographicCamera camera = new OrthographicCamera();
     private TmxMapLoader mapLoader = new TmxMapLoader();
@@ -45,17 +42,14 @@ public class Game extends InputAdapter implements ApplicationListener {
         // Input adapter shenanigans
         Gdx.input.setInputProcessor(this);
         // Code for setting up map
-        tiledMap = mapLoader.load("assets/map.tmx");
-        Holes = (TiledMapTileLayer) tiledMap.getLayers().get("Holes");
-        Flags = (TiledMapTileLayer) tiledMap.getLayers().get("Flags");
-        PlayerLayer = (TiledMapTileLayer) tiledMap.getLayers().get("PlayerLayer");
+        gameBoard = new Board(mapLoader.load("assets/map.tmx"));
         camera.setToOrtho(false, 5, 5);
         camera.update();
-        mapRenderer = new OrthogonalTiledMapRenderer(tiledMap, 1/300f);
+        mapRenderer = new OrthogonalTiledMapRenderer(gameBoard.getMap(), 1/300f);
         mapRenderer.setView(camera);
         // Code for defining player and start location
         Vector2 startLoc = new Vector2(0,0);
-        player = new Player(startLoc, Direction.NORTH, PlayerLayer);
+        player = new Player(startLoc, Direction.NORTH, gameBoard.getPlayerLayer());
     }
 
     @Override
@@ -71,20 +65,8 @@ public class Game extends InputAdapter implements ApplicationListener {
 
         //Renders map
         mapRenderer.render();
-        //Checks if the player is on any Special Tiles
-        Integer xLoc = player.getX();
-        Integer yLoc = player.getY();
-
-        if (Flags.getCell(xLoc,yLoc) != null){
-            player.setPlayerState(PlayerState.WINNER);
-        }
-        else if (Holes.getCell(xLoc,yLoc) != null){
-            player.setPlayerState(PlayerState.DEAD);
-        }
-        //Not how its going to be in the final product, but here to showcase that the system tracks the location of the player
-        else {
-            player.setPlayerState(PlayerState.ALIVE);
-        }
+        // Checks if player is standing on special tiles
+        gameBoard.checkForSpecialTiles(player);
         //Sets in player
         player.updatePlayerIcon();
     }
