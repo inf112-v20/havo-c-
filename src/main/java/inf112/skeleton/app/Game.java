@@ -81,7 +81,9 @@ public class Game extends InputAdapter implements ApplicationListener {
         else if (keycode == Input.Keys.Q || keycode == Input.Keys.E){
             player.Turn(keycode);
         }
+        // Checks if player is dead before allowing player to respawn
         else if (player.getPlayerState() == PlayerState.DEAD && keycode == Input.Keys.R){
+            // Barebones respawn system that feeds in start coordinates and direction, a better one will be developed later
             player.respawn(0,0, Direction.NORTH);
         }
         return true;

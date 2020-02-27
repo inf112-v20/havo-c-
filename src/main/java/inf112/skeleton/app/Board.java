@@ -28,10 +28,6 @@ public class Board {
         else if (Holes.getCell(xLoc, yLoc) != null){
             player.setPlayerState(PlayerState.DEAD);
         }
-        // Not how its going to be in the final product, but to showcase the fact that the player reacts to the tile it stands on
-        else {
-            player.setPlayerState(PlayerState.ALIVE);
-        }
     }
 
     public TiledMap getMap() {

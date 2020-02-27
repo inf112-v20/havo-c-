@@ -53,8 +53,6 @@ public class Player {
             } else if (playerDir == Direction.EAST) {
                 playerLoc.set(xLoc + 1, yLoc);
             }
-            // Updates the player icon so that is lands in the correct location
-            updatePlayerIcon();
             // Sets PlayerState of the player to dead if it is out of bounds
             if (getX() < 0 || getX() > playerLayer.getWidth() || getY() < 0 || getY() > playerLayer.getHeight()) {
                 setPlayerState(PlayerState.DEAD);
@@ -77,6 +75,7 @@ public class Player {
             updateIconRotation();
         }
     }
+    // Updates rotation of the player icon based on what the player direction is
     private void updateIconRotation() {
         if (playerDir == Direction.NORTH){
             playerCell.setRotation(TiledMapTileLayer.Cell.ROTATE_0);
@@ -98,27 +97,35 @@ public class Player {
             playerDiedCell.setRotation(TiledMapTileLayer.Cell.ROTATE_90);
             playerWonCell.setRotation(TiledMapTileLayer.Cell.ROTATE_90);
         }
-        updatePlayerIcon();
     }
     // Sets the player to the provided PlayerState and updates player icon accordingly
     public void setPlayerState(PlayerState newState) {
         // Sets player to the new PlayerState
         playerState = newState;
-        updatePlayerIcon();
     }
     // Respawns a dead player
     public  void respawn(Integer xCoord, Integer yCoord, Direction dir){
+        // Checks if player is out of lives
         if (lives > 0) {
+            // Removes player from location of death
             playerLayer.setCell(getX(),getY(),null);
+            // Sets the coordinates and direction the player is facing when respawning in addition of setting the playerState to alive
             playerLoc.set(xCoord, yCoord);
             playerDir = dir;
-            updateIconRotation();
             setPlayerState(PlayerState.ALIVE);
+            // Updates the player icons rotation
+            updateIconRotation();
+            // Subtracts the life lost
             lives--;
         }
+        // Game Over mechanics not implemented yet
+        else {
+            // Game Over mechanics go here
+        }
     }
+    // Updates the player icon
     public void updatePlayerIcon(){
-        // Coordinates required to update player icon
+        // Coordinates required to place player icon
         Integer xLoc = getX();
         Integer yLoc = getY();
         // Updates player icon based on PlayerState
@@ -132,7 +139,7 @@ public class Player {
             playerLayer.setCell(xLoc,yLoc, playerCell);
         }
     }
-    // Functions to easily access coordinates of the Player
+    // Functions to access information of the Player
     public Integer getX(){
         return Math.round(playerLoc.x);
     }
