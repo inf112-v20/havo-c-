@@ -81,6 +81,9 @@ public class Game extends InputAdapter implements ApplicationListener {
         else if (keycode == Input.Keys.Q || keycode == Input.Keys.E){
             player.Turn(keycode);
         }
+        else if (player.getPlayerState() == PlayerState.DEAD && keycode == Input.Keys.R){
+            player.respawn(0,0, Direction.NORTH);
+        }
         return true;
     }
 
