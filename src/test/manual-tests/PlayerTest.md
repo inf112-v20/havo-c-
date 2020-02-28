@@ -46,8 +46,8 @@ not be able to move or turn.
 replace him at the coordinates (0,0) facing up.
 - Use the following commands to move the Player off the board:
 Q, W.
-- Press R, this should replace the player onto the board facing
-up.
+- Press R, this should replace the player onto the board at
+the same location as previously in facing the same direction.
 - Repeat the two previous steps, the same things should occur.
 - Repeat the steps again, this time pressing R should have no
 effect as the player has spent his 3 lives and is unable to
