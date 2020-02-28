@@ -1,6 +1,7 @@
 Set-up
-- Open game, the player should start at a 5x5 board with a
-hole at the (3,3) coordinates and a flag at (5,5) coordinates.
+- Open game, the player should start at a 5x5 board with the
+player at the (0,0) coordinates, a hole at the (3,3)
+coordinates and a flag at (5,5) coordinates.
 
 Player move test
 - Press W, the player icon should move a single tile upwards.
@@ -32,11 +33,12 @@ Additionally the player should no longer be able to turn or move
 
 Player respawn mechanics test
 - Restart Game
+- Press W, this should move the player one tile upwards
 - Press R, this button is bound to the respawn method and
 should only activate if the player is dead. It should not
 do anything now, as the player is alive.
 - Use the following commands to move the Player into a hole:
-2xW, E, 2xW.
+W, E, 2xW.
 - When the player reaches the hole, the player should die and
 this should reflect on the player icon. Additionally it should
 not be able to move or turn.
