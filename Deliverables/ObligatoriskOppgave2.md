@@ -93,7 +93,7 @@ Hovedsakelig er det Otso som har gjort mesteparten av committene til koden, grun
 
 **Referat fra møter siden forrige leveranse skal legges ved.**
 
-Referat finner du i referat mappen.
+Referat finner du helt nederst i denne md-filen.
 
 ---
 
@@ -200,20 +200,129 @@ Vi ønsket førts å få brettet til å kunne flytte brikken rundt på brettet. 
 **Forklar kort hvilke hovedkrav dere anser som en del av MVP og hvorfor. Hvis det er gjort endringer i
 rekkefølge utfra hva som er gitt fra kunde, hvorfor er dette gjort?**
 
+Alle disse kravene, som ble nevnt forrige innlevering anser vi som MVP. Den listen vi sendte inn er også mer eller mindre i rekkefølgen vi kommer til å løse oppgavene. Se kommentarer på listen for mer info. (Listen under er listen med MVP krav vi sendte inn, i samme rekkefølge)
+-	Spillebrett
+-	Roboter som kan plassers på bordet
+-	Muligheten til vinne
+-	Kunne ta skade, på deg og på andre
+-	Roboten skal kunne miste alle liv og dø
+-	Et GUI som er funksjonelt for spillet (Denne er egenltig noe som hele veien kan forbedres, og kommer til å bli forbedret etterhvert som flere funskjoner blir lagt til.)
+-	Velge kort fra en kortstokk
+-	Programmere kort
+-	Nye kort hver runde
+-	Et gamplay system som er runde basert
+-	Flag på brettet (Denne er allerede gjort, da den var med i tutotielen på hvordan vi får programmet til kjøre)
+-	Register at robot har vært innom flagg (Denne burde også være lenger oppe da den er allerede gjort.)
+-	Vegger og hindringer
+-	Rollebanen
+-	Roboten skal kunne skyte laser
+
+Følgende krav har også blit lagt til, hovedsakelig frodi vi glemte å sette bevegelse på brikken som et krav.
+-  Bevegelses system til brikken
+
+Under ser du rekkefølgen vi har valgt å løse oppgavene. Tanken bak hvilke krav vi har valgt å prioritere kommer egentlig hovedsakelig fra hvor vi synes det er naturlig å begynne. For eksempel: Vi trenger å se brettet, for å kunne bevegge brikken, og vi trenger å kunne bevege brikken for å kunne programmere bevegelsen med kort.
+
 ---
 
 **Oppdater hvilke krav dere har prioritert, hvor langt dere har kommet og hva dere har gjort siden forrige
 gang.**
+
+**Følgende Oppgaver ble løst forrige innlevering**
+
+- Spillebrett
+- Roboter som kan plassers på bordet
+- Flag på brettet
+
+**Følgende oppgaver ble priotert til denne gang**
+
+Vi prioriterte disse oppgavene da de ikke er veldig tidkrevende å gjennomføre, og viktige for å kunne utvikle spillet videre.
+
+- Bevegelses system til brikken (Var opprinnelig krav vi glemte å ta med på den opprinelige kravlisten våres.)
+- Muligheten til vinne
+- Kunne ta skade, på deg og på andre
+- Roboten skal kunne miste alle liv og dø
+
+**MVP oppgaver som enda gjenstår**
+
+- Et GUI som er funksjonelt for spillet
+- Velge kort fra en kortstokk
+- Programmere kort
+- Nye kort hver runde
+- Et gamplay system som er runde basert
+- Register at robot har vært innom flagg
+- Vegger og hindringer
+- Rollebanen
+- Roboten skal kunne skyte laser
 
 ---
 
 ### Bugs
 
 **Heine fikk følgende meldinger på macen sin, da han kjørte koden på fredags-gruppetimen. Spillet ville fremdeles kjøre. (28.02.20)**
+
 WARNING: An illegal reflective access operation has occurred
+
 WARNING: Illegal reflective access by org.lwjgl.LWJGLUtil$3 (file:/Users/heineolsenhartvedt/.m2/repository/org/lwjgl/lwjgl/lwjgl/2.9.3/lwjgl-2.9.3.jar) to method java.lang.ClassLoader.findLibrary(java.lang.String)
+
 WARNING: Please consider reporting this to the maintainers of org.lwjgl.LWJGLUtil$3
+
 WARNING: Use --illegal-access=warn to enable warnings of further illegal reflective access operations
+
 WARNING: All illegal access operations will be denied in a future release
 
 ---
+
+## Referat
+
+**Fredag 14.02.20** Ca. 30 min. Kun Otso deltok.
+
+Denne fredagen hadde Heine, Andreas og Vebjørn eksamen. Otso var derfor den eneste som møtte til gruppetimen. Han var egentlig syk og valgte og gå etter 30 min, da gruppen ikke hadde diskutert videre oppgaver og siden vi ikke hadde fått noen oppgaver som måtte gjøres. Lite ble gjort denne dagen.
+
+
+**Fredag 21.02.20** Ca. 2 timer. Alle deltok.
+
+-	Vi leste gjennom den andre obligatoriske innleveringen
+-	Vi gikk gjennom rette skjema, og diskuterte hvilke punkter vi kunne gjøre det bedre på. Ble enige om følgende punkter.
+ - Bedre struktur
+ - Flere gruppemøter sammen
+ - Vi må begynne å lage tester til koden
+-	Deretter gikk vi gjennom oppgave 1 på den andre obligatoriske innlevering
+-	Det ble laget et mer detaljert project board
+-	Vi diskuterte hvordan vi skulle dele opp hovedklassen til spillet opp i mindre klasser.
+
+
+**Mandag 24.02.20** Ca. 2 timer. Alle deltok.
+
+Vi gikk i gang med følgende oppgaver:
+-	Dele opp koden i mindre klasser
+-	Implementere et bevegelsesystem for brikken
+-	 Skrive svar på oppgave 1 og 2 inn på github i md-format
+-	Diskutere hvordan vi vill ha tester til spillet
+-	Lage presentasjon
+
+
+**Torsdag 27.02.20** Ca. 2 timer. Alle deltok.
+
+-	Heine og Vebjørn kunne ikke lenger kjøre koden. De satt derfor prøvde å finne feilen som gjorde at det ikke funket.
+-	Vi oppdaterte bevegelses systemet til noe som er mer relevant for RobboRally
+-	Vi implementerte et liv system for brikken
+-	Vi begynte smått med utviklingen av tester
+
+
+**Fredag 28.02.20** Ca. 3 timer. Alle deltok.
+
+ - Vi ble enige om at fokuset kun skulle være å få inn flest mulig tester.
+ - Tester for en rekke klasser ble skrevet.
+ - Klasse-diagram ble laget.
+ - Skrev ferdig svar på oppgave 1 og 2.
+ - Laget manuelle tester.
+ - Diskutert videre utvikling av prosjektet
+ 
+
+### Retrospektiv til denne innlevering
+
+Vi har vært bedre på abeidsfordeling denne gangen. Dette skyldes også litt at vi har begynnt med prosjektet som gjør det lettere å fordele oppgaver. Vi kan nok bli enda litt bedre å bruke project board på github, men den er i det minste bedre oppdatert. Vi har denne gangen slitt med dataproblemmer, både Heine og Vebjørn hadde problemmer med å kjøre koden. Hadde vi vært flinkere til å løse slike problemmer hjemme, ville ikke tid sammen med gruppen gått bort til simple problemmer. Vi må også alle bli flinkere til å delta på koden. Nå har Otso tatt mye av ansvaret for koden og for at de andre gruppemedlemene faktisk skal kunne henge med på hva som skjer, må alle i gruppen være mer aktiv på kode biten.
+
+### Kommuniksajon (Hvordan vi deler og overfører kunnskap)
+
+Vi jobber omtrent alltid sammen som et team. Vi spør dermed bare personen som kan mest om tema, hvis noen skulle lure på noe. For eksempel Otso har god kontroll på hvordan koden fungerer, han har dermed vært veldig behjelpelig om noen skulle lure på noe angående koden til spillet. Vi diskutere også mye i teamet, da det også er bra grunnlag for kunnskapsoverføring. Til sist har vi er hvordan vi skriver og kommenterer koden en enkel måte og gjøre det lettere å overføre kunnskap hvordan koden fungerer. Vi prøver også å lære oss ting hjemme, for eksempel hadde vi ikke så mye erfaring med hvordan github fungerer, vi hadde derfor til forrige innlevering som mål at folk skulle lære seg github hjemme. Dette gjorde at folk kunne komme mer forberett til  å bruke github, men også å lære vekk github. Som nevnt tidligere fungerer gruppedynamikken bra.
