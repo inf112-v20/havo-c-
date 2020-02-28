@@ -12,22 +12,22 @@ Så langt er folk fornøyde med Teamlead og kundekontakt, se under for en klar b
 ---
 **Trenger dere andre roller? Skriv ned noen linjer om hva de ulike rollene faktisk innebærer for dere.**
 
-Med tanke på hvordan arbeidsfordelingen gikk til forrige innlevering og hvilke oppgaver vi ser som må løses nå, er det bli gjort noen endringer i rollene. Otso er blitt hovedutvikleren vår da han løste mange problemer fra forrige innlevering. Vebjørn har vi nå satt til testarkitekt, hvor han vil ha som ansvar og utvikle tester. Merk at alle kommer til å delta på koden til spillet, men hovedutvikler og test-arkitekt, kommer nok ikke i like høygrad skrive svar på spørsmål. Rollene er som følger.
+Med tanke på hvordan arbeidsfordelingen gikk til forrige innlevering og hvilke oppgaver vi ser som må løses nå, er det bli gjort noen endringer i rollene. Otso er blitt hovedutvikleren vår da han løste mange problemer fra forrige innlevering. Vebjørn har vi nå satt til testarkitekt, hvor han vil ha som ansvar og utvikle tester. Merk at alle kommer til å delta på koden til spillet, men hovedutvikler og test-arkitekt, kommer nok ikke i like høygrad til skrive svar på spørsmål. Rollene er som følger.
 
 
 **Andreas - Teamlead**
 
 Teamlead sin oppgave blir å skrive referat og sørge for at alle har en grei forståelse for hvilke oppgaver de skal gjøre. Dette vil innebære å holde project board ryddig, oversiktlig og aktuelt. Teamlead tar også mye av ansvaret for å skrive prosjektmetodikk og brukerhistorier.
  - Skrive referat
- - Holde orden project board
- - Skrive svar på spørsmål
+ - Holde orden på project board
+ - Skrive svar på innleveringsspørsmål
  - Hjelpe til med koden
 
  
  
  **Heine - Kundekontakt**
  
- Kundekontakten sine oppgaver blir kommunisere med kunden. Både stille spørsmål teamet har til kunden, men også representere gruppen for kunden, om kunden skulle lure på noe. Andre oppgaver som å hjelpe til å skrive svar på innleveringsspørsmål og skrive kode er viktige deler av jobben til kundekontakten.
+ Kundekontakten sine oppgaver blir å kommunisere med kunden. Både stille spørsmål teamet har til kunden, men også representere gruppen for kunden, om kunden skulle lure på noe. Andre oppgaver som å hjelpe til å skrive svar på innleveringsspørsmål og skrive kode er viktige deler av jobben til kundekontakten.
  - Kommunisere med kunden
  - Hjelpe til med skriveoppgavene
  - Hjelpe til med koden
@@ -55,7 +55,7 @@ Teamlead sin oppgave blir å skrive referat og sørge for at alle har en grei fo
 teamet at de valgene dere har tatt er gode? Hvis ikke, hva kan dere gjøre annerledes for å forbedre
 måten teamet fungerer på?**
 
-Vi trenger å bli bedre på arbeidsfordeling. Det gjelder både å kommunisere hvilke oppgaver hver person gjør, men også å dele opp oppgaver i riktig størrelser og ha en klar stuktur på hvilke oppgaver som må gjøres. Ellers lærte vi fra forrige innlevering at hver oppgave bør gjøres, så godt det lar seg gjøre, 100% ferdig. Vi bør også komme bedre forberedt til møtene våre. Det har gått mye tid til dataproblemer. Siden det har vært så mange dataproblemer, er fordeling på hvem som skriver koden blitt noe ujevn. Vi bør på de neste innleveringene prøve å få en jevnere fordeling på hvem som skriver kode.
+Vi trenger å bli bedre på arbeidsfordeling. Det gjelder både å kommunisere hvilke oppgaver hver person gjør, men også å dele opp oppgaver i riktig størrelser og ha en klar struktur på hvilke oppgaver som må gjøres. Ellers lærte vi fra forrige innlevering at hver oppgave bør gjøres, så godt det lar seg gjøre, 100% ferdig. Vi bør også komme bedre forberedt til møtene våre. Det har gått mye tid til dataproblemer. Siden det har vært så mange dataproblemer, er fordeling på hvem som skriver koden blitt noe ujevn. Vi bør på de neste innleveringene prøve å få en jevnere fordeling på hvem som skriver kode.
 
 ---
 
@@ -86,8 +86,8 @@ designfiler)**
 Hovedsakelig er det Otso som har gjort mesteparten av committene til koden, grunnen til at resten av teamet ikke har rukket å utvikle så mye kode skyldes følgende grunner.
 
 1.	Heine og Vebjørn har slitt med å få Maven til å kjøre skikkelig, noe som gjør at de ikke kan kjøre koden.
-2.	Til forrige innlevering satt Heine og Otso, og prøvde å finne ut hvordan de får kart fra Tile kart inn i en java-klasse, og så vist på en skjerm. Dette satte de mye og parprogrammerte på Otso sin laptop. Dette tok mye mer tid enn forventet, da det måtte en del troubleshooting til.
-3.	Andreas og Vebjørn har tatt ansvar for å skrive svar til mange av spørsmålene og skrive ned brukerhistorikk, prosjektmetodikker, osv.
+2.	Til forrige innlevering satt Heine og Otso, og prøvde å finne ut hvordan de får kart fra Tile inn i en java-klasse, og så vist på en skjerm. Dette satte de mye og parprogrammerte på Otso sin laptop. Dette tok mye mer tid enn forventet, da det måtte en del troubleshooting til.
+3.	Andreas og litt Vebjørn har tatt ansvar for å skrive svar til mange av spørsmålene og skrevet ned brukerhistorikk, prosjektmetodikker, osv.
 
 ---
 
@@ -99,20 +99,20 @@ Referat finner du helt nederst i denne md-filen.
 
 **Bli enige om maks tre forbedringspunkter fra retrospektivet, som skal følges opp under neste sprint**
 
-- Klar arbeidsfordeling
-- Alle må bidra på kodebiten til prosjektet
-- Være mer forberedt til samarbeidstimer slik at tid ikke forsvinner i dataproblemer
+- Klar arbeidsfordeling.
+- Alle må bidra på kodebiten til prosjektet.
+- Være mer forberedt til samarbeidstimer slik at tid ikke forsvinner i dataproblemer.
 
 
 ## Deloppgave 2: krav
 
 ### Brukerhistoriker 
 
-**Brukerhistorier: **
+**Brukerhistorier:**
 
 Som spiller trenger jeg å se et brett for å lettere kunne følge med på hva som skjer i spillet.
 
-**Akseptansekriterie: **
+**Akseptansekriterier:**
 
 - Brettet må være 5 * 5 tiles (300px).
 - Hver rute må ha grafikk.
@@ -126,13 +126,13 @@ Som spiller trenger jeg å se et brett for å lettere kunne følge med på hva s
 
 - - -
 
-**Brukerhistorier: **
+**Brukerhistorier:**
 
 Som spiller må jeg kunne flytte en brikke på brettet slik at roboter kan flyttes.
 
-**Akseptansekriterie:**
+**Akseptansekriterier:**
 
--	Brikken må kunne plasseres på brettet. (I form av at start posisjon er hard-kodet inn, det å drag-drope figurer på brettet blir en annen brukerhistorie.
+-	Brikken må kunne plasseres på brettet. (I form av en start posisjon er hard-kodet inn, det å drag-drope figurer på brettet blir en annen brukerhistorie.
 -	Brikkens posisjon kan endres etter den er plassert på brettet.
 
 **Arbeidsoppgaver:**
@@ -141,38 +141,38 @@ Som spiller må jeg kunne flytte en brikke på brettet slik at roboter kan flytt
 -	Representere brikkens posisjon i kode.
 -	Oppdatere brikkens posisjon visuelt.
 -	Oppdatere brikkens posisjon i kode.
-- Kunne bruke 'q' til å snu figuren til høyre i samme rute som den står
-- Kunne bruke 'e' til å snu figuren til venstre i samme rute som den står
+- Kunne bruke 'q' til å snu figuren til høyre i samme rute som den står.
+- Kunne bruke 'e' til å snu figuren til venstre i samme rute som den står.
 - Kunne bruke 'w" til å gå frem over på brettet.
 
 - - -
 
-**Brukerhistorier: **
+**Brukerhistorier:**
 
-Som spiller vil jeg at mine bevegelsesavgjørelser skal gjøre at jeg kan vinne/tape slik, at roboten ikke bare flyttes meningsløst rundt i et rutekart.
+Som spiller vil jeg at mine bevegelsesavgjørelser skal gjøre at jeg kan vinne/tape, slik at roboten ikke bare flyttes meningsløst rundt i et rutekart.
 
-**Akseptansekriterie: **
+**Akseptansekriterier:**
 
 - Spilleren må kunne vinne.
 - Brikken må kunne ta skade/dø.
-- Om brikken dør, må brikken kunne respawne på nytt, slik at brukeren slipper å restarte aplikasjonen.
+- Om brikken dør, må brikken kunne respawne på nytt, slik at brukeren slipper å restarte applikasjonen.
 
-**Arbeidsoppgaver: **
+**Arbeidsoppgaver:**
 
 - Implementere et win-condition.
 - Implementere et liv system.
-- Implementere et muligheten til dø
-- Implementere et respawn system
+- Implementere et muligheten til å dø.
+- Implementere et respawn system (press 'r' for respawn).
 
 ### Brukerhistoriker for oppgaver som vi skal starte med
 
-**Brukerhistorier: **
+**Brukerhistorier:**
 
-(Denne brukerhistorien trenger en del arbeid når det kommer til den praktiske biten til utførelsen. Noen eller flere av arbeidsoppgavene kan dermed være gankse store/tid krevende.)
+(Denne brukerhistorien trenger en del arbeid når det kommer til den praktiske biten til utførelsen. Noen eller flere av arbeidsoppgavene kan dermed være ganske store/tid krevende. Dette kan kanskje også bli 2 brukerhistorier, en for valg av kort, og en for programmering av robot.)
 
-Som spiller vil jeg velge kort jeg kan programmere roboten rundt med slik at roboten blir styrt og oppfører seg slik som i RobboRally.
+Som spiller vil jeg velge kort jeg kan programmere roboten rundt med, slik at roboten blir styrt og oppfører seg slik kortene sier.
 
-**Akseptansekriterie: **
+**Akseptansekriterier:**
 
 - Spilleren må kunne velge kort.
 - Spilleren må kunne velge rekkefølgen på valgte kort.
@@ -180,12 +180,12 @@ Som spiller vil jeg velge kort jeg kan programmere roboten rundt med slik at rob
 - Roboten må bevege seg etter kortene som blir lagt ned.
 
 
-**Arbeidsoppgaver: **
+**Arbeidsoppgaver:**
 
 - Lage en kort klasse.
-- Lage forskjellige kort, med forkjellige instrukser.
+- Lage forskjellige kort, med forskjellige instrukser.
 - Implementere et system som gjør at spiller kan velge et kort.
-- Utvikle systemet videre slik at spilleren kan velge flere kort blandt en sammling av kort.
+- Utvikle systemet videre slik at spilleren kan velge flere kort blant en samling av kort.
 - Gjøre slik at kortene påvirker bevegelsen til roboten.
 - Få roboten til å bevege seg riktig etter en sekvens med kort er blitt lagt ut
 
@@ -193,7 +193,7 @@ Som spiller vil jeg velge kort jeg kan programmere roboten rundt med slik at rob
 ---
 **Forklar kort hvordan dere har prioritert oppgavene fremover**
 
-Vi ønsket førts å få brettet til å kunne flytte brikken rundt på brettet. Nå som det er i orden, er planen fremover å prøve å få et kortsystem til å fungere, for så å gjøre spillet rundebasert. Da de mest elementære tingene i spillet er klart, det vil si brikker som kan flyttes på et brett ved bruk av kort, i et spill system som er runde basert, vil fokuset bli å få flest mulig funksjoner inn i spillet. De funksjonene som førts vil prioriteres er rullebane, laser, flagg og vegger.
+Vi ønsket først å få brettet til å kunne flytte brikken rundt på brettet. Nå som det er i orden, er planen fremover å prøve å få et kortsystem til å fungere, for så å gjøre spillet rundebasert. Da de mest elementære tingene i spillet er klart, det vil si brikker som kan flyttes på et brett ved bruk av kort, i et spill system som er runde basert, vil fokuset bli å få flest mulig funksjoner inn i spillet. De funksjonene som førts vil prioriteres er rullebane, laser og vegger.
 
 ---
 
@@ -203,24 +203,24 @@ rekkefølge utfra hva som er gitt fra kunde, hvorfor er dette gjort?**
 Alle disse kravene, som ble nevnt forrige innlevering anser vi som MVP. Den listen vi sendte inn er også mer eller mindre i rekkefølgen vi kommer til å løse oppgavene. Se kommentarer på listen for mer info. (Listen under er listen med MVP krav vi sendte inn, i samme rekkefølge)
 -	Spillebrett
 -	Roboter som kan plassers på bordet
--	Muligheten til vinne
--	Kunne ta skade, på deg og på andre
+-	Muligheten til å vinne
+-	Kunne ta skade
 -	Roboten skal kunne miste alle liv og dø
--	Et GUI som er funksjonelt for spillet (Denne er egenltig noe som hele veien kan forbedres, og kommer til å bli forbedret etterhvert som flere funskjoner blir lagt til.)
+-	Et GUI som er funksjonelt for spillet (Denne er egentlig noe som hele veien kan forbedres, og kommer til å bli forbedret etterhvert som flere funksjoner blir lagt til.)
 -	Velge kort fra en kortstokk
--	Programmere kort
+-	Programmere robot med kort
 -	Nye kort hver runde
--	Et gamplay system som er runde basert
--	Flag på brettet (Denne er allerede gjort, da den var med i tutotielen på hvordan vi får programmet til kjøre)
+-	Et gameplay system som er runde basert
+-	Flag på brettet (Denne er allerede gjort, da den var med i tutorial på hvordan vi får programmet til å kjøre)
 -	Register at robot har vært innom flagg (Denne burde også være lenger oppe da den er allerede gjort.)
 -	Vegger og hindringer
--	Rollebanen
+-	Rullebanen
 -	Roboten skal kunne skyte laser
 
-Følgende krav har også blit lagt til, hovedsakelig frodi vi glemte å sette bevegelse på brikken som et krav.
--  Bevegelses system til brikken
+Følgende krav har også blitt lagt til, hovedsakelig fordi vi glemte å sette bevegelse på brikken som et krav.
+-  Bevegelsessystem til brikken
 
-Under ser du rekkefølgen vi har valgt å løse oppgavene. Tanken bak hvilke krav vi har valgt å prioritere kommer egentlig hovedsakelig fra hvor vi synes det er naturlig å begynne. For eksempel: Vi trenger å se brettet, for å kunne bevegge brikken, og vi trenger å kunne bevege brikken for å kunne programmere bevegelsen med kort.
+Under ser du rekkefølgen vi har valgt å løse oppgavene. Tanken bak hvilke krav vi har valgt å prioritere kommer egentlig hovedsakelig fra hvor vi synes det er naturlig å begynne. For eksempel: Vi trenger å se brettet, for å kunne bevege brikken, og vi trenger å kunne bevege brikken for å kunne programmere bevegelsen med kort.
 
 ---
 
@@ -233,13 +233,14 @@ gang.**
 - Roboter som kan plassers på bordet
 - Flag på brettet
 
-**Følgende oppgaver ble priotert til denne gang**
+**Følgende oppgaver ble prioritert til denne gang**
 
-Vi prioriterte disse oppgavene da de ikke er veldig tidkrevende å gjennomføre, og viktige for å kunne utvikle spillet videre.
+Vi prioriterte disse oppgavene da er viktige for å kunne utvikle spillet videre.
 
-- Bevegelses system til brikken (Var opprinnelig krav vi glemte å ta med på den opprinelige kravlisten våres.)
+- Bevegelses system til brikken (Var opprinnelig et krav vi glemte å ta med på den opprinnelige kravlisten vår.)
 - Muligheten til vinne
-- Kunne ta skade, på deg og på andre
+- Register at robot har vært innom flagg
+- Kunne ta skade
 - Roboten skal kunne miste alle liv og dø
 
 **MVP oppgaver som enda gjenstår**
@@ -249,9 +250,8 @@ Vi prioriterte disse oppgavene da de ikke er veldig tidkrevende å gjennomføre,
 - Programmere kort
 - Nye kort hver runde
 - Et gamplay system som er runde basert
-- Register at robot har vært innom flagg
 - Vegger og hindringer
-- Rollebanen
+- Rullebanen
 - Roboten skal kunne skyte laser
 
 ---
@@ -276,13 +276,13 @@ WARNING: All illegal access operations will be denied in a future release
 
 **Fredag 14.02.20** Ca. 30 min. Kun Otso deltok.
 
-Denne fredagen hadde Heine, Andreas og Vebjørn eksamen. Otso var derfor den eneste som møtte til gruppetimen. Han var egentlig syk og valgte og gå etter 30 min, da gruppen ikke hadde diskutert videre oppgaver og siden vi ikke hadde fått noen oppgaver som måtte gjøres. Lite ble gjort denne dagen.
+Denne fredagen hadde Heine, Andreas og Vebjørn eksamen. Otso var derfor den eneste som møtte til gruppetimen. Han var egentlig syk og valgte å gå etter 30 min, da gruppen ikke hadde diskutert videre oppgaver og siden vi ikke hadde fått noen oppgaver som måtte gjøres. Lite ble gjort denne dagen.
 
 
 **Fredag 21.02.20** Ca. 2 timer. Alle deltok.
 
 -	Vi leste gjennom den andre obligatoriske innleveringen
--	Vi gikk gjennom rette skjema, og diskuterte hvilke punkter vi kunne gjøre det bedre på. Ble enige om følgende punkter.
+-	Vi gikk gjennom retteskjema, og diskuterte hvilke punkter vi kunne gjøre det bedre på. Ble enige om følgende punkter.
  - Bedre struktur
  - Flere gruppemøter sammen
  - Vi må begynne å lage tester til koden
@@ -291,11 +291,12 @@ Denne fredagen hadde Heine, Andreas og Vebjørn eksamen. Otso var derfor den ene
 -	Vi diskuterte hvordan vi skulle dele opp hovedklassen til spillet opp i mindre klasser.
 
 
+
 **Mandag 24.02.20** Ca. 2 timer. Alle deltok.
 
 Vi gikk i gang med følgende oppgaver:
 -	Dele opp koden i mindre klasser
--	Implementere et bevegelsesystem for brikken
+-	Implementere et bevegelsessystem for brikken
 -	 Skrive svar på oppgave 1 og 2 inn på github i md-format
 -	Diskutere hvordan vi vill ha tester til spillet
 -	Lage presentasjon
@@ -303,7 +304,7 @@ Vi gikk i gang med følgende oppgaver:
 
 **Torsdag 27.02.20** Ca. 2 timer. Alle deltok.
 
--	Heine og Vebjørn kunne ikke lenger kjøre koden. De satt derfor prøvde å finne feilen som gjorde at det ikke funket.
+-	Heine og Vebjørn kunne ikke lenger kjøre koden. De satt derfor og prøvde å finne feilen som gjorde at det ikke funket.
 -	Vi oppdaterte bevegelses systemet til noe som er mer relevant for RobboRally
 -	Vi implementerte et liv system for brikken
 -	Vi begynte smått med utviklingen av tester
@@ -321,8 +322,8 @@ Vi gikk i gang med følgende oppgaver:
 
 ### Retrospektiv til denne innlevering
 
-Vi har vært bedre på abeidsfordeling denne gangen. Dette skyldes også litt at vi har begynnt med prosjektet som gjør det lettere å fordele oppgaver. Vi kan nok bli enda litt bedre å bruke project board på github, men den er i det minste bedre oppdatert. Vi har denne gangen slitt med dataproblemmer, både Heine og Vebjørn hadde problemmer med å kjøre koden. Hadde vi vært flinkere til å løse slike problemmer hjemme, ville ikke tid sammen med gruppen gått bort til simple problemmer. Vi må også alle bli flinkere til å delta på koden. Nå har Otso tatt mye av ansvaret for koden og for at de andre gruppemedlemene faktisk skal kunne henge med på hva som skjer, må alle i gruppen være mer aktiv på kode biten.
+Vi har vært bedre på arbeidsfordelingen denne gangen. Dette skyldes også litt at vi har begynt med prosjektet som gjør det lettere å fordele oppgaver. Vi kan nok bli enda litt bedre på å bruke project board på github, men den er i det minste bedre oppdatert. Vi har denne gangen slitt med dataproblemer, både Heine og Vebjørn hadde problemer med å kjøre koden. Hadde vi vært flinkere til å løse slike problemer hjemme, ville ikke tid sammen med gruppen gått bort til simple problemer. Vi må også alle bli flinkere til å delta på koden. Nå har Otso tatt mye av ansvaret for koden og for at de andre gruppemedlemmene faktisk skal kunne henge med på hva som skjer, må alle i gruppen være mer aktiv på kode biten.
 
-### Kommuniksajon (Hvordan vi deler og overfører kunnskap)
+### Kommunikasjon (Hvordan vi deler og overfører kunnskap)
 
-Vi jobber omtrent alltid sammen som et team. Vi spør dermed bare personen som kan mest om tema, hvis noen skulle lure på noe. For eksempel Otso har god kontroll på hvordan koden fungerer, han har dermed vært veldig behjelpelig om noen skulle lure på noe angående koden til spillet. Vi diskutere også mye i teamet, da det også er bra grunnlag for kunnskapsoverføring. Til sist har vi er hvordan vi skriver og kommenterer koden en enkel måte og gjøre det lettere å overføre kunnskap hvordan koden fungerer. Vi prøver også å lære oss ting hjemme, for eksempel hadde vi ikke så mye erfaring med hvordan github fungerer, vi hadde derfor til forrige innlevering som mål at folk skulle lære seg github hjemme. Dette gjorde at folk kunne komme mer forberett til  å bruke github, men også å lære vekk github. Som nevnt tidligere fungerer gruppedynamikken bra.
+Vi jobber omtrent alltid sammen som et team. Vi spør dermed bare personen som kan mest om tema, hvis noen skulle lure på noe. For eksempel Otso har god kontroll på hvordan koden fungerer, han har dermed vært veldig behjelpelig om noen skulle lure på noe angående koden til spillet. Vi diskuterer også mye i teamet, da det også er bra grunnlag for kunnskapsoverføring. Hvordan vi skriver og kommenterer koden er en enkel måte å gjøre det lettere å overføre kunnskap hvordan koden fungerer. Vi prøver også å lære oss ting hjemme, for eksempel hadde vi ikke så mye erfaring med hvordan github fungerer, vi hadde derfor til forrige innlevering som mål at folk skulle lære seg github hjemme. Dette gjorde at folk kunne komme mer forberedt til  å bruke github, men også å lære vekk github. Som nevnt tidligere fungerer gruppedynamikken bra.
