@@ -9,7 +9,7 @@ Rollene i gruppen fungerer egentlig ganske greit. Vi må nok fremdeles bli litt 
 Så langt er folk fornøyde med Teamlead og kundekontakt, se under for en klar beskrivelse av de ulike rollene.
 
 
-
+---
 **Trenger dere andre roller? Skriv ned noen linjer om hva de ulike rollene faktisk innebærer for dere.**
 
 Med tanke på hvordan arbeidsfordelingen gikk til forrige innlevering og hvilke oppgaver vi ser som må løses nå, er det bli gjort noen endringer i rollene. Otso er blitt hovedutvikleren vår da han løste mange problemer fra forrige innlevering. Vebjørn har vi nå satt til testarkitekt, hvor han vil ha som ansvar og utvikle tester. Merk at alle kommer til å delta på koden til spillet, men hovedutvikler og test-arkitekt, kommer nok ikke i like høygrad skrive svar på spørsmål. Rollene er som følger.
@@ -17,7 +17,7 @@ Med tanke på hvordan arbeidsfordelingen gikk til forrige innlevering og hvilke 
 
 **Andreas - Teamlead**
 
-Teamlead sin oppgave blir å skrive referat og sørge for at alle har en grei forståelse for hvilke oppgaver de skal gjøre. Dette vil innebære holde en project board ryddig, oversiktlig og aktuelt. Teamlead tar også mye av ansvaret for å skrive prosjektmetodikk og brukerhistorier.
+Teamlead sin oppgave blir å skrive referat og sørge for at alle har en grei forståelse for hvilke oppgaver de skal gjøre. Dette vil innebære å holde project board ryddig, oversiktlig og aktuelt. Teamlead tar også mye av ansvaret for å skrive prosjektmetodikk og brukerhistorier.
  - Skrive referat
  - Holde orden project board
  - Skrive svar på spørsmål
@@ -27,7 +27,7 @@ Teamlead sin oppgave blir å skrive referat og sørge for at alle har en grei fo
  
  **Heine - Kundekontakt**
  
- Kundekontakten sine oppgaver blir kommunisere med kunden. Både stille spørsmål teamet har til kunden, men også representere gruppen for kunden, om kunden skulle lure på noe. Andre oppgaver som hjelpe til å skrive svar på innlevering spørsmål og skrive kode er viktige deler av jobben til kundekontakten.
+ Kundekontakten sine oppgaver blir kommunisere med kunden. Både stille spørsmål teamet har til kunden, men også representere gruppen for kunden, om kunden skulle lure på noe. Andre oppgaver som å hjelpe til å skrive svar på innleveringsspørsmål og skrive kode er viktige deler av jobben til kundekontakten.
  - Kommunisere med kunden
  - Hjelpe til med skriveoppgavene
  - Hjelpe til med koden
@@ -55,7 +55,7 @@ Teamlead sin oppgave blir å skrive referat og sørge for at alle har en grei fo
 teamet at de valgene dere har tatt er gode? Hvis ikke, hva kan dere gjøre annerledes for å forbedre
 måten teamet fungerer på?**
 
-Vi trenger å bli bedre på arbeidsfordeling. Det gjelder både å kommunisere hvile oppgaver hver person gjør, men også å dele opp oppgaver i riktig størrelser og ha en klar stuktur på hvilke oppgaver som må gjøres. Ellers lærte vi fra forrige innlevering at hver oppgave bør gjøres, så godt det lar seg gjøre, 100% ferdig. 
+Vi trenger å bli bedre på arbeidsfordeling. Det gjelder både å kommunisere hvilke oppgaver hver person gjør, men også å dele opp oppgaver i riktig størrelser og ha en klar stuktur på hvilke oppgaver som må gjøres. Ellers lærte vi fra forrige innlevering at hver oppgave bør gjøres, så godt det lar seg gjøre, 100% ferdig. Vi bør også komme bedre forberedt til møtene våre. Det har gått mye tid til dataproblemer. Siden det har vært så mange dataproblemer, er fordeling på hvem som skriver koden blitt noe ujevn. Vi bør på de neste innleveringene prøve å få en jevnere fordeling på hvem som skriver kode.
 
 
 
@@ -75,7 +75,7 @@ Så langt er det veldig bra, vi har alle lastet ned Slack appen og bruker den ak
 skal handle om prosjektstruktur, ikke kode. Dere kan selvsagt diskutere kode, men dette handler ikke
 om feilretting, men om hvordan man jobber og kommuniserer.**
 
-placeholder placeholder placeholder placeholder placeholder placeholder placeholder placeholder placeholder placeholder placeholder placeholder placeholder placeholder placeholder placeholder placeholder placeholder placeholder placeholder placeholder placeholder placeholder placeholder placeholder placeholder placeholder placeholder placeholder placeholder placeholder placeholder
+Som tidligere nevnt må gruppen bli bedre til å fordele oppgaver. Det var ikke like tydelig forrige gang hvem som skulle gjøre hva, som igjen reduserte effektiviteten til gruppen. Hadde vi vært flinkere til å ta ansvar for spesifikke oppgaver, og kun fokusere på å løse dem, ville vi nok spart en del tid. Med andre ord må vi ha en klar plan på hvilke oppgaver som skal løses, og hvilke oppgaver som folk jobber med å løse.
 
 
 
@@ -83,17 +83,23 @@ placeholder placeholder placeholder placeholder placeholder placeholder placehol
 committer, må dere legge ved en kort forklaring for hvorfor det er sånn. Husk å committe alt. (Også
 designfiler)**
 
-placeholder placeholder placeholder placeholder placeholder placeholder placeholder placeholderplaceholder placeholder placeholder placeholder placeholder placeholder placeholder placeholderplaceholder placeholder placeholder placeholder placeholder placeholder placeholder placeholderplaceholder placeholder placeholder placeholder placeholder placeholder placeholder placeholder
+Hovedsakelig er det Otso som har gjort mesteparten av committene til koden, grunnen til at resten av teamet ikke har rukket å utvikle så mye kode skyldes følgende grunner.
 
+1.	Heine og Vebjørn har slitt med å få Maven til å kjøre skikkelig, noe som gjør at de ikke kan kjøre koden.
+2.	Til forrige innlevering satt Heine og Otso, og prøvde å finne ut hvordan de får kart fra Tile kart inn i en java-klasse, og så vist på en skjerm. Dette satte de mye og parprogrammerte på Otso sin laptop. Dette tok mye mer tid enn forventet, da det måtte en del troubleshooting til.
+3.	Andreas og Vebjørn har tatt ansvar for å skrive svar til mange av spørsmålene og skrive ned brukerhistorikk, prosjektmetodikker, osv.
 
 
 **Referat fra møter siden forrige leveranse skal legges ved.**
 
-placeholder placeholder placeholder placeholder placeholder placeholder placeholder placeholderplaceholder placeholder placeholder placeholder placeholder placeholder placeholder placeholderplaceholder placeholder placeholder placeholder placeholder placeholder placeholder placeholderplaceholder placeholder placeholder placeholder placeholder placeholder placeholder placeholder
+Referat finner du i referat mappen.
 
 
 
 **Bli enige om maks tre forbedringspunkter fra retrospektivet, som skal følges opp under neste sprint**
 
-placeholder placeholder placeholder placeholder placeholder placeholder placeholder placeholderplaceholder placeholder placeholder placeholder placeholder placeholder placeholder placeholderplaceholder placeholder placeholder placeholder placeholder placeholder placeholder placeholderplaceholder placeholder placeholder placeholder placeholder placeholder placeholder placeholderplaceholder placeholder placeholder placeholder placeholder placeholder placeholder placeholderplaceholder placeholder placeholder placeholder placeholder placeholder placeholder placeholder
+- Klar arbeidsfordeling
+- Alle må bidra på kodebiten til prosjektet
+- Være mer forberedt til samarbeidstimer slik at tid ikke forsvinner i dataproblemer
+
 
