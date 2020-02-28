@@ -35,9 +35,7 @@ public class Board {
         }
     }
     // Methods to get elements from Board
-    public TiledMap getMap() {
-        return Map;
-    }
+    public TiledMap getMap() { return Map; }
     public TiledMapTileLayer getPlayerLayer(){
         return Players;
     }
