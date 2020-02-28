@@ -22,7 +22,7 @@ public class BoardTest {
     @Before
     public void setUp() throws Exception {
         TmxMapLoader mapLoader = new TmxMapLoader();
-        gameBoard = new Board(mapLoader.load("assets/map.tmx"));
+        Board gameBoard = new Board(mapLoader.load("assets/map.tmx"));
 
         board = new Board(Map);
 
