@@ -18,4 +18,14 @@ public class dirCtrlTest {
         assertEquals(Direction.EAST, dirCtrl.turnLeft(Direction.SOUTH));
         assertEquals(Direction.NORTH, dirCtrl.turnLeft(Direction.EAST));
     }
+
+    @Test
+    public void turnRightTest() {
+        assertEquals(Direction.WEST, dirCtrl.turnRight(Direction.SOUTH));
+        assertEquals(Direction.SOUTH, dirCtrl.turnRight(Direction.EAST));
+        assertEquals(Direction.EAST, dirCtrl.turnRight(Direction.NORTH));
+        assertEquals(Direction.NORTH, dirCtrl.turnRight(Direction.WEST));
+    }
+
+
 }
