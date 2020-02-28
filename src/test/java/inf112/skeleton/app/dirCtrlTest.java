@@ -27,5 +27,11 @@ public class dirCtrlTest {
         assertEquals(Direction.NORTH, dirCtrl.turnRight(Direction.WEST));
     }
 
-
+    @Test
+    public void invertDirectionTest() {
+        assertEquals(Direction.WEST, dirCtrl.invertDirection(Direction.EAST));
+        assertEquals(Direction.SOUTH, dirCtrl.invertDirection(Direction.NORTH));
+        assertEquals(Direction.EAST, dirCtrl.invertDirection(Direction.WEST));
+        assertEquals(Direction.NORTH, dirCtrl.invertDirection(Direction.SOUTH));
+    }
 }
