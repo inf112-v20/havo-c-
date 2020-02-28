@@ -146,6 +146,8 @@ public class Player {
     public Integer getY(){
         return Math.round(playerLoc.y);
     }
+    public Direction getPlayerDir() { return playerDir; }
+    public Vector2 getPlayerLoc() { return playerLoc; }
     public PlayerState getPlayerState(){
         return playerState;
     }
