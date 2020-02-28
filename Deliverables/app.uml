@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement>inf112.skeleton.app</OriginalElement>
+  <nodes>
+    <node x="320.3052083333332" y="79.0">inf112.skeleton.app.dirCtrl</node>
+    <node x="79.0625" y="941.0">inf112.skeleton.app.Main</node>
+    <node x="146.26354166666658" y="226.0">inf112.skeleton.app.Player</node>
+    <node x="463.8260416666666" y="314.0">inf112.skeleton.app.dirCtrlTest</node>
+    <node x="233.95104166666658" y="0.0">inf112.skeleton.app.Direction</node>
+    <node x="48.5625" y="1044.0">inf112.skeleton.app.AppTest</node>
+    <node x="25.774583333333283" y="113.0">inf112.skeleton.app.PlayerState</node>
+    <node x="23.20583333333329" y="549.0">inf112.skeleton.app.Board</node>
+    <node x="79.0625" y="706.0">inf112.skeleton.app.Game</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="inf112.skeleton.app.Game" target="inf112.skeleton.app.PlayerState">
+      <point x="-40.0" y="-92.5" />
+      <point x="119.0625" y="676.0" />
+      <point x="12.705833333333288" y="676.0" />
+      <point x="12.705833333333288" y="206.0" />
+      <point x="41.39958333333328" y="206.0" />
+      <point x="-46.875" y="14.5" />
+    </edge>
+    <edge source="inf112.skeleton.app.dirCtrl" target="inf112.skeleton.app.Direction">
+      <point x="0.0" y="-48.5" />
+      <point x="445.8052083333332" y="59.0" />
+      <point x="311.6510416666666" y="59.0" />
+      <point x="22.19999999999999" y="14.5" />
+    </edge>
+    <edge source="inf112.skeleton.app.Main" target="inf112.skeleton.app.Game">
+      <point x="0.0" y="-26.5" />
+      <point x="0.0" y="92.5" />
+    </edge>
+    <edge source="inf112.skeleton.app.Player" target="inf112.skeleton.app.dirCtrl">
+      <point x="118.75" y="-136.5" />
+      <point x="407.5135416666666" y="206.0" />
+      <point x="414.4302083333332" y="206.0" />
+      <point x="-31.375" y="48.5" />
+    </edge>
+    <edge source="inf112.skeleton.app.dirCtrlTest" target="inf112.skeleton.app.dirCtrl">
+      <point x="0.0" y="-48.5" />
+      <point x="562.3260416666666" y="206.0" />
+      <point x="539.9302083333332" y="206.0" />
+      <point x="94.125" y="48.5" />
+    </edge>
+    <edge source="inf112.skeleton.app.Game" target="inf112.skeleton.app.Board">
+      <point x="-13.333333333333343" y="-92.5" />
+      <point x="145.72916666666666" y="666.0" />
+      <point x="88.20583333333329" y="666.0" />
+      <point x="-65.0" y="48.5" />
+    </edge>
+    <edge source="inf112.skeleton.app.Board" target="inf112.skeleton.app.Player">
+      <point x="65.0" y="-48.5" />
+      <point x="218.2058333333333" y="524.0" />
+      <point x="193.76354166666658" y="524.0" />
+      <point x="-95.0" y="136.5" />
+    </edge>
+    <edge source="inf112.skeleton.app.Game" target="inf112.skeleton.app.Direction">
+      <point x="-66.66666666666669" y="-92.5" />
+      <point x="92.39583333333331" y="686.0" />
+      <point x="0.0" y="686.0" />
+      <point x="0.0" y="59.0" />
+      <point x="245.0510416666666" y="59.0" />
+      <point x="-44.39999999999998" y="14.5" />
+    </edge>
+    <edge source="inf112.skeleton.app.dirCtrlTest" target="inf112.skeleton.app.Direction">
+      <point x="65.66666666666663" y="-48.5" />
+      <point x="627.9927083333332" y="206.0" />
+      <point x="611.5931249999999" y="206.0" />
+      <point x="611.5931249999999" y="49.0" />
+      <point x="333.8510416666666" y="49.0" />
+      <point x="44.400000000000034" y="14.5" />
+    </edge>
+    <edge source="inf112.skeleton.app.Player" target="inf112.skeleton.app.PlayerState">
+      <point x="-118.75" y="-136.5" />
+      <point x="170.01354166666658" y="206.0" />
+      <point x="103.89958333333328" y="206.0" />
+      <point x="15.625" y="14.5" />
+    </edge>
+    <edge source="inf112.skeleton.app.Board" target="inf112.skeleton.app.PlayerState">
+      <point x="-65.0" y="-48.5" />
+      <point x="88.20583333333329" y="206.0" />
+      <point x="72.64958333333328" y="206.0" />
+      <point x="-15.625" y="14.5" />
+    </edge>
+    <edge source="inf112.skeleton.app.AppTest" target="inf112.skeleton.app.Main">
+      <point x="-55.25" y="-37.5" />
+      <point x="103.8125" y="1019.0" />
+      <point x="119.0625" y="1019.0" />
+      <point x="-40.0" y="26.5" />
+    </edge>
+    <edge source="inf112.skeleton.app.Player" target="inf112.skeleton.app.Direction">
+      <point x="23.75" y="-136.5" />
+      <point x="312.5135416666666" y="206.0" />
+      <point x="289.4510416666666" y="206.0" />
+      <point x="0.0" y="14.5" />
+    </edge>
+    <edge source="inf112.skeleton.app.Game" target="inf112.skeleton.app.Player">
+      <point x="40.0" y="-92.5" />
+      <point x="199.0625" y="676.0" />
+      <point x="309.4558333333333" y="676.0" />
+      <point x="309.4558333333333" y="524.0" />
+      <point x="288.7635416666666" y="524.0" />
+      <point x="0.0" y="136.5" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Group" zoom="0.43311240821684316" x="342.0000000000002" y="549.5" />
+  <SelectedNodes>
+    <node>inf112.skeleton.app.dirCtrl</node>
+  </SelectedNodes>
+  <Categories>
+    <Category>Methods</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+

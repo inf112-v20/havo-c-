@@ -9,7 +9,7 @@ Rollene i gruppen fungerer egentlig ganske greit. Vi må nok fremdeles bli litt 
 Så langt er folk fornøyde med Teamlead og kundekontakt, se under for en klar beskrivelse av de ulike rollene.
 
 
----
+--- 
 **Trenger dere andre roller? Skriv ned noen linjer om hva de ulike rollene faktisk innebærer for dere.**
 
 Med tanke på hvordan arbeidsfordelingen gikk til forrige innlevering og hvilke oppgaver vi ser som må løses nå, er det bli gjort noen endringer i rollene. Otso er blitt hovedutvikleren vår da han løste mange problemer fra forrige innlevering. Vebjørn har vi nå satt til testarkitekt, hvor han vil ha som ansvar og utvikle tester. Merk at alle kommer til å delta på koden til spillet, men hovedutvikler og test-arkitekt, kommer nok ikke i like høygrad skrive svar på spørsmål. Rollene er som følger.
