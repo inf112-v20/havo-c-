@@ -7,7 +7,7 @@ import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.maps.tiled.tiles.StaticTiledMapTile;
 import com.badlogic.gdx.math.Vector2;
 
-public class Player {
+public class Player implements IPlayer{
     // Lives are not yet utilized but are required for the eventual death and respawn mechanics
     private Integer lives = 3;
     // Control class

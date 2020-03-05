@@ -3,9 +3,7 @@ package inf112.skeleton.app;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 
-import java.util.*;
-
-public class Board {
+public class Board implements IBoard {
     // The map itself
     TiledMap Map;
     // Map layers
@@ -22,6 +20,7 @@ public class Board {
         this.Players = (TiledMapTileLayer) Map.getLayers().get("PlayerLayer");
     }
 
+    @Override
     public void checkForSpecialTiles(Player player){
         // Coordinates of the player used to check for other things in the map
         Integer xLoc = player.getX();
@@ -39,4 +38,6 @@ public class Board {
     public TiledMapTileLayer getPlayerLayer(){
         return Players;
     }
+
+
 }
