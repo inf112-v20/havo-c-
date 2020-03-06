@@ -34,7 +34,7 @@ public class Player implements IPlayer{
         playerWonCell.setTile(new StaticTiledMapTile(playerIcon[0][2]));
     }
 
-    public void Move() {
+    public void Move(Direction dir) {
         // Moves the player forward based on the player direction
         // Only allows movement if player is alive
         if (playerState != PlayerState.DEAD) {
@@ -44,13 +44,13 @@ public class Player implements IPlayer{
             //Clears player icon from old location
             playerLayer.setCell(xLoc, yLoc, null);
             // Changes coordinates in the correct manner
-            if (playerDir == Direction.NORTH) {
+            if (dir == Direction.NORTH) {
                 playerLoc.set(xLoc, yLoc + 1);
-            } else if (playerDir == Direction.SOUTH) {
+            } else if (dir == Direction.SOUTH) {
                 playerLoc.set(xLoc, yLoc - 1);
-            } else if (playerDir == Direction.WEST) {
+            } else if (dir == Direction.WEST) {
                 playerLoc.set(xLoc - 1, yLoc);
-            } else if (playerDir == Direction.EAST) {
+            } else if (dir == Direction.EAST) {
                 playerLoc.set(xLoc + 1, yLoc);
             }
             // Sets PlayerState of the player to dead if it is out of bounds

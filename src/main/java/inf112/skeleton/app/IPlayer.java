@@ -1,7 +1,7 @@
 package inf112.skeleton.app;
 
 public interface IPlayer {
-    void Move();
+    void Move(Direction dir);
 
     void Turn(int keycode);
 
