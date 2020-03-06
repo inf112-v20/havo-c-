@@ -85,7 +85,7 @@
 0,0,0,0,0,0,0,0,0,0
 </data>
  </layer>
- <layer id="5" name="Player" width="10" height="10">
+ <layer id="5" name="PlayerLayer" width="10" height="10">
   <data encoding="csv">
 0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,

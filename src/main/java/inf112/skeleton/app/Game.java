@@ -40,8 +40,8 @@ public class Game extends InputAdapter implements ApplicationListener {
         // Input adapter shenanigans
         Gdx.input.setInputProcessor(this);
         // Code for setting up map
-        gameBoard = new Board(mapLoader.load("assets/map.tmx"));
-        camera.setToOrtho(false, 5, 5);
+        gameBoard = new Board(mapLoader.load("assets/Testing Grounds.tmx"));
+        camera.setToOrtho(false, gameBoard.getPlayerLayer().getWidth(), gameBoard.getPlayerLayer().getHeight());
         camera.update();
         mapRenderer = new OrthogonalTiledMapRenderer(gameBoard.getMap(), 1/300f);
         mapRenderer.setView(camera);
