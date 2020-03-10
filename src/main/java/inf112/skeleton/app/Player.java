@@ -28,7 +28,7 @@ public class Player implements IPlayer{
         this.playerDir = dir;
         this.playerLayer = layer;
         // Graphics for the player
-        TextureRegion[][] playerIcon = new TextureRegion(new Texture("assets/player.png")).split(300,300);
+        TextureRegion[][] playerIcon = new TextureRegion(new Texture("assets/Cyborg-Up.png")).split(300,300);
         playerCell.setTile(new StaticTiledMapTile(playerIcon[0][0]));
         playerDiedCell.setTile(new StaticTiledMapTile(playerIcon[0][1]));
         playerWonCell.setTile(new StaticTiledMapTile(playerIcon[0][2]));
