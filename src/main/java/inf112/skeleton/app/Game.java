@@ -34,6 +34,14 @@ public class Game extends InputAdapter implements ApplicationListener {
         font.setColor(Color.MAGENTA);
         // Input adapter shenanigans
         Gdx.input.setInputProcessor(this);
+
+
+
+        // WARNING: These two lines will crash the code
+            //ScreenSwitcher screenSwitcher = new ScreenSwitcher();
+            //screenSwitcher.create();
+
+
         // Code for setting up map
         gameBoard = new Board(mapLoader.load("assets/Testing Grounds.tmx"));
         camera.setToOrtho(false, gameBoard.getPlayerLayer().getWidth(), gameBoard.getPlayerLayer().getHeight());
