@@ -27,7 +27,7 @@ public class Board implements IBoard {
     }
 
     @Override
-    public void checkForSpecialTiles(Player player){
+    public void checkForSpecialTiles(Player player, Boolean brakes){
         // Coordinates of the player used to check for other things in the map
         Integer xLoc = player.getX();
         Integer yLoc = player.getY();
@@ -67,15 +67,27 @@ public class Board implements IBoard {
             // Blue belts
             if (tileId == 13 || tileId == 26 || tileId == 27 || tileId == 73 || tileId == 77 || tileId == 84){
                 player.Move(Direction.NORTH);
+                if (brakes == Boolean.FALSE) {
+                    checkForSpecialTiles(player, Boolean.TRUE);
+                }
             }
             else if (tileId == 17 || tileId == 20 || tileId == 21 || tileId == 75 || tileId == 82 || tileId == 86){
                 player.Move(Direction.SOUTH);
+                if (brakes == Boolean.FALSE) {
+                    checkForSpecialTiles(player, Boolean.TRUE);
+                }
             }
             else if (tileId == 14 || tileId == 19 || tileId == 25 || tileId == 74 || tileId == 78 || tileId == 81){
                 player.Move(Direction.EAST);
+                if (brakes == Boolean.FALSE) {
+                    checkForSpecialTiles(player, Boolean.TRUE);
+                }
             }
             else if (tileId == 18 || tileId == 22 || tileId == 28 || tileId == 76 || tileId == 83 || tileId == 85){
                 player.Move(Direction.WEST);
+                if (brakes == Boolean.FALSE) {
+                    checkForSpecialTiles(player, Boolean.TRUE);
+                }
             }
         }
     }
