@@ -74,7 +74,7 @@ public class Board implements IBoard {
             else if (tileId == 14 || tileId == 19 || tileId == 25 || tileId == 74 || tileId == 78 || tileId == 81){
                 player.Move(Direction.EAST);
             }
-            else if (tileId == 18 || tileId == 22 || tileId == 28 || tileId == 76 || tileId == 82 || tileId == 85){
+            else if (tileId == 18 || tileId == 22 || tileId == 28 || tileId == 76 || tileId == 83 || tileId == 85){
                 player.Move(Direction.WEST);
             }
         }
