@@ -58,8 +58,6 @@ public class Game extends InputAdapter implements ApplicationListener {
 
         //Renders map
         mapRenderer.render();
-        // Checks if player is standing on special tiles
-        gameBoard.checkForSpecialTiles(player);
         //Sets in player
         player.updatePlayerIcon();
     }
@@ -79,6 +77,8 @@ public class Game extends InputAdapter implements ApplicationListener {
             // Barebones respawn system that feeds in start coordinates and direction, a better one will be developed later
             player.respawn(0,0, Direction.NORTH);
         }
+        // Checks if player is standing on special tiles
+        gameBoard.checkForSpecialTiles(player);
         return true;
     }
 
