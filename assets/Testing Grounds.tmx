@@ -15,7 +15,7 @@
 5,5,5,5,5,5,5,5,5,5
 </data>
  </layer>
- <layer id="2" name="Conveyor Belts" width="10" height="10">
+ <layer id="2" name="ConveyorBelts" width="10" height="10">
   <data encoding="csv">
 0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,
@@ -29,7 +29,7 @@
 0,0,0,0,0,0,0,0,0,0
 </data>
  </layer>
- <layer id="9" name="Turn Gears" width="10" height="10">
+ <layer id="9" name="TurnGears" width="10" height="10">
   <data encoding="csv">
 0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,54,0,0,0,53,0,
@@ -43,7 +43,7 @@
 0,0,0,0,0,0,0,0,0,0
 </data>
  </layer>
- <layer id="8" name="Repair Tiles" width="10" height="10">
+ <layer id="8" name="RepairTiles" width="10" height="10">
   <data encoding="csv">
 0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,
