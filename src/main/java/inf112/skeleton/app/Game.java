@@ -78,7 +78,7 @@ public class Game extends InputAdapter implements ApplicationListener {
             player.respawn(0,0, Direction.NORTH);
         }
         // Checks if player is standing on special tiles
-        gameBoard.checkForSpecialTiles(player);
+        gameBoard.checkForSpecialTiles(player, Boolean.FALSE);
         return true;
     }
 
