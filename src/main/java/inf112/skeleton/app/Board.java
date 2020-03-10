@@ -61,7 +61,20 @@ public class Board implements IBoard {
             else if(tileId == 35 || tileId == 41 || tileId == 52 || tileId == 58 || tileId == 61 || tileId == 66){
                 player.Move(Direction.EAST);
             }
-            else if(tileId == 34 || tileId == 44 || tileId == 51 || tileId == 60 || tileId == 68 || tileId == 70) {
+            else if(tileId == 34 || tileId == 44 || tileId == 51 || tileId == 60 || tileId == 68 || tileId == 70){
+                player.Move(Direction.WEST);
+            }
+            // Blue belts
+            if (tileId == 13 || tileId == 26 || tileId == 27 || tileId == 73 || tileId == 77 || tileId == 84){
+                player.Move(Direction.NORTH);
+            }
+            else if (tileId == 17 || tileId == 20 || tileId == 21 || tileId == 75 || tileId == 82 || tileId == 86){
+                player.Move(Direction.SOUTH);
+            }
+            else if (tileId == 14 || tileId == 19 || tileId == 25 || tileId == 74 || tileId == 78 || tileId == 81){
+                player.Move(Direction.EAST);
+            }
+            else if (tileId == 18 || tileId == 22 || tileId == 28 || tileId == 76 || tileId == 82 || tileId == 85){
                 player.Move(Direction.WEST);
             }
         }
