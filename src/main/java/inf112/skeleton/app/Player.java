@@ -59,16 +59,16 @@ public class Player implements IPlayer{
             }
         }
     }
-    public void Turn(int keycode){
+    public void Turn(TurnDirection dir){
         // Turns the player
         // Only allows turning if the player is alive
         if (playerState != PlayerState.DEAD) {
             // Turns player left
-            if (keycode == Input.Keys.Q) {
+            if (dir == TurnDirection.LEFT) {
                 playerDir = dirController.turnLeft(playerDir);
             }
             // Turns player right
-            else if (keycode == Input.Keys.E) {
+            else if (dir == TurnDirection.RIGHT) {
                 playerDir = dirController.turnRight(playerDir);
             }
             // Updates rotation of player icon
