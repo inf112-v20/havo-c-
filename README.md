@@ -1,3 +1,6 @@
+# Testing branching
+Menyen er ikke ferdig gjort
+
 # INF112 Maven template 
 Simple skeleton with libgdx. 
 
