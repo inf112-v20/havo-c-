@@ -42,11 +42,11 @@ public class Board implements IBoard {
             Integer tileId = TurnGears.getCell(xLoc, yLoc).getTile().getId();
             // Turn right
             if(tileId == 54){
-                player.Turn(Input.Keys.E);
+                player.Turn(TurnDirection.RIGHT);
             }
             // Turn left
             else if(tileId == 53){
-                player.Turn(Input.Keys.Q);
+                player.Turn(TurnDirection.LEFT);
             }
         }
         else if (ConveyorBelts.getCell(xLoc, yLoc) != null){

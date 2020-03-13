@@ -12,16 +12,16 @@ public class Card {
         this.command = command;
         this.player = null;
     }
-
+    // Dealing cards and putting them back into deck
     public void getDealt(Player newOwner){
         player = newOwner;
     }
-
     public void getDecked(){
         player = null;
     }
-
+    // Playing the card itself
     public void playCard(){
+        // Wont play card unless a player has it
         if(player != null){
             if(command == "Move1"){
                 player.Move(player.getPlayerDir());
@@ -36,11 +36,18 @@ public class Card {
                 }
             }
             else if(command == "TurnRight"){
-                player.Turn(Input.Keys.E);
+                player.Turn(TurnDirection.RIGHT);
             }
             else if(command == "TurnLeft"){
-                player.Turn(Input.Keys.Q);
+                player.Turn(TurnDirection.LEFT);
             }
         }
+    }
+    // Get class elements
+    public Player getPlayer(){
+        return player;
+    }
+    public String getCommand(){
+        return command;
     }
 }
