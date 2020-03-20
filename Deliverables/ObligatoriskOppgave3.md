@@ -31,7 +31,11 @@ Hyppigere møter er noe vi bør fokusere på nå fremover, så vi får jobbet go
 
 Gruppedynamikken er super. Vi har ingen uenigheter som skaper noe dårlig stemning i gruppen, og ellers er vi fornøyd med hverandre. Vi har blitt litt bedre på klarere arbeidsfordeling siden sist. Kommunkiasjonen har vært bra. Vi har bra dialog på Slack, og avtaler gruppemøter derfra. På grunn av at Covid-19 hindrer oss fra å møte hverandre på grupperom etc. på Campus har vi opprettet en Discord server der vi har lydsamtaler når vi har møter. Det fungerer bra. 
 
- 
+##Deloppgave 2: Krav
+
+**Oppdater hvilke krav dere har prioritert, hvor langt dere har kommet og hva dere har gjort siden forrige gang.** 
+
+
 
 
 ##Refereat
@@ -49,3 +53,8 @@ Gruppedynamikken er super. Vi har ingen uenigheter som skaper noe dårlig stemni
 -   Otso satte igang med å implementere conveyor belts.
 -   Vi tenkte også på hvordan vi skulle få implementert kortsystem. 
 
+**Fredag 20.03.20** Ca. 2 timer. Otso, Andreas og Heine deltok
+
+-   Otso og Andreas jobbet videre med å få til meny-system. Det nærmer seg et fullstendig system nå.
+-   Heine skrev tekstoppgaver.
+-   Vebjørn var med på briefing og gjennomgang av dagens agenda, før han stakk pga. han hadde obligatorisk innlevering i et annet fag som skulle inn om et par timer. 
