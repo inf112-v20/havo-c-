@@ -14,17 +14,17 @@ Vi har begynt å gi hverandre mer konkrete oppgaver til hvert gruppemøte, som g
 ---
 **Gjør et kort retrospektiv hvor dere vurderer hva dere har klart til nå, og hva som kan forbedres. Dette skal handle om prosjektstruktur, ikke kode. Dere kan selvsagt diskutere kode, men dette handler ikke om feilretting, men om hvordan man jobber og kommuniserer.**
 
-###Gjør denne litt senere. Vi har kanskje noen enda bedre erfaringer til en annen dag ;))
+Til sist oblig gjorde vi en dårlig jobb med project board. Vi prøver også stadig å bli bedre på å tildele konkrete arbeidsoppgaver til alle frem til hvert gruppemøte. Det har ikke vært like mange møter den siste tiden nå på grunn av hele COVID-19 krisen. Når hverdagen blir helt snudd på hodet er det litt vanskelig å opprettholde gode vaner, noe vi har merket. Vi merker også at det er lettere å ha møter fysisk med hverandre enn over blant annet discord. Dette blir nok bedre med tiden, men foreløpig går det litt slapt. Vi har heller ikke hatt alt for hyppige møter, noe vi også skal klare å få til bedre med tiden. 
 
 ---
 **Bli enige om maks tre forbedringspunkter fra retrospektivet, som skal følges opp under neste sprint.**
 
-###Senere
+Hyppigere møter er noe vi bør fokusere på nå fremover, så vi får jobbet godt og jevnt med det. Som vanlig må vi bli litt bedre med konkrete arbeidsoppgaver. Selv om vi er blitt flinkere til det er det forbedringspotensiale der. 
 
 ---
 **Forklar kort hvordan dere har prioritert oppgavene fremover. Legg ved skjermdump av project board ved innlevering**
 
-###også senere lol
+###ta dette senere
 
 ---
 **Hvordan fungerer gruppedynamikken og kommunikasjonen?**
