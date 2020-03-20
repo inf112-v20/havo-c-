@@ -1,5 +1,7 @@
 package inf112.skeleton.app;
 
+import com.badlogic.
+
 import com.badlogic.gdx.ApplicationListener;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
@@ -17,7 +19,7 @@ import com.badlogic.gdx.math.Vector2;
 import javax.print.attribute.IntegerSyntax;
 
 public class Game extends InputAdapter implements ApplicationListener {
-    private SpriteBatch batch;
+    public SpriteBatch batch;
     private BitmapFont font;
     // Map related elements
     private Board gameBoard;
@@ -36,12 +38,12 @@ public class Game extends InputAdapter implements ApplicationListener {
         Gdx.input.setInputProcessor(this);
 
 
-
+        this.setScreen(new MainMenuScreen(this));
         // WARNING: These two lines will crash the code
             //ScreenSwitcher screenSwitcher = new ScreenSwitcher();
             //screenSwitcher.create();
 
-
+/*
         // Code for setting up map
         gameBoard = new Board(mapLoader.load("assets/Testing Grounds.tmx"));
         camera.setToOrtho(false, gameBoard.getPlayerLayer().getWidth(), gameBoard.getPlayerLayer().getHeight());
@@ -51,6 +53,8 @@ public class Game extends InputAdapter implements ApplicationListener {
         // Code for defining player and start location
         Vector2 startLoc = new Vector2(0,0);
         player = new Player(startLoc, Direction.NORTH, gameBoard.getPlayerLayer());
+
+ */
     }
 
     @Override
