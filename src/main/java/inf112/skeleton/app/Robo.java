@@ -1,16 +1,17 @@
 package inf112.skeleton.app;
 
-import com.badlogic.
 
 import com.badlogic.gdx.ApplicationListener;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
+import com.badlogic.gdx.Game;
 import com.badlogic.gdx.InputAdapter;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL30;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.math.Vector2;
@@ -18,7 +19,17 @@ import com.badlogic.gdx.math.Vector2;
 
 import javax.print.attribute.IntegerSyntax;
 
-public class Game extends InputAdapter implements ApplicationListener {
+public class Robo extends Game {
+
+
+    enum Screen{
+        MAiN_MENU, MAIN_GAME, GAME_OVER;
+    }
+
+
+    Screen currentScreen = Screen.MAiN_MENU;
+
+
     public SpriteBatch batch;
     private BitmapFont font;
     // Map related elements
@@ -29,14 +40,18 @@ public class Game extends InputAdapter implements ApplicationListener {
     // Variables for Player
     private Player player;
 
+    ShapeRenderer shapeRenderer;
+
     @Override
     public void create() {
         batch = new SpriteBatch();
         font = new BitmapFont();
         font.setColor(Color.MAGENTA);
         // Input adapter shenanigans
-        Gdx.input.setInputProcessor(this);
 
+        ShapeRenderer shapeRenderer;
+
+        currentScreen = Screen.MAiN_MENU;
 
         this.setScreen(new MainMenuScreen(this));
         // WARNING: These two lines will crash the code
@@ -65,6 +80,7 @@ public class Game extends InputAdapter implements ApplicationListener {
 
     @Override
     public void render() {
+
         Gdx.gl.glClearColor(1, 1, 1, 1);
         Gdx.gl.glClear(GL30.GL_COLOR_BUFFER_BIT);
 
@@ -74,7 +90,7 @@ public class Game extends InputAdapter implements ApplicationListener {
         player.updatePlayerIcon();
     }
 
-    @Override
+
     public boolean keyUp(int keycode) {
         // Not done yet, will get possiblity of returning False when illegal moves are coded in
         // Logic gate for movement related input

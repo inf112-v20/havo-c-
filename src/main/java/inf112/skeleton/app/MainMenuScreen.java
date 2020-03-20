@@ -7,10 +7,10 @@ import com.badlogic.gdx.graphics.Texture;
 
 public class MainMenuScreen implements Screen {
 
-    Game game;
+    Robo game;
     Texture playButton;
     Texture exitButton;
-    public MainMenuScreen (Game game) {
+    public MainMenuScreen (ScreenSwitcher game) {
         this.game = game;
         playButton = new Texture("assets/play_button.png");
         exitButton = new Texture("assets/exit_button.png");
