@@ -22,12 +22,6 @@ import javax.print.attribute.IntegerSyntax;
 public class Robo extends Game {
 
 
-    enum Screen{
-        MAiN_MENU, MAIN_GAME, GAME_OVER;
-    }
-
-
-    Screen currentScreen = Screen.MAiN_MENU;
 
 
     public SpriteBatch batch;
@@ -40,18 +34,18 @@ public class Robo extends Game {
     // Variables for Player
     private Player player;
 
-    ShapeRenderer shapeRenderer;
+
 
     @Override
     public void create() {
         batch = new SpriteBatch();
-        font = new BitmapFont();
-        font.setColor(Color.MAGENTA);
+        //font = new BitmapFont();
+        //font.setColor(Color.MAGENTA);
         // Input adapter shenanigans
 
         ShapeRenderer shapeRenderer;
 
-        currentScreen = Screen.MAiN_MENU;
+
 
         this.setScreen(new MainMenuScreen(this));
         // WARNING: These two lines will crash the code
@@ -80,14 +74,14 @@ public class Robo extends Game {
 
     @Override
     public void render() {
-
-        Gdx.gl.glClearColor(1, 1, 1, 1);
-        Gdx.gl.glClear(GL30.GL_COLOR_BUFFER_BIT);
+        super.render();
+        //Gdx.gl.glClearColor(1, 1, 1, 1);
+        //Gdx.gl.glClear(GL30.GL_COLOR_BUFFER_BIT);
 
         //Renders map
-        mapRenderer.render();
+        //mapRenderer.render();
         //Sets in player
-        player.updatePlayerIcon();
+        //player.updatePlayerIcon();
     }
 
 

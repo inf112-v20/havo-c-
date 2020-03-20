@@ -10,7 +10,7 @@ public class MainMenuScreen implements Screen {
     Robo game;
     Texture playButton;
     Texture exitButton;
-    public MainMenuScreen (ScreenSwitcher game) {
+    public MainMenuScreen (Robo game) {
         this.game = game;
         playButton = new Texture("assets/play_button.png");
         exitButton = new Texture("assets/exit_button.png");
@@ -22,10 +22,17 @@ public class MainMenuScreen implements Screen {
 
     @Override
     public void render(float delta) {
-        Gdx.gl.glClearColor(1, 0, 0, 1);
+        Gdx.gl.glClearColor(2, 2, 0, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         game.batch.begin();
-        game.batch.draw(playButton, 100,100);
+
+
+        if (Gdx.input.getX() > 100 && Gdx.input.getY() > 100)
+            if (Gdx.input.isTouched()) {
+                this.dispose();
+                Gdx.app.exit();
+            }
+        game.batch.draw(exitButton, 100,100);
         game.batch.end();
     }
 
