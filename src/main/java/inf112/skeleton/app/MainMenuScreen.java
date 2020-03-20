@@ -7,11 +7,11 @@ import com.badlogic.gdx.graphics.Texture;
 
 public class MainMenuScreen implements Screen {
 
-    Robo game;
+    public Robo game;
     Texture playButton;
     Texture exitButton;
-    public MainMenuScreen (Robo game) {
-        this.game = game;
+    public MainMenuScreen (Robo robo) {
+        this.game = robo;
         playButton = new Texture("assets/play_button.png");
         exitButton = new Texture("assets/exit_button.png");
     }
@@ -28,13 +28,15 @@ public class MainMenuScreen implements Screen {
 
 
 
-        if (Gdx.input.getX() > 100 && Gdx.input.getY() > 100)
+        if (Gdx.input.getX() > 100 && Gdx.input.getY() > 100) {
             if (Gdx.input.isTouched()) {
                 this.dispose();
-                Gdx.app.exit();
-            }
+                game.setScreen(new MainGameScreen(game));
+                //Gdx.app.exit();
+            }}
         game.batch.draw(exitButton, 100,100);
         game.batch.end();
+
     }
 
     @Override
