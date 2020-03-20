@@ -27,6 +27,7 @@ public class MainMenuScreen implements Screen {
         game.batch.begin();
 
 
+
         if (Gdx.input.getX() > 100 && Gdx.input.getY() > 100)
             if (Gdx.input.isTouched()) {
                 this.dispose();
