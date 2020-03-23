@@ -35,7 +35,74 @@ Gruppedynamikken er super. Vi har ingen uenigheter som skaper noe dårlig stemni
 
 **Oppdater hvilke krav dere har prioritert, hvor langt dere har kommet og hva dere har gjort siden forrige gang.** 
 
+Holder på å lage en main menu, og prøver å implementere et kortsystem. 
 
+---
+
+**For hvert krav dere jobber med, må dere lage 1) ordentlige brukerhistorier, 2) akseptansekriterier og 3)
+  arbeidsoppgaver. Husk at akseptansekriterier ofte skrives mer eller mindre som tester**
+
+**Brukerhistorie:**
+
+- Som spiller vil jeg ha en main menu, hvor jeg kan velge å enten starte spillet eller avslutte spillet, slik at spillet ikke starter før jeg ønsker det. 
+
+**Akseptanskriterier**
+
+- Spilleren må kunne velge enten start eller exit
+- Spillet må starte når spilleren velger start
+- Spillet må avsluttes når spilleren velger exit
+
+**Arbeidsoppgaver:**
+- Lage MainMenuScreen klasse
+- 
+
+---
+**Brukerhistorie:**
+
+- Som spiller vil jeg velge kort jeg kan programmere roboten rundt med, slik at roboten blir styrt og oppfører seg slik kortene sier.
+
+**Akseptansekriterier:**
+
+- Spilleren må kunne velge kort.
+- Spilleren må kunne velge rekkefølgen på valgte kort.
+- Spilleren må kunne legge ned kortene slik at roboten blir programmert.
+- Roboten må bevege seg etter kortene som blir lagt ned.
+
+**Arbeidsoppgaver:**
+
+- Lage en kortklasse.
+- Lage forskjellige kort, med forskjellige instrukser.
+- Implementere et system som gjør at spiller kan velge et kort.
+- Utvikle systemet videre slik at spilleren kan velge flere kort blant en samling av kort.
+- Gjøre slik at kortene påvirker bevegelsen til roboten.
+- Få roboten til å bevege seg riktig etter en sekvens med kort er blitt lagt ut
+
+---
+
+**Forklar kort hvilke hovedkrav dere anser som en del av MVP og hvorfor. Hvis det er gjort endringer i rekkefølge utfra hva som er gitt fra kunde, hvorfor er dette gjort?**
+
+Alle disse kravene, som ble nevnt forrige innlevering anser vi som MVP. 
+-	Spillebrett
+-	Roboter som kan plassers på bordet
+-	Muligheten til å vinne
+-	Kunne ta skade
+-	Roboten skal kunne miste alle liv og dø
+-	Et GUI som er funksjonelt for spillet (Denne er egentlig noe som hele veien kan forbedres, og kommer til å bli forbedret etterhvert som flere funksjoner blir lagt til.)
+-	Velge kort fra en kortstokk
+-	Programmere robot med kort
+-	Nye kort hver runde
+-	Et gameplay system som er runde basert
+-	Flag på brettet (Denne er allerede gjort, da den var med i tutorial på hvordan vi får programmet til å kjøre)
+-	Register at robot har vært innom flagg (Denne burde også være lenger oppe da den er allerede gjort.)
+-	Vegger og hindringer
+-	Rullebanen
+-	Roboten skal kunne skyte laser
+
+Det er ikke gjort noen endringer i rekkefølgen siden sist. 
+
+**Husk å skrive hvilke bugs som finnes i de kravene dere har utført (dersom det finnes bugs).**
+
+###ta det på fredag
 
 
 ##Refereat
