@@ -6,41 +6,48 @@ import java.util.InputMismatchException;
 
 public class Card {
     String command;
-    Player player;
+    Player owner;
 
     public Card(String command){
         this.command = command;
-        this.player = null;
+        this.owner = null;
     }
-
+    // Dealing cards and putting them back into deck
     public void getDealt(Player newOwner){
-        player = newOwner;
+        owner = newOwner;
     }
-
     public void getDecked(){
-        player = null;
+        owner = null;
     }
-
+    // Playing the card itself
     public void playCard(){
-        if(player != null){
+        // Wont play card unless a player has it
+        if(owner != null){
             if(command == "Move1"){
-                player.Move(player.getPlayerDir());
+                owner.Move(owner.getPlayerDir());
             }
             else if(command == "Move2"){
-                player.Move(player.getPlayerDir());
-                player.Move(player.getPlayerDir());
+                owner.Move(owner.getPlayerDir());
+                owner.Move(owner.getPlayerDir());
             }
             else if(command == "Move3"){
                 for (Integer i=0; i < 3; i++) {
-                    player.Move(player.getPlayerDir());
+                    owner.Move(owner.getPlayerDir());
                 }
             }
             else if(command == "TurnRight"){
-                player.Turn(Input.Keys.E);
+                owner.Turn(TurnDirection.RIGHT);
             }
             else if(command == "TurnLeft"){
-                player.Turn(Input.Keys.Q);
+                owner.Turn(TurnDirection.LEFT);
             }
         }
+    }
+    // Get class elements
+    public Player getPlayer(){
+        return owner;
+    }
+    public String getCommand(){
+        return command;
     }
 }
