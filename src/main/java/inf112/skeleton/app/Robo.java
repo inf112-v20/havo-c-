@@ -22,8 +22,6 @@ import javax.print.attribute.IntegerSyntax;
 public class Robo extends Game {
 
 
-
-
     public SpriteBatch batch;
     private BitmapFont font;
     // Map related elements
@@ -68,8 +66,7 @@ public class Robo extends Game {
 
     @Override
     public void dispose() {
-        batch.dispose();
-        font.dispose();
+
     }
 
     @Override
