@@ -3,11 +3,14 @@ package inf112.skeleton.app;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
+import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
+
+import java.awt.*;
 
 public class MainMenuScreen implements Screen {
 
-
+    public OrthographicCamera camera = new OrthographicCamera();
     private static final int BUTTON_WIDTH = 250;
     private static final int BUTTON_HEIGHT = 100;
 
@@ -36,20 +39,23 @@ public class MainMenuScreen implements Screen {
         game.batch.begin();
 
 
+        // My pitiful attempt at fixing the coordinate system
+        // camera.setToOrtho(false, 500, 500);
+        if (Gdx.input.getX() >= X_POS_BUTTON && Gdx.input.getX() <= (X_POS_BUTTON + BUTTON_WIDTH)) {
+            if (Gdx.input.getY() >= Y_POS_STARTBUTTON && Gdx.input.getY() <= (Y_POS_STARTBUTTON + BUTTON_HEIGHT)) {
+                if (Gdx.input.isTouched()) {
+                    this.dispose();
+                    game.setScreen(new MainGameScreen(game));
 
-// I don't get the brain power for this
-        if (Gdx.input.getX() > X_POS_BUTTON && Gdx.input.getY() < Y_POS_STARTBUTTON){
-            if (Gdx.input.isTouched()) {
-                this.dispose();
-                game.setScreen(new MainGameScreen(game));
-
-            }}
-        if (Gdx.input.getX() > X_POS_BUTTON && Gdx.input.getY() > Y_POS_EXITBUTTON) {
-            if (Gdx.input.isTouched()) {
-                this.dispose();
-                Gdx.app.exit();
-
-            }}
+                }
+            }
+            else if (Gdx.input.getY() >= Y_POS_EXITBUTTON && Gdx.input.getY() <= (Y_POS_EXITBUTTON + BUTTON_HEIGHT)) {
+                if (Gdx.input.isTouched()) {
+                    this.dispose();
+                    Gdx.app.exit();
+                }
+            }
+        }
         game.batch.draw(playButton, X_POS_BUTTON, Y_POS_STARTBUTTON, BUTTON_WIDTH, BUTTON_HEIGHT);
         game.batch.draw(exitButton, X_POS_BUTTON,Y_POS_EXITBUTTON, BUTTON_WIDTH, BUTTON_HEIGHT);
         game.batch.end();
