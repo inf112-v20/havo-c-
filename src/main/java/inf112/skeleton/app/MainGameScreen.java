@@ -94,8 +94,12 @@ public class MainGameScreen implements Screen {
         if (keycode == Input.Keys.W){
             player.Move(player.getPlayerDir());
         }
-        else if (keycode == Input.Keys.Q || keycode == Input.Keys.E){
-            player.Turn(keycode);
+        else if (keycode == Input.Keys.Q || keycode == Input.Keys.E) {
+            if (keycode == Input.Keys.Q) {
+                player.Turn(TurnDirection.LEFT);
+            } else {
+                player.Turn(TurnDirection.RIGHT);
+            }
         }
         // Checks if player is dead before allowing player to respawn
         else if (player.getPlayerState() == PlayerState.DEAD && keycode == Input.Keys.R){
