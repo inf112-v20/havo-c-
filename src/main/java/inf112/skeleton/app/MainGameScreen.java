@@ -1,7 +1,6 @@
 package inf112.skeleton.app;
 
 import com.badlogic.gdx.InputAdapter;
-import com.badlogic.gdx.ApplicationListener;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Screen;
@@ -15,7 +14,7 @@ import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.math.Vector2;
 
-public class MainGameScreen implements Screen {
+public class MainGameScreen extends InputAdapter implements Screen {
 
     Robo game;
     public SpriteBatch batch;
@@ -44,6 +43,7 @@ public class MainGameScreen implements Screen {
         move1 = new Texture("assets/Move1.png");
         moveRight = new Texture("assets/moveright.png");
         moveLeft = new Texture("assets/moveleft.png");
+        Gdx.input.setInputProcessor(this);
     }
 
 
@@ -93,37 +93,22 @@ public class MainGameScreen implements Screen {
         // Renders map
         mapRenderer.render();
 
-
-
-        if (Gdx.input.isKeyJustPressed(Input.Keys.W)) {
-            keyUp(Input.Keys.W);
-        }
-        if (Gdx.input.isKeyJustPressed(Input.Keys.Q)) {
-            keyUp(Input.Keys.Q);
-        }
-        if (Gdx.input.isKeyJustPressed(Input.Keys.E)) {
-            keyUp(Input.Keys.E);
-        }
-        if (Gdx.input.isKeyJustPressed(Input.Keys.R)) {
-            keyUp(Input.Keys.R);
-        }
-
         if(Gdx.input.getX() > 50 * 11 && Gdx.input.getX() < 50 * 12 &&
                 Gdx.input.getY() > 50 * 4 && Gdx.input.getY() < 50 *5) {
             if (Gdx.input.justTouched()) {
-                keyUp(Input.Keys.W);
+                player.Move(player.getPlayerDir());
             }
         }
         if(Gdx.input.getX() > 50 * 12 && Gdx.input.getX() < 50 * 13 &&
                 Gdx.input.getY() > 50 * 4 && Gdx.input.getY() < 50 *5) {
             if (Gdx.input.justTouched()) {
-                keyUp(Input.Keys.E);
+                player.Turn(TurnDirection.RIGHT);
             }
         }
         if(Gdx.input.getX() > 50 * 13 && Gdx.input.getX() < 50 * 14 &&
                 Gdx.input.getY() > 50 * 4 && Gdx.input.getY() < 50 *5) {
             if (Gdx.input.justTouched()) {
-                keyUp(Input.Keys.Q);
+                player.Turn(TurnDirection.LEFT);
             }
         }
 
@@ -131,11 +116,9 @@ public class MainGameScreen implements Screen {
         //Sets in player
         player.updatePlayerIcon();
 
-
-
     }
 
-    public void  keyUp(int keycode) {
+    public boolean keyUp(int keycode) {
         // Not done yet, will get possiblity of returning False when illegal moves are coded in
         // Logic gate for movement related input
         if (keycode == Input.Keys.W){
@@ -157,7 +140,7 @@ public class MainGameScreen implements Screen {
         gameBoard.checkForSpecialTiles(player, Boolean.FALSE);
 
 
-
+        return true;
     }
 
 
