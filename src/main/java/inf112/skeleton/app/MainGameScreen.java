@@ -17,7 +17,6 @@ import com.badlogic.gdx.math.Vector2;
 public class MainGameScreen extends InputAdapter implements Screen {
 
     Robo game;
-    public SpriteBatch batch;
     private BitmapFont font;
     Texture move1;
     Texture moveRight;

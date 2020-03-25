@@ -21,45 +21,12 @@ import javax.print.attribute.IntegerSyntax;
 
 public class Robo extends Game {
 
-
     public SpriteBatch batch;
-    private BitmapFont font;
-    // Map related elements
-    private Board gameBoard;
-    private OrthogonalTiledMapRenderer mapRenderer;
-    private OrthographicCamera camera = new OrthographicCamera();
-    private TmxMapLoader mapLoader = new TmxMapLoader();
-    // Variables for Player
-    private Player player;
-
-
 
     @Override
     public void create() {
         batch = new SpriteBatch();
-        //font = new BitmapFont();
-        //font.setColor(Color.MAGENTA);
-        ShapeRenderer shapeRenderer;
-
-
-
         this.setScreen(new MainMenuScreen(this));
-        // WARNING: These two lines will crash the code
-            //ScreenSwitcher screenSwitcher = new ScreenSwitcher();
-            //screenSwitcher.create();
-
-/*
-        // Code for setting up map
-        gameBoard = new Board(mapLoader.load("assets/Testing Grounds.tmx"));
-        camera.setToOrtho(false, gameBoard.getPlayerLayer().getWidth(), gameBoard.getPlayerLayer().getHeight());
-        camera.update();
-        mapRenderer = new OrthogonalTiledMapRenderer(gameBoard.getMap(), 1/300f);
-        mapRenderer.setView(camera);
-        // Code for defining player and start location
-        Vector2 startLoc = new Vector2(0,0);
-        player = new Player(startLoc, Direction.NORTH, gameBoard.getPlayerLayer());
-
- */
     }
 
     @Override
@@ -70,38 +37,6 @@ public class Robo extends Game {
     @Override
     public void render() {
         super.render();
-        //Gdx.gl.glClearColor(1, 1, 1, 1);
-        //Gdx.gl.glClear(GL30.GL_COLOR_BUFFER_BIT);
-
-        //Renders map
-        //mapRenderer.render();
-        //Sets in player
-        //player.updatePlayerIcon();
-    }
-
-
-    public boolean keyUp(int keycode) {
-        // Not done yet, will get possiblity of returning False when illegal moves are coded in
-        // Logic gate for movement related input
-        if (keycode == Input.Keys.W){
-            player.Move(player.getPlayerDir());
-        }
-        else if (keycode == Input.Keys.Q || keycode == Input.Keys.E){
-            if (keycode == Input.Keys.Q){
-                player.Turn(TurnDirection.LEFT);
-            }
-            else {
-                player.Turn(TurnDirection.RIGHT);
-            }
-        }
-        // Checks if player is dead before allowing player to respawn
-        else if (player.getPlayerState() == PlayerState.DEAD && keycode == Input.Keys.R){
-            // Barebones respawn system that feeds in start coordinates and direction, a better one will be developed later
-            player.respawn(0,0, Direction.NORTH);
-        }
-        // Checks if player is standing on special tiles
-        gameBoard.checkForSpecialTiles(player, Boolean.FALSE);
-        return true;
     }
 
     @Override
