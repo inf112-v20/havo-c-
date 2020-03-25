@@ -148,4 +148,6 @@ WARNING: All illegal access operations will be denied in a future release
 
 - Fikset main menu slik at startknappen faktisk startet spillet, og at exit avlsuttet
 - Laget flere bilder til spillet
-- Implementert kortsystemet
+- Startet implementering av kortsystemet 
+- Slettet unødvendig kode
+- Forbedret GUI
