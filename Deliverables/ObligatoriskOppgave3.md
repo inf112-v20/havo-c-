@@ -24,7 +24,7 @@ Hyppigere møter er noe vi bør fokusere på nå fremover, så vi får jobbet go
 ---
 **Forklar kort hvordan dere har prioritert oppgavene fremover. Legg ved skjermdump av project board ved innlevering**
 
-###ta dette senere
+Etter at vi har fått et kortsystem til å funke vil prioriteringene våre være å få rundesystem og å få flere spillere på brettet. 
 
 ---
 **Hvordan fungerer gruppedynamikken og kommunikasjonen?**
@@ -54,7 +54,8 @@ Holder på å lage en main menu, og prøver å implementere et kortsystem.
 
 **Arbeidsoppgaver:**
 - Lage MainMenuScreen klasse
-- 
+- Lage knapper som spiller kan trykke på
+- Implementere et system som gjør at når spiller trykker på exit, så avsluttes spillet, og når spiller trykker på start, så starter spillet.
 
 ---
 **Brukerhistorie:**
@@ -102,8 +103,17 @@ Det er ikke gjort noen endringer i rekkefølgen siden sist.
 
 **Husk å skrive hvilke bugs som finnes i de kravene dere har utført (dersom det finnes bugs).**
 
-###ta det på fredag
+**Får fortsatt denne warningen:**
 
+WARNING: An illegal reflective access operation has occurred
+
+WARNING: Illegal reflective access by org.lwjgl.LWJGLUtil$3 (file:/Users/heineolsenhartvedt/.m2/repository/org/lwjgl/lwjgl/lwjgl/2.9.3/lwjgl-2.9.3.jar) to method java.lang.ClassLoader.findLibrary(java.lang.String)
+
+WARNING: Please consider reporting this to the maintainers of org.lwjgl.LWJGLUtil$3
+
+WARNING: Use --illegal-access=warn to enable warnings of further illegal reflective access operations
+
+WARNING: All illegal access operations will be denied in a future release
 
 ##Refereat
 
@@ -125,3 +135,17 @@ Det er ikke gjort noen endringer i rekkefølgen siden sist.
 -   Otso og Andreas jobbet videre med å få til meny-system. Det nærmer seg et fullstendig system nå.
 -   Heine skrev tekstoppgaver.
 -   Vebjørn var med på briefing og gjennomgang av dagens agenda, før han stakk pga. han hadde obligatorisk innlevering i et annet fag som skulle inn om et par timer. 
+
+**Mandag 23.03.20** Ca. 2 timer. Otso, Andreas og Heine deltok
+
+- Andreas merget sin branch, der han hadde implementert en Main Menu, med master branchen. 
+- Det ble skrevet mer til tekstoppgaven
+- Jobbet med hvordan knappesystemet fungerte
+- Det ble laget .png bilder av kortene
+- Vi diskuterte hva vi måtte få gjort frem til innleveringsfristen
+
+**Onsdag 25.03.20** Ca. 2 timer. Alle deltok
+
+- Fikset main menu slik at startknappen faktisk startet spillet, og at exit avlsuttet
+- Laget flere bilder til spillet
+- Implementert kortsystemet
