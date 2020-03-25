@@ -41,19 +41,19 @@ public class MainMenuScreen implements Screen {
 
         // My pitiful attempt at fixing the coordinate system
         // camera.setToOrtho(false, 500, 500);
-        if (Gdx.input.getX() >= X_POS_BUTTON && Gdx.input.getX() <= (X_POS_BUTTON + BUTTON_WIDTH)) {
-            if (Gdx.input.getY() >= Y_POS_STARTBUTTON && Gdx.input.getY() <= (Y_POS_STARTBUTTON + BUTTON_HEIGHT)) {
-                if (Gdx.input.isTouched()) {
-                    this.dispose();
-                    game.setScreen(new MainGameScreen(game));
+        if (Gdx.input.getY()  > 500 - Y_POS_STARTBUTTON - BUTTON_HEIGHT && Gdx.input.getY() < 500 - Y_POS_STARTBUTTON &&
+                Gdx.input.getX() > X_POS_BUTTON && Gdx.input.getX() < X_POS_BUTTON + BUTTON_WIDTH) {
+            if (Gdx.input.isTouched()) {
+                this.dispose();
+                game.setScreen(new MainGameScreen(game));
 
-                }
             }
-            else if (Gdx.input.getY() >= Y_POS_EXITBUTTON && Gdx.input.getY() <= (Y_POS_EXITBUTTON + BUTTON_HEIGHT)) {
-                if (Gdx.input.isTouched()) {
-                    this.dispose();
-                    Gdx.app.exit();
-                }
+        }
+        if (Gdx.input.getY() > 500 - Y_POS_EXITBUTTON - BUTTON_HEIGHT && Gdx.input.getY() < 500 - Y_POS_EXITBUTTON &&
+                Gdx.input.getX() > X_POS_BUTTON && Gdx.input.getX() < X_POS_BUTTON + BUTTON_WIDTH) {
+            if (Gdx.input.isTouched()) {
+                this.dispose();
+                Gdx.app.exit();
             }
         }
         game.batch.draw(playButton, X_POS_BUTTON, Y_POS_STARTBUTTON, BUTTON_WIDTH, BUTTON_HEIGHT);
