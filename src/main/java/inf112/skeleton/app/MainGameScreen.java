@@ -24,8 +24,6 @@ public class MainGameScreen implements Screen {
     Texture moveRight;
     Texture moveLeft;
 
-
-
     // Map related elements
     private OrthogonalTiledMapRenderer mapRenderer;
     public OrthographicCamera camera = new OrthographicCamera();
@@ -105,6 +103,9 @@ public class MainGameScreen implements Screen {
         }
         if (Gdx.input.isKeyJustPressed(Input.Keys.E)) {
             keyUp(Input.Keys.E);
+        }
+        if (Gdx.input.isKeyJustPressed(Input.Keys.R)) {
+            keyUp(Input.Keys.R);
         }
 
         if(Gdx.input.getX() > 50 * 11 && Gdx.input.getX() < 50 * 12 &&

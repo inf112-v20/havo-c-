@@ -39,8 +39,6 @@ public class Robo extends Game {
         batch = new SpriteBatch();
         //font = new BitmapFont();
         //font.setColor(Color.MAGENTA);
-        // Input adapter shenanigans
-
         ShapeRenderer shapeRenderer;
 
 
