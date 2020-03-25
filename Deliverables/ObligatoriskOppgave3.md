@@ -54,7 +54,8 @@ Holder på å lage en main menu, og prøver å implementere et kortsystem.
 
 **Arbeidsoppgaver:**
 - Lage MainMenuScreen klasse
-- 
+- Lage knapper som spiller kan trykke på
+- Implementere et system som gjør at når spiller trykker på exit, så avsluttes spillet, og når spiller trykker på start, så starter spillet.
 
 ---
 **Brukerhistorie:**
@@ -125,3 +126,10 @@ Det er ikke gjort noen endringer i rekkefølgen siden sist.
 -   Otso og Andreas jobbet videre med å få til meny-system. Det nærmer seg et fullstendig system nå.
 -   Heine skrev tekstoppgaver.
 -   Vebjørn var med på briefing og gjennomgang av dagens agenda, før han stakk pga. han hadde obligatorisk innlevering i et annet fag som skulle inn om et par timer. 
+
+**Mandag 23.03.20** Ca. 2 timer. Otso, Andreas og Heine deltok
+
+- Andreas merget sin branch, der han hadde implementert en Main Menu, med master branchen. 
+- Det ble skrevet mer til tekstoppgaven
+- Det ble laget .png bilder av kortene
+- Vi diskuterte hva vi måtte få gjort frem til innleveringsfristen
