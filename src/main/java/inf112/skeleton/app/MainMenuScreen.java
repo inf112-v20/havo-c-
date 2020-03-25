@@ -14,7 +14,7 @@ public class MainMenuScreen implements Screen {
     private static final int BUTTON_WIDTH = 250;
     private static final int BUTTON_HEIGHT = 100;
 
-    private static final int X_POS_BUTTON = 125;
+    private static final int X_POS_BUTTON = 250;
     private static final int Y_POS_STARTBUTTON = 250;
     private static final int Y_POS_EXITBUTTON = 100;
 
