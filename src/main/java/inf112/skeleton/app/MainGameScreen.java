@@ -8,6 +8,7 @@ import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL30;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
@@ -19,6 +20,9 @@ public class MainGameScreen implements Screen {
     Robo game;
     public SpriteBatch batch;
     private BitmapFont font;
+    Texture move1;
+    Texture moveRight;
+    Texture moveLeft;
 
 
 
@@ -39,19 +43,19 @@ public class MainGameScreen implements Screen {
     public MainGameScreen(Robo robo) {
 
         this.game = robo;
+        move1 = new Texture("assets/Move1.png");
+        moveRight = new Texture("assets/moveright.png");
+        moveLeft = new Texture("assets/moveleft.png");
     }
 
 
     @Override
     public void show() {
-        batch = new SpriteBatch();
         font = new BitmapFont();
         font.setColor(Color.MAGENTA);
         // Input adapter shenanigans;
 
-
         // Code for setting up map
-
         camera.setToOrtho(false, BOARD_WIDTH, BOARD_HEIGHT);
         camera.update();
         mapRenderer = new OrthogonalTiledMapRenderer(gameBoard.getMap(), 1/300f);
@@ -59,17 +63,39 @@ public class MainGameScreen implements Screen {
         // Code for defining player and start location
         Vector2 startLoc = new Vector2(0,0);
         player = new Player(startLoc, Direction.NORTH, gameBoard.getPlayerLayer());
+
+
+
+
     }
+
+
+    private static final int BUTTON_HEIGHT = 50;
+    private static final int BUTTON_WIDTH = 50;
+
+
+
+
 
     @Override
     public void render(float v) {
-        Gdx.gl.glClearColor(1, 1, 1, 1);
+
+        Gdx.gl.glClearColor(0, 22, 22, 29);
         Gdx.gl.glClear(GL30.GL_COLOR_BUFFER_BIT);
+
+        // Code for drawing the GUI
+        game.batch.begin();
+        game.batch.draw(move1, BUTTON_HEIGHT * 11 - 10, BUTTON_WIDTH * 5, 50, 50);
+        game.batch.draw(moveRight, BUTTON_HEIGHT * 12 - 10, BUTTON_WIDTH * 5, 50, 50);
+        game.batch.draw(moveLeft, BUTTON_HEIGHT * 13 - 10, BUTTON_WIDTH * 5, 50, 50);
+
+        game.batch.end();
+
 
         // Renders map
         mapRenderer.render();
 
-        //Gdx.graphics.setWindowedMode(400 + 200, 400);
+
 
         if (Gdx.input.isKeyJustPressed(Input.Keys.W)) {
             keyUp(Input.Keys.W);
@@ -81,10 +107,30 @@ public class MainGameScreen implements Screen {
             keyUp(Input.Keys.E);
         }
 
-    
+        if(Gdx.input.getX() > 50 * 11 && Gdx.input.getX() < 50 * 12 &&
+                Gdx.input.getY() > 50 * 4 && Gdx.input.getY() < 50 *5) {
+            if (Gdx.input.justTouched()) {
+                keyUp(Input.Keys.W);
+            }
+        }
+        if(Gdx.input.getX() > 50 * 12 && Gdx.input.getX() < 50 * 13 &&
+                Gdx.input.getY() > 50 * 4 && Gdx.input.getY() < 50 *5) {
+            if (Gdx.input.justTouched()) {
+                keyUp(Input.Keys.E);
+            }
+        }
+        if(Gdx.input.getX() > 50 * 13 && Gdx.input.getX() < 50 * 14 &&
+                Gdx.input.getY() > 50 * 4 && Gdx.input.getY() < 50 *5) {
+            if (Gdx.input.justTouched()) {
+                keyUp(Input.Keys.Q);
+            }
+        }
+
 
         //Sets in player
         player.updatePlayerIcon();
+
+
 
     }
 
@@ -108,6 +154,8 @@ public class MainGameScreen implements Screen {
         }
         // Checks if player is standing on special tiles
         gameBoard.checkForSpecialTiles(player, Boolean.FALSE);
+
+
 
     }
 
