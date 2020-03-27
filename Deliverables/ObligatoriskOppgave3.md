@@ -162,3 +162,13 @@ Alt dette vill bli fikset så fort som mulig.
 - Startet implementering av kortsystemet 
 - Slettet unødvendig kode
 - Forbedret GUI
+
+**Fredag 27.03.20** Ca. 2 timer. Alle deltok
+
+- Holdt på en god stund med et merge problem vi til slutt fikk fikset
+- La til alle kortene i spillet
+- Kan nå trykke på kortene
+- Skrev ferdig ObligatoriskOppgave3.md
+- Oppdaterte manual tests
+- Oppdatert UML-kartet
+- Lagt planer for hvordan vi skal fortsette prosjektet vårt
