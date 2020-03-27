@@ -74,9 +74,9 @@ rotate one step clockwise.
 rotate one step counter-clockwise. 
 ---
 Conveyor belt interactions test
-- Move the player to the blue conveyor belt.
+- Move the player to the yellow conveyor belt.
 - When entering the tile with that conveyor belt, the player icon should
 move one step in the direction the arrow is pointing. 
-- Move the player to the yellow conveyor belt.
+- Move the player to the blue conveyor belt.
 - When entering the tile with that conveyor belt, the player icon should
 move two steps in the direction the arrow is pointing. 

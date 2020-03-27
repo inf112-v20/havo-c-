@@ -26,6 +26,10 @@ public class MainGameScreen extends InputAdapter implements Screen {
     Texture move3;
     Texture moveRight;
     Texture moveLeft;
+    Texture startround;
+    Texture resetcards;
+    Texture poweroff;
+    Texture heart;
 
 
     // Temp Arraylist to test a system
@@ -57,6 +61,10 @@ public class MainGameScreen extends InputAdapter implements Screen {
         move3 = new Texture("assets/move3.png");
         moveRight = new Texture("assets/moveright.png");
         moveLeft = new Texture("assets/moveleft.png");
+        startround = new Texture("assets/startround1.png");
+        resetcards = new Texture("assets/resetcards1.png");
+        poweroff = new Texture("assets/poweroff1.png");
+        heart = new Texture("assets/heart.png");
         loadCards();
         Gdx.input.setInputProcessor(this);
     }
@@ -99,6 +107,7 @@ public class MainGameScreen extends InputAdapter implements Screen {
         // Code for drawing the GUI
         game.batch.begin();
 
+        drawButtons();
         drawCards();
 
         game.batch.end();
@@ -283,6 +292,16 @@ public class MainGameScreen extends InputAdapter implements Screen {
 
         gameBoard.checkForSpecialTiles(player, Boolean.FALSE);
 
+    }
+    public void drawButtons() {
+
+        game.batch.draw(resetcards, BUTTON_WIDTH * 10, BUTTON_HEIGHT * 0, 50, 50);
+        game.batch.draw(startround, BUTTON_WIDTH * 11, BUTTON_HEIGHT * 0, 50, 50);
+        game.batch.draw(poweroff, BUTTON_WIDTH * 12, BUTTON_HEIGHT * 0, 50, 50);
+
+        game.batch.draw(heart, BUTTON_WIDTH * 10, BUTTON_HEIGHT * 9, 50, 50);
+        game.batch.draw(heart, BUTTON_WIDTH * 11, BUTTON_HEIGHT * 9, 50, 50);
+        game.batch.draw(heart, BUTTON_WIDTH * 12, BUTTON_HEIGHT * 9, 50, 50);
     }
 
 
