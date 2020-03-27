@@ -13,11 +13,16 @@ import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.math.Vector2;
 
+import java.awt.datatransfer.MimeTypeParameterList;
+import java.util.ArrayList;
+
 public class MainGameScreen extends InputAdapter implements Screen {
 
     Robo game;
     private BitmapFont font;
     Texture move1;
+    Texture move2;
+    Texture move3;
     Texture moveRight;
     Texture moveLeft;
 
@@ -36,9 +41,14 @@ public class MainGameScreen extends InputAdapter implements Screen {
 
 
     public MainGameScreen(Robo robo) {
-
+        // Temp Arraylist to test a system
+        ArrayList<Texture> cards = new ArrayList<Texture>();
+        // Temp Arraylist Random numbers
+        ArrayList<Integer> cardNumbers = new ArrayList<Integer>();
         this.game = robo;
         move1 = new Texture("assets/Move1.png");
+        move2 = new Texture("assets/move2.png");
+        move3 = new Texture("assets/move3.png");
         moveRight = new Texture("assets/moveright.png");
         moveLeft = new Texture("assets/moveleft.png");
         Gdx.input.setInputProcessor(this);
@@ -81,9 +91,10 @@ public class MainGameScreen extends InputAdapter implements Screen {
 
         // Code for drawing the GUI
         game.batch.begin();
-        game.batch.draw(move1, BUTTON_HEIGHT * 11 - 10, BUTTON_WIDTH * 5, 50, 50);
-        game.batch.draw(moveRight, BUTTON_HEIGHT * 12 - 10, BUTTON_WIDTH * 5, 50, 50);
-        game.batch.draw(moveLeft, BUTTON_HEIGHT * 13 - 10, BUTTON_WIDTH * 5, 50, 50);
+
+        drawCards();
+
+        game.batch.end();
 
         game.batch.end();
 
@@ -168,6 +179,54 @@ public class MainGameScreen extends InputAdapter implements Screen {
 
     }
 
+    private void drawCards() {
+        loadCards();
+        // The start of where we want to place the cards, these will not change during the for-loop
+        int x_pos = 10;
+        int y_pos = 5;
 
+        // These will make sure the cards end up in the right spot
+        int x = 0;
+        int y = 0;
+        for(int i = 0; 9 > i; i++) {
+
+            if(x == 3) {
+                x = 0;
+                y--;
+            }
+            game.batch.draw(cards.get(i), BUTTON_WIDTH * (x_pos + x), BUTTON_HEIGHT * (y_pos + y), 50, 50);
+            x++;
+        }
+    }
+    // This function will be changed. Works ATM to load cards into Array
+    private void loadCards() {
+        cardNumbers.clear();
+        Random random = new Random();
+        int upperbound = 5;
+        int randomNumber;
+        for (int i = 0; 9 > i; i++) {
+            randomNumber = random.nextInt(upperbound);
+            cardNumbers.add(randomNumber);
+        }
+
+        for (int i = 0; 9 > i; i++) {
+            if(cardNumbers.get(i) == 0) {
+                cards.add(move1);
+            }
+            else if (cardNumbers.get(i) == 1) {
+                cards.add(move2);
+            }
+            else if (cardNumbers.get(i) == 2) {
+                cards.add(move3);
+            }
+            else if (cardNumbers.get(i) == 3) {
+                cards.add(moveRight);
+            }
+            else if (cardNumbers.get(i) == 4) {
+                cards.add(moveLeft);
+            }
+
+        }
+    }
 
 }
