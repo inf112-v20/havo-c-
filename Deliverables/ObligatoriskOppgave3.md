@@ -123,6 +123,7 @@ WARNING: All illegal access operations will be denied in a future release
 3. Start runde knappen på MainMenuScreen fungerer ikke.
 4. Liv (hjerter) er ikke fulstendig implementer og vil ikke endre seg ved skade.
 5. Kortene fungerer ikke 100%. Vi har ikke laget et runde stystem ennå.
+6. Ved bruk av kort, fungerer inegn special tiles. Special tiles fungerer normalt med bruk av QWE.
 
 Alt dette vill bli fikset så fort som mulig.
 ## Refereat
