@@ -13,8 +13,8 @@ import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.math.Vector2;
 
-import java.awt.datatransfer.MimeTypeParameterList;
 import java.util.ArrayList;
+import java.util.Random;
 
 public class MainGameScreen extends InputAdapter implements Screen {
 
@@ -25,6 +25,13 @@ public class MainGameScreen extends InputAdapter implements Screen {
     Texture move3;
     Texture moveRight;
     Texture moveLeft;
+
+    // Temp Arraylist to test a system
+    ArrayList<Texture> cards = new ArrayList<>();
+    // Temp Arraylist Random numbers
+    ArrayList<Integer> cardNumbers = new ArrayList<>();
+
+
 
     // Map related elements
     private OrthogonalTiledMapRenderer mapRenderer;
@@ -41,11 +48,9 @@ public class MainGameScreen extends InputAdapter implements Screen {
 
 
     public MainGameScreen(Robo robo) {
-        // Temp Arraylist to test a system
-        ArrayList<Texture> cards = new ArrayList<Texture>();
-        // Temp Arraylist Random numbers
-        ArrayList<Integer> cardNumbers = new ArrayList<Integer>();
+
         this.game = robo;
+
         move1 = new Texture("assets/Move1.png");
         move2 = new Texture("assets/move2.png");
         move3 = new Texture("assets/move3.png");
@@ -61,7 +66,9 @@ public class MainGameScreen extends InputAdapter implements Screen {
         font.setColor(Color.MAGENTA);
         // Input adapter shenanigans;
 
+
         // Code for setting up map
+
         camera.setToOrtho(false, BOARD_WIDTH, BOARD_HEIGHT);
         camera.update();
         mapRenderer = new OrthogonalTiledMapRenderer(gameBoard.getMap(), 1/300f);
@@ -69,23 +76,13 @@ public class MainGameScreen extends InputAdapter implements Screen {
         // Code for defining player and start location
         Vector2 startLoc = new Vector2(0,0);
         player = new Player(startLoc, Direction.NORTH, gameBoard.getPlayerLayer());
-
-
-
-
     }
-
 
     private static final int BUTTON_HEIGHT = 50;
     private static final int BUTTON_WIDTH = 50;
 
-
-
-
-
     @Override
     public void render(float v) {
-
         Gdx.gl.glClearColor(0, 22, 22, 29);
         Gdx.gl.glClear(GL30.GL_COLOR_BUFFER_BIT);
 
@@ -96,31 +93,27 @@ public class MainGameScreen extends InputAdapter implements Screen {
 
         game.batch.end();
 
-        game.batch.end();
-
-
         // Renders map
         mapRenderer.render();
 
         if(Gdx.input.getX() > 50 * 11 && Gdx.input.getX() < 50 * 12 &&
-                Gdx.input.getY() > 50 * 4 && Gdx.input.getY() < 50 *5) {
-            if (Gdx.input.justTouched()) {
+                Gdx.input.getY() > 50 * 4 && Gdx.input.getY() < 50 * 5){
+            if(Gdx.input.justTouched()) {
                 player.Move(player.getPlayerDir());
             }
         }
         if(Gdx.input.getX() > 50 * 12 && Gdx.input.getX() < 50 * 13 &&
-                Gdx.input.getY() > 50 * 4 && Gdx.input.getY() < 50 *5) {
+                Gdx.input.getY() > 50 * 4 && Gdx.input.getY() < 50 * 5){
             if (Gdx.input.justTouched()) {
                 player.Turn(TurnDirection.RIGHT);
             }
         }
         if(Gdx.input.getX() > 50 * 13 && Gdx.input.getX() < 50 * 14 &&
-                Gdx.input.getY() > 50 * 4 && Gdx.input.getY() < 50 *5) {
+                Gdx.input.getY() > 50 * 4 && Gdx.input.getY() < 50 * 5){
             if (Gdx.input.justTouched()) {
                 player.Turn(TurnDirection.LEFT);
             }
         }
-
 
         //Sets in player
         player.updatePlayerIcon();
@@ -128,7 +121,7 @@ public class MainGameScreen extends InputAdapter implements Screen {
     }
 
     public boolean keyUp(int keycode) {
-        // Not done yet, will get possiblity of returning False when illegal moves are coded in
+        // Not done yet, will get possibility of returning False when illegal moves are coded in
         // Logic gate for movement related input
         if (keycode == Input.Keys.W){
             player.Move(player.getPlayerDir());
@@ -148,8 +141,8 @@ public class MainGameScreen extends InputAdapter implements Screen {
         // Checks if player is standing on special tiles
         gameBoard.checkForSpecialTiles(player, Boolean.FALSE);
 
-
         return true;
+
     }
 
 
@@ -179,7 +172,7 @@ public class MainGameScreen extends InputAdapter implements Screen {
 
     }
 
-    private void drawCards() {
+    private void drawCards(){
         loadCards();
         // The start of where we want to place the cards, these will not change during the for-loop
         int x_pos = 10;
@@ -210,23 +203,20 @@ public class MainGameScreen extends InputAdapter implements Screen {
         }
 
         for (int i = 0; 9 > i; i++) {
-            if(cardNumbers.get(i) == 0) {
+            if (cardNumbers.get(i) == 0) {
                 cards.add(move1);
-            }
-            else if (cardNumbers.get(i) == 1) {
+            } else if (cardNumbers.get(i) == 1) {
                 cards.add(move2);
-            }
-            else if (cardNumbers.get(i) == 2) {
+            } else if (cardNumbers.get(i) == 2) {
                 cards.add(move3);
-            }
-            else if (cardNumbers.get(i) == 3) {
+            } else if (cardNumbers.get(i) == 3) {
                 cards.add(moveRight);
-            }
-            else if (cardNumbers.get(i) == 4) {
+            } else if (cardNumbers.get(i) == 4) {
                 cards.add(moveLeft);
             }
-
         }
     }
+
+
 
 }
