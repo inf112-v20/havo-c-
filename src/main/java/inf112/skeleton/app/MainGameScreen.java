@@ -47,6 +47,7 @@ public class MainGameScreen extends InputAdapter implements Screen {
 
     @Override
     public void show() {
+
         font = new BitmapFont();
         font.setColor(Color.MAGENTA);
         // Input adapter shenanigans;
