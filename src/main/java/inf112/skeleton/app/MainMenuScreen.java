@@ -24,7 +24,7 @@ public class MainMenuScreen implements Screen {
     Texture exitButton;
     public MainMenuScreen (Robo robo) {
         this.game = robo;
-        playButton = new Texture("assets/startbuttonV2.png");
+        playButton = new Texture("assets/startKnapp.png");
         exitButton = new Texture("assets/ExitBtn.png");
     }
     @Override
@@ -34,7 +34,7 @@ public class MainMenuScreen implements Screen {
 
     @Override
     public void render(float delta) {
-        Gdx.gl.glClearColor(2, 2, 0, 1);
+        Gdx.gl.glClearColor(0.5f, 0.5f, 0.5f, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         game.batch.begin();
 
