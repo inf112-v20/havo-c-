@@ -1,6 +1,6 @@
-#Obligatorisk oppgave 3
+# Obligatorisk oppgave 3
 
-##Deloppgave 1: Team og prosjekt
+## Deloppgave 1: Team og prosjekt
 
 **Hvordan fungerer rollene i teamet? Trenger dere å oppdatere hvem som er teamlead eller kundekontakt?**
 
@@ -31,7 +31,7 @@ Etter at vi har fått et kortsystem til å funke vil prioriteringene våre være
 
 Gruppedynamikken er super. Vi har ingen uenigheter som skaper noe dårlig stemning i gruppen, og ellers er vi fornøyd med hverandre. Vi har blitt litt bedre på klarere arbeidsfordeling siden sist. Kommunkiasjonen har vært bra. Vi har bra dialog på Slack, og avtaler gruppemøter derfra. På grunn av at Covid-19 hindrer oss fra å møte hverandre på grupperom etc. på Campus har vi opprettet en Discord server der vi har lydsamtaler når vi har møter. Det fungerer bra. 
 
-##Deloppgave 2: Krav
+## Deloppgave 2: Krav
 
 **Oppdater hvilke krav dere har prioritert, hvor langt dere har kommet og hva dere har gjort siden forrige gang.** 
 
@@ -115,7 +115,17 @@ WARNING: Use --illegal-access=warn to enable warnings of further illegal reflect
 
 WARNING: All illegal access operations will be denied in a future release
 
-##Refereat
+---
+# Bugs
+
+1. Brikken kan bevege seg av brettet (OutofBounds).
+2. Power down knapp fungerer ikke (ennå).
+3. Start runde knappen på MainMenuScreen fungerer ikke.
+4. Liv (hjerter) er ikke fulstendig implementer og vil ikke endre seg ved skade.
+5. Kortene fungerer ikke 100%. Vi har ikke laget et runde stystem ennå.
+
+Alt dette vill bli fikset så fort som mulig.
+## Refereat
 
 **Torsdag 05.03.20** Ca. 1.5 timer. Heine, Vebjørn og Otso deltok.
 
