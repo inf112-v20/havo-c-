@@ -128,7 +128,7 @@ gang.**
 - Programmere kort
 - Nye kort hver runde
 
-Grunnen til at vi ikke har gjort oss helt ferdig skyldes hovedsakelig, at vi skal de neste møtene og utover begynne med implementeringen av runde system og flerspillerfunksjoner. Brukeren kan nå trykke på kort (velge kort), og brikken skal endre seg der etter. Det som da gjenstår er at rekkefølgen kortene blir valgt, skal bli lagt inn i en sekvens, som blir startet av å trykke på «start round» knappen. Dette skal kobles sammen med rundesystemet til RobboRally, vi har derfor valgt sekvensen til kortene kundesystemet skal implementeres sammen da vi har et fungerende rundesystem. Merk at mye av logikken til kort, og kort sekvensen allerede er skrevet og ligger i klassen Card og CardDeck, foreløpig som ubrukt kode. Med andre ord er vår neste oppgave å lage et system for rundehåndtering.
+Grunnen til at vi ikke har gjort oss helt ferdig skyldes hovedsakelig at vi skal de neste møtene og utover begynne med implementeringen av runde system og flerspillerfunksjoner. Brukeren kan nå trykke på kort (velge kort), og brikken skal endre seg der etter. Det som da gjenstår er at rekkefølgen kortene blir valgt, skal bli lagt inn i en sekvens, som blir startet av å trykke på «start round» knappen. Dette skal kobles sammen med rundesystemet til RobboRally, vi har derfor valgt sekvensen til kortene kundesystemet skal implementeres sammen da vi har et fungerende rundesystem. Merk at mye av logikken til kort, og kort sekvensen allerede er skrevet og ligger i klassen Card og CardDeck, foreløpig som ubrukt kode. Med andre ord er vår neste oppgave å lage et system for rundehåndtering.
 
 Vi har også valgt å lage en main menu, dette er ikke ett direkte krav på MVP, men vi tenker det faller inn under ‘Et GUI som er funksjonelt for spillet’. Noe av tanken var også, å først lage en main menu for finne ut hvordan håndtere en GUI løsning, med knapper og mus input.
 På ‘Et GUI som er funksjonelt for spillet’ trenger følgende knapper og bli koblet opp slik at de kan ta mus-input. Nå fungerer de mest som en mal, på hvordan vi har planlagt GUI løsningen.
@@ -137,18 +137,19 @@ På ‘Et GUI som er funksjonelt for spillet’ trenger følgende knapper og bli
 	- Reset cards
 	- Power down
 	- Hjertene (Trenger å faktisk vise mengden liv igjen og ikke bare tre røde hjerter)
-  - Vi mangler en healthbar som kan vise hvor mye skade roboten har tatt
+        - Vi mangler en healthbar som kan vise hvor mye skade roboten har tatt
 
 
 **MVP oppgaver som enda gjenstår**
 - Et gamplay system som er runde basert
 - Vegger og hindringer
 - Roboten skal kunne skyte laser
+- flerspillerfunksjoner
 
-**MVP som har blitt lagt til denne gangen
+**MVP som har blitt lagt til denne gangen**
 - flerspillerfunksjoner (Vi glemte å ha flerspillerfunskjoner som MVP da listen ble først skrevet, så den ble lagt til MVP listen da det er et viktig krav for at spillet skal være ferdig.)
 
----
+
 
 
 ---
