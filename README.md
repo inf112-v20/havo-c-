@@ -19,3 +19,4 @@ test/java/inf112.skeleton.app.
 Currently throws "WARNING: An illegal reflective access operation has occurred", 
 when the java version used is >8. This has no effect on function or performance, and is just a warning.
 
+More bugs described in ObligatoriskOppgave3.md in Deliverables.
