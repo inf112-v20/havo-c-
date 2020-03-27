@@ -32,6 +32,8 @@ public class MainGameScreen extends InputAdapter implements Screen {
     ArrayList<Texture> cards = new ArrayList<Texture>();
     // Temp Arraylist Random numbers
     ArrayList<Integer> cardNumbers = new ArrayList<Integer>();
+    // Temp
+
 
     // Map related elements
     private OrthogonalTiledMapRenderer mapRenderer;
@@ -55,6 +57,7 @@ public class MainGameScreen extends InputAdapter implements Screen {
         move3 = new Texture("assets/move3.png");
         moveRight = new Texture("assets/moveright.png");
         moveLeft = new Texture("assets/moveleft.png");
+        loadCards();
         Gdx.input.setInputProcessor(this);
     }
 
@@ -98,32 +101,19 @@ public class MainGameScreen extends InputAdapter implements Screen {
 
         drawCards();
 
-
-
         game.batch.end();
 
 
         // Renders map
         mapRenderer.render();
 
-        if(Gdx.input.getX() > 50 * 11 && Gdx.input.getX() < 50 * 12 &&
-                Gdx.input.getY() > 50 * 4 && Gdx.input.getY() < 50 *5) {
+        if(Gdx.input.getX() > 50 * 10 && Gdx.input.getX() < 50 * 13 &&
+                Gdx.input.getY() > 50 * 4 && Gdx.input.getY() < 50 *7) {
             if (Gdx.input.justTouched()) {
-                player.Move(player.getPlayerDir());
+               touchCards(Gdx.input.getX(), Gdx.input.getY());
             }
         }
-        if(Gdx.input.getX() > 50 * 12 && Gdx.input.getX() < 50 * 13 &&
-                Gdx.input.getY() > 50 * 4 && Gdx.input.getY() < 50 *5) {
-            if (Gdx.input.justTouched()) {
-                player.Turn(TurnDirection.RIGHT);
-            }
-        }
-        if(Gdx.input.getX() > 50 * 13 && Gdx.input.getX() < 50 * 14 &&
-                Gdx.input.getY() > 50 * 4 && Gdx.input.getY() < 50 *5) {
-            if (Gdx.input.justTouched()) {
-                player.Turn(TurnDirection.LEFT);
-            }
-        }
+
 
 
         //Sets in player
@@ -183,8 +173,8 @@ public class MainGameScreen extends InputAdapter implements Screen {
 
     }
 
-    private void drawCards() {
-        loadCards();
+    public void drawCards() {
+
         // The start of where we want to place the cards, these will not change during the for-loop
         int x_pos = 10;
         int y_pos = 5;
@@ -203,7 +193,7 @@ public class MainGameScreen extends InputAdapter implements Screen {
         }
     }
     // This function will be changed. Works ATM to load cards into Array
-    private void loadCards() {
+    public void loadCards() {
         cardNumbers.clear();
         Random random = new Random();
         int upperbound = 5;
@@ -232,5 +222,66 @@ public class MainGameScreen extends InputAdapter implements Screen {
 
         }
     }
+
+    public void touchCards(int x,int y) {
+        int cardX = 0;
+        int cardY = 0;
+
+
+        // These if-statments take care of x input and changes cardX to the correct column number(1-3)
+        if(x >= BUTTON_WIDTH * 10 && x < BUTTON_WIDTH * 11) {
+            cardX = 1;
+
+        }
+        else if(x >= BUTTON_WIDTH * 11 && x < BUTTON_WIDTH * 12) {
+            cardX = 2;
+
+        }
+        else if (x >= BUTTON_WIDTH * 12 && x <= BUTTON_WIDTH * 13) {
+            cardX = 3;
+
+        }
+
+        // These if-statments take care of y input and changes cardX to the correct column number(0-2)
+        if(y >= BUTTON_HEIGHT * 4 && y < BUTTON_HEIGHT * 5) {
+            cardY = 0;
+
+        }
+        else if(y >= BUTTON_HEIGHT * 5 && y < BUTTON_HEIGHT * 6) {
+            cardY = 1;
+
+        }
+        else if (y >= BUTTON_HEIGHT * 6 && y <= BUTTON_HEIGHT * 7) {
+            cardY = 2;
+
+        }
+
+        int cardXY = cardX + (cardY * 3) - 1;
+
+
+        if(cardNumbers.get(cardXY) == 0) {
+            player.Move(player.getPlayerDir());
+        }
+        else if (cardNumbers.get(cardXY) == 1) {
+
+            player.Move(player.getPlayerDir());
+            player.Move(player.getPlayerDir());
+        }
+        else if (cardNumbers.get(cardXY) == 2) {
+
+            player.Move(player.getPlayerDir());
+            player.Move(player.getPlayerDir());
+            player.Move(player.getPlayerDir());
+
+        }
+        else if (cardNumbers.get(cardXY) == 3) {
+            player.Turn(TurnDirection.RIGHT);
+        }
+        else if (cardNumbers.get(cardXY) == 4) {
+            player.Turn(TurnDirection.LEFT);
+        }
+
+    }
+
 
 }
