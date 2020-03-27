@@ -2,7 +2,7 @@ package inf112.skeleton.app;
 /*
     This class control the direction control/system.
  */
-public class dirCtrl implements IdirCtrl{
+public class DirCtrl implements IDirCtrl {
     public Direction turnLeft(Direction dir){
         if (dir == Direction.NORTH){
             return Direction.WEST;

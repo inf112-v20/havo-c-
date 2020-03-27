@@ -1,7 +1,14 @@
 Set-up
-- Open game, the player should start at a 5x5 board with the
-player at the (0,0) coordinates, a hole at the (3,3)
-coordinates and a flag at (5,5) coordinates.
+- Open game, the player should see a menu screen with "Start" and "Exit".
+
+Exit test
+- Right-click the exit button, the game should quit.
+
+Start test
+- Right-click the start button, the game should start. 
+The player should start at a 10x10 board on a 14x10 screen 
+with cards and such on the right side of the map. The player
+should start at the (0,0) coordinate.
 
 Player move test
 - Press W, the player icon should move a single tile upwards.

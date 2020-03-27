@@ -3,7 +3,7 @@ package inf112.skeleton.app;
 import java.util.ArrayList;
 import java.util.Collections;
 
-public class CardDeck {
+public class CardDeck implements ICardDeck {
     ArrayList<Card> deck;
 
     public CardDeck(){

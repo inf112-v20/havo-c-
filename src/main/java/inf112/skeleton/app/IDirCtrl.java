@@ -1,6 +1,6 @@
 package inf112.skeleton.app;
 
-public interface IdirCtrl {
+public interface IDirCtrl {
     Direction turnLeft(Direction dir);
 
     Direction turnRight(Direction dir);

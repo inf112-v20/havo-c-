@@ -4,7 +4,7 @@ import com.badlogic.gdx.Input;
 
 import java.util.InputMismatchException;
 
-public class Card {
+public class Card implements ICard {
     String command;
     Player owner;
 

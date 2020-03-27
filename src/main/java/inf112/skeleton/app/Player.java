@@ -1,6 +1,5 @@
 package inf112.skeleton.app;
 
-import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
@@ -11,7 +10,7 @@ public class Player implements IPlayer{
     // Lives are not yet utilized but are required for the eventual death and respawn mechanics
     private Integer lives = 3;
     // Control class
-    private dirCtrl dirController = new dirCtrl();
+    private DirCtrl dirController = new DirCtrl();
     // Elements the Player needs to function on the board
     private Vector2 playerLoc;
     private Direction playerDir;
