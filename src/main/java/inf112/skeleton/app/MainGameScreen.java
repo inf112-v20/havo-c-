@@ -90,7 +90,7 @@ public class MainGameScreen extends InputAdapter implements Screen {
     @Override
     public void render(float v) {
 
-        Gdx.gl.glClearColor(0, 22, 22, 29);
+        Gdx.gl.glClearColor(0.5f, 0.5f, 0.5f, 1);
         Gdx.gl.glClear(GL30.GL_COLOR_BUFFER_BIT);
 
         // Code for drawing the GUI
