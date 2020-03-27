@@ -281,6 +281,8 @@ public class MainGameScreen extends InputAdapter implements Screen {
             player.Turn(TurnDirection.LEFT);
         }
 
+        gameBoard.checkForSpecialTiles(player, Boolean.FALSE);
+
     }
 
 
