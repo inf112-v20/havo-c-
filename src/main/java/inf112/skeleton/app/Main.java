@@ -12,5 +12,6 @@ public class Main {
         cfg.height = 500;
 
         new LwjglApplication(new Robo(), cfg);
+        //hei
     }
 }
