@@ -13,8 +13,9 @@ import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.math.Vector2;
 
-import java.awt.datatransfer.MimeTypeParameterList;
+//import java.awt.datatransfer.MimeTypeParameterList;
 import java.util.ArrayList;
+import java.util.Random;
 
 public class MainGameScreen extends InputAdapter implements Screen {
 
@@ -25,6 +26,12 @@ public class MainGameScreen extends InputAdapter implements Screen {
     Texture move3;
     Texture moveRight;
     Texture moveLeft;
+
+
+    // Temp Arraylist to test a system
+    ArrayList<Texture> cards = new ArrayList<Texture>();
+    // Temp Arraylist Random numbers
+    ArrayList<Integer> cardNumbers = new ArrayList<Integer>();
 
     // Map related elements
     private OrthogonalTiledMapRenderer mapRenderer;
@@ -41,10 +48,7 @@ public class MainGameScreen extends InputAdapter implements Screen {
 
 
     public MainGameScreen(Robo robo) {
-        // Temp Arraylist to test a system
-        ArrayList<Texture> cards = new ArrayList<Texture>();
-        // Temp Arraylist Random numbers
-        ArrayList<Integer> cardNumbers = new ArrayList<Integer>();
+
         this.game = robo;
         move1 = new Texture("assets/Move1.png");
         move2 = new Texture("assets/move2.png");
@@ -94,7 +98,7 @@ public class MainGameScreen extends InputAdapter implements Screen {
 
         drawCards();
 
-        game.batch.end();
+
 
         game.batch.end();
 
