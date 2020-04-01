@@ -6,5 +6,5 @@ public interface ICardDeck {
 
     void dealCards(Player player);
 
-    void collectCards();
+    void collectCards(Player player);
 }

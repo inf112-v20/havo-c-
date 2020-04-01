@@ -32,6 +32,7 @@ public class CardDeck implements ICardDeck {
             Card currentCard = deck.get(0);
             if(currentCard.getPlayer() == null){
                 currentCard.getDealt(player);
+                player.addToHand(currentCard);
             }
             else{
                 // All cards are dealt
@@ -41,9 +42,10 @@ public class CardDeck implements ICardDeck {
             deck.add(currentCard);
         }
     }
-    public void collectCards(){
+    public void collectCards(Player player){
         for(Integer i = 0; i<deck.size(); i++){
             deck.get(i).getDecked();
         }
+        player.emptyHand();
     }
 }

@@ -12,8 +12,10 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.scenes.scene2d.actions.DelayAction;
 
 //import java.awt.datatransfer.MimeTypeParameterList;
+import javax.smartcardio.Card;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -47,6 +49,7 @@ public class MainGameScreen extends InputAdapter implements Screen {
 
     // Variables for Player
     private Player player;
+    private CardDeck deck = new CardDeck();
 
     // Width and Height og the grid
     private final int BOARD_WIDTH = gameBoard.getPlayerLayer().getWidth();
@@ -155,6 +158,22 @@ public class MainGameScreen extends InputAdapter implements Screen {
         return true;
     }
 
+    public void doTurn(){
+        if(player.powerdown){
+            // Insert code for powerdown here
+        }
+        // Insert delay here
+        deck.dealCards(player);
+        // Insert delay here that allows players to choose their cards
+        for(Integer i = 0; i<5; i++){
+            // Must be improved to make card priority a thing
+            player.playHand(i);
+            // Must be improved so that the different parts act in the correct order
+            gameBoard.checkForSpecialTiles(player, false);
+        }
+        // Insert cleanup phase here
+        deck.collectCards(player);
+    }
 
 
     @Override
