@@ -119,6 +119,7 @@ public class MainGameScreen extends InputAdapter implements Screen {
         // Renders map
         mapRenderer.render();
 
+        // When user touches the cards
         if(Gdx.input.getX() > 50 * 10 && Gdx.input.getX() < 50 * 13 &&
                 Gdx.input.getY() > 50 * 4 && Gdx.input.getY() < 50 *7) {
             if (Gdx.input.justTouched()) {
@@ -126,6 +127,13 @@ public class MainGameScreen extends InputAdapter implements Screen {
             }
         }
 
+        // When the user touches the buttons
+        if(Gdx.input.getX() > 50 * 10 && Gdx.input.getX() < 50 * 13 &&
+                Gdx.input.getY() > 50 * 9 && Gdx.input.getY() < 50 *10) {
+            if (Gdx.input.justTouched()) {
+                touchedButtons(Gdx.input.getX());
+            }
+        }
 
 
         //Sets in player
@@ -286,7 +294,7 @@ public class MainGameScreen extends InputAdapter implements Screen {
 
         int cardXY = cardX + (cardY * 3) - 1;
 
-
+        // Gives the right command depending on which card the user touched
         if(cardNumbers.get(cardXY) == 0) {
             player.Move(player.getPlayerDir());
         }
@@ -310,8 +318,9 @@ public class MainGameScreen extends InputAdapter implements Screen {
         }
 
         gameBoard.checkForSpecialTiles(player, Boolean.FALSE);
-
     }
+
+
     public void drawButtons() {
 
         game.batch.draw(resetcards, BUTTON_WIDTH * 10, BUTTON_HEIGHT * 0, 50, 50);
@@ -323,5 +332,34 @@ public class MainGameScreen extends InputAdapter implements Screen {
         game.batch.draw(heart, BUTTON_WIDTH * 12, BUTTON_HEIGHT * 9, 50, 50);
     }
 
+    public void touchedButtons(int x) {
+        int cardX = 0;
+
+        // These if-statments take care of x input and changes cardX to the correct column number(1-3)
+        if(x >= BUTTON_WIDTH * 10 && x < BUTTON_WIDTH * 11) {
+            cardX = 1;
+
+        }
+        else if(x >= BUTTON_WIDTH * 11 && x < BUTTON_WIDTH * 12) {
+            cardX = 2;
+
+        }
+        else if (x >= BUTTON_WIDTH * 12 && x <= BUTTON_WIDTH * 13) {
+            cardX = 3;
+
+        }
+
+        if(cardX == 1) {
+          System.out.println("Power Down");
+        }
+        else if (cardX == 2) {
+            System.out.println("Start Round");
+        }
+        else if (cardX == 3) {
+            System.out.println("Reset Cards");
+        }
+
+
+    }
 
 }
