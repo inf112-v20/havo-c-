@@ -14,8 +14,6 @@ import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.actions.DelayAction;
 
-//import java.awt.datatransfer.MimeTypeParameterList;
-import javax.smartcardio.Card;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -349,9 +347,9 @@ public class MainGameScreen extends InputAdapter implements Screen {
         game.batch.draw(startround, BUTTON_WIDTH * 11, BUTTON_HEIGHT * 0, 50, 50);
         game.batch.draw(poweroff, BUTTON_WIDTH * 12, BUTTON_HEIGHT * 0, 50, 50);
 
-        game.batch.draw(heart, BUTTON_WIDTH * 10, BUTTON_HEIGHT * 9, 50, 50);
-        game.batch.draw(heart, BUTTON_WIDTH * 11, BUTTON_HEIGHT * 9, 50, 50);
-        game.batch.draw(heart, BUTTON_WIDTH * 12, BUTTON_HEIGHT * 9, 50, 50);
+        for (Integer i=0; i<player.getLives(); i++ ){
+            game.batch.draw(heart, BUTTON_WIDTH *(10+i), BUTTON_HEIGHT * 9, 50, 50);
+        }
     }
 
     public void touchedButtons(int x) {
