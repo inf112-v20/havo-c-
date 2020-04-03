@@ -330,14 +330,17 @@ public class MainGameScreen extends InputAdapter implements Screen {
 
     // This function changes the touched cards to a number so that the user can pick 5 cards
     public void handleTouchedCards(int cardXY) {
-        tempCardPick++;
 
         if(tempCardPick == 5) {
 
         }
         else {
+            cards.set(cardXY, pickedCards.get(tempCardPick));
 
         }
+
+        tempCardPick++;
+
     }
 
     public void drawButtons() {
@@ -381,6 +384,21 @@ public class MainGameScreen extends InputAdapter implements Screen {
 
         }
 
+
+    }
+
+    private void fillPickedCards() {
+        Texture one = new Texture("assets/pickedCards/One.png");
+        Texture two = new Texture("assets/pickedCards/Two.png");
+        Texture three = new Texture("assets/pickedCards/three.png");
+        Texture four = new Texture("assets/pickedCards/four.png");
+        Texture five = new Texture("assets/pickedCards/five.png");
+
+        pickedCards.add(one);
+        pickedCards.add(two);
+        pickedCards.add(three);
+        pickedCards.add(four);
+        pickedCards.add(five);
 
     }
 
