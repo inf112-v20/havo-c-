@@ -40,6 +40,9 @@ public class MainGameScreen extends InputAdapter implements Screen {
     ArrayList<Integer> cardNumbers = new ArrayList<Integer>();
     // Temp
 
+    // Temp Var for player, I think this variable should be put into player class
+    int tempCardPick = 0;
+
 
     // Map related elements
     private OrthogonalTiledMapRenderer mapRenderer;
@@ -320,6 +323,10 @@ public class MainGameScreen extends InputAdapter implements Screen {
         gameBoard.checkForSpecialTiles(player, Boolean.FALSE);
     }
 
+    // This function changes the touched cards to a number so that the user can pick 5 cards
+    public void handleTouchedCards() {
+
+    }
 
     public void drawButtons() {
 
@@ -350,13 +357,16 @@ public class MainGameScreen extends InputAdapter implements Screen {
         }
 
         if(cardX == 1) {
-          System.out.println("Power Down");
+            cards.clear();
+            cardNumbers.clear();
+            loadCards();
         }
         else if (cardX == 2) {
             System.out.println("Start Round");
         }
         else if (cardX == 3) {
-            System.out.println("Reset Cards");
+            System.out.println("Power Down");
+
         }
 
 
