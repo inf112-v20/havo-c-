@@ -38,7 +38,8 @@ public class MainGameScreen extends InputAdapter implements Screen {
     ArrayList<Texture> cards = new ArrayList<Texture>();
     // Temp Arraylist Random numbers
     ArrayList<Integer> cardNumbers = new ArrayList<Integer>();
-    // Temp
+    // Temp this array contain the numbers 1 to 5
+    ArrayList<Texture> pickedCards = new ArrayList<Texture>();
 
     // Temp Var for player, I think this variable should be put into player class
     int tempCardPick = 0;
@@ -321,11 +322,22 @@ public class MainGameScreen extends InputAdapter implements Screen {
         }
 
         gameBoard.checkForSpecialTiles(player, Boolean.FALSE);
+
+
+        handleTouchedCards(cardX);
+
     }
 
     // This function changes the touched cards to a number so that the user can pick 5 cards
-    public void handleTouchedCards() {
+    public void handleTouchedCards(int cardXY) {
+        tempCardPick++;
 
+        if(tempCardPick == 5) {
+
+        }
+        else {
+
+        }
     }
 
     public void drawButtons() {
