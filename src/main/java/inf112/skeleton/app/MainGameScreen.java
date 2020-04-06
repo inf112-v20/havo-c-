@@ -26,18 +26,19 @@ public class MainGameScreen extends InputAdapter implements Screen {
     Texture move3;
     Texture moveRight;
     Texture moveLeft;
+    Texture moveback;
+    Texture turn180;
     Texture startround;
     Texture resetcards;
     Texture poweroff;
     Texture heart;
 
-
-
+//bruh?
     // Temp Arraylist to test a system
     ArrayList<Texture> cards = new ArrayList<Texture>();
     // Temp Arraylist Random numbers
     ArrayList<Integer> cardNumbers = new ArrayList<Integer>();
-    // Temp this array contain the numbers 1 to 5
+    // Temp this array contain the numbers 1 to 7
     ArrayList<Texture> pickedCards = new ArrayList<Texture>();
     // Temp this array contains which cards the user have selected
     ArrayList<Texture> selectedCards = new ArrayList<Texture>();
@@ -73,6 +74,8 @@ public class MainGameScreen extends InputAdapter implements Screen {
         move3 = new Texture("assets/move3.png");
         moveRight = new Texture("assets/moveright.png");
         moveLeft = new Texture("assets/moveleft.png");
+        moveback = new Texture("assets/moveback.png");
+        turn180 = new Texture("assets/turn180.png");
         startround = new Texture("assets/startround1.png");
         resetcards = new Texture("assets/resetcards1.png");
         poweroff = new Texture("assets/poweroff1.png");
@@ -183,7 +186,7 @@ public class MainGameScreen extends InputAdapter implements Screen {
         // Insert delay here
         deck.dealCards(player);
         // Insert delay here that allows players to choose their cards
-        for(Integer i = 0; i<5; i++){
+        for(Integer i = 0; i<7; i++){
             // Must be improved to make card priority a thing
             player.playHand(i);
             // Must be improved so that the different parts act in the correct order
@@ -242,7 +245,7 @@ public class MainGameScreen extends InputAdapter implements Screen {
     public void loadCards() {
         cardNumbers.clear();
         Random random = new Random();
-        int upperbound = 5;
+        int upperbound = 7;
         int randomNumber;
         for (int i = 0; 9 > i; i++) {
             randomNumber = random.nextInt(upperbound);
@@ -264,6 +267,12 @@ public class MainGameScreen extends InputAdapter implements Screen {
             }
             else if (cardNumbers.get(i) == 4) {
                 cards.add(moveLeft);
+            }
+            else if (cardNumbers.get(i) == 5) {
+                cards.add(moveback);
+            }
+            else if (cardNumbers.get(i) == 6) {
+                cards.add(turn180);
             }
 
         }
@@ -303,31 +312,44 @@ public class MainGameScreen extends InputAdapter implements Screen {
 
     }
     public void movePlayer(int cardXY){
-            // Gives the right command depending on which card the user touched
-            if (cardNumbers.get(cardXY) == 0) {
-                player.Move(player.getPlayerDir());
-            } else if (cardNumbers.get(cardXY) == 1) {
-
-                player.Move(player.getPlayerDir());
-                player.Move(player.getPlayerDir());
-            } else if (cardNumbers.get(cardXY) == 2) {
-
-                player.Move(player.getPlayerDir());
-                player.Move(player.getPlayerDir());
-                player.Move(player.getPlayerDir());
-
-            } else if (cardNumbers.get(cardXY) == 3) {
-                player.Turn(TurnDirection.RIGHT);
-            } else if (cardNumbers.get(cardXY) == 4) {
-                player.Turn(TurnDirection.LEFT);
+        // Gives the right command depending on which card the user touched
+        if (cardNumbers.get(cardXY) == 0) {
+            player.Move(player.getPlayerDir());
+            }
+        else if (cardNumbers.get(cardXY) == 1) {
+            player.Move(player.getPlayerDir());
+            player.Move(player.getPlayerDir());
+            }
+        else if (cardNumbers.get(cardXY) == 2) {
+            player.Move(player.getPlayerDir());
+            player.Move(player.getPlayerDir());
+            player.Move(player.getPlayerDir());
+            }
+        else if (cardNumbers.get(cardXY) == 3) {
+            player.Turn(TurnDirection.RIGHT);
             }
 
-            gameBoard.checkForSpecialTiles(player, Boolean.FALSE);
+        else if (cardNumbers.get(cardXY) == 4) {
+            player.Turn(TurnDirection.LEFT);
+            }
+        else if (cardNumbers.get(cardXY) == 5) {
+            player.Turn(TurnDirection.RIGHT);
+            player.Turn(TurnDirection.RIGHT);
+            player.Move(player.getPlayerDir());
+            player.Turn(TurnDirection.RIGHT);
+            player.Turn(TurnDirection.RIGHT);
+            }
+        else if (cardNumbers.get(cardXY) == 6) {
+            player.Turn(TurnDirection.RIGHT);
+            player.Turn(TurnDirection.RIGHT);
+            }
 
-        }
+        gameBoard.checkForSpecialTiles(player, Boolean.FALSE);
 
 
+        handleTouchedCards(cardXY);
 
+    }
 
     // This function changes the touched cards to a number so that the user can pick 5 cards
     public void handleTouchedCards(int cardXY) {
@@ -346,8 +368,7 @@ public class MainGameScreen extends InputAdapter implements Screen {
 
             movePlayer(cardXY);
             tempCardPick++;
-
-        }
+         }
 
 
 
