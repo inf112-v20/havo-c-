@@ -38,12 +38,6 @@ public class MainGameScreen extends InputAdapter implements Screen {
     ArrayList<Integer> cardNumbers = new ArrayList<Integer>();
     // Temp this array contain the numbers 1 to 5
     ArrayList<Texture> pickedCards = new ArrayList<Texture>();
-    // Temp this array contains which cards the user have selected
-    ArrayList<Texture> selectedCards = new ArrayList<Texture>();
-    // Temp this array contains the index of the selected cards
-    ArrayList<Integer> indexSelectedCards = new ArrayList<Integer>();
-
-
 
     // Temp Var for player, I think this variable should be put into player class
     int tempCardPick = 0;
@@ -273,82 +267,80 @@ public class MainGameScreen extends InputAdapter implements Screen {
         int cardY = 0;
 
 
-        // These if-statements take care of x input and changes cardX to the correct column number(1-3)
-        if (x >= BUTTON_WIDTH * 10 && x < BUTTON_WIDTH * 11) {
+        // These if-statments take care of x input and changes cardX to the correct column number(1-3)
+        if(x >= BUTTON_WIDTH * 10 && x < BUTTON_WIDTH * 11) {
             cardX = 1;
 
-        } else if (x >= BUTTON_WIDTH * 11 && x < BUTTON_WIDTH * 12) {
+        }
+        else if(x >= BUTTON_WIDTH * 11 && x < BUTTON_WIDTH * 12) {
             cardX = 2;
 
-        } else if (x >= BUTTON_WIDTH * 12 && x <= BUTTON_WIDTH * 13) {
+        }
+        else if (x >= BUTTON_WIDTH * 12 && x <= BUTTON_WIDTH * 13) {
             cardX = 3;
 
         }
 
-        // These if-statements take care of y input and changes cardX to the correct column number(0-2)
-        if (y >= BUTTON_HEIGHT * 4 && y < BUTTON_HEIGHT * 5) {
+        // These if-statments take care of y input and changes cardX to the correct column number(0-2)
+        if(y >= BUTTON_HEIGHT * 4 && y < BUTTON_HEIGHT * 5) {
             cardY = 0;
 
-        } else if (y >= BUTTON_HEIGHT * 5 && y < BUTTON_HEIGHT * 6) {
+        }
+        else if(y >= BUTTON_HEIGHT * 5 && y < BUTTON_HEIGHT * 6) {
             cardY = 1;
 
-        } else if (y >= BUTTON_HEIGHT * 6 && y <= BUTTON_HEIGHT * 7) {
+        }
+        else if (y >= BUTTON_HEIGHT * 6 && y <= BUTTON_HEIGHT * 7) {
             cardY = 2;
 
         }
 
         int cardXY = cardX + (cardY * 3) - 1;
+
+        // Gives the right command depending on which card the user touched
+        if(cardNumbers.get(cardXY) == 0) {
+            player.Move(player.getPlayerDir());
+        }
+        else if (cardNumbers.get(cardXY) == 1) {
+
+            player.Move(player.getPlayerDir());
+            player.Move(player.getPlayerDir());
+        }
+        else if (cardNumbers.get(cardXY) == 2) {
+
+            player.Move(player.getPlayerDir());
+            player.Move(player.getPlayerDir());
+            player.Move(player.getPlayerDir());
+
+        }
+        else if (cardNumbers.get(cardXY) == 3) {
+            player.Turn(TurnDirection.RIGHT);
+        }
+        else if (cardNumbers.get(cardXY) == 4) {
+            player.Turn(TurnDirection.LEFT);
+        }
+
+        gameBoard.checkForSpecialTiles(player, Boolean.FALSE);
+
+
         handleTouchedCards(cardXY);
 
     }
-    public void movePlayer(int cardXY){
-            // Gives the right command depending on which card the user touched
-            if (cardNumbers.get(cardXY) == 0) {
-                player.Move(player.getPlayerDir());
-            } else if (cardNumbers.get(cardXY) == 1) {
-
-                player.Move(player.getPlayerDir());
-                player.Move(player.getPlayerDir());
-            } else if (cardNumbers.get(cardXY) == 2) {
-
-                player.Move(player.getPlayerDir());
-                player.Move(player.getPlayerDir());
-                player.Move(player.getPlayerDir());
-
-            } else if (cardNumbers.get(cardXY) == 3) {
-                player.Turn(TurnDirection.RIGHT);
-            } else if (cardNumbers.get(cardXY) == 4) {
-                player.Turn(TurnDirection.LEFT);
-            }
-
-            gameBoard.checkForSpecialTiles(player, Boolean.FALSE);
-
-        }
-
-
-
 
     // This function changes the touched cards to a number so that the user can pick 5 cards
     public void handleTouchedCards(int cardXY) {
 
-        if(tempCardPick == 5 || player.getPlayerState() != PlayerState.ALIVE || indexSelectedCards.contains(cardXY)) {
-
-            System.out.println("stopper");
+        if(tempCardPick == 5) {
 
         }
         else {
-            // Adds the Texture and integer of touched card into a Arraylist
-            selectedCards.add(cards.get(cardXY));
-            indexSelectedCards.add(cardXY);
 
             cards.set(cardXY, pickedCards.get(tempCardPick));
 
-            movePlayer(cardXY);
-            tempCardPick++;
 
         }
 
-
+        tempCardPick++;
 
     }
 
@@ -382,22 +374,13 @@ public class MainGameScreen extends InputAdapter implements Screen {
         }
 
         if(cardX == 1) {
-
-            for (int i = 0; tempCardPick > i; i++) {
-                cards.set(indexSelectedCards.get(i), selectedCards.get(i));
-            }
-            tempCardPick = 0;
-            selectedCards.clear();
-            indexSelectedCards.clear();
-        }
-        else if (cardX == 2) {
-            tempCardPick = 0;
             cards.clear();
             cardNumbers.clear();
 
             loadCards();
-
-
+        }
+        else if (cardX == 2) {
+            System.out.println("Start Round");
         }
         else if (cardX == 3) {
             System.out.println("Power Down");
