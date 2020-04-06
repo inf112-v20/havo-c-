@@ -352,6 +352,7 @@ public class MainGameScreen extends InputAdapter implements Screen {
 
     }
 
+
     public void drawButtons() {
 
         game.batch.draw(resetcards, BUTTON_WIDTH * 10, BUTTON_HEIGHT * 0, 50, 50);
