@@ -33,7 +33,7 @@ public class MainGameScreen extends InputAdapter implements Screen {
     Texture poweroff;
     Texture heart;
 
-
+//bruh?
     // Temp Arraylist to test a system
     ArrayList<Texture> cards = new ArrayList<Texture>();
     // Temp Arraylist Random numbers
