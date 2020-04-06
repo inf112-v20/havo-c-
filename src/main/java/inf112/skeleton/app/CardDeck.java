@@ -12,8 +12,10 @@ public class CardDeck implements ICardDeck {
         addCards("Move1",10);
         addCards("Move2",5);
         addCards("Move3",3);
+        addCards("MoveBack",5);
         addCards("TurnLeft",10);
         addCards("TurnRight",10);
+        addCards("Turn180",5);
 
         shuffleDeck();
     }

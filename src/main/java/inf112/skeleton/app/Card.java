@@ -7,6 +7,7 @@ import java.util.InputMismatchException;
 public class Card implements ICard {
     String command;
     Player owner;
+    DirCtrl dirCtrl = new DirCtrl();
 
     public Card(String command){
         this.command = command;
@@ -35,11 +36,17 @@ public class Card implements ICard {
                     owner.Move(owner.getPlayerDir());
                 }
             }
+            else if (command == "MoveBack"){
+                owner.Move(dirCtrl.invertDirection(owner.getPlayerDir()));
+            }
             else if(command == "TurnRight"){
                 owner.Turn(TurnDirection.RIGHT);
             }
             else if(command == "TurnLeft"){
                 owner.Turn(TurnDirection.LEFT);
+            }
+            else if(command == "Turn180"){
+                owner.Turn(TurnDirection.BACKWARDS);
             }
         }
     }
