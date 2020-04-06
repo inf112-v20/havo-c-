@@ -71,6 +71,7 @@ public class MainGameScreen extends InputAdapter implements Screen {
         poweroff = new Texture("assets/poweroff1.png");
         heart = new Texture("assets/heart.png");
         loadCards();
+        fillPickedCards();
         Gdx.input.setInputProcessor(this);
     }
 
@@ -322,7 +323,7 @@ public class MainGameScreen extends InputAdapter implements Screen {
         gameBoard.checkForSpecialTiles(player, Boolean.FALSE);
 
 
-        handleTouchedCards(cardX);
+        handleTouchedCards(cardXY);
 
     }
 
@@ -333,7 +334,9 @@ public class MainGameScreen extends InputAdapter implements Screen {
 
         }
         else {
+
             cards.set(cardXY, pickedCards.get(tempCardPick));
+
 
         }
 
@@ -372,6 +375,7 @@ public class MainGameScreen extends InputAdapter implements Screen {
         if(cardX == 1) {
             cards.clear();
             cardNumbers.clear();
+
             loadCards();
         }
         else if (cardX == 2) {
