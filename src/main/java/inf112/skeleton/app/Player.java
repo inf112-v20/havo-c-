@@ -75,6 +75,10 @@ public class Player implements IPlayer{
             else if (dir == TurnDirection.RIGHT) {
                 playerDir = dirController.turnRight(playerDir);
             }
+            // Turns player 180 degrees
+            else if (dir == TurnDirection.BACKWARDS){
+                playerDir = dirController.invertDirection(playerDir);
+            }
             // Updates rotation of player icon
             updateIconRotation();
         }
