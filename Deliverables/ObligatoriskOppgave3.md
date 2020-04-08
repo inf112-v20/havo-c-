@@ -82,7 +82,8 @@ Holder på å lage en main menu, og prøver å implementere et kortsystem.
 
 **Forklar kort hvilke hovedkrav dere anser som en del av MVP og hvorfor. Hvis det er gjort endringer i rekkefølge utfra hva som er gitt fra kunde, hvorfor er dette gjort?**
 
-Alle disse kravene, som ble nevnt forrige innlevering anser vi som MVP. 
+Eneste endringer vi har gjort her er at vi har lagt til flerspillerfunksjoner på listen av MVP. Dette skyldes hovedsakelig at vi glemte at det burde være en MVP på de 2 første MVP listene våre. Ellers ser den helt lik ut som sist. Rekkefølgen på hva som er prioritert er vist på neste spørsmål.
+
 -	Spillebrett
 -	Roboter som kan plassers på bordet
 -	Muligheten til å vinne
@@ -98,13 +99,64 @@ Alle disse kravene, som ble nevnt forrige innlevering anser vi som MVP.
 -	Vegger og hindringer
 -	Rullebanen
 -	Roboten skal kunne skyte laser
+- flerspillerfunksjoner
 
-Det er ikke gjort noen endringer i rekkefølgen siden sist. 
 
+**Oppdater hvilke krav dere har prioritert, hvor langt dere har kommet og hva dere har gjort siden forrige
+gang.**
+
+**Følgende Oppgaver ble løst de forrige innleveringene**
+- Spillebrett
+- Roboter som kan plassers på bordet
+- Flag på brettet
+- Bevegelses system til brikken (Var opprinnelig et krav vi glemte å ta med på den opprinnelige kravlisten vår.)
+- Muligheten til vinne
+- Register at robot har vært innom flagg
+- Kunne ta skade
+- Roboten skal kunne miste alle liv og dø
+
+**Følgende oppgaver ble prioritert til denne gang**
+- Rullebanen
+- Et GUI som er funksjonelt for spillet
+- Velge kort fra en kortstokk
+- Programmere kort
+- Nye kort hver runde
+
+**Av MVP listen ble proritert til denne gang trenger følgende punkter mer arbeid**
+- Et GUI som er funksjonelt for spillet
+- Velge kort fra en kortstokk
+- Programmere kort
+- Nye kort hver runde
+
+Grunnen til at vi ikke har gjort oss helt ferdig skyldes hovedsakelig at vi skal de neste møtene og utover begynne med implementeringen av runde system og flerspillerfunksjoner. Brukeren kan nå trykke på kort (velge kort), og brikken skal endre seg der etter. Det som da gjenstår er at rekkefølgen kortene blir valgt, skal bli lagt inn i en sekvens, som blir startet av å trykke på «start round» knappen. Dette skal kobles sammen med rundesystemet til RobboRally, vi har derfor valgt sekvensen til kortene kundesystemet skal implementeres sammen da vi har et fungerende rundesystem. Merk at mye av logikken til kort, og kort sekvensen allerede er skrevet og ligger i klassen Card og CardDeck, foreløpig som ubrukt kode. Med andre ord er vår neste oppgave å lage et system for rundehåndtering.
+
+Vi har også valgt å lage en main menu, dette er ikke ett direkte krav på MVP, men vi tenker det faller inn under ‘Et GUI som er funksjonelt for spillet’. Noe av tanken var også, å først lage en main menu for finne ut hvordan håndtere en GUI løsning, med knapper og mus input.
+På ‘Et GUI som er funksjonelt for spillet’ trenger følgende knapper og bli koblet opp slik at de kan ta mus-input. Nå fungerer de mest som en mal, på hvordan vi har planlagt GUI løsningen.
+
+	- Start round
+	- Reset cards
+	- Power down
+	- Hjertene (Trenger å faktisk vise mengden liv igjen og ikke bare tre røde hjerter)
+        - Vi mangler en healthbar som kan vise hvor mye skade roboten har tatt
+
+
+**MVP oppgaver som enda gjenstår**
+- Et gamplay system som er runde basert
+- Vegger og hindringer
+- Roboten skal kunne skyte laser
+- flerspillerfunksjoner
+
+**MVP som har blitt lagt til denne gangen**
+- flerspillerfunksjoner (Vi glemte å ha flerspillerfunskjoner som MVP da listen ble først skrevet, så den ble lagt til MVP listen da det er et viktig krav for at spillet skal være ferdig.)
+
+
+
+
+---
+# Bugs
 **Husk å skrive hvilke bugs som finnes i de kravene dere har utført (dersom det finnes bugs).**
 
 **Får fortsatt denne warningen:**
-
 WARNING: An illegal reflective access operation has occurred
 
 WARNING: Illegal reflective access by org.lwjgl.LWJGLUtil$3 (file:/Users/heineolsenhartvedt/.m2/repository/org/lwjgl/lwjgl/lwjgl/2.9.3/lwjgl-2.9.3.jar) to method java.lang.ClassLoader.findLibrary(java.lang.String)
@@ -113,17 +165,14 @@ WARNING: Please consider reporting this to the maintainers of org.lwjgl.LWJGLUti
 
 WARNING: Use --illegal-access=warn to enable warnings of further illegal reflective access operations
 
-WARNING: All illegal access operations will be denied in a future release
-
----
-# Bugs
+WARNING: All illegal access operations will be denied in a future releas
 
 1. Brikken kan bevege seg av brettet (OutofBounds).
 2. Power down knapp fungerer ikke (ennå).
 3. Start runde knappen på MainMenuScreen fungerer ikke.
 4. Liv (hjerter) er ikke fulstendig implementer og vil ikke endre seg ved skade.
 5. Kortene fungerer ikke 100%. Vi har ikke laget et runde stystem ennå.
-6. Ved bruk av kort, fungerer inegn special tiles. Special tiles fungerer normalt med bruk av QWE.
+6. Ved bruk av kort, fungerer ingen special tiles (100%). Da vi bruker move 2 og 3 frem, skipper den special tiles på alle moves utenom det siste. Dette vil bli fikset da vi får et rundesystem. Special tiles fungerer normalt med bruk av QWE.
 
 Alt dette vill bli fikset så fort som mulig.
 ## Refereat
@@ -162,3 +211,24 @@ Alt dette vill bli fikset så fort som mulig.
 - Startet implementering av kortsystemet 
 - Slettet unødvendig kode
 - Forbedret GUI
+
+**Fredag 27.03.20** Ca. 3 timer. Alle deltok
+
+- Holdt på en god stund med et merge problem vi til slutt fikk fikset
+- La til alle kortene i spillet
+- Kan nå trykke på kortene
+- Skrev ferdig ObligatoriskOppgave3.md
+- Oppdaterte manual tests
+- Oppdatert UML-kartet
+- Lagt planer for hvordan vi skal fortsette prosjektet vårt
+
+### Retrospektiv til denne innlevering
+Covid-19 nedstengelsen av skolen gjorde at vi fikk noen uforutsette utfordringer. De punktene som kan trekkes frem fra denne innleveringen og som blir viktig til neste innleveringen er som følger:
+
+Til denne innleveringen har mye av arbeidet blitt gjort over discord. Hvordan vi deler og diskuterer koden har er dermed blitt en noe større utfordring. Siden vi ikke i like enkelt kan dele/vise kode med andre har mye av løsningen vært å være tydelig med hva vi holder på med, men også pushe commits oftere. Dette har løst noe av problemet, men det øker sannsynligheten for merge konflikter. Vi har ikke hatt noen kjempe problemer med merge konflikter foreløpig, men dette er noe vi må ha fokus på fremover. 
+
+Hvordan møter blir planlagt og hyppigheten til møtene var i første uken etter nedstengelsen noe uklar. Det gjorde at vi ikke fikk like mange møter som vi kanskje burde hatt. Dette ble vi bedre på etter hvert, og vi har nå et system for 3 møter i uken. Disse møtene skjer over discord og varer 1.5 timer til 2 timer.
+
+### Kommunikasjon (Hvordan vi deler og overfører kunnskap)
+
+Nå skjer omtrent all kommunikasjon over discord. Dette fungerer greit for kommunikasjons biten, men det å snakke om kode og dele koden er en større utfordring, sammenlignet med å sitte i samme rom diskutere koden fra en datamaskin. Dette løser vi med hyppigere push, dette løser noe av problemet. Når vi sitter sammen på discord, er alle tilgjengelige i voice chat, så det og spør om problemer og hjelpe hverandre med å forstå koden er noe vi bruker hele veien. Gruppedynamikken bra så vi har alle god forståelse for hvordan prosjektet blir planlagt, da vi snakke sammen om alle avgjørelser som blir tatt.

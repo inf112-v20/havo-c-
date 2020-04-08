@@ -12,8 +12,10 @@ public class CardDeck implements ICardDeck {
         addCards("Move1",10);
         addCards("Move2",5);
         addCards("Move3",3);
+        addCards("MoveBack",5);
         addCards("TurnLeft",10);
         addCards("TurnRight",10);
+        addCards("Turn180",5);
 
         shuffleDeck();
     }
@@ -32,6 +34,7 @@ public class CardDeck implements ICardDeck {
             Card currentCard = deck.get(0);
             if(currentCard.getPlayer() == null){
                 currentCard.getDealt(player);
+                player.addToHand(currentCard);
             }
             else{
                 // All cards are dealt
@@ -41,9 +44,10 @@ public class CardDeck implements ICardDeck {
             deck.add(currentCard);
         }
     }
-    public void collectCards(){
+    public void collectCards(Player player){
         for(Integer i = 0; i<deck.size(); i++){
             deck.get(i).getDecked();
         }
+        player.emptyHand();
     }
 }

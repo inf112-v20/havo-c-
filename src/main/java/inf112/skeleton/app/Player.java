@@ -6,9 +6,14 @@ import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.maps.tiled.tiles.StaticTiledMapTile;
 import com.badlogic.gdx.math.Vector2;
 
+import java.util.ArrayList;
+
 public class Player implements IPlayer{
-    // Lives are not yet utilized but are required for the eventual death and respawn mechanics
+    // Variables of the player robot
     private Integer lives = 3;
+    private Integer hp = 9;
+    public Boolean powerdown = false;
+    public ArrayList<Card> hand = new ArrayList<>();
     // Control class
     private DirCtrl dirController = new DirCtrl();
     // Elements the Player needs to function on the board
@@ -70,9 +75,22 @@ public class Player implements IPlayer{
             else if (dir == TurnDirection.RIGHT) {
                 playerDir = dirController.turnRight(playerDir);
             }
+            // Turns player 180 degrees
+            else if (dir == TurnDirection.BACKWARDS){
+                playerDir = dirController.invertDirection(playerDir);
+            }
             // Updates rotation of player icon
             updateIconRotation();
         }
+    }
+    public void addToHand(Card card){
+        hand.add(card);
+    }
+    public void playHand(Integer i){
+        hand.get(i).playCard();
+    }
+    public void emptyHand(){
+        hand = new ArrayList<>();
     }
     // Updates rotation of the player icon based on what the player direction is
     private void updateIconRotation() {
@@ -147,6 +165,7 @@ public class Player implements IPlayer{
     }
     public Direction getPlayerDir() { return playerDir; }
     public Vector2 getPlayerLoc() { return playerLoc; }
+    public Integer getLives() { return lives; }
     public PlayerState getPlayerState(){
         return playerState;
     }
