@@ -379,8 +379,11 @@ public class MainGameScreen extends InputAdapter implements Screen {
         }
         else if (cardX == 2) {
             tempCardPick = 0;
+
             cards.clear();
             cardHand.clear();
+            selectedCards.clear();
+            indexSelectedCards.clear();
 
             loadCards();
 
