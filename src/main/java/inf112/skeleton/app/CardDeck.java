@@ -4,11 +4,9 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 public class CardDeck implements ICardDeck {
-    ArrayList<Card> deck;
+    ArrayList<Card> deck = new ArrayList<>();
 
     public CardDeck(){
-        this.deck = new ArrayList<>();
-
         addCards("Move1",10);
         addCards("Move2",5);
         addCards("Move3",3);
@@ -20,7 +18,7 @@ public class CardDeck implements ICardDeck {
         shuffleDeck();
     }
     private void addCards(String command, Integer amount){
-        for(Integer i=0; i>amount ; i++){
+        for(Integer i=0; i<amount ; i++){
             deck.add(new Card(command));
         }
     }
@@ -29,25 +27,31 @@ public class CardDeck implements ICardDeck {
         Collections.shuffle(deck);
     }
 
-    public void dealCards(Player player){
-        for(Integer i = 0; i<5; i++){
-            Card currentCard = deck.get(0);
+    public ArrayList<Card> dealCards(Player player){
+
+        ArrayList<Card> hand = new ArrayList<>();
+
+        for(Integer i = 0; i<9; i++){
+            Card currentCard = deck.get(i);
             if(currentCard.getPlayer() == null){
                 currentCard.getDealt(player);
-                player.addToHand(currentCard);
+                hand.add(currentCard);
             }
             else{
                 // All cards are dealt
-                break;
+                i--;
             }
-            deck.remove(currentCard);
-            deck.add(currentCard);
         }
+        return hand;
     }
     public void collectCards(Player player){
         for(Integer i = 0; i<deck.size(); i++){
             deck.get(i).getDecked();
         }
         player.emptyHand();
+    }
+
+    public int getSize(){
+        return deck.size();
     }
 }

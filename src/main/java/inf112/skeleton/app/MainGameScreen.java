@@ -37,7 +37,7 @@ public class MainGameScreen extends InputAdapter implements Screen {
     // Temp Arraylist to test a system
     ArrayList<Texture> cards = new ArrayList<Texture>();
     // Temp Arraylist Random numbers
-    ArrayList<Integer> cardNumbers = new ArrayList<Integer>();
+    ArrayList<Card> cardHand = new ArrayList<>();
     // Temp this array contain the numbers 1 to 7
     ArrayList<Texture> pickedCards = new ArrayList<Texture>();
     // Temp this array contains which cards the user have selected
@@ -243,35 +243,29 @@ public class MainGameScreen extends InputAdapter implements Screen {
     }
     // This function will be changed. Works ATM to load cards into Array
     public void loadCards() {
-        cardNumbers.clear();
-        Random random = new Random();
-        int upperbound = 7;
-        int randomNumber;
-        for (int i = 0; 9 > i; i++) {
-            randomNumber = random.nextInt(upperbound);
-            cardNumbers.add(randomNumber);
-        }
+        cardHand.clear();
+        cardHand = deck.dealCards(player);
 
         for (int i = 0; 9 > i; i++) {
-            if(cardNumbers.get(i) == 0) {
+            if(cardHand.get(i).getCommand() == "Move1") {
                 cards.add(move1);
             }
-            else if (cardNumbers.get(i) == 1) {
+            else if (cardHand.get(i).getCommand() == "Move2") {
                 cards.add(move2);
             }
-            else if (cardNumbers.get(i) == 2) {
+            else if (cardHand.get(i).getCommand() == "Move3") {
                 cards.add(move3);
             }
-            else if (cardNumbers.get(i) == 3) {
+            else if (cardHand.get(i).getCommand() == "TurnRight") {
                 cards.add(moveRight);
             }
-            else if (cardNumbers.get(i) == 4) {
+            else if (cardHand.get(i).getCommand() == "TurnLeft") {
                 cards.add(moveLeft);
             }
-            else if (cardNumbers.get(i) == 5) {
+            else if (cardHand.get(i).getCommand() == "MoveBack") {
                 cards.add(moveback);
             }
-            else if (cardNumbers.get(i) == 6) {
+            else if (cardHand.get(i).getCommand() == "Turn180") {
                 cards.add(turn180);
             }
 
@@ -313,36 +307,8 @@ public class MainGameScreen extends InputAdapter implements Screen {
     }
     public void movePlayer(int cardXY){
         // Gives the right command depending on which card the user touched
-        if (cardNumbers.get(cardXY) == 0) {
-            player.Move(player.getPlayerDir());
-            }
-        else if (cardNumbers.get(cardXY) == 1) {
-            player.Move(player.getPlayerDir());
-            player.Move(player.getPlayerDir());
-            }
-        else if (cardNumbers.get(cardXY) == 2) {
-            player.Move(player.getPlayerDir());
-            player.Move(player.getPlayerDir());
-            player.Move(player.getPlayerDir());
-            }
-        else if (cardNumbers.get(cardXY) == 3) {
-            player.Turn(TurnDirection.RIGHT);
-            }
-
-        else if (cardNumbers.get(cardXY) == 4) {
-            player.Turn(TurnDirection.LEFT);
-            }
-        else if (cardNumbers.get(cardXY) == 5) {
-            player.Turn(TurnDirection.RIGHT);
-            player.Turn(TurnDirection.RIGHT);
-            player.Move(player.getPlayerDir());
-            player.Turn(TurnDirection.RIGHT);
-            player.Turn(TurnDirection.RIGHT);
-            }
-        else if (cardNumbers.get(cardXY) == 6) {
-            player.Turn(TurnDirection.RIGHT);
-            player.Turn(TurnDirection.RIGHT);
-            }
+        Card activeCard = cardHand.get(cardXY);
+        activeCard.playCard();
 
         gameBoard.checkForSpecialTiles(player, Boolean.FALSE);
 
@@ -414,7 +380,7 @@ public class MainGameScreen extends InputAdapter implements Screen {
         else if (cardX == 2) {
             tempCardPick = 0;
             cards.clear();
-            cardNumbers.clear();
+            cardHand.clear();
 
             loadCards();
 
