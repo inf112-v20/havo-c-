@@ -70,16 +70,16 @@ public class MainGameScreen extends InputAdapter implements Screen {
     public MainGameScreen(Robo robo) {
 
         this.game = robo;
-        move1 = new Texture("assets/Move1.png");
-        move2 = new Texture("assets/move2.png");
-        move3 = new Texture("assets/move3.png");
-        moveRight = new Texture("assets/moveright.png");
-        moveLeft = new Texture("assets/moveleft.png");
-        moveback = new Texture("assets/moveback.png");
-        turn180 = new Texture("assets/turn180.png");
-        startround = new Texture("assets/startround1.png");
-        resetcards = new Texture("assets/resetcards1.png");
-        poweroff = new Texture("assets/poweroff1.png");
+        move1 = new Texture("assets/cards/Move1.png");
+        move2 = new Texture("assets/cards/move2.png");
+        move3 = new Texture("assets/cards/move3.png");
+        moveRight = new Texture("assets/cards/moveright.png");
+        moveLeft = new Texture("assets/cards/moveleft.png");
+        moveback = new Texture("assets/cards/moveback.png");
+        turn180 = new Texture("assets/cards/turn180.png");
+        startround = new Texture("assets/buttons/startround1.png");
+        resetcards = new Texture("assets/buttons/resetcards1.png");
+        poweroff = new Texture("assets/buttons/poweroff1.png");
         heart = new Texture("assets/heart.png");
         loadCards();
         fillPickedCards();
