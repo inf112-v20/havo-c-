@@ -308,7 +308,7 @@ public class MainGameScreen extends InputAdapter implements Screen {
     public void movePlayer(int cardXY){
         // Gives the right command depending on which card the user touched
         Card activeCard = cardHand.get(cardXY);
-        activeCard.playCard();
+        activeCard.playCard(player);
 
         gameBoard.checkForSpecialTiles(player, Boolean.FALSE);
 

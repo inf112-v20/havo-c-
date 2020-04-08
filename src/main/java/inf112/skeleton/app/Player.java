@@ -87,7 +87,7 @@ public class Player implements IPlayer{
         hand.add(card);
     }
     public void playHand(Integer i){
-        hand.get(i).playCard();
+        hand.get(i).playCard(this);
     }
     public void emptyHand(){
         hand = new ArrayList<>();

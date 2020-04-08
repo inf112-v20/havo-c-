@@ -31,23 +31,13 @@ public class CardDeck implements ICardDeck {
 
         ArrayList<Card> hand = new ArrayList<>();
 
-        for(Integer i = 0; i<9; i++){
+        for(Integer i = 0; i<9; i++) {
             Card currentCard = deck.get(i);
-            if(currentCard.getPlayer() == null){
-                currentCard.getDealt(player);
-                hand.add(currentCard);
-            }
-            else{
-                // All cards are dealt
-                i--;
-            }
+            hand.add(currentCard);
         }
         return hand;
     }
     public void collectCards(Player player){
-        for(Integer i = 0; i<deck.size(); i++){
-            deck.get(i).getDecked();
-        }
         player.emptyHand();
     }
 
