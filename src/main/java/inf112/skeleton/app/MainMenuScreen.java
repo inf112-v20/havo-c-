@@ -24,8 +24,8 @@ public class MainMenuScreen implements Screen {
     Texture exitButton;
     public MainMenuScreen (Robo robo) {
         this.game = robo;
-        playButton = new Texture("assets/startKnapp.png");
-        exitButton = new Texture("assets/ExitBtn.png");
+        playButton = new Texture("assets/buttons/startKnapp.png");
+        exitButton = new Texture("assets/buttons/ExitBtn.png");
     }
     @Override
     public void show() {
