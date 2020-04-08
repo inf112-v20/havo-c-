@@ -61,6 +61,7 @@ public class MainGameScreen extends InputAdapter implements Screen {
     private Player player;
     private CardDeck deck = new CardDeck();
 
+
     // Width and Height og the grid
     private final int BOARD_WIDTH = gameBoard.getPlayerLayer().getWidth();
     private final int BOARD_HEIGHT = gameBoard.getPlayerLayer().getHeight();
