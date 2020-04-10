@@ -32,13 +32,23 @@ public class Board implements IBoard {
         Integer xLoc = player.getX();
         Integer yLoc = player.getY();
         // Checks through maplayers for overlap and gives appropriate response
+        checkFlags(player, xLoc, yLoc);
+        checkHoles(player, xLoc, yLoc);
+        checkTurnGears(player, xLoc, yLoc);
+        checkBelts(player, xLoc, yLoc);
+    }
+    private void checkFlags(Player player, Integer xLoc, Integer yLoc){
         if (Flags.getCell(xLoc, yLoc) != null) {
             player.setPlayerState(PlayerState.WINNER);
         }
-        else if (Holes.getCell(xLoc, yLoc) != null){
+    }
+    private void checkHoles(Player player, Integer xLoc, Integer yLoc){
+        if (Holes.getCell(xLoc, yLoc) != null){
             player.setPlayerState(PlayerState.DEAD);
         }
-        else if (TurnGears.getCell(xLoc, yLoc) != null){
+    }
+    private void checkTurnGears(Player player, Integer xLoc, Integer yLoc){
+        if (TurnGears.getCell(xLoc, yLoc) != null){
             Integer tileId = TurnGears.getCell(xLoc, yLoc).getTile().getId();
             // Turn right
             if(tileId == 54){
@@ -49,46 +59,42 @@ public class Board implements IBoard {
                 player.Turn(TurnDirection.LEFT);
             }
         }
-        else if (ConveyorBelts.getCell(xLoc, yLoc) != null){
+    }
+    private void checkBelts(Player player, Integer xLoc, Integer yLoc){
+        if (ConveyorBelts.getCell(xLoc, yLoc) != null){
             Integer tileId = ConveyorBelts.getCell(xLoc, yLoc).getTile().getId();
+            checkFastBelts(player, tileId);
             // Yellow belts
-            if (tileId == 42 || tileId == 43 || tileId == 49 || tileId == 57 || tileId == 65 || tileId == 69){
+            if (tileId == 42 || tileId == 43 || tileId == 49 || tileId == 57 || tileId == 65 || tileId == 69 ||
+                    tileId == 13 || tileId == 26 || tileId == 27 || tileId == 73 || tileId == 77 || tileId == 84){
                 player.Move(Direction.NORTH);
             }
-            else if(tileId == 33 || tileId == 36 || tileId == 50 || tileId == 59 || tileId == 62 || tileId == 67){
+            else if(tileId == 33 || tileId == 36 || tileId == 50 || tileId == 59 || tileId == 62 || tileId == 67 ||
+                    tileId == 17 || tileId == 20 || tileId == 21 || tileId == 75 || tileId == 82 || tileId == 86){
                 player.Move(Direction.SOUTH);
             }
-            else if(tileId == 35 || tileId == 41 || tileId == 52 || tileId == 58 || tileId == 61 || tileId == 66){
+            else if(tileId == 35 || tileId == 41 || tileId == 52 || tileId == 58 || tileId == 61 || tileId == 66 ||
+                    tileId == 14 || tileId == 19 || tileId == 25 || tileId == 74 || tileId == 78 || tileId == 81){
                 player.Move(Direction.EAST);
             }
-            else if(tileId == 34 || tileId == 44 || tileId == 51 || tileId == 60 || tileId == 68 || tileId == 70){
+            else if(tileId == 34 || tileId == 44 || tileId == 51 || tileId == 60 || tileId == 68 || tileId == 70 ||
+                    tileId == 18 || tileId == 22 || tileId == 28 || tileId == 76 || tileId == 83 || tileId == 85){
                 player.Move(Direction.WEST);
             }
-            // Blue belts
-            if (tileId == 13 || tileId == 26 || tileId == 27 || tileId == 73 || tileId == 77 || tileId == 84){
-                player.Move(Direction.NORTH);
-                if (brakes == Boolean.FALSE) {
-                    checkForSpecialTiles(player, Boolean.TRUE);
-                }
-            }
-            else if (tileId == 17 || tileId == 20 || tileId == 21 || tileId == 75 || tileId == 82 || tileId == 86){
-                player.Move(Direction.SOUTH);
-                if (brakes == Boolean.FALSE) {
-                    checkForSpecialTiles(player, Boolean.TRUE);
-                }
-            }
-            else if (tileId == 14 || tileId == 19 || tileId == 25 || tileId == 74 || tileId == 78 || tileId == 81){
-                player.Move(Direction.EAST);
-                if (brakes == Boolean.FALSE) {
-                    checkForSpecialTiles(player, Boolean.TRUE);
-                }
-            }
-            else if (tileId == 18 || tileId == 22 || tileId == 28 || tileId == 76 || tileId == 83 || tileId == 85){
-                player.Move(Direction.WEST);
-                if (brakes == Boolean.FALSE) {
-                    checkForSpecialTiles(player, Boolean.TRUE);
-                }
-            }
+        }
+    }
+    private void checkFastBelts(Player player, Integer tileId){
+        if (tileId == 13 || tileId == 26 || tileId == 27 || tileId == 73 || tileId == 77 || tileId == 84){
+            player.Move(Direction.NORTH);
+        }
+        else if (tileId == 17 || tileId == 20 || tileId == 21 || tileId == 75 || tileId == 82 || tileId == 86){
+            player.Move(Direction.SOUTH);
+        }
+        else if (tileId == 14 || tileId == 19 || tileId == 25 || tileId == 74 || tileId == 78 || tileId == 81){
+            player.Move(Direction.EAST);
+        }
+        else if (tileId == 18 || tileId == 22 || tileId == 28 || tileId == 76 || tileId == 83 || tileId == 85){
+            player.Move(Direction.WEST);
         }
     }
     // Methods to get elements from Board

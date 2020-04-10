@@ -178,7 +178,7 @@ public class MainGameScreen extends InputAdapter implements Screen {
             player.respawn(0,0, Direction.NORTH);
         }
         // Checks if player is standing on special tiles
-        gameBoard.checkForSpecialTiles(player, Boolean.FALSE);
+        gameBoard.checkForSpecialTiles(player, false);
 
 
         return true;
@@ -315,7 +315,7 @@ public class MainGameScreen extends InputAdapter implements Screen {
         Card activeCard = cardHand.get(cardXY);
         activeCard.playCard(player);
 
-        gameBoard.checkForSpecialTiles(player, Boolean.FALSE);
+        gameBoard.checkForSpecialTiles(player, false);
 
 
         handleTouchedCards(cardXY);
