@@ -129,7 +129,7 @@ public class MainGameScreen extends InputAdapter implements Screen {
 
         drawButtons();
         drawCards();
-        drawHealthbar(9);
+        drawHealthbar(player.getHp());
 
         game.batch.end();
 
