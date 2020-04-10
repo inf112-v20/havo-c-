@@ -163,9 +163,10 @@ public class Player implements IPlayer{
     public Integer getY(){
         return Math.round(playerLoc.y);
     }
-    public Direction getPlayerDir() { return playerDir; }
-    public Vector2 getPlayerLoc() { return playerLoc; }
-    public Integer getLives() { return lives; }
+    public Direction getPlayerDir(){ return playerDir; }
+    public Vector2 getPlayerLoc(){ return playerLoc; }
+    public Integer getLives(){ return lives; }
+    public Integer getHp(){ return hp; }
     public PlayerState getPlayerState(){
         return playerState;
     }
