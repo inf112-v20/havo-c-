@@ -46,6 +46,8 @@ public class MainGameScreen extends InputAdapter implements Screen {
     ArrayList<Integer> indexSelectedCards = new ArrayList<Integer>();
 
 
+    public ArrayList<Texture> healthbar = new ArrayList<Texture>();
+
 
     // Temp Var for player, I think this variable should be put into player class
     int tempCardPick = 0;
@@ -83,6 +85,7 @@ public class MainGameScreen extends InputAdapter implements Screen {
         heart = new Texture("assets/heart.png");
         loadCards();
         fillPickedCards();
+        fillhealthbar();
         Gdx.input.setInputProcessor(this);
     }
 
@@ -126,6 +129,7 @@ public class MainGameScreen extends InputAdapter implements Screen {
 
         drawButtons();
         drawCards();
+        drawHealthbar(9);
 
         game.batch.end();
 
@@ -351,6 +355,9 @@ public class MainGameScreen extends InputAdapter implements Screen {
             game.batch.draw(heart, BUTTON_WIDTH *(10+i), BUTTON_HEIGHT * 9, 50, 50);
         }
     }
+    public void drawHealthbar(int life) {
+        game.batch.draw(healthbar.get(life), BUTTON_WIDTH * 10, BUTTON_HEIGHT *8, BUTTON_WIDTH * 3, BUTTON_HEIGHT - 20);
+    }
 
     public void touchedButtons(int x) {
         int cardX = 0;
@@ -413,6 +420,29 @@ public class MainGameScreen extends InputAdapter implements Screen {
         pickedCards.add(four);
         pickedCards.add(five);
 
+    }
+    private void fillhealthbar() {
+        Texture Healthbar_0 = new Texture("assets/healthbar/Healthbar_0.png");
+        Texture Healthbar_1 = new Texture("assets/healthbar/Healthbar_1.png");
+        Texture Healthbar_2 = new Texture("assets/healthbar/Healthbar_2.png");
+        Texture Healthbar_3 = new Texture("assets/healthbar/Healthbar_3.png");
+        Texture Healthbar_4 = new Texture("assets/healthbar/Healthbar_4.png");
+        Texture Healthbar_5 = new Texture("assets/healthbar/Healthbar_5.png");
+        Texture Healthbar_6 = new Texture("assets/healthbar/Healthbar_6.png");
+        Texture Healthbar_7 = new Texture("assets/healthbar/Healthbar_7.png");
+        Texture Healthbar_8 = new Texture("assets/healthbar/Healthbar_8.png");
+        Texture Healthbar_full = new Texture("assets/healthbar/Healthbar_full.png");
+
+        healthbar.add(Healthbar_0);
+        healthbar.add(Healthbar_1);
+        healthbar.add(Healthbar_2);
+        healthbar.add(Healthbar_3);
+        healthbar.add(Healthbar_4);
+        healthbar.add(Healthbar_5);
+        healthbar.add(Healthbar_6);
+        healthbar.add(Healthbar_7);
+        healthbar.add(Healthbar_8);
+        healthbar.add(Healthbar_full);
     }
 
 }
