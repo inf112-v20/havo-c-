@@ -92,6 +92,12 @@ public class Player implements IPlayer{
     public void emptyHand(){
         hand = new ArrayList<>();
     }
+    public void takeDamage(Integer amount){
+        hp -= amount;
+        if (hp <= 0){
+            setPlayerState(PlayerState.DEAD);
+        }
+    }
     // Updates rotation of the player icon based on what the player direction is
     private void updateIconRotation() {
         if (playerDir == Direction.NORTH){
@@ -121,7 +127,7 @@ public class Player implements IPlayer{
         playerState = newState;
     }
     // Respawns a dead player
-    public  void respawn(Integer xCoord, Integer yCoord, Direction dir){
+    public void respawn(Integer xCoord, Integer yCoord, Direction dir){
         // Checks if player is out of lives
         if (lives > 0) {
             // Removes player from location of death
@@ -129,6 +135,7 @@ public class Player implements IPlayer{
             // Sets the coordinates and direction the player is facing when respawning in addition of setting the playerState to alive
             playerLoc.set(xCoord, yCoord);
             playerDir = dir;
+            hp = 9;
             setPlayerState(PlayerState.ALIVE);
             // Updates the player icons rotation
             updateIconRotation();

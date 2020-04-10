@@ -14,6 +14,7 @@ public class Board implements IBoard {
     TiledMapTileLayer TurnGears;
     TiledMapTileLayer ConveyorBelts;
     TiledMapTileLayer Players;
+    TiledMapTileLayer Laser;
 
     public Board(TiledMap Map){
         // Takes in tiledMap from input
@@ -24,6 +25,7 @@ public class Board implements IBoard {
         this.Players = (TiledMapTileLayer) Map.getLayers().get("PlayerLayer");
         this.ConveyorBelts = (TiledMapTileLayer) Map.getLayers().get("ConveyorBelts");
         this.TurnGears = (TiledMapTileLayer) Map.getLayers().get("TurnGears");
+        this.Laser = (TiledMapTileLayer) Map.getLayers().get("Laser");
     }
 
     @Override
@@ -32,10 +34,11 @@ public class Board implements IBoard {
         Integer xLoc = player.getX();
         Integer yLoc = player.getY();
         // Checks through maplayers for overlap and gives appropriate response
-        checkFlags(player, xLoc, yLoc);
         checkHoles(player, xLoc, yLoc);
-        checkTurnGears(player, xLoc, yLoc);
         checkBelts(player, xLoc, yLoc);
+        checkTurnGears(player, xLoc, yLoc);
+        checkLasers(player, xLoc, yLoc);
+        checkFlags(player, xLoc, yLoc);
     }
     private void checkFlags(Player player, Integer xLoc, Integer yLoc){
         if (Flags.getCell(xLoc, yLoc) != null) {
@@ -95,6 +98,23 @@ public class Board implements IBoard {
         }
         else if (tileId == 18 || tileId == 22 || tileId == 28 || tileId == 76 || tileId == 83 || tileId == 85){
             player.Move(Direction.WEST);
+        }
+    }
+    private void checkLasers(Player player, Integer xLoc, Integer yLoc){
+        if (Laser.getCell(xLoc, yLoc) != null){
+            Integer tileId = Laser.getCell(xLoc, yLoc).getTile().getId();
+            // Single laser
+            if(tileId == 39 || tileId == 47){
+                player.takeDamage(1);
+            }
+            // Single laser intersection or double laser
+            else if(tileId == 40 || tileId == 101 || tileId == 103){
+                player.takeDamage(2);
+            }
+            // Double laser intersection
+            else if(tileId == 102){
+                player.takeDamage(4);
+            }
         }
     }
     // Methods to get elements from Board
