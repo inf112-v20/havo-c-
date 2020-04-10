@@ -368,7 +368,7 @@ public class MainGameScreen extends InputAdapter implements Screen {
             cardX = 3;
 
         }
-
+        // reset cards
         if(cardX == 1) {
 
             for (int i = 0; tempCardPick > i; i++) {
@@ -378,6 +378,7 @@ public class MainGameScreen extends InputAdapter implements Screen {
             selectedCards.clear();
             indexSelectedCards.clear();
         }
+        // Start round
         else if (cardX == 2) {
             tempCardPick = 0;
 
@@ -390,6 +391,7 @@ public class MainGameScreen extends InputAdapter implements Screen {
 
 
         }
+        // power down
         else if (cardX == 3) {
             System.out.println("Power Down");
 
