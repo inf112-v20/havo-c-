@@ -67,6 +67,9 @@ public class Board implements IBoard {
         if (ConveyorBelts.getCell(xLoc, yLoc) != null){
             Integer tileId = ConveyorBelts.getCell(xLoc, yLoc).getTile().getId();
             checkFastBelts(player, tileId);
+            Integer xLoc2 = player.getX();
+            Integer yLoc2 = player.getY();
+            tileId = ConveyorBelts.getCell(xLoc2, yLoc2).getTile().getId();
             // Yellow belts
             if (tileId == 42 || tileId == 43 || tileId == 49 || tileId == 57 || tileId == 65 || tileId == 69 ||
                     tileId == 13 || tileId == 26 || tileId == 27 || tileId == 73 || tileId == 77 || tileId == 84){

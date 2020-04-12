@@ -93,9 +93,12 @@ public class Player implements IPlayer{
         hand = new ArrayList<>();
     }
     public void takeDamage(Integer amount){
-        hp -= amount;
-        if (hp <= 0){
-            setPlayerState(PlayerState.DEAD);
+        if (hp > 0) {
+            hp -= amount;
+            if (hp <= 0) {
+                setPlayerState(PlayerState.DEAD);
+                hp = 0;
+            }
         }
     }
     // Updates rotation of the player icon based on what the player direction is
