@@ -19,7 +19,10 @@ public class Board implements IBoard {
     TiledMapTileLayer Flags;
     TiledMapTileLayer Players;
     TiledMapTileLayer Laser;
-    Sound wavSound = Gdx.audio.newSound(Gdx.files.internal("assets/sounds/fall.wav"));
+
+    Sound fallSound = Gdx.audio.newSound(Gdx.files.internal("assets/sounds/fall.wav"));
+    Sound flagSound = Gdx.audio.newSound(Gdx.files.internal("assets/sounds/flag.wav"));
+    Sound victorySound = Gdx.audio.newSound(Gdx.files.internal("assets/sounds/victory.mp3"));
 
 
     public Board(TiledMap Map){
@@ -48,7 +51,9 @@ public class Board implements IBoard {
     }
     private void checkFlags(Player player, Integer xLoc, Integer yLoc){
         if (Flags.getCell(xLoc, yLoc) != null) {
+            flagSound.play();
             player.setPlayerState(PlayerState.WINNER);
+            victorySound.play();
         }
     }
     public void checkHoles(Player player){
@@ -56,7 +61,7 @@ public class Board implements IBoard {
         Integer yLoc = player.getY();
         if (Holes.getCell(xLoc, yLoc) != null){
             player.setPlayerState(PlayerState.DEAD);
-            wavSound.play();
+            fallSound.play();
         }
     }
     private void checkTurnGears(Player player, Integer xLoc, Integer yLoc){
