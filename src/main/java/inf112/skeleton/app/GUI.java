@@ -190,7 +190,8 @@ public class GUI {
 
             cards.set(cardXY, pickedCards.get(tempCardPick));
 
-            movePlayer(cardXY);
+            player.addToHand(cardHand.get(cardXY));
+            // movePlayer(cardXY);
             tempCardPick++;
         }
 
@@ -243,10 +244,18 @@ public class GUI {
             tempCardPick = 0;
 
             cards.clear();
+
+            for(int i = 0; player.hand.size() > i; i++) {
+                player.playHand(i);
+            }
+
+            player.hand.clear();
             cardHand.clear();
             selectedCards.clear();
             indexSelectedCards.clear();
 
+            player.ready = true;
+            deck.shuffleDeck();
             loadCards();
 
 

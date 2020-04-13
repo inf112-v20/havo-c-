@@ -12,6 +12,8 @@ import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.math.Vector2;
 
+import java.util.ArrayList;
+
 public class MainGameScreen extends InputAdapter implements Screen {
 
     Robo game;
@@ -34,6 +36,7 @@ public class MainGameScreen extends InputAdapter implements Screen {
     private final int BOARD_WIDTH = gameBoard.getBoard().getWidth();
     private final int BOARD_HEIGHT = gameBoard.getBoard().getHeight();
 
+    ArrayList<Player> players;
 
     public MainGameScreen(Robo robo) {
 
@@ -41,8 +44,9 @@ public class MainGameScreen extends InputAdapter implements Screen {
         Vector2 startLoc = new Vector2(0,0);
         player = new Player(startLoc, Direction.NORTH, gameBoard.getPlayerLayer());
         gui = new GUI(game, player);
-
+        players = new ArrayList<Player>();
         Gdx.input.setInputProcessor(this);
+        players.add(player);
     }
 
 
@@ -140,21 +144,24 @@ public class MainGameScreen extends InputAdapter implements Screen {
         return true;
     }
 
-    public void doTurn(){
-        if(player.powerdown){
+    public void doTurn() {
+        if (player.powerdown) {
             // Insert code for powerdown here
         }
         // Insert delay here
         deck.dealCards(player);
-        // Insert delay here that allows players to choose their cards
-        for(Integer i = 0; i<7; i++){
-            // Must be improved to make card priority a thing
-            player.playHand(i);
-            // Must be improved so that the different parts act in the correct order
-            gameBoard.checkForSpecialTiles(player);
+        for (int j = 0; players.size() > j; j++) {
+            if (player.ready)
+            // Insert delay here that allows players to choose their cards
+            for (Integer i = 0; i < 7; i++) {
+                // Must be improved to make card priority a thing
+                player.playHand(i);
+                // Must be improved so that the different parts act in the correct order
+                gameBoard.checkForSpecialTiles(player);
+            }
+            // Insert cleanup phase here
+            deck.collectCards(player);
         }
-        // Insert cleanup phase here
-        deck.collectCards(player);
     }
 
 

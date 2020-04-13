@@ -26,6 +26,7 @@ public class Player implements IPlayer{
     private TiledMapTileLayer.Cell playerDiedCell = new TiledMapTileLayer.Cell();
     private TiledMapTileLayer.Cell playerWonCell = new TiledMapTileLayer.Cell();
 
+    public boolean ready = false;
     // Constructor
     public Player(Vector2 location, Direction dir, TiledMapTileLayer layer){
         this.playerLoc = location;
