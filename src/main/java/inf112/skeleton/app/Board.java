@@ -9,10 +9,11 @@ public class Board implements IBoard {
     // The map itself
     TiledMap Map;
     // Map layers
+    TiledMapTileLayer Board;
+    TiledMapTileLayer ConveyorBelts;
+    TiledMapTileLayer TurnGears;
     TiledMapTileLayer Holes;
     TiledMapTileLayer Flags;
-    TiledMapTileLayer TurnGears;
-    TiledMapTileLayer ConveyorBelts;
     TiledMapTileLayer Players;
     TiledMapTileLayer Laser;
 
@@ -20,16 +21,17 @@ public class Board implements IBoard {
         // Takes in tiledMap from input
         this.Map = Map;
         // Gets the layers from the Map
+        this.Board = (TiledMapTileLayer) Map.getLayers().get("Board");
+        this.ConveyorBelts = (TiledMapTileLayer) Map.getLayers().get("ConveyorBelts");
+        this.TurnGears = (TiledMapTileLayer) Map.getLayers().get("TurnGears");
         this.Holes = (TiledMapTileLayer) Map.getLayers().get("Holes");
         this.Flags = (TiledMapTileLayer) Map.getLayers().get("Flags");
         this.Players = (TiledMapTileLayer) Map.getLayers().get("PlayerLayer");
-        this.ConveyorBelts = (TiledMapTileLayer) Map.getLayers().get("ConveyorBelts");
-        this.TurnGears = (TiledMapTileLayer) Map.getLayers().get("TurnGears");
         this.Laser = (TiledMapTileLayer) Map.getLayers().get("Laser");
     }
 
     @Override
-    public void checkForSpecialTiles(Player player, Boolean brakes){
+    public void checkForSpecialTiles(Player player){
         // Coordinates of the player used to check for other things in the map
         Integer xLoc = player.getX();
         Integer yLoc = player.getY();
@@ -121,7 +123,12 @@ public class Board implements IBoard {
         }
     }
     // Methods to get elements from Board
-    public TiledMap getMap() { return Map; }
+    public TiledMap getMap(){
+        return Map;
+    }
+    public TiledMapTileLayer getBoard(){
+        return Board;
+    }
     public TiledMapTileLayer getPlayerLayer(){
         return Players;
     }

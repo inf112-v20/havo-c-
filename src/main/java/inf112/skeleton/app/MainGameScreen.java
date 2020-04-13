@@ -31,8 +31,8 @@ public class MainGameScreen extends InputAdapter implements Screen {
 
 
     // Width and Height og the grid
-    private final int BOARD_WIDTH = gameBoard.getPlayerLayer().getWidth();
-    private final int BOARD_HEIGHT = gameBoard.getPlayerLayer().getHeight();
+    private final int BOARD_WIDTH = gameBoard.getBoard().getWidth();
+    private final int BOARD_HEIGHT = gameBoard.getBoard().getHeight();
 
 
     public MainGameScreen(Robo robo) {
@@ -134,7 +134,7 @@ public class MainGameScreen extends InputAdapter implements Screen {
             player.respawn(0,0, Direction.NORTH);
         }
         // Checks if player is standing on special tiles
-        gameBoard.checkForSpecialTiles(player, false);
+        gameBoard.checkForSpecialTiles(player);
 
 
         return true;
@@ -151,7 +151,7 @@ public class MainGameScreen extends InputAdapter implements Screen {
             // Must be improved to make card priority a thing
             player.playHand(i);
             // Must be improved so that the different parts act in the correct order
-            gameBoard.checkForSpecialTiles(player, false);
+            gameBoard.checkForSpecialTiles(player);
         }
         // Insert cleanup phase here
         deck.collectCards(player);

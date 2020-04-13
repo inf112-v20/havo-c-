@@ -168,7 +168,7 @@ public class GUI {
         Card activeCard = cardHand.get(cardXY);
         activeCard.playCard(player);
 
-        gameBoard.checkForSpecialTiles(player, Boolean.FALSE);
+        gameBoard.checkForSpecialTiles(player);
 
 
         handleTouchedCards(cardXY);

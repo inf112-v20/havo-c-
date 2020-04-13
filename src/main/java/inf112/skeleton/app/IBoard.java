@@ -1,5 +1,5 @@
 package inf112.skeleton.app;
 
 public interface IBoard {
-    void checkForSpecialTiles(Player player, Boolean brakes);
+    void checkForSpecialTiles(Player player);
 }

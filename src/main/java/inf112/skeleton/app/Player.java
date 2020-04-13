@@ -58,7 +58,7 @@ public class Player implements IPlayer{
                 playerLoc.set(xLoc + 1, yLoc);
             }
             // Sets PlayerState of the player to dead if it is out of bounds
-            if (getX() < 0 || getX() > playerLayer.getWidth() || getY() < 0 || getY() > playerLayer.getHeight()) {
+            if (getX() < 0 || getX() > (playerLayer.getWidth()-1) || getY() < 0 || getY() > playerLayer.getHeight()) {
                 setPlayerState(PlayerState.DEAD);
             }
         }
@@ -93,7 +93,7 @@ public class Player implements IPlayer{
         hand = new ArrayList<>();
     }
     public void takeDamage(Integer amount){
-        if (hp > 0) {
+        if (playerState != PlayerState.DEAD) {
             hp -= amount;
             if (hp <= 0) {
                 setPlayerState(PlayerState.DEAD);
