@@ -41,7 +41,6 @@ public class Board implements IBoard {
         Integer xLoc = player.getX();
         Integer yLoc = player.getY();
         // Checks through maplayers for overlap and gives appropriate response
-        checkHoles(player, xLoc, yLoc);
         checkBelts(player, xLoc, yLoc);
         checkTurnGears(player, xLoc, yLoc);
         checkLasers(player, xLoc, yLoc);
@@ -52,7 +51,9 @@ public class Board implements IBoard {
             player.setPlayerState(PlayerState.WINNER);
         }
     }
-    private void checkHoles(Player player, Integer xLoc, Integer yLoc){
+    public void checkHoles(Player player){
+        Integer xLoc = player.getX();
+        Integer yLoc = player.getY();
         if (Holes.getCell(xLoc, yLoc) != null){
             player.setPlayerState(PlayerState.DEAD);
             wavSound.play();

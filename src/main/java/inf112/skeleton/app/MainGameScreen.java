@@ -42,7 +42,7 @@ public class MainGameScreen extends InputAdapter implements Screen {
 
         this.game = robo;
         Vector2 startLoc = new Vector2(0,0);
-        player = new Player(startLoc, Direction.NORTH, gameBoard.getPlayerLayer());
+        player = new Player(startLoc, Direction.NORTH, gameBoard);
         gui = new GUI(game, player);
         players = new ArrayList<Player>();
         Gdx.input.setInputProcessor(this);
