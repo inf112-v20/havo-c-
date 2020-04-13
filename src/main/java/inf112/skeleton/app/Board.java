@@ -1,6 +1,9 @@
 package inf112.skeleton.app;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
+import com.badlogic.gdx.audio.Sound;
+import com.badlogic.gdx.backends.lwjgl.audio.Wav;
 import com.badlogic.gdx.maps.MapObject;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
@@ -16,6 +19,8 @@ public class Board implements IBoard {
     TiledMapTileLayer Flags;
     TiledMapTileLayer Players;
     TiledMapTileLayer Laser;
+    Sound wavSound = Gdx.audio.newSound(Gdx.files.internal("assets/sounds/fall.wav"));
+
 
     public Board(TiledMap Map){
         // Takes in tiledMap from input
@@ -50,6 +55,7 @@ public class Board implements IBoard {
     private void checkHoles(Player player, Integer xLoc, Integer yLoc){
         if (Holes.getCell(xLoc, yLoc) != null){
             player.setPlayerState(PlayerState.DEAD);
+            wavSound.play();
         }
     }
     private void checkTurnGears(Player player, Integer xLoc, Integer yLoc){
