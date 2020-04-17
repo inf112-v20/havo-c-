@@ -49,22 +49,24 @@ public class Player implements IPlayer{
             Integer xLoc = getX();
             Integer yLoc = getY();
             //Clears player icon from old location
-            playerLayer.setCell(xLoc, yLoc, null);
-            // Changes coordinates in the correct manner
-            if (dir == Direction.NORTH) {
-                playerLoc.set(xLoc, yLoc + 1);
-            } else if (dir == Direction.SOUTH) {
-                playerLoc.set(xLoc, yLoc - 1);
-            } else if (dir == Direction.WEST) {
-                playerLoc.set(xLoc - 1, yLoc);
-            } else if (dir == Direction.EAST) {
-                playerLoc.set(xLoc + 1, yLoc);
+            if (board.wallCheck(this,dir,false)) {
+                playerLayer.setCell(xLoc, yLoc, null);
+                // Changes coordinates in the correct manner
+                if (dir == Direction.NORTH) {
+                    playerLoc.set(xLoc, yLoc + 1);
+                } else if (dir == Direction.SOUTH) {
+                    playerLoc.set(xLoc, yLoc - 1);
+                } else if (dir == Direction.WEST) {
+                    playerLoc.set(xLoc - 1, yLoc);
+                } else if (dir == Direction.EAST) {
+                    playerLoc.set(xLoc + 1, yLoc);
+                }
+                // Sets PlayerState of the player to dead if it is out of bounds
+                if (getX() < 0 || getX() > (playerLayer.getWidth() - 1) || getY() < 0 || getY() > playerLayer.getHeight()) {
+                    setPlayerState(PlayerState.DEAD);
+                }
+                board.checkHoles(this);
             }
-            // Sets PlayerState of the player to dead if it is out of bounds
-            if (getX() < 0 || getX() > (playerLayer.getWidth()-1) || getY() < 0 || getY() > playerLayer.getHeight()) {
-                setPlayerState(PlayerState.DEAD);
-            }
-            board.checkHoles(this);
         }
     }
     public void Turn(TurnDirection dir){

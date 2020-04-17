@@ -139,10 +139,24 @@ public class Board implements IBoard {
     public boolean wallCheck(Player player, Direction dir, Boolean second){
         Integer xLoc = player.getX();
         Integer yLoc = player.getY();
-        if (dir == Direction.NORTH) {
-            if (second){
+        Direction dirInUse = dir;
+        if (second){
+            if (dir == Direction.NORTH) {
                 yLoc++;
             }
+            else if (dir == Direction.SOUTH){
+                yLoc--;
+            }
+            else if (dir == Direction.WEST){
+                xLoc--;
+            }
+            else if (dir == Direction.EAST){
+                xLoc++;
+            }
+            DirCtrl dirCtrl = new DirCtrl();
+            dirInUse = dirCtrl.invertDirection(dir);
+        }
+        if (dirInUse == Direction.NORTH) {
             if (Wall.getCell(xLoc,yLoc) != null) {
                 Integer tileId = Wall.getCell(xLoc, yLoc).getTile().getId();
                 if (tileId == 1 || tileId == 9 || tileId == 16 || tileId == 24 || tileId == 31 || tileId == 45 || tileId == 94) {
@@ -150,10 +164,7 @@ public class Board implements IBoard {
                 }
             }
         }
-        else if (dir == Direction.SOUTH) {
-            if (second){
-                yLoc--;
-            }
+        else if (dirInUse == Direction.SOUTH) {
             if (Wall.getCell(xLoc,yLoc) != null) {
                 Integer tileId = Wall.getCell(xLoc, yLoc).getTile().getId();
                 if (tileId == 3 || tileId == 8 || tileId == 11 || tileId == 29 || tileId == 32 || tileId == 37 || tileId == 87) {
@@ -161,31 +172,26 @@ public class Board implements IBoard {
                 }
             }
         }
-        else if (dir == Direction.WEST) {
-            if (second){
-                xLoc--;
-            }
+        else if (dirInUse == Direction.WEST) {
             if (Wall.getCell(xLoc,yLoc) != null) {
                 Integer tileId = Wall.getCell(xLoc, yLoc).getTile().getId();
-                if (tileId == 2 || tileId == 7 || tileId == 10 || tileId == 16 || tileId == 23 || tileId == 46 || tileId == 95) {
+                if (tileId == 4 || tileId == 12 || tileId == 24 || tileId == 30 || tileId == 32 || tileId == 38 || tileId == 93) {
                     return false;
                 }
             }
         }
-        else if (dir == Direction.EAST) {
-            if (second){
-                yLoc--;
-            }
+        else if (dirInUse == Direction.EAST) {
             if (Wall.getCell(xLoc,yLoc) != null) {
                 Integer tileId = Wall.getCell(xLoc, yLoc).getTile().getId();
-                if (tileId == 4 || tileId == 12 || tileId == 24 || tileId == 29 || tileId == 32 || tileId == 38 || tileId == 93) {
+                if (tileId == 2 || tileId == 8 || tileId == 10 || tileId == 16 || tileId == 23 || tileId == 46 || tileId == 95) {
                     return false;
                 }
             }
         }
         if (!second) {
-            DirCtrl dirCtrl = new DirCtrl();
-            wallCheck(player, dirCtrl.invertDirection(dir), true);
+            if (!wallCheck(player, dir, true)){
+                return false;
+            }
         }
         return true;
     }
