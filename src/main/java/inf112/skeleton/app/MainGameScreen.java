@@ -47,6 +47,8 @@ public class MainGameScreen extends InputAdapter implements Screen {
         players = new ArrayList<Player>();
         Gdx.input.setInputProcessor(this);
         players.add(player);
+
+        font = new BitmapFont();
     }
 
 
@@ -87,10 +89,12 @@ public class MainGameScreen extends InputAdapter implements Screen {
         // Code for drawing the GUI
         game.batch.begin();
 
+
+
         gui.drawButtons();
         gui.drawCards();
         gui.drawHealthbar(player.getHp());
-
+        font.draw(game.batch, "test to se how the font draw works", BUTTON_WIDTH*10, BUTTON_HEIGHT*5);
         game.batch.end();
 
 
