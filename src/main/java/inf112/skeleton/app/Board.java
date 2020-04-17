@@ -19,6 +19,7 @@ public class Board implements IBoard {
     TiledMapTileLayer Flags;
     TiledMapTileLayer Players;
     TiledMapTileLayer Laser;
+    TiledMapTileLayer Wall;
 
     Sound fallSound = Gdx.audio.newSound(Gdx.files.internal("assets/sounds/fall.wav"));
     Sound flagSound = Gdx.audio.newSound(Gdx.files.internal("assets/sounds/flag.wav"));
@@ -36,6 +37,7 @@ public class Board implements IBoard {
         this.Flags = (TiledMapTileLayer) Map.getLayers().get("Flags");
         this.Players = (TiledMapTileLayer) Map.getLayers().get("PlayerLayer");
         this.Laser = (TiledMapTileLayer) Map.getLayers().get("Laser");
+        this.Wall = (TiledMapTileLayer) Map.getLayers().get("Walls");
     }
 
     @Override
@@ -133,6 +135,59 @@ public class Board implements IBoard {
                 player.takeDamage(4);
             }
         }
+    }
+    public boolean wallCheck(Player player, Direction dir, Boolean second){
+        Integer xLoc = player.getX();
+        Integer yLoc = player.getY();
+        if (dir == Direction.NORTH) {
+            if (second){
+                yLoc++;
+            }
+            if (Wall.getCell(xLoc,yLoc) != null) {
+                Integer tileId = Wall.getCell(xLoc, yLoc).getTile().getId();
+                if (tileId == 1 || tileId == 9 || tileId == 16 || tileId == 24 || tileId == 31 || tileId == 45 || tileId == 94) {
+                    return false;
+                }
+            }
+        }
+        else if (dir == Direction.SOUTH) {
+            if (second){
+                yLoc--;
+            }
+            if (Wall.getCell(xLoc,yLoc) != null) {
+                Integer tileId = Wall.getCell(xLoc, yLoc).getTile().getId();
+                if (tileId == 3 || tileId == 8 || tileId == 11 || tileId == 29 || tileId == 32 || tileId == 37 || tileId == 87) {
+                    return false;
+                }
+            }
+        }
+        else if (dir == Direction.WEST) {
+            if (second){
+                xLoc--;
+            }
+            if (Wall.getCell(xLoc,yLoc) != null) {
+                Integer tileId = Wall.getCell(xLoc, yLoc).getTile().getId();
+                if (tileId == 2 || tileId == 7 || tileId == 10 || tileId == 16 || tileId == 23 || tileId == 46 || tileId == 95) {
+                    return false;
+                }
+            }
+        }
+        else if (dir == Direction.EAST) {
+            if (second){
+                yLoc--;
+            }
+            if (Wall.getCell(xLoc,yLoc) != null) {
+                Integer tileId = Wall.getCell(xLoc, yLoc).getTile().getId();
+                if (tileId == 4 || tileId == 12 || tileId == 24 || tileId == 29 || tileId == 32 || tileId == 38 || tileId == 93) {
+                    return false;
+                }
+            }
+        }
+        if (!second) {
+            DirCtrl dirCtrl = new DirCtrl();
+            wallCheck(player, dirCtrl.invertDirection(dir), true);
+        }
+        return true;
     }
     // Methods to get elements from Board
     public TiledMap getMap(){

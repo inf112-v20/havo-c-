@@ -38,7 +38,6 @@ public class MainMenuScreen implements Screen {
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         game.batch.begin();
 
-
         // My pitiful attempt at fixing the coordinate system
         // camera.setToOrtho(false, 500, 500);
         if (Gdx.input.getY()  > 500 - Y_POS_STARTBUTTON - BUTTON_HEIGHT && Gdx.input.getY() < 500 - Y_POS_STARTBUTTON &&
@@ -46,7 +45,6 @@ public class MainMenuScreen implements Screen {
             if (Gdx.input.isTouched()) {
                 this.dispose();
                 game.setScreen(new MainGameScreen(game));
-
             }
         }
         if (Gdx.input.getY() > 500 - Y_POS_EXITBUTTON - BUTTON_HEIGHT && Gdx.input.getY() < 500 - Y_POS_EXITBUTTON &&
@@ -54,7 +52,7 @@ public class MainMenuScreen implements Screen {
             if (Gdx.input.isTouched()) {
                 this.dispose();
                 Gdx.app.exit();
-            }
+            } 
         }
         game.batch.draw(playButton, X_POS_BUTTON, Y_POS_STARTBUTTON, BUTTON_WIDTH, BUTTON_HEIGHT);
         game.batch.draw(exitButton, X_POS_BUTTON,Y_POS_EXITBUTTON, BUTTON_WIDTH, BUTTON_HEIGHT);

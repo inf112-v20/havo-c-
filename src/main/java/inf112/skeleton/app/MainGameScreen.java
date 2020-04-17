@@ -62,12 +62,6 @@ public class MainGameScreen extends InputAdapter implements Screen {
         mapRenderer = new OrthogonalTiledMapRenderer(gameBoard.getMap(), 1/300f);
         mapRenderer.setView(camera);
         // Code for defining player and start location
-
-
-
-
-
-
     }
 
 
