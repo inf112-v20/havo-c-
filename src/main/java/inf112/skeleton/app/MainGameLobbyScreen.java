@@ -8,7 +8,7 @@ import com.badlogic.gdx.graphics.Texture;
 
 import java.awt.*;
 
-public class MainMenuScreen implements Screen {
+public class MainGameLobbyScreen implements Screen {
 
     public OrthographicCamera camera = new OrthographicCamera();
     private static final int BUTTON_WIDTH = 250;
@@ -22,7 +22,7 @@ public class MainMenuScreen implements Screen {
     public Robo game;
     Texture playButton;
     Texture exitButton;
-    public MainMenuScreen (Robo robo) {
+    public MainGameLobbyScreen (Robo robo) {
         this.game = robo;
         playButton = new Texture("assets/startKnapp.png");
         exitButton = new Texture("assets/ExitBtn.png");
@@ -45,7 +45,7 @@ public class MainMenuScreen implements Screen {
                 Gdx.input.getX() > X_POS_BUTTON && Gdx.input.getX() < X_POS_BUTTON + BUTTON_WIDTH) {
             if (Gdx.input.isTouched()) {
                 this.dispose();
-                game.setScreen(new MainGameLobbyScreen(game));
+                game.setScreen(new MainGameScreen(game));
 
             }
         }
