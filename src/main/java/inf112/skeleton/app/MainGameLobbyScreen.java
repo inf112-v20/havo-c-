@@ -21,11 +21,11 @@ public class MainGameLobbyScreen implements Screen {
 
     public Robo game;
     Texture playButton;
-    Texture exitButton;
+    Texture backButton;
     public MainGameLobbyScreen (Robo robo) {
         this.game = robo;
         playButton = new Texture("assets/startKnapp.png");
-        exitButton = new Texture("assets/ExitBtn.png");
+        backButton = new Texture("assets/BackBtn.png");
     }
     @Override
     public void show() {
@@ -53,11 +53,11 @@ public class MainGameLobbyScreen implements Screen {
                 Gdx.input.getX() > X_POS_BUTTON && Gdx.input.getX() < X_POS_BUTTON + BUTTON_WIDTH) {
             if (Gdx.input.isTouched()) {
                 this.dispose();
-                Gdx.app.exit();
+                game.setScreen(new MainMenuScreen(game));
             }
         }
         game.batch.draw(playButton, X_POS_BUTTON, Y_POS_STARTBUTTON, BUTTON_WIDTH, BUTTON_HEIGHT);
-        game.batch.draw(exitButton, X_POS_BUTTON,Y_POS_EXITBUTTON, BUTTON_WIDTH, BUTTON_HEIGHT);
+        game.batch.draw(backButton, X_POS_BUTTON,Y_POS_EXITBUTTON, BUTTON_WIDTH, BUTTON_HEIGHT);
         game.batch.end();
 
     }
