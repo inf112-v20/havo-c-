@@ -8,14 +8,15 @@ import com.badlogic.gdx.graphics.Texture;
 
 import java.awt.*;
 
-public class MainVictoryScreen implements Screen {
+public class MainDefeatScreen implements Screen {
 
     public OrthographicCamera camera = new OrthographicCamera();
     private static final int BUTTON_WIDTH = 250;
     private static final int BUTTON_HEIGHT = 100;
 
     private static final int X_POS_BUTTON = 250;
-    //private static final int Y_POS_VICTORY = 400;
+
+    //private static final int Y_POS_DEFEAT = 400;
     private static final int Y_POS_GAMEBUTTON = 250;
     private static final int Y_POS_EXITBUTTON = 100;
 
@@ -23,13 +24,11 @@ public class MainVictoryScreen implements Screen {
     public Robo game;
     Texture gameButton;
     Texture exitButton;
-
-    public MainVictoryScreen(Robo robo) {
+    public MainDefeatScreen (Robo robo) {
         this.game = robo;
         gameButton = new Texture("assets/NextgameBtn.png");
         exitButton = new Texture("assets/ExitBtn.png");
     }
-
     @Override
     public void show() {
 
@@ -44,7 +43,7 @@ public class MainVictoryScreen implements Screen {
 
         // My pitiful attempt at fixing the coordinate system
         // camera.setToOrtho(false, 500, 500);
-        if (Gdx.input.getY() > 500 - Y_POS_GAMEBUTTON - BUTTON_HEIGHT && Gdx.input.getY() < 500 - Y_POS_GAMEBUTTON &&
+        if (Gdx.input.getY()  > 500 - Y_POS_GAMEBUTTON - BUTTON_HEIGHT && Gdx.input.getY() < 500 - Y_POS_GAMEBUTTON &&
                 Gdx.input.getX() > X_POS_BUTTON && Gdx.input.getX() < X_POS_BUTTON + BUTTON_WIDTH) {
             if (Gdx.input.isTouched()) {
                 this.dispose();
@@ -60,7 +59,7 @@ public class MainVictoryScreen implements Screen {
             }
         }
         game.batch.draw(gameButton, X_POS_BUTTON, Y_POS_GAMEBUTTON, BUTTON_WIDTH, BUTTON_HEIGHT);
-        game.batch.draw(exitButton, X_POS_BUTTON, Y_POS_EXITBUTTON, BUTTON_WIDTH, BUTTON_HEIGHT);
+        game.batch.draw(exitButton, X_POS_BUTTON,Y_POS_EXITBUTTON, BUTTON_WIDTH, BUTTON_HEIGHT);
         game.batch.end();
 
     }
