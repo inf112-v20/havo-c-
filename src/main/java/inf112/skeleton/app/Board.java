@@ -10,20 +10,22 @@ import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 
 public class Board implements IBoard {
     // The map itself
-    TiledMap Map;
+    private TiledMap Map;
     // Map layers
-    TiledMapTileLayer Board;
-    TiledMapTileLayer ConveyorBelts;
-    TiledMapTileLayer TurnGears;
-    TiledMapTileLayer Holes;
-    TiledMapTileLayer Flags;
-    TiledMapTileLayer Players;
-    TiledMapTileLayer Laser;
-    TiledMapTileLayer Wall;
-
-    Sound fallSound = Gdx.audio.newSound(Gdx.files.internal("assets/sounds/fall.wav"));
-    Sound flagSound = Gdx.audio.newSound(Gdx.files.internal("assets/sounds/flag.wav"));
-    Sound victorySound = Gdx.audio.newSound(Gdx.files.internal("assets/sounds/victory.mp3"));
+    private TiledMapTileLayer Board;
+    private TiledMapTileLayer ConveyorBelts;
+    private TiledMapTileLayer TurnGears;
+    private TiledMapTileLayer Holes;
+    private TiledMapTileLayer Flags;
+    private TiledMapTileLayer Players;
+    private TiledMapTileLayer Laser;
+    private TiledMapTileLayer Wall;
+    //Other values
+    private Integer flagCount;
+    //Sound effects
+    private Sound fallSound = Gdx.audio.newSound(Gdx.files.internal("assets/sounds/fall.wav"));
+    private Sound flagSound = Gdx.audio.newSound(Gdx.files.internal("assets/sounds/flag.wav"));
+    private Sound victorySound = Gdx.audio.newSound(Gdx.files.internal("assets/sounds/victory.mp3"));
 
 
     public Board(TiledMap Map){
@@ -38,6 +40,20 @@ public class Board implements IBoard {
         this.Players = (TiledMapTileLayer) Map.getLayers().get("PlayerLayer");
         this.Laser = (TiledMapTileLayer) Map.getLayers().get("Laser");
         this.Wall = (TiledMapTileLayer) Map.getLayers().get("Walls");
+        this.flagCount = countFlags();
+    }
+    private Integer countFlags(){
+        Integer flagCount = 0;
+        Integer mapHeight = Flags.getHeight();
+        Integer mapWidth = Flags.getWidth();
+        for(Integer i = 0; i < mapHeight; i++){
+            for(Integer j = 0; j < mapWidth; j++){
+                if(Flags.getCell(j,i) != null){
+                    flagCount++;
+                }
+            }
+        }
+        return flagCount;
     }
 
     @Override
@@ -53,9 +69,27 @@ public class Board implements IBoard {
     }
     private void checkFlags(Player player, Integer xLoc, Integer yLoc){
         if (Flags.getCell(xLoc, yLoc) != null) {
-            flagSound.play();
-            player.setPlayerState(PlayerState.WINNER);
-            victorySound.play();
+            Integer tileId = Flags.getCell(xLoc, yLoc).getTile().getId();
+            if (tileId == 55 && player.flagsVisited == 0){
+                player.flagsVisited++;
+                flagSound.play();
+            }
+            else if (tileId == 63 && player.flagsVisited == 1){
+                player.flagsVisited++;
+                flagSound.play();
+            }
+            else if (tileId == 71 && player.flagsVisited == 2){
+                player.flagsVisited++;
+                flagSound.play();
+            }
+            else if (tileId == 79 && player.flagsVisited == 3){
+                player.flagsVisited++;
+                flagSound.play();
+            }
+            if (player.flagsVisited == flagCount && player.getPlayerState() != PlayerState.WINNER) {
+                player.setPlayerState(PlayerState.WINNER);
+                victorySound.play();
+            }
         }
     }
     public void checkHoles(Player player){

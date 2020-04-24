@@ -14,6 +14,7 @@ public class Player implements IPlayer{
     private Integer hp = 9;
     public Boolean powerdown = false;
     public ArrayList<Card> hand = new ArrayList<>();
+    public Integer flagsVisited = 0;
     // Control class
     private DirCtrl dirController = new DirCtrl();
     // Elements the Player needs to function on the board
