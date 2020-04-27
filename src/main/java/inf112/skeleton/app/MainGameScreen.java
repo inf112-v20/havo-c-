@@ -29,6 +29,8 @@ public class MainGameScreen extends InputAdapter implements Screen {
 
     // Variables for Player
     private IPlayer player;
+    private MonkeyAI monkey;
+    ArrayList<IPlayer> players;
     private CardDeck deck = new CardDeck();
 
 
@@ -36,17 +38,23 @@ public class MainGameScreen extends InputAdapter implements Screen {
     private final int BOARD_WIDTH = gameBoard.getBoard().getWidth();
     private final int BOARD_HEIGHT = gameBoard.getBoard().getHeight();
 
-    ArrayList<IPlayer> players;
+
 
     public MainGameScreen(Robo robo) {
 
         this.game = robo;
         Vector2 startLoc = new Vector2(0,0);
+
+
+        Vector2 tempStartLoc = new Vector2(9, 0);
         player = new Player(startLoc, Direction.NORTH, gameBoard);
+        monkey = new MonkeyAI(tempStartLoc, Direction.NORTH, gameBoard);
         gui = new GUI(game, player);
-        players = new ArrayList<IPlayer>();
         Gdx.input.setInputProcessor(this);
+
+        players = new ArrayList<IPlayer>();
         players.add(player);
+        players.add(monkey);
     }
 
 
@@ -110,6 +118,7 @@ public class MainGameScreen extends InputAdapter implements Screen {
 
         //Sets in player
         player.updatePlayerIcon();
+        monkey.updatePlayerIcon();
 
     }
 
