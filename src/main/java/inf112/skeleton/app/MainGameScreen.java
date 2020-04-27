@@ -135,6 +135,16 @@ public class MainGameScreen extends InputAdapter implements Screen {
                 player.Turn(TurnDirection.RIGHT);
             }
         }
+        if (keycode == Input.Keys.DPAD_UP){
+            monkey.Move(monkey.getPlayerDir());
+        }
+        else if (keycode == Input.Keys.DPAD_LEFT || keycode == Input.Keys.DPAD_RIGHT) {
+            if (keycode == Input.Keys.DPAD_LEFT) {
+                monkey.Turn(TurnDirection.LEFT);
+            } else {
+                monkey.Turn(TurnDirection.RIGHT);
+            }
+        }
         // Checks if player is dead before allowing player to respawn
         else if (player.getPlayerState() == PlayerState.DEAD && keycode == Input.Keys.R){
             // Barebones respawn system that feeds in start coordinates and direction, a better one will be developed later
