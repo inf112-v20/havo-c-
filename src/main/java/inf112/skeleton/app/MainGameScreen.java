@@ -155,6 +155,9 @@ public class MainGameScreen extends InputAdapter implements Screen {
             // Insert cleanup phase here
             deck.collectCards(player);
         }
+        if (player.isPowerDown()) {
+            player.bootUp();
+        }
     }
 
 

@@ -112,6 +112,9 @@ public class Player implements IPlayer{
         powerdown = true;
         hp = 9;
     }
+    public void bootUp(){
+        powerdown = false;
+    }
     // Updates rotation of the player icon based on what the player direction is
     private void updateIconRotation() {
         if (playerDir == Direction.NORTH){
