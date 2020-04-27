@@ -8,7 +8,7 @@ import com.badlogic.gdx.math.Vector2;
 
 import java.util.ArrayList;
 
-public class Player implements IPlayer{
+public class MonkeyAI implements IPlayer{
     // Variables of the player robot
     private Integer lives = 3;
     private Integer hp = 9;
@@ -31,7 +31,7 @@ public class Player implements IPlayer{
 
 
     // Constructor
-    public Player(Vector2 location, Direction dir, Board board){
+    public MonkeyAI(Vector2 location, Direction dir, Board board){
         this.playerLoc = location;
         this.playerDir = dir;
         this.board = board;

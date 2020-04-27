@@ -57,42 +57,42 @@ public class Board implements IBoard {
     }
 
     @Override
-    public void checkForSpecialTiles(Player player){
+    public void checkForSpecialTiles(IPlayer player){
         // Coordinates of the player used to check for other things in the map
         Integer xLoc = player.getX();
         Integer yLoc = player.getY();
         // Checks through maplayers for overlap and gives appropriate response
-        checkBelts(player, xLoc, yLoc);
+        checkBelts(player , xLoc, yLoc);
         checkTurnGears(player, xLoc, yLoc);
         checkLasers(player, xLoc, yLoc);
         checkFlags(player, xLoc, yLoc);
     }
-    private void checkFlags(Player player, Integer xLoc, Integer yLoc){
+    private void checkFlags(IPlayer player, Integer xLoc, Integer yLoc){
         if (Flags.getCell(xLoc, yLoc) != null) {
             Integer tileId = Flags.getCell(xLoc, yLoc).getTile().getId();
-            if (tileId == 55 && player.flagsVisited == 0){
-                player.flagsVisited++;
+            if (tileId == 55 && player.getFlags() == 0){
+                player.visitFlag();
                 flagSound.play();
             }
-            else if (tileId == 63 && player.flagsVisited == 1){
-                player.flagsVisited++;
+            else if (tileId == 63 && player.getFlags() == 1){
+                player.visitFlag();
                 flagSound.play();
             }
-            else if (tileId == 71 && player.flagsVisited == 2){
-                player.flagsVisited++;
+            else if (tileId == 71 && player.getFlags() == 2){
+                player.visitFlag();
                 flagSound.play();
             }
-            else if (tileId == 79 && player.flagsVisited == 3){
-                player.flagsVisited++;
+            else if (tileId == 79 && player.getFlags() == 3){
+                player.visitFlag();
                 flagSound.play();
             }
-            if (player.flagsVisited == flagCount && player.getPlayerState() != PlayerState.WINNER) {
+            if (player.getFlags() == flagCount && player.getPlayerState() != PlayerState.WINNER) {
                 player.setPlayerState(PlayerState.WINNER);
                 victorySound.play();
             }
         }
     }
-    public void checkHoles(Player player){
+    public void checkHoles(IPlayer player){
         Integer xLoc = player.getX();
         Integer yLoc = player.getY();
         if (Holes.getCell(xLoc, yLoc) != null){
@@ -100,7 +100,7 @@ public class Board implements IBoard {
             fallSound.play();
         }
     }
-    private void checkTurnGears(Player player, Integer xLoc, Integer yLoc){
+    private void checkTurnGears(IPlayer player, Integer xLoc, Integer yLoc){
         if (TurnGears.getCell(xLoc, yLoc) != null){
             Integer tileId = TurnGears.getCell(xLoc, yLoc).getTile().getId();
             // Turn right
@@ -113,7 +113,7 @@ public class Board implements IBoard {
             }
         }
     }
-    private void checkBelts(Player player, Integer xLoc, Integer yLoc){
+    private void checkBelts(IPlayer player, Integer xLoc, Integer yLoc){
         if (ConveyorBelts.getCell(xLoc, yLoc) != null){
             Integer tileId = ConveyorBelts.getCell(xLoc, yLoc).getTile().getId();
             checkFastBelts(player, tileId);
@@ -139,7 +139,7 @@ public class Board implements IBoard {
             }
         }
     }
-    private void checkFastBelts(Player player, Integer tileId){
+    private void checkFastBelts(IPlayer player, Integer tileId){
         if (tileId == 13 || tileId == 26 || tileId == 27 || tileId == 73 || tileId == 77 || tileId == 84){
             player.Move(Direction.NORTH);
         }
@@ -153,7 +153,7 @@ public class Board implements IBoard {
             player.Move(Direction.WEST);
         }
     }
-    private void checkLasers(Player player, Integer xLoc, Integer yLoc){
+    private void checkLasers(IPlayer player, Integer xLoc, Integer yLoc){
         if (Laser.getCell(xLoc, yLoc) != null){
             Integer tileId = Laser.getCell(xLoc, yLoc).getTile().getId();
             // Single laser
@@ -170,7 +170,7 @@ public class Board implements IBoard {
             }
         }
     }
-    public boolean wallCheck(Player player, Direction dir, Boolean second){
+    public boolean wallCheck(IPlayer player, Direction dir, Boolean second){
         Integer xLoc = player.getX();
         Integer yLoc = player.getY();
         Direction dirInUse = dir;

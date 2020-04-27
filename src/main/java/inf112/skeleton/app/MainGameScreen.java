@@ -28,7 +28,7 @@ public class MainGameScreen extends InputAdapter implements Screen {
     private Board gameBoard = new Board(mapLoader.load("assets/Testing Grounds.tmx"));
 
     // Variables for Player
-    private Player player;
+    private IPlayer player;
     private CardDeck deck = new CardDeck();
 
 
@@ -36,7 +36,7 @@ public class MainGameScreen extends InputAdapter implements Screen {
     private final int BOARD_WIDTH = gameBoard.getBoard().getWidth();
     private final int BOARD_HEIGHT = gameBoard.getBoard().getHeight();
 
-    ArrayList<Player> players;
+    ArrayList<IPlayer> players;
 
     public MainGameScreen(Robo robo) {
 
@@ -44,7 +44,7 @@ public class MainGameScreen extends InputAdapter implements Screen {
         Vector2 startLoc = new Vector2(0,0);
         player = new Player(startLoc, Direction.NORTH, gameBoard);
         gui = new GUI(game, player);
-        players = new ArrayList<Player>();
+        players = new ArrayList<IPlayer>();
         Gdx.input.setInputProcessor(this);
         players.add(player);
     }
@@ -138,13 +138,13 @@ public class MainGameScreen extends InputAdapter implements Screen {
     }
 
     public void doTurn() {
-        if (player.isPowerDown()) {
+        if (player.getPowerdown()) {
             // Insert code for powerdown here
         }
         // Insert delay here
         deck.dealCards(player);
         for (int j = 0; players.size() > j; j++) {
-            if (player.ready)
+            if (player.getReady())
             // Insert delay here that allows players to choose their cards
             for (Integer i = 0; i < 7; i++) {
                 // Must be improved to make card priority a thing
@@ -155,7 +155,7 @@ public class MainGameScreen extends InputAdapter implements Screen {
             // Insert cleanup phase here
             deck.collectCards(player);
         }
-        if (player.isPowerDown()) {
+        if (player.getPowerdown()) {
             player.bootUp();
         }
     }

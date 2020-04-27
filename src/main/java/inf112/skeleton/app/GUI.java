@@ -9,7 +9,7 @@ import java.util.ArrayList;
 
 public class GUI {
     Robo game;
-    Player player;
+    IPlayer player;
 
     private static final int BUTTON_HEIGHT = 50;
     private static final int BUTTON_WIDTH = 50;
@@ -61,7 +61,7 @@ public class GUI {
     private final int BOARD_HEIGHT = gameBoard.getPlayerLayer().getHeight();
 
 
-    public GUI (Robo robo, Player player) {
+    public GUI (Robo robo, IPlayer player) {
         this.game = robo;
         this.player = player;
 
@@ -245,16 +245,16 @@ public class GUI {
 
             cards.clear();
 
-            for(int i = 0; player.hand.size() > i; i++) {
+            for(int i = 0; player.getHand().size() > i; i++) {
                 player.playHand(i);
             }
 
-            player.hand.clear();
+            player.getHand().clear();
             cardHand.clear();
             selectedCards.clear();
             indexSelectedCards.clear();
 
-            player.ready = true;
+            player.setPowerdown(true);
             deck.shuffleDeck();
             loadCards();
         }

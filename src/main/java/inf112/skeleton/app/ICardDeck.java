@@ -6,7 +6,7 @@ public interface ICardDeck {
 
     void shuffleDeck();
 
-    ArrayList<Card> dealCards(Player player);
+    ArrayList<Card> dealCards(IPlayer player);
 
-    void collectCards(Player player);
+    void collectCards(IPlayer player);
 }

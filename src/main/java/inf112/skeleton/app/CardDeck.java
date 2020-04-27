@@ -27,7 +27,7 @@ public class CardDeck implements ICardDeck {
         Collections.shuffle(deck);
     }
 
-    public ArrayList<Card> dealCards(Player player){
+    public ArrayList<Card> dealCards(IPlayer player){
 
         ArrayList<Card> hand = new ArrayList<>();
 
@@ -37,7 +37,7 @@ public class CardDeck implements ICardDeck {
         }
         return hand;
     }
-    public void collectCards(Player player){
+    public void collectCards(IPlayer player){
         player.emptyHand();
     }
 

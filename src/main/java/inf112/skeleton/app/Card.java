@@ -12,7 +12,7 @@ public class Card implements ICard {
         this.command = command;
     }
     // Playing the card itself
-    public void playCard(Player owner){
+    public void playCard(IPlayer owner){
         // Wont play card unless a player has it
         if(command == "Move1"){
             owner.Move(owner.getPlayerDir());
