@@ -257,16 +257,12 @@ public class GUI {
             player.ready = true;
             deck.shuffleDeck();
             loadCards();
-
-
         }
         // power down
         else if (cardX == 3) {
             System.out.println("Power Down");
-
+            player.powerdown();
         }
-
-
     }
 
     private void fillPickedCards() {

@@ -134,12 +134,11 @@ public class MainGameScreen extends InputAdapter implements Screen {
         // Checks if player is standing on special tiles
         gameBoard.checkForSpecialTiles(player);
 
-
         return true;
     }
 
     public void doTurn() {
-        if (player.powerdown) {
+        if (player.isPowerDown()) {
             // Insert code for powerdown here
         }
         // Insert delay here

@@ -12,7 +12,7 @@ public class Player implements IPlayer{
     // Variables of the player robot
     private Integer lives = 3;
     private Integer hp = 9;
-    public Boolean powerdown = false;
+    private Boolean powerdown = false;
     public ArrayList<Card> hand = new ArrayList<>();
     public Integer flagsVisited = 0;
     // Control class
@@ -108,6 +108,10 @@ public class Player implements IPlayer{
             }
         }
     }
+    public void powerdown(){
+        powerdown = true;
+        hp = 9;
+    }
     // Updates rotation of the player icon based on what the player direction is
     private void updateIconRotation() {
         if (playerDir == Direction.NORTH){
@@ -180,11 +184,19 @@ public class Player implements IPlayer{
     public Integer getY(){
         return Math.round(playerLoc.y);
     }
-    public Direction getPlayerDir(){ return playerDir; }
-    public Vector2 getPlayerLoc(){ return playerLoc; }
-    public Integer getLives(){ return lives; }
-    public Integer getHp(){ return hp; }
+    public Direction getPlayerDir(){
+        return playerDir;
+    }
+    public Integer getLives(){
+        return lives;
+    }
+    public Integer getHp(){
+        return hp;
+    }
     public PlayerState getPlayerState(){
         return playerState;
+    }
+    public boolean isPowerDown(){
+        return powerdown;
     }
 }
