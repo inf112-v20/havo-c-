@@ -16,6 +16,7 @@ public class MonkeyAI implements IPlayer{
     private ArrayList<Card> hand = new ArrayList<>();
     private Integer flagsVisited = 0;
     private Boolean ready = false;
+    private MainGameScreen game;
     // Control class
     private DirCtrl dirController = new DirCtrl();
     // Elements the Player needs to function on the board
@@ -31,11 +32,12 @@ public class MonkeyAI implements IPlayer{
 
 
     // Constructor
-    public MonkeyAI(Vector2 location, Direction dir, Board board){
+    public MonkeyAI(Vector2 location, Direction dir, Board board, MainGameScreen game){
         this.playerLoc = location;
         this.playerDir = dir;
         this.board = board;
         this.playerLayer = board.getPlayerLayer();
+        this.game = game;
         // Graphics for the player
         TextureRegion[][] playerIcon = new TextureRegion(new Texture("assets/enemy.png")).split(300,300);
         playerCell.setTile(new StaticTiledMapTile(playerIcon[0][0]));
@@ -70,6 +72,7 @@ public class MonkeyAI implements IPlayer{
                 board.checkHoles(this);
             }
         }
+        game.collision(this);
     }
     public void Turn(TurnDirection dir){
         // Turns the player

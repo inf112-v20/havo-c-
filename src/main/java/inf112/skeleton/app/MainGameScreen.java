@@ -49,8 +49,8 @@ public class MainGameScreen extends InputAdapter implements Screen {
 
 
         Vector2 tempStartLoc = new Vector2(9, 0);
-        player = new Player(startLoc, Direction.NORTH, gameBoard);
-        monkey = new MonkeyAI(tempStartLoc, Direction.NORTH, gameBoard);
+        player = new Player(startLoc, Direction.NORTH, gameBoard, this);
+        monkey = new MonkeyAI(tempStartLoc, Direction.NORTH, gameBoard, this);
         gui = new GUI(game, player);
         Gdx.input.setInputProcessor(this);
 
@@ -159,9 +159,7 @@ public class MainGameScreen extends InputAdapter implements Screen {
         // Checks if player is standing on special tiles
         gameBoard.checkForSpecialTiles(player);
         updateLoc();
-        if(checkForPlayerCollision(player)) {
-            handleCollision(player);
-        }
+
         return true;
     }
 
@@ -228,6 +226,11 @@ public class MainGameScreen extends InputAdapter implements Screen {
         IPlayer collisionVictim = getCollisionVictim(movingPlayer);
         Direction movingPlayerDir = movingPlayer.getPlayerDir();
         collisionVictim.Move(movingPlayerDir);
+    }
+    public void collision(IPlayer movingPlayer) {
+        if(checkForPlayerCollision(movingPlayer)) {
+            handleCollision(movingPlayer);
+        }
     }
 
 

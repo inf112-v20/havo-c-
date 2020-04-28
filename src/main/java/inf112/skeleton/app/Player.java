@@ -24,6 +24,7 @@ public class Player implements IPlayer{
     private PlayerState playerState = PlayerState.ALIVE;
     private Board board;
     private TiledMapTileLayer playerLayer;
+    private MainGameScreen game;
     // Player icon objects
     private TiledMapTileLayer.Cell playerCell = new TiledMapTileLayer.Cell();
     private TiledMapTileLayer.Cell playerDiedCell = new TiledMapTileLayer.Cell();
@@ -31,11 +32,12 @@ public class Player implements IPlayer{
 
 
     // Constructor
-    public Player(Vector2 location, Direction dir, Board board){
+    public Player(Vector2 location, Direction dir, Board board, MainGameScreen game){
         this.playerLoc = location;
         this.playerDir = dir;
         this.board = board;
         this.playerLayer = board.getPlayerLayer();
+        this.game = game;
         // Graphics for the player
         TextureRegion[][] playerIcon = new TextureRegion(new Texture("assets/Cyborg-Up.png")).split(300,300);
         playerCell.setTile(new StaticTiledMapTile(playerIcon[0][0]));
@@ -70,6 +72,7 @@ public class Player implements IPlayer{
                 board.checkHoles(this);
             }
         }
+        game.collision(this);
     }
     public void Turn(TurnDirection dir){
         // Turns the player
