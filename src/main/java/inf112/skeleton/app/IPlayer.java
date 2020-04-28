@@ -45,13 +45,14 @@ public interface IPlayer {
 
     Boolean getReady();
 
+    void setPlayerDir(Direction dir);
     void setReady(Boolean value);
 
     void bootUp();
 
     void powerdown();
 
-    public Vector2 getPlayerloc();
+    Vector2 getPlayerloc();
 
 }
 

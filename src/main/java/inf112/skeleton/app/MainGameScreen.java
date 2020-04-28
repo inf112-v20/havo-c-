@@ -159,7 +159,9 @@ public class MainGameScreen extends InputAdapter implements Screen {
         // Checks if player is standing on special tiles
         gameBoard.checkForSpecialTiles(player);
         updateLoc();
-        checkForPlayerCollision(player);
+        if(checkForPlayerCollision(player)) {
+            handleCollision(player);
+        }
         return true;
     }
 
@@ -222,6 +224,11 @@ public class MainGameScreen extends InputAdapter implements Screen {
         return  collisionVictim = movingPlayer;
     }
 
+    private void handleCollision(IPlayer movingPlayer) {
+        IPlayer collisionVictim = getCollisionVictim(movingPlayer);
+        Direction movingPlayerDir = movingPlayer.getPlayerDir();
+        collisionVictim.Move(movingPlayerDir);
+    }
 
 
     @Override

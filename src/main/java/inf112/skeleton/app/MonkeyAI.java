@@ -212,7 +212,7 @@ public class MonkeyAI implements IPlayer{
         return hand;
     }
     public Boolean getPowerdown() { return powerdown; }
-
+    public void setPlayerDir(Direction dir) {playerDir = dir; }
     public void setPowerdown(Boolean value) {
         powerdown = value;
     }

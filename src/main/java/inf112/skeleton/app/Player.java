@@ -191,6 +191,7 @@ public class Player implements IPlayer{
     public Direction getPlayerDir(){
         return playerDir;
     }
+    public void setPlayerDir(Direction dir) {playerDir = dir; }
     public Integer getLives(){
         return lives;
     }
