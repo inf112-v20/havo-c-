@@ -211,9 +211,7 @@ public class Player implements IPlayer{
     public ArrayList<Card> getHand() {
         return hand;
     }
-    public Boolean getPowerdown() {
-        return powerdown;
-    }
+    public Boolean getPowerdown() { return powerdown; }
 
     public void setPowerdown(Boolean value) {
         powerdown = value;
@@ -225,4 +223,6 @@ public class Player implements IPlayer{
     public void setReady(Boolean value) {
         ready = value;
     }
+
+    public Vector2 getPlayerloc() { return playerLoc; }
 }

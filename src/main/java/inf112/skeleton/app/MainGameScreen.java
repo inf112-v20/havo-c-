@@ -30,7 +30,7 @@ public class MainGameScreen extends InputAdapter implements Screen {
     // Variables for Player
     private IPlayer player;
     private MonkeyAI monkey;
-    ArrayList<IPlayer> players;
+    public ArrayList<IPlayer> players;
     private CardDeck deck = new CardDeck();
 
 
@@ -38,6 +38,8 @@ public class MainGameScreen extends InputAdapter implements Screen {
     private final int BOARD_WIDTH = gameBoard.getBoard().getWidth();
     private final int BOARD_HEIGHT = gameBoard.getBoard().getHeight();
 
+    // Array for tracking all the players
+    public ArrayList<Vector2> allLoc = new ArrayList<Vector2>();
 
 
     public MainGameScreen(Robo robo) {
@@ -55,6 +57,8 @@ public class MainGameScreen extends InputAdapter implements Screen {
         players = new ArrayList<IPlayer>();
         players.add(player);
         players.add(monkey);
+        addLoc();
+
     }
 
 
@@ -135,8 +139,10 @@ public class MainGameScreen extends InputAdapter implements Screen {
                 player.Turn(TurnDirection.RIGHT);
             }
         }
+        // Monkey test movement
         if (keycode == Input.Keys.DPAD_UP){
             monkey.Move(monkey.getPlayerDir());
+
         }
         else if (keycode == Input.Keys.DPAD_LEFT || keycode == Input.Keys.DPAD_RIGHT) {
             if (keycode == Input.Keys.DPAD_LEFT) {
@@ -152,7 +158,8 @@ public class MainGameScreen extends InputAdapter implements Screen {
         }
         // Checks if player is standing on special tiles
         gameBoard.checkForSpecialTiles(player);
-
+        updateLoc();
+        checkForPlayerCollision(player);
         return true;
     }
 
@@ -178,6 +185,43 @@ public class MainGameScreen extends InputAdapter implements Screen {
             player.bootUp();
         }
     }
+
+    // Updates all the location in allLoc to the current position of the players
+    private void updateLoc() {
+        for(int i = 0; i < players.size(); i++) {
+            allLoc.set(i, players.get(i).getPlayerloc());
+        }
+        System.out.println("playerloc: " + allLoc);
+    }
+    private void addLoc() {
+        for(int i = 0; i < players.size(); i++) {
+            allLoc.add(i, players.get(i).getPlayerloc());
+        }
+        System.out.println("playerloc: " + allLoc);
+    }
+    private Boolean checkForPlayerCollision(IPlayer movingPlayer) {
+        int movingPlayerInt = players.indexOf(movingPlayer);
+        for(int i = 0;  i < players.size(); i++) {
+            if(i != movingPlayerInt && players.get(i).getPlayerloc().equals(movingPlayer.getPlayerloc())) {
+                System.out.println("collision");
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private IPlayer getCollisionVictim(IPlayer movingPlayer) {
+        int movingPlayerInt = players.indexOf(movingPlayer);
+        IPlayer collisionVictim;
+        for (int i = 0; i < players.size(); i++) {
+            if (i != movingPlayerInt && players.get(i).getPlayerloc().equals(movingPlayer.getPlayerloc())) {
+                collisionVictim = players.get(i);
+                return collisionVictim;
+            }
+        }
+        return  collisionVictim = movingPlayer;
+    }
+
 
 
     @Override

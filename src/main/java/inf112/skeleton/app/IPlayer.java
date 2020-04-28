@@ -51,6 +51,8 @@ public interface IPlayer {
 
     void powerdown();
 
+    public Vector2 getPlayerloc();
+
 }
 
 

@@ -7,6 +7,7 @@ import com.badlogic.gdx.backends.lwjgl.audio.Wav;
 import com.badlogic.gdx.maps.MapObject;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
+import com.badlogic.gdx.math.Vector2;
 
 public class Board implements IBoard {
     // The map itself
@@ -58,7 +59,7 @@ public class Board implements IBoard {
 
     @Override
     public void checkForSpecialTiles(IPlayer player){
-        // Coordinates of the player used to check for other things in the map
+        // Coordinates of the player/AI used to check for other things in the map
         Integer xLoc = player.getX();
         Integer yLoc = player.getY();
         // Checks through maplayers for overlap and gives appropriate response
@@ -229,6 +230,7 @@ public class Board implements IBoard {
         }
         return true;
     }
+
     // Methods to get elements from Board
     public TiledMap getMap(){
         return Map;
