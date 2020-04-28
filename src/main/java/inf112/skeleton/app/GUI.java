@@ -235,6 +235,7 @@ public class GUI {
             for (int i = 0; tempCardPick > i; i++) {
                 cards.set(indexSelectedCards.get(i), selectedCards.get(i));
             }
+
             tempCardPick = 0;
             selectedCards.clear();
             indexSelectedCards.clear();

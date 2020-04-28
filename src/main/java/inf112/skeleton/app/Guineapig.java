@@ -8,7 +8,7 @@ import com.badlogic.gdx.math.Vector2;
 
 import java.util.ArrayList;
 
-public class MonkeyAI implements IPlayer{
+public class Guineapig implements IPlayer{
     // Variables of the player robot
     private Integer lives = 3;
     private Integer hp = 9;
@@ -16,7 +16,6 @@ public class MonkeyAI implements IPlayer{
     private ArrayList<Card> hand = new ArrayList<>();
     private Integer flagsVisited = 0;
     private Boolean ready = false;
-    private MainGameScreen game;
     // Control class
     private DirCtrl dirController = new DirCtrl();
     // Elements the Player needs to function on the board
@@ -25,33 +24,25 @@ public class MonkeyAI implements IPlayer{
     private PlayerState playerState = PlayerState.ALIVE;
     private Board board;
     private TiledMapTileLayer playerLayer;
+    private MainGameScreen game;
     // Player icon objects
     private TiledMapTileLayer.Cell playerCell = new TiledMapTileLayer.Cell();
     private TiledMapTileLayer.Cell playerDiedCell = new TiledMapTileLayer.Cell();
     private TiledMapTileLayer.Cell playerWonCell = new TiledMapTileLayer.Cell();
 
-    // Variables just for the AI
-    CardDeck monkeyCardDeck;
-    private ArrayList<Card> smallHandCardDeck = new ArrayList<Card>();
-    Guineapig guineapig;
-    private ArrayList<Card> pickedCards = new ArrayList<Card>();
-    private ArrayList<Integer> indexPickedCards = new ArrayList<Integer>();
 
     // Constructor
-    public MonkeyAI(Vector2 location, Direction dir, Board board, MainGameScreen game){
+    public Guineapig(Vector2 location, Direction dir, Board board, MainGameScreen game){
         this.playerLoc = location;
         this.playerDir = dir;
         this.board = board;
         this.playerLayer = board.getPlayerLayer();
         this.game = game;
         // Graphics for the player
-        TextureRegion[][] playerIcon = new TextureRegion(new Texture("assets/enemy.png")).split(300,300);
+        TextureRegion[][] playerIcon = new TextureRegion(new Texture("assets/Cyborg-Up.png")).split(300,300);
         playerCell.setTile(new StaticTiledMapTile(playerIcon[0][0]));
         playerDiedCell.setTile(new StaticTiledMapTile(playerIcon[0][1]));
         playerWonCell.setTile(new StaticTiledMapTile(playerIcon[0][2]));
-
-        monkeyCardDeck = new CardDeck();
-        guineapig = new Guineapig(playerLoc, dir, board, game);
     }
 
     public void Move(Direction dir) {
@@ -203,6 +194,7 @@ public class MonkeyAI implements IPlayer{
     public Direction getPlayerDir(){
         return playerDir;
     }
+    public void setPlayerDir(Direction dir) {playerDir = dir; }
     public Integer getLives(){
         return lives;
     }
@@ -224,7 +216,7 @@ public class MonkeyAI implements IPlayer{
         return hand;
     }
     public Boolean getPowerdown() { return powerdown; }
-    public void setPlayerDir(Direction dir) {playerDir = dir; }
+
     public void setPowerdown(Boolean value) {
         powerdown = value;
     }
@@ -238,67 +230,7 @@ public class MonkeyAI implements IPlayer{
 
     public Vector2 getPlayerloc() { return playerLoc; }
 
-
-    // Everything about how the monkeyAI thinks/works should be added under this section
-
-    // Adds to small hand in CardDeck the 9 cards the monkey can pick amongst
-    private void makeMonkeyHand() {
-        smallHandCardDeck.clear();
-        monkeyCardDeck.shuffleDeck();
-        smallHandCardDeck = monkeyCardDeck.dealCards(this);
-
-        System.out.println(smallHandCardDeck);
-    }
-
-    private void resetCard() {
-        monkeyCardDeck.shuffleDeck();
-        smallHandCardDeck.clear();
-        makeMonkeyHand();
-    }
-
-    public void makeOneCardPick() {
-        makeMonkeyHand();
-        System.out.println(smallHandCardDeck);
-        for(int i = 0; i < lives; i++) {
-            if(cardCanNotKill(smallHandCardDeck.get(i))) {
-                pickedCards.add(smallHandCardDeck.get(i));
-                indexPickedCards.add(i);
+    public void setLocation(Vector2 location) { playerLoc = location; }
 
 
-            }
-            break;
-        }
-    }
-
-    private Boolean cardCanNotKill(Card card) {
-        if(cardKillsGuineapig(card)) { return true; }
-        else { return false; }
-
-    }
-    public void pickAllCards() {
-        for(int i = 0; i < 5; i++){
-            makeOneCardPick();
-        }
-        resetCard();
-    }
-
-    private void resetGuineapig(Vector2 playerLoc, Direction dir) {
-        guineapig.setPlayerDir(dir);
-        guineapig.setLocation(playerLoc);
-    }
-
-    private Boolean cardKillsGuineapig(Card card) {
-        card.playCard(guineapig);
-        if(guineapig.getPlayerState() == playerState.ALIVE) { return true; }
-        else {
-            resetGuineapig(playerLoc, playerDir);
-            return false; }
-    }
-
-    public void playFullHand() {
-        for(int i = 0; i < hand.size(); i++) {
-            hand.get(i).playCard(this);
-        }
-        hand.clear();
-    }
 }

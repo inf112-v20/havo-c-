@@ -41,6 +41,7 @@ public class MainGameScreen extends InputAdapter implements Screen {
     // Array for tracking all the players
     public ArrayList<Vector2> allLoc = new ArrayList<Vector2>();
 
+    private int ticks = 0;
 
     public MainGameScreen(Robo robo) {
 
@@ -121,8 +122,17 @@ public class MainGameScreen extends InputAdapter implements Screen {
 
 
         //Sets in player
+        if (ticks == 180) {
+            monkey.makeOneCardPick();
+            monkey.playFullHand();
+            ticks = 0;
+        }
+        else {
+            ticks++;
+        }
         player.updatePlayerIcon();
         monkey.updatePlayerIcon();
+;
 
     }
 
