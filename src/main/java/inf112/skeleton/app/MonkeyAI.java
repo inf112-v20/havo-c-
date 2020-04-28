@@ -30,6 +30,9 @@ public class MonkeyAI implements IPlayer{
     private TiledMapTileLayer.Cell playerDiedCell = new TiledMapTileLayer.Cell();
     private TiledMapTileLayer.Cell playerWonCell = new TiledMapTileLayer.Cell();
 
+    // Variables just for the AI
+    CardDeck monkeyCardDeck;
+    private ArrayList<Card> smallHandCardDeck;
 
     // Constructor
     public MonkeyAI(Vector2 location, Direction dir, Board board, MainGameScreen game){
@@ -43,6 +46,8 @@ public class MonkeyAI implements IPlayer{
         playerCell.setTile(new StaticTiledMapTile(playerIcon[0][0]));
         playerDiedCell.setTile(new StaticTiledMapTile(playerIcon[0][1]));
         playerWonCell.setTile(new StaticTiledMapTile(playerIcon[0][2]));
+
+        CardDeck monkeyCardDeck = new CardDeck();
     }
 
     public void Move(Direction dir) {
@@ -229,6 +234,44 @@ public class MonkeyAI implements IPlayer{
 
     public Vector2 getPlayerloc() { return playerLoc; }
     public void cardPicker(){
+    }
+
+
+    // Everything about how the monkeyAI thinks/works should be added under this section
+
+    // Adds to small hand in CardDeck the 9 cards the monkey can pick amongst
+    private void makeMonkeyHand() {
+        smallHandCardDeck = monkeyCardDeck.dealCards();
+    }
+    private void resetCard() {
+        monkeyCardDeck.shuffleDeck();
+        smallHandCardDeck.clear();
+        makeMonkeyHand();
+    }
+    private void makeOneCardPick() {
+        for(int i = 0; i < lives; i++) {
+            if(cardCanNotKill(smallHandCardDeck.get(i))) {
+                // Add card to pickedCards
+                break;
+            }
+        }
+    }
+
+    private Boolean cardCanNotKill(Card card) {
+        if(true) {
+
+            return true;
+        }
+        else {
+            return false;
+        }
 
     }
+    public void pickAllCards() {
+        for(int i = 0; i < 5; i++){
+            makeOneCardPick();
+        }
+        resetCard();
+    }
+
 }

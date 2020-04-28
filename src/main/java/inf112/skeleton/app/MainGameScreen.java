@@ -158,6 +158,7 @@ public class MainGameScreen extends InputAdapter implements Screen {
         }
         // Checks if player is standing on special tiles
         gameBoard.checkForSpecialTiles(player);
+        gameBoard.checkForSpecialTiles(monkey);
         updateLoc();
 
         return true;
