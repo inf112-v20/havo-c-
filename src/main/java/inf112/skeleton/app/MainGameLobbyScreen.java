@@ -24,8 +24,8 @@ public class MainGameLobbyScreen implements Screen {
     Texture backButton;
     public MainGameLobbyScreen (Robo robo) {
         this.game = robo;
-        playButton = new Texture("assets/startKnapp.png");
-        backButton = new Texture("assets/BackBtn.png");
+        playButton = new Texture("assets/buttons/startKnapp.png");
+        backButton = new Texture("assets/buttons/BackBtn.png");
     }
     @Override
     public void show() {

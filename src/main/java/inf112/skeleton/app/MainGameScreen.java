@@ -122,7 +122,7 @@ public class MainGameScreen extends InputAdapter implements Screen {
 
 
         //Sets in player
-        if (ticks == 100) {
+        if (ticks == 60) {
             monkey.makeOneCardPick();
             monkey.playFullHand();
             ticks = 0;

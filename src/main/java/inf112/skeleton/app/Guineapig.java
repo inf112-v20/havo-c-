@@ -230,7 +230,7 @@ public class Guineapig implements IPlayer{
 
     public Vector2 getPlayerloc() { return playerLoc; }
 
-    public void setLocation(Vector2 location) { playerLoc = location; }
+    public void setLocation(Vector2 location) { this.playerLoc = location; }
 
 
 }
