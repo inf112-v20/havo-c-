@@ -8,7 +8,7 @@ import com.badlogic.gdx.math.Vector2;
 
 import java.util.ArrayList;
 
-public class Player implements IPlayer{
+public class MonkeyAI implements IPlayer{
     // Variables of the player robot
     private Integer lives = 3;
     private Integer hp = 9;
@@ -16,6 +16,7 @@ public class Player implements IPlayer{
     private ArrayList<Card> hand = new ArrayList<>();
     private Integer flagsVisited = 0;
     private Boolean ready = false;
+    private MainGameScreen game;
     // Control class
     private DirCtrl dirController = new DirCtrl();
     // Elements the Player needs to function on the board
@@ -24,25 +25,37 @@ public class Player implements IPlayer{
     private PlayerState playerState = PlayerState.ALIVE;
     private Board board;
     private TiledMapTileLayer playerLayer;
-    private MainGameScreen game;
     // Player icon objects
     private TiledMapTileLayer.Cell playerCell = new TiledMapTileLayer.Cell();
     private TiledMapTileLayer.Cell playerDiedCell = new TiledMapTileLayer.Cell();
     private TiledMapTileLayer.Cell playerWonCell = new TiledMapTileLayer.Cell();
 
+    // Variables just for the AI
+    CardDeck monkeyCardDeck;
+    private ArrayList<Card> smallHandCardDeck = new ArrayList<Card>();
+    Guineapig guineapig;
+    private ArrayList<Card> pickedCards = new ArrayList<Card>();
+    private ArrayList<Integer> indexPickedCards = new ArrayList<Integer>();
+    Vector2 oldCoordinates;
 
     // Constructor
-    public Player(Vector2 location, Direction dir, Board board, MainGameScreen game){
+    public MonkeyAI(Vector2 location, Direction dir, Board board, MainGameScreen game){
         this.playerLoc = location;
         this.playerDir = dir;
         this.board = board;
         this.playerLayer = board.getPlayerLayer();
         this.game = game;
         // Graphics for the player
-        TextureRegion[][] playerIcon = new TextureRegion(new Texture("assets/Cyborg-Up.png")).split(300,300);
+        TextureRegion[][] playerIcon = new TextureRegion(new Texture("assets/enemy.png")).split(300,300);
         playerCell.setTile(new StaticTiledMapTile(playerIcon[0][0]));
         playerDiedCell.setTile(new StaticTiledMapTile(playerIcon[0][1]));
         playerWonCell.setTile(new StaticTiledMapTile(playerIcon[0][2]));
+
+        Vector2 guineapigStartLoc = new Vector2(0, 0);
+        guineapigStartLoc.set(playerLoc);
+        monkeyCardDeck = new CardDeck();
+        guineapig = new Guineapig(guineapigStartLoc, dir, board, game);
+        setOldCoordinates();
     }
 
     public void Move(Direction dir) {
@@ -194,7 +207,6 @@ public class Player implements IPlayer{
     public Direction getPlayerDir(){
         return playerDir;
     }
-    public void setPlayerDir(Direction dir) {playerDir = dir; }
     public Integer getLives(){
         return lives;
     }
@@ -216,7 +228,7 @@ public class Player implements IPlayer{
         return hand;
     }
     public Boolean getPowerdown() { return powerdown; }
-
+    public void setPlayerDir(Direction dir) {playerDir = dir; }
     public void setPowerdown(Boolean value) {
         powerdown = value;
     }
@@ -229,4 +241,108 @@ public class Player implements IPlayer{
     }
 
     public Vector2 getPlayerloc() { return playerLoc; }
+
+
+    // Everything about how the monkeyAI thinks/works should be added under this section
+
+    // Adds to small hand in CardDeck the 9 cards the monkey can pick amongst
+    private void makeMonkeyHand() {
+        smallHandCardDeck.clear();
+        monkeyCardDeck.shuffleDeck();
+        smallHandCardDeck = monkeyCardDeck.dealCards(this);
+    }
+
+    private void resetCard() {
+        monkeyCardDeck.shuffleDeck();
+        smallHandCardDeck.clear();
+        makeMonkeyHand();
+    }
+
+    public void makeOneCardPick() {
+        makeMonkeyHand();
+
+        for(int i = 0; i < lives; i++) {
+            if(cardCanNotKill(smallHandCardDeck.get(i))) {
+                System.out.println("card before added to hand but passed the kill tests: " + smallHandCardDeck.get(i).getCommand());
+                System.out.println("Player position before card added to hand: " + playerLoc);
+                pickedCards.add(smallHandCardDeck.get(i));
+                indexPickedCards.add(i);
+                break;
+            }
+            else {
+                System.out.println("Denied cards: " + smallHandCardDeck.get(i).getCommand());
+            }
+
+        }
+    }
+
+    private Boolean cardCanNotKill(Card card) {
+        if(cardKillsGuineapig(card)) { return true; }
+        else { return false; }
+
+    }
+    public void pickAllCards() {
+        for(int i = 0; i < 5; i++){
+            makeOneCardPick();
+        }
+        resetCard();
+    }
+
+    private void resetGuineapig(Direction dir) {
+        guineapig.setPlayerDir(dir);
+        guineapig.setLocation(getOldCoordinates());
+        System.out.println("old playerlocations: " + getOldCoordinates());
+        guineapig.setPlayerState(playerState.ALIVE);
+    }
+
+    private Boolean cardKillsGuineapig(Card card) {
+        card.playCard(guineapig);
+        System.out.println("Guineapig before passing test but after making move: GetX: " + guineapig.getX() + " GetY: " + guineapig.getY());
+        System.out.println("player before passing test but after making move: GetX: " + getX() + " GetY: " + getY());
+        System.out.println("Card up fore judgment: " + card.getCommand());
+        System.out.println("Old coordinates after guineapig  making move: " + getOldCoordinates());
+        if(guineapig.getPlayerState() == playerState.ALIVE && insideMap()) {
+            System.out.println("The guineapig have passed all tests with the card: " + card.getCommand());
+            return true; }
+        else {
+            System.out.println("##---Card did not pass the tests---##");
+            System.out.println("guineapig playerstate: " + guineapig.getPlayerState());
+            System.out.println("GetX: " + guineapig.getX() + " GetY: " + guineapig.getY());
+            System.out.println("guineapig will have his coordinates reset");
+            resetGuineapig( playerDir);
+            return false; }
+    }
+    private Boolean insideMap() {
+        System.out.println("GetX: " + guineapig.getX() + " GetY: " + guineapig.getY());
+        if(guineapig.getX() >= 0 && guineapig.getX() <= 9
+            && guineapig.getY() >= 0 && guineapig.getY() <= 9) {
+            System.out.println("AI inside of map");
+            return true;
+        }
+        else {
+            System.out.println("AI out side of map");
+            return  false;
+        }
+    }
+
+    public void playFullHand() {
+        System.out.println();
+        for(int i = 0; i < pickedCards.size(); i++) {
+            System.out.println("AI played: " + pickedCards.get(i).command);
+            System.out.println("Current position of player" + getPlayerloc());
+            System.out.println();
+            pickedCards.get(i).playCard(this);
+            System.out.println("Current position of player after move" + getPlayerloc());
+            setOldCoordinates();
+            System.out.println("Old coordinates after making move: " + getOldCoordinates());
+        }
+        pickedCards.clear();
+    }
+    private void setOldCoordinates() {
+        oldCoordinates = playerLoc;
+    }
+    private Vector2 getOldCoordinates() {
+        return oldCoordinates;
+    }
+
 }

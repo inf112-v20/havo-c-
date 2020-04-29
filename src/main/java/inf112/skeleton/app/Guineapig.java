@@ -8,7 +8,7 @@ import com.badlogic.gdx.math.Vector2;
 
 import java.util.ArrayList;
 
-public class Player implements IPlayer{
+public class Guineapig implements IPlayer{
     // Variables of the player robot
     private Integer lives = 3;
     private Integer hp = 9;
@@ -32,7 +32,7 @@ public class Player implements IPlayer{
 
 
     // Constructor
-    public Player(Vector2 location, Direction dir, Board board, MainGameScreen game){
+    public Guineapig(Vector2 location, Direction dir, Board board, MainGameScreen game){
         this.playerLoc = location;
         this.playerDir = dir;
         this.board = board;
@@ -72,7 +72,7 @@ public class Player implements IPlayer{
                 board.checkHoles(this);
             }
         }
-        game.collision(this);
+
     }
     public void Turn(TurnDirection dir){
         // Turns the player
@@ -229,4 +229,8 @@ public class Player implements IPlayer{
     }
 
     public Vector2 getPlayerloc() { return playerLoc; }
+
+    public void setLocation(Vector2 location) { playerLoc = location; }
+
+
 }

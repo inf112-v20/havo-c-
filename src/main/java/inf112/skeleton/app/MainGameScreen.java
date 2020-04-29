@@ -7,48 +7,18 @@ import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL30;
 import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.scenes.scene2d.actions.DelayAction;
 
 import java.util.ArrayList;
-import java.util.Random;
 
 public class MainGameScreen extends InputAdapter implements Screen {
 
     Robo game;
+    GUI gui;
     private BitmapFont font;
-    Texture move1;
-    Texture move2;
-    Texture move3;
-    Texture moveRight;
-    Texture moveLeft;
-    Texture moveback;
-    Texture turn180;
-    Texture startround;
-    Texture resetcards;
-    Texture poweroff;
-    Texture heart;
-
-//bruh?
-    // Temp Arraylist to test a system
-    ArrayList<Texture> cards = new ArrayList<Texture>();
-    // Temp Arraylist Random numbers
-    ArrayList<Integer> cardNumbers = new ArrayList<Integer>();
-    // Temp this array contain the numbers 1 to 7
-    ArrayList<Texture> pickedCards = new ArrayList<Texture>();
-    // Temp this array contains which cards the user have selected
-    ArrayList<Texture> selectedCards = new ArrayList<Texture>();
-    // Temp this array contains the index of the selected cards
-    ArrayList<Integer> indexSelectedCards = new ArrayList<Integer>();
-
-
-
-    // Temp Var for player, I think this variable should be put into player class
-    int tempCardPick = 0;
 
 
     // Map related elements
@@ -58,31 +28,38 @@ public class MainGameScreen extends InputAdapter implements Screen {
     private Board gameBoard = new Board(mapLoader.load("assets/Testing Grounds.tmx"));
 
     // Variables for Player
-    private Player player;
+    private IPlayer player;
+    private MonkeyAI monkey;
+    public ArrayList<IPlayer> players;
     private CardDeck deck = new CardDeck();
 
-    // Width and Height og the grid
-    private final int BOARD_WIDTH = gameBoard.getPlayerLayer().getWidth();
-    private final int BOARD_HEIGHT = gameBoard.getPlayerLayer().getHeight();
 
+    // Width and Height og the grid
+    private final int BOARD_WIDTH = gameBoard.getBoard().getWidth();
+    private final int BOARD_HEIGHT = gameBoard.getBoard().getHeight();
+
+    // Array for tracking all the players
+    public ArrayList<Vector2> allLoc = new ArrayList<Vector2>();
+
+    private int ticks = 0;
 
     public MainGameScreen(Robo robo) {
 
         this.game = robo;
-        move1 = new Texture("assets/Move1.png");
-        move2 = new Texture("assets/move2.png");
-        move3 = new Texture("assets/move3.png");
-        moveRight = new Texture("assets/moveright.png");
-        moveLeft = new Texture("assets/moveleft.png");
-        moveback = new Texture("assets/moveback.png");
-        turn180 = new Texture("assets/turn180.png");
-        startround = new Texture("assets/startround1.png");
-        resetcards = new Texture("assets/resetcards1.png");
-        poweroff = new Texture("assets/poweroff1.png");
-        heart = new Texture("assets/heart.png");
-        loadCards();
-        fillPickedCards();
+        Vector2 startLoc = new Vector2(0,0);
+
+
+        Vector2 tempStartLoc = new Vector2(9, 0);
+        player = new Player(startLoc, Direction.NORTH, gameBoard, this);
+        monkey = new MonkeyAI(tempStartLoc, Direction.NORTH, gameBoard, this);
+        gui = new GUI(game, player);
         Gdx.input.setInputProcessor(this);
+
+        players = new ArrayList<IPlayer>();
+        players.add(player);
+        players.add(monkey);
+        addLoc();
+
     }
 
 
@@ -98,12 +75,6 @@ public class MainGameScreen extends InputAdapter implements Screen {
         mapRenderer = new OrthogonalTiledMapRenderer(gameBoard.getMap(), 1/300f);
         mapRenderer.setView(camera);
         // Code for defining player and start location
-        Vector2 startLoc = new Vector2(0,0);
-        player = new Player(startLoc, Direction.NORTH, gameBoard.getPlayerLayer());
-
-
-
-
     }
 
 
@@ -123,8 +94,9 @@ public class MainGameScreen extends InputAdapter implements Screen {
         // Code for drawing the GUI
         game.batch.begin();
 
-        drawButtons();
-        drawCards();
+        gui.drawButtons();
+        gui.drawCards();
+        gui.drawHealthbar(player.getHp());
 
         game.batch.end();
 
@@ -136,7 +108,7 @@ public class MainGameScreen extends InputAdapter implements Screen {
         if(Gdx.input.getX() > 50 * 10 && Gdx.input.getX() < 50 * 13 &&
                 Gdx.input.getY() > 50 * 4 && Gdx.input.getY() < 50 *7) {
             if (Gdx.input.justTouched()) {
-               touchCards(Gdx.input.getX(), Gdx.input.getY());
+               gui.touchCards(Gdx.input.getX(), Gdx.input.getY());
             }
         }
 
@@ -144,13 +116,23 @@ public class MainGameScreen extends InputAdapter implements Screen {
         if(Gdx.input.getX() > 50 * 10 && Gdx.input.getX() < 50 * 13 &&
                 Gdx.input.getY() > 50 * 9 && Gdx.input.getY() < 50 *10) {
             if (Gdx.input.justTouched()) {
-                touchedButtons(Gdx.input.getX());
+                gui.touchedButtons(Gdx.input.getX());
             }
         }
 
 
         //Sets in player
+        if (ticks == 100) {
+            monkey.makeOneCardPick();
+            monkey.playFullHand();
+            ticks = 0;
+        }
+        else {
+            ticks++;
+        }
         player.updatePlayerIcon();
+        monkey.updatePlayerIcon();
+;
 
     }
 
@@ -167,33 +149,102 @@ public class MainGameScreen extends InputAdapter implements Screen {
                 player.Turn(TurnDirection.RIGHT);
             }
         }
+        // Monkey test movement
+        if (keycode == Input.Keys.DPAD_UP){
+            monkey.Move(monkey.getPlayerDir());
+
+        }
+        else if (keycode == Input.Keys.DPAD_LEFT || keycode == Input.Keys.DPAD_RIGHT) {
+            if (keycode == Input.Keys.DPAD_LEFT) {
+                monkey.Turn(TurnDirection.LEFT);
+            } else {
+                monkey.Turn(TurnDirection.RIGHT);
+            }
+        }
         // Checks if player is dead before allowing player to respawn
         else if (player.getPlayerState() == PlayerState.DEAD && keycode == Input.Keys.R){
             // Barebones respawn system that feeds in start coordinates and direction, a better one will be developed later
             player.respawn(0,0, Direction.NORTH);
         }
         // Checks if player is standing on special tiles
-        gameBoard.checkForSpecialTiles(player, Boolean.FALSE);
-
+        gameBoard.checkForSpecialTiles(player);
+        gameBoard.checkForSpecialTiles(monkey);
+        updateLoc();
 
         return true;
     }
 
-    public void doTurn(){
-        if(player.powerdown){
+    public void doTurn() {
+        if (player.getPowerdown()) {
             // Insert code for powerdown here
         }
         // Insert delay here
         deck.dealCards(player);
-        // Insert delay here that allows players to choose their cards
-        for(Integer i = 0; i<7; i++){
-            // Must be improved to make card priority a thing
-            player.playHand(i);
-            // Must be improved so that the different parts act in the correct order
-            gameBoard.checkForSpecialTiles(player, false);
+        for (int j = 0; players.size() > j; j++) {
+            if (player.getReady())
+            // Insert delay here that allows players to choose their cards
+            for (Integer i = 0; i < 7; i++) {
+                // Must be improved to make card priority a thing
+                player.playHand(i);
+                // Must be improved so that the different parts act in the correct order
+                gameBoard.checkForSpecialTiles(player);
+            }
+            // Insert cleanup phase here
+            deck.collectCards(player);
         }
-        // Insert cleanup phase here
-        deck.collectCards(player);
+        if (player.getPowerdown()) {
+            player.bootUp();
+        }
+    }
+
+    // Updates all the location in allLoc to the current position of the players
+    private void updateLoc() {
+        for(int i = 0; i < players.size(); i++) {
+            allLoc.set(i, players.get(i).getPlayerloc());
+        }
+        System.out.println("playerloc: " + allLoc);
+    }
+    private void addLoc() {
+        for(int i = 0; i < players.size(); i++) {
+            allLoc.add(i, players.get(i).getPlayerloc());
+        }
+        System.out.println("playerloc: " + allLoc);
+    }
+    private Boolean checkForPlayerCollision(IPlayer movingPlayer) {
+        int movingPlayerInt = players.indexOf(movingPlayer);
+        for(int i = 0;  i < players.size(); i++) {
+            if(i != movingPlayerInt && players.get(i).getPlayerloc().equals(movingPlayer.getPlayerloc())) {
+
+                System.out.println("collision");
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private IPlayer getCollisionVictim(IPlayer movingPlayer) {
+        int movingPlayerInt = players.indexOf(movingPlayer);
+        IPlayer collisionVictim;
+        for (int i = 0; i < players.size(); i++) {
+            if (i != movingPlayerInt && players.get(i).getPlayerloc().equals(movingPlayer.getPlayerloc())) {
+                collisionVictim = players.get(i);
+                return collisionVictim;
+            }
+        }
+        return  collisionVictim = movingPlayer;
+    }
+
+    private void handleCollision(IPlayer movingPlayer) {
+        IPlayer collisionVictim = getCollisionVictim(movingPlayer);
+        Direction movingPlayerDir = movingPlayer.getPlayerDir();
+        System.out.println("movingplayer" + movingPlayer);
+        System.out.println("collisionVictim: " + collisionVictim);
+        collisionVictim.Move(movingPlayerDir);
+    }
+    public void collision(IPlayer movingPlayer) {
+        if(checkForPlayerCollision(movingPlayer)) {
+            handleCollision(movingPlayer);
+        }
     }
 
 
@@ -222,226 +273,8 @@ public class MainGameScreen extends InputAdapter implements Screen {
 
     }
 
-    public void drawCards() {
-
-        // The start of where we want to place the cards, these will not change during the for-loop
-        int x_pos = 10;
-        int y_pos = 5;
-
-        // These will make sure the cards end up in the right spot
-        int x = 0;
-        int y = 0;
-        for(int i = 0; 9 > i; i++) {
-
-            if(x == 3) {
-                x = 0;
-                y--;
-            }
-            game.batch.draw(cards.get(i), BUTTON_WIDTH * (x_pos + x), BUTTON_HEIGHT * (y_pos + y), 50, 50);
-            x++;
-        }
-    }
-    // This function will be changed. Works ATM to load cards into Array
-    public void loadCards() {
-        cardNumbers.clear();
-        Random random = new Random();
-        int upperbound = 7;
-        int randomNumber;
-        for (int i = 0; 9 > i; i++) {
-            randomNumber = random.nextInt(upperbound);
-            cardNumbers.add(randomNumber);
-        }
-
-        for (int i = 0; 9 > i; i++) {
-            if(cardNumbers.get(i) == 0) {
-                cards.add(move1);
-            }
-            else if (cardNumbers.get(i) == 1) {
-                cards.add(move2);
-            }
-            else if (cardNumbers.get(i) == 2) {
-                cards.add(move3);
-            }
-            else if (cardNumbers.get(i) == 3) {
-                cards.add(moveRight);
-            }
-            else if (cardNumbers.get(i) == 4) {
-                cards.add(moveLeft);
-            }
-            else if (cardNumbers.get(i) == 5) {
-                cards.add(moveback);
-            }
-            else if (cardNumbers.get(i) == 6) {
-                cards.add(turn180);
-            }
-
-        }
-    }
-
-    public void touchCards(int x,int y) {
-        int cardX = 0;
-        int cardY = 0;
 
 
-        // These if-statements take care of x input and changes cardX to the correct column number(1-3)
-        if (x >= BUTTON_WIDTH * 10 && x < BUTTON_WIDTH * 11) {
-            cardX = 1;
-
-        } else if (x >= BUTTON_WIDTH * 11 && x < BUTTON_WIDTH * 12) {
-            cardX = 2;
-
-        } else if (x >= BUTTON_WIDTH * 12 && x <= BUTTON_WIDTH * 13) {
-            cardX = 3;
-
-        }
-
-        // These if-statements take care of y input and changes cardX to the correct column number(0-2)
-        if (y >= BUTTON_HEIGHT * 4 && y < BUTTON_HEIGHT * 5) {
-            cardY = 0;
-
-        } else if (y >= BUTTON_HEIGHT * 5 && y < BUTTON_HEIGHT * 6) {
-            cardY = 1;
-
-        } else if (y >= BUTTON_HEIGHT * 6 && y <= BUTTON_HEIGHT * 7) {
-            cardY = 2;
-
-        }
-
-        int cardXY = cardX + (cardY * 3) - 1;
-        handleTouchedCards(cardXY);
-
-    }
-    public void movePlayer(int cardXY){
-        // Gives the right command depending on which card the user touched
-        if (cardNumbers.get(cardXY) == 0) {
-            player.Move(player.getPlayerDir());
-            }
-        else if (cardNumbers.get(cardXY) == 1) {
-            player.Move(player.getPlayerDir());
-            player.Move(player.getPlayerDir());
-            }
-        else if (cardNumbers.get(cardXY) == 2) {
-            player.Move(player.getPlayerDir());
-            player.Move(player.getPlayerDir());
-            player.Move(player.getPlayerDir());
-            }
-        else if (cardNumbers.get(cardXY) == 3) {
-            player.Turn(TurnDirection.RIGHT);
-            }
-
-        else if (cardNumbers.get(cardXY) == 4) {
-            player.Turn(TurnDirection.LEFT);
-            }
-        else if (cardNumbers.get(cardXY) == 5) {
-            player.Turn(TurnDirection.RIGHT);
-            player.Turn(TurnDirection.RIGHT);
-            player.Move(player.getPlayerDir());
-            player.Turn(TurnDirection.RIGHT);
-            player.Turn(TurnDirection.RIGHT);
-            }
-        else if (cardNumbers.get(cardXY) == 6) {
-            player.Turn(TurnDirection.RIGHT);
-            player.Turn(TurnDirection.RIGHT);
-            }
-
-        gameBoard.checkForSpecialTiles(player, Boolean.FALSE);
-
-
-        handleTouchedCards(cardXY);
-
-    }
-
-    // This function changes the touched cards to a number so that the user can pick 5 cards
-    public void handleTouchedCards(int cardXY) {
-
-        if(tempCardPick == 5 || player.getPlayerState() != PlayerState.ALIVE || indexSelectedCards.contains(cardXY)) {
-
-            System.out.println("stopper");
-
-        }
-        else {
-            // Adds the Texture and integer of touched card into a Arraylist
-            selectedCards.add(cards.get(cardXY));
-            indexSelectedCards.add(cardXY);
-
-            cards.set(cardXY, pickedCards.get(tempCardPick));
-
-            movePlayer(cardXY);
-            tempCardPick++;
-         }
-
-
-
-    }
-
-    public void drawButtons() {
-
-        game.batch.draw(resetcards, BUTTON_WIDTH * 10, BUTTON_HEIGHT * 0, 50, 50);
-        game.batch.draw(startround, BUTTON_WIDTH * 11, BUTTON_HEIGHT * 0, 50, 50);
-        game.batch.draw(poweroff, BUTTON_WIDTH * 12, BUTTON_HEIGHT * 0, 50, 50);
-
-        for (Integer i=0; i<player.getLives(); i++ ){
-            game.batch.draw(heart, BUTTON_WIDTH *(10+i), BUTTON_HEIGHT * 9, 50, 50);
-        }
-    }
-
-    public void touchedButtons(int x) {
-        int cardX = 0;
-
-        // These if-statments take care of x input and changes cardX to the correct column number(1-3)
-        if(x >= BUTTON_WIDTH * 10 && x < BUTTON_WIDTH * 11) {
-            cardX = 1;
-
-        }
-        else if(x >= BUTTON_WIDTH * 11 && x < BUTTON_WIDTH * 12) {
-            cardX = 2;
-
-        }
-        else if (x >= BUTTON_WIDTH * 12 && x <= BUTTON_WIDTH * 13) {
-            cardX = 3;
-
-        }
-
-        if(cardX == 1) {
-
-            for (int i = 0; tempCardPick > i; i++) {
-                cards.set(indexSelectedCards.get(i), selectedCards.get(i));
-            }
-            tempCardPick = 0;
-            selectedCards.clear();
-            indexSelectedCards.clear();
-        }
-        else if (cardX == 2) {
-            tempCardPick = 0;
-            cards.clear();
-            cardNumbers.clear();
-
-            loadCards();
-
-
-        }
-        else if (cardX == 3) {
-            System.out.println("Power Down");
-
-        }
-
-
-    }
-
-    private void fillPickedCards() {
-        Texture one = new Texture("assets/pickedCards/One.png");
-        Texture two = new Texture("assets/pickedCards/Two.png");
-        Texture three = new Texture("assets/pickedCards/three.png");
-        Texture four = new Texture("assets/pickedCards/four.png");
-        Texture five = new Texture("assets/pickedCards/five.png");
-
-        pickedCards.add(one);
-        pickedCards.add(two);
-        pickedCards.add(three);
-        pickedCards.add(four);
-        pickedCards.add(five);
-
-    }
 
 }
-// merge hotfix
+
