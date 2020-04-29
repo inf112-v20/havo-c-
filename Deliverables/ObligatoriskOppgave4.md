@@ -126,3 +126,66 @@ WARNING: Use --illegal-access=warn to enable warnings of further illegal reflect
 
 WARNING: All illegal access operations will be denied in a future releas
 
+## Referat
+
+**Onsdag 01.04.20** ca. 2 timer, alle møtte opp
+- Knappene “Reset Cards”, “Start Round” og “Power Down” fikk hvert sitt touch field.
+- Vi la en plan på hvordan vi må jobbe frem over for å nå alle målene.
+- Koble kortene systemene opp til GUI var en ting som måtte gjøres ASAP.
+- Få et periodesystem til å virke måtte også gjøres ASAP.
+- Vi lagte en DoTurn funksjon som var veldig simpel for å få en ide på hvordan det ville fungere.
+
+**Fredag 03.04.20** ca. 2 timer, alle møtte opp
+- Prøvde å legge til funksjonalitet til knappene, hadde en del problemer her.
+- Endret slik at hjertene nå forsvinner etter hvor mange liv brukeren har igjen.
+- Mer logistikk på hvordan periodesystem, kortsystem, flerspillerfinskjoner skal fungere.
+- Generelt var energi nivået ganske labert dette møte da de fleste har fått en døgnrytme som tilsier at kl 10:00 er enda veldig tidlig om morgenen.
+
+**Mandag 06.04.20**: ca. 1.5 timer, Andreas, Otso, Heine
+- Fikk fikset problemene vi hadde med knappene.
+- Nå viste kortene hvilken rekkefølge bruekrene har valg kortene i.
+- La til flere kort grafisk.
+- Endret på koden for de nye kortene.
+- Ordnet et merge problem, commitsene ble noe uryddige her da vi hadde fått merge feil.
+
+**Onsdag 08.04.20**: ca. 2 timer, alle møtte opp
+- Det ble laget en healthbar, (9 bilder)
+- Det ble ryddet i asset mappen 
+- Vi gikk en i gang med å gjøre mye refactorering in mainGameScreen
+- Vi kom ganske langt i å koble GUI opp til kortsystemet.
+
+**Fredag 10.04.20**: ca. 2 timer, alle møtte opp
+- Implementert healthbar inn med GUI
+- Koblet ferdig GUI opp til kortsystemet
+- Implementerte lasere som er på mapet
+- Startet å skrive ObligatoriskOppgave4.md
+- Laget klassen GUI.java for å håndtere all GUI der
+
+**Mandag 13.04.20**: ca. 2 timer. Alle møtte opp
+- Laget og implementerte diverse sound effects
+- Forbedret måten player tar damage
+- Startet implementering av doTurn()
+- checkHoles() er nå knuttet til player Move()
+
+**Fredag 17.04.20**: ca. 1 time. Alle møtte opp
+- Laget en ny branch for å prøve å implementere online multiplayer 
+- Implementerte et wallcheck system og knyttet det til Move(), så det skulle funke bra
+- Planla og tenkte på hvordan vi skulle få til online multiplayer
+
+**Tirsdag 21.04.20**: ca. 1,5 timer. Alle møtte opp
+- Designet noen buttons
+- Tenkte mye på hvordan vi skulle fortsette med online multplayer. Var vanskeligere enn først antatt
+- Diskuterte også hva annet vi trengte å få gjort fremover 
+
+**Fredag 24.04.20**: ca. 2 timer. Alle møtte opp
+- Begynte å få second thoughts angående online multiplayer. Kanskje AI ville vært bedre
+- Player må nå gå igjennom alle flaggene i rekkefølge for å vinne
+- Diskuterte hvordan vi skulle gå frem med AI mulitplayer
+
+**Mandag 27.04.20**: ca. 2 timer. Alle møtte opp
+- Prototype til powerdown er implementert
+- Startet implementeringen av AI multiplayer
+- Skrev mer av ObligatoriskOppgave4.md
+
+**Onsdag 29.04.20**: ca. 2 timer. Alle møtte opp
+- Fikset bugs på GUI i doTurn()
