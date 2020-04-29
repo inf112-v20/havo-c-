@@ -122,7 +122,7 @@ public class MainGameScreen extends InputAdapter implements Screen {
 
 
         //Sets in player
-        if (ticks == 180) {
+        if (ticks == 100) {
             monkey.makeOneCardPick();
             monkey.playFullHand();
             ticks = 0;
@@ -214,6 +214,7 @@ public class MainGameScreen extends InputAdapter implements Screen {
         int movingPlayerInt = players.indexOf(movingPlayer);
         for(int i = 0;  i < players.size(); i++) {
             if(i != movingPlayerInt && players.get(i).getPlayerloc().equals(movingPlayer.getPlayerloc())) {
+
                 System.out.println("collision");
                 return true;
             }
@@ -236,6 +237,8 @@ public class MainGameScreen extends InputAdapter implements Screen {
     private void handleCollision(IPlayer movingPlayer) {
         IPlayer collisionVictim = getCollisionVictim(movingPlayer);
         Direction movingPlayerDir = movingPlayer.getPlayerDir();
+        System.out.println("movingplayer" + movingPlayer);
+        System.out.println("collisionVictim: " + collisionVictim);
         collisionVictim.Move(movingPlayerDir);
     }
     public void collision(IPlayer movingPlayer) {

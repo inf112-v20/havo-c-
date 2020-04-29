@@ -72,7 +72,7 @@ public class Guineapig implements IPlayer{
                 board.checkHoles(this);
             }
         }
-        game.collision(this);
+
     }
     public void Turn(TurnDirection dir){
         // Turns the player
