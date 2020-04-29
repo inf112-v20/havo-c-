@@ -36,7 +36,7 @@ public class MonkeyAI implements IPlayer{
     Guineapig guineapig;
     private ArrayList<Card> pickedCards = new ArrayList<Card>();
     private ArrayList<Integer> indexPickedCards = new ArrayList<Integer>();
-    Vector2 oldCoordinates;
+    Vector2 oldCoordinates = new Vector2();
 
     // Constructor
     public MonkeyAI(Vector2 location, Direction dir, Board board, MainGameScreen game){
@@ -51,11 +51,11 @@ public class MonkeyAI implements IPlayer{
         playerDiedCell.setTile(new StaticTiledMapTile(playerIcon[0][1]));
         playerWonCell.setTile(new StaticTiledMapTile(playerIcon[0][2]));
 
-        Vector2 guineapigStartLoc = new Vector2(0, 0);
+        Vector2 guineapigStartLoc = new Vector2(0, 10);
         guineapigStartLoc.set(playerLoc);
         monkeyCardDeck = new CardDeck();
         guineapig = new Guineapig(guineapigStartLoc, dir, board, game);
-        setOldCoordinates();
+
     }
 
     public void Move(Direction dir) {
@@ -263,8 +263,6 @@ public class MonkeyAI implements IPlayer{
 
         for(int i = 0; i < lives; i++) {
             if(cardCanNotKill(smallHandCardDeck.get(i))) {
-                System.out.println("card before added to hand but passed the kill tests: " + smallHandCardDeck.get(i).getCommand());
-                System.out.println("Player position before card added to hand: " + playerLoc);
                 pickedCards.add(smallHandCardDeck.get(i));
                 indexPickedCards.add(i);
                 break;
@@ -288,58 +286,48 @@ public class MonkeyAI implements IPlayer{
         resetCard();
     }
 
-    private void resetGuineapig(Direction dir) {
-        guineapig.setPlayerDir(dir);
-        guineapig.setLocation(getOldCoordinates());
-        System.out.println("old playerlocations: " + getOldCoordinates());
+    private void resetGuineapig() {
+        guineapig.setPlayerDir(playerDir);
+        guineapig.setLocation(getOldCoordinates().cpy());
         guineapig.setPlayerState(playerState.ALIVE);
     }
 
     private Boolean cardKillsGuineapig(Card card) {
-        card.playCard(guineapig);
-        System.out.println("Guineapig before passing test but after making move: GetX: " + guineapig.getX() + " GetY: " + guineapig.getY());
-        System.out.println("player before passing test but after making move: GetX: " + getX() + " GetY: " + getY());
-        System.out.println("Card up fore judgment: " + card.getCommand());
-        System.out.println("Old coordinates after guineapig  making move: " + getOldCoordinates());
+        Card guineapigCard = new Card(card.getCommand());
+
+        guineapigCard.playCard(guineapig);
+
+
         if(guineapig.getPlayerState() == playerState.ALIVE && insideMap()) {
             System.out.println("The guineapig have passed all tests with the card: " + card.getCommand());
             return true; }
         else {
-            System.out.println("##---Card did not pass the tests---##");
-            System.out.println("guineapig playerstate: " + guineapig.getPlayerState());
-            System.out.println("GetX: " + guineapig.getX() + " GetY: " + guineapig.getY());
-            System.out.println("guineapig will have his coordinates reset");
-            resetGuineapig( playerDir);
+            System.out.println("##-----------------------Card did not pass the tests-------------------##");
+
+            resetGuineapig();
             return false; }
     }
     private Boolean insideMap() {
-        System.out.println("GetX: " + guineapig.getX() + " GetY: " + guineapig.getY());
         if(guineapig.getX() >= 0 && guineapig.getX() <= 9
             && guineapig.getY() >= 0 && guineapig.getY() <= 9) {
-            System.out.println("AI inside of map");
             return true;
         }
         else {
-            System.out.println("AI out side of map");
             return  false;
         }
     }
 
     public void playFullHand() {
-        System.out.println();
         for(int i = 0; i < pickedCards.size(); i++) {
-            System.out.println("AI played: " + pickedCards.get(i).command);
-            System.out.println("Current position of player" + getPlayerloc());
-            System.out.println();
             pickedCards.get(i).playCard(this);
-            System.out.println("Current position of player after move" + getPlayerloc());
             setOldCoordinates();
-            System.out.println("Old coordinates after making move: " + getOldCoordinates());
+
         }
         pickedCards.clear();
     }
     private void setOldCoordinates() {
-        oldCoordinates = playerLoc;
+
+        oldCoordinates.set(playerLoc);
     }
     private Vector2 getOldCoordinates() {
         return oldCoordinates;

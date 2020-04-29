@@ -8,7 +8,7 @@ import com.badlogic.gdx.graphics.Texture;
 
 import java.awt.*;
 
-public class MainMenuScreen implements Screen {
+public class MainGameLobbyScreen implements Screen {
 
     public OrthographicCamera camera = new OrthographicCamera();
     private static final int BUTTON_WIDTH = 250;
@@ -21,11 +21,11 @@ public class MainMenuScreen implements Screen {
 
     public Robo game;
     Texture playButton;
-    Texture exitButton;
-    public MainMenuScreen (Robo robo) {
+    Texture backButton;
+    public MainGameLobbyScreen (Robo robo) {
         this.game = robo;
         playButton = new Texture("assets/buttons/startKnapp.png");
-        exitButton = new Texture("assets/buttons/ExitBtn.png");
+        backButton = new Texture("assets/buttons/BackBtn.png");
     }
     @Override
     public void show() {
@@ -45,7 +45,7 @@ public class MainMenuScreen implements Screen {
                 Gdx.input.getX() > X_POS_BUTTON && Gdx.input.getX() < X_POS_BUTTON + BUTTON_WIDTH) {
             if (Gdx.input.isTouched()) {
                 this.dispose();
-                game.setScreen(new MainGameLobbyScreen(game));
+                game.setScreen(new MainGameScreen(game));
 
             }
         }
@@ -53,11 +53,11 @@ public class MainMenuScreen implements Screen {
                 Gdx.input.getX() > X_POS_BUTTON && Gdx.input.getX() < X_POS_BUTTON + BUTTON_WIDTH) {
             if (Gdx.input.isTouched()) {
                 this.dispose();
-                Gdx.app.exit();
+                game.setScreen(new MainMenuScreen(game));
             }
         }
         game.batch.draw(playButton, X_POS_BUTTON, Y_POS_STARTBUTTON, BUTTON_WIDTH, BUTTON_HEIGHT);
-        game.batch.draw(exitButton, X_POS_BUTTON,Y_POS_EXITBUTTON, BUTTON_WIDTH, BUTTON_HEIGHT);
+        game.batch.draw(backButton, X_POS_BUTTON,Y_POS_EXITBUTTON, BUTTON_WIDTH, BUTTON_HEIGHT);
         game.batch.end();
 
     }
