@@ -1,7 +1,9 @@
 package inf112.skeleton.app;
 
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 
@@ -40,6 +42,7 @@ public class GUI {
 
     public ArrayList<Texture> healthbar = new ArrayList<Texture>();
 
+    private BitmapFont font;
 
     // Temp Var for player, I think this variable should be put into player class
     int tempCardPick = 0;
@@ -79,6 +82,11 @@ public class GUI {
         loadCards();
         fillPickedCards();
         fillhealthbar();
+
+
+        font = new BitmapFont();
+        font.setColor(Color.MAGENTA);
+
     }
     public void drawCards() {
 
@@ -96,6 +104,8 @@ public class GUI {
                 y--;
             }
             game.batch.draw(cards.get(i), BUTTON_WIDTH * (x_pos + x), BUTTON_HEIGHT * (y_pos + y), 50, 50);
+            font.draw(game.batch, player.getOneCardValue(i).toString(), BUTTON_WIDTH * (x_pos + x) + 25, BUTTON_HEIGHT * (y_pos + y) + 10);
+
             x++;
         }
     }
@@ -317,6 +327,8 @@ public class GUI {
     public ArrayList<Card> getCardHand () {
         return cardHand;
     }
-    private void loadInCardvalue() {}
+    private void drawCardvalue() {
+
+    }
 
 }

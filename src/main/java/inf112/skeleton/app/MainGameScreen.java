@@ -68,6 +68,7 @@ public class MainGameScreen extends InputAdapter implements Screen {
         players.add(monkey);
         addLoc();
         rand = new Random();
+        handleCardValues();
 
     }
 
@@ -142,14 +143,6 @@ public class MainGameScreen extends InputAdapter implements Screen {
         if(player.getReady()) {
             player.setReady(false);
             doTurn();
-        }
-
-        if (intTemp == 120) {
-            handleCardValues();
-            System.out.println(player.getCardValues());
-            intTemp = 0;
-        } else {
-            intTemp++;
         }
 
         player.updatePlayerIcon();
@@ -230,6 +223,8 @@ public class MainGameScreen extends InputAdapter implements Screen {
 
             gui.deck.shuffleDeck();
             gui.loadCards();
+            player.clearCardValues();
+            handleCardValues();
         }
         if (player.getPowerdown()) {
             player.bootUp();
