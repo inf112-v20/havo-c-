@@ -128,11 +128,16 @@ public class MainGameScreen extends InputAdapter implements Screen {
             ticks = 0;
         }
         else {
-            ticks++;
+
+        }
+
+        if(player.getReady()) {
+            player.setReady(false);
+            doTurn();
         }
         player.updatePlayerIcon();
         monkey.updatePlayerIcon();
-;
+
 
     }
 
@@ -179,18 +184,29 @@ public class MainGameScreen extends InputAdapter implements Screen {
             // Insert code for powerdown here
         }
         // Insert delay here
-        deck.dealCards(player);
+        gui.tempCardPick = 0;
+
+        gui.cards.clear();
+        //deck.dealCards(player);
         for (int j = 0; players.size() > j; j++) {
-            if (player.getReady())
             // Insert delay here that allows players to choose their cards
-            for (Integer i = 0; i < 7; i++) {
+            for (Integer i = 0; i < players.get(j).getHand().size(); i++) {
                 // Must be improved to make card priority a thing
-                player.playHand(i);
+                players.get(j).playHand(i);
+                System.out.println(player.getHand().get(i).getCommand());
+
                 // Must be improved so that the different parts act in the correct order
-                gameBoard.checkForSpecialTiles(player);
+                //gameBoard.checkForSpecialTiles(player);
             }
-            // Insert cleanup phase here
-            deck.collectCards(player);
+            player.getHand().clear();
+            gui.cardHand.clear();
+            gui.cards.clear();
+            gui.selectedCards.clear();
+            gui.indexSelectedCards.clear();
+
+
+            gui.deck.shuffleDeck();
+            gui.loadCards();
         }
         if (player.getPowerdown()) {
             player.bootUp();

@@ -53,7 +53,7 @@ public class GUI {
 
     // Variables for Player
 
-    private CardDeck deck = new CardDeck();
+    public CardDeck deck = new CardDeck();
 
 
     // Width and Height og the grid
@@ -99,11 +99,17 @@ public class GUI {
             x++;
         }
     }
-    // This function will be changed. Works ATM to load cards into Array
+
+    // This function loads the right cards into the hand the player can pick amongst, then loads the right textures into
+    // an new array "cards" that contains the right texture for the right command in the right order.
     public void loadCards() {
+        // cardHand is the Arraylist for the cards/commands, which the player can pick amongst
+        // Clears the hand so we are 100% sure non of the cards from last round is there.
         cardHand.clear();
+        // Should reload the new cards into the cardHand
         cardHand = deck.dealCards(player);
 
+        // This for-loop loads the right texture in the right order into cards (which is the array list for the textures)
         for (int i = 0; 9 > i; i++) {
             if(cardHand.get(i).getCommand() == "Move1") {
                 cards.add(move1);
@@ -126,7 +132,6 @@ public class GUI {
             else if (cardHand.get(i).getCommand() == "Turn180") {
                 cards.add(turn180);
             }
-
         }
     }
 
@@ -199,6 +204,7 @@ public class GUI {
 
     }
 
+
     public void drawButtons() {
 
         game.batch.draw(resetcards, BUTTON_WIDTH * 10, BUTTON_HEIGHT * 0, 50, 50);
@@ -242,22 +248,25 @@ public class GUI {
         }
         // Start round
         else if (cardX == 2) {
-            tempCardPick = 0;
 
-            cards.clear();
+            //tempCardPick = 0;
 
-            for(int i = 0; player.getHand().size() > i; i++) {
-                player.playHand(i);
-            }
+            //cards.clear();
 
-            player.getHand().clear();
-            cardHand.clear();
-            selectedCards.clear();
-            indexSelectedCards.clear();
+            //for(int i = 0; player.getHand().size() > i; i++) {
+            //    player.playHand(i);
+            //}
 
-            player.setPowerdown(true);
-            deck.shuffleDeck();
-            loadCards();
+            player.setReady(true);
+
+            //player.getHand().clear();
+            //cardHand.clear();
+            //selectedCards.clear();
+            //indexSelectedCards.clear();
+
+            //player.setPowerdown(true);
+            //deck.shuffleDeck();
+            //loadCards();
         }
         // power down
         else if (cardX == 3) {
