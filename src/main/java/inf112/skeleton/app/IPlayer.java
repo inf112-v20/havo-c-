@@ -54,6 +54,16 @@ public interface IPlayer {
 
     Vector2 getPlayerloc();
 
+    void playFullHand();
+
+    void addCardvalues(Integer value);
+
+    void clearCardValues();
+
+    Integer getOneCardValue(Integer index);
+
+    ArrayList<Integer> getCardValues();
+
 }
 
 

@@ -258,7 +258,6 @@ public class GUI {
             //}
 
             player.setReady(true);
-
             //player.getHand().clear();
             //cardHand.clear();
             //selectedCards.clear();
@@ -272,6 +271,8 @@ public class GUI {
         else if (cardX == 3) {
             System.out.println("Power Down");
             player.powerdown();
+
+            player.getHand();
         }
     }
 
@@ -312,5 +313,10 @@ public class GUI {
         healthbar.add(Healthbar_8);
         healthbar.add(Healthbar_full);
     }
+
+    public ArrayList<Card> getCardHand () {
+        return cardHand;
+    }
+    private void loadInCardvalue() {}
 
 }

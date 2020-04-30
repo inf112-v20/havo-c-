@@ -30,6 +30,8 @@ public class Player implements IPlayer{
     private TiledMapTileLayer.Cell playerDiedCell = new TiledMapTileLayer.Cell();
     private TiledMapTileLayer.Cell playerWonCell = new TiledMapTileLayer.Cell();
 
+    // Card values
+    private ArrayList<Integer> cardValues= new ArrayList<Integer> ();
 
     // Constructor
     public Player(Vector2 location, Direction dir, Board board, MainGameScreen game){
@@ -229,4 +231,24 @@ public class Player implements IPlayer{
     }
 
     public Vector2 getPlayerloc() { return playerLoc; }
+
+
+    // This should be refactored:
+    public void playFullHand() {
+
+    }
+
+    public void addCardvalues(Integer value) {
+        System.out.println(value);
+        cardValues.add(value);
+    }
+    public void clearCardValues() {
+        cardValues.clear();
+    }
+    public Integer getOneCardValue(Integer index) {
+        return cardValues.get(index);
+    }
+    public ArrayList<Integer> getCardValues() {
+        return cardValues;
+    }
 }

@@ -5,6 +5,7 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.maps.tiled.tiles.StaticTiledMapTile;
 import com.badlogic.gdx.math.Vector2;
+import java.util.*;
 
 import java.util.ArrayList;
 
@@ -30,6 +31,11 @@ public class MonkeyAI implements IPlayer{
     private TiledMapTileLayer.Cell playerDiedCell = new TiledMapTileLayer.Cell();
     private TiledMapTileLayer.Cell playerWonCell = new TiledMapTileLayer.Cell();
 
+
+    // Card Values
+    private ArrayList<Integer> cardValues= new ArrayList<Integer> ();
+
+
     // Variables just for the AI
     CardDeck monkeyCardDeck;
     private ArrayList<Card> smallHandCardDeck = new ArrayList<Card>();
@@ -37,6 +43,7 @@ public class MonkeyAI implements IPlayer{
     private ArrayList<Card> pickedCards = new ArrayList<Card>();
     private ArrayList<Integer> indexPickedCards = new ArrayList<Integer>();
     Vector2 oldCoordinates = new Vector2();
+    Direction oldDirection;
 
     // Constructor
     public MonkeyAI(Vector2 location, Direction dir, Board board, MainGameScreen game){
@@ -55,6 +62,7 @@ public class MonkeyAI implements IPlayer{
         guineapigStartLoc.set(playerLoc);
         monkeyCardDeck = new CardDeck();
         guineapig = new Guineapig(guineapigStartLoc, dir, board, game);
+        oldDirection = playerDir;
 
     }
 
@@ -242,12 +250,27 @@ public class MonkeyAI implements IPlayer{
 
     public Vector2 getPlayerloc() { return playerLoc; }
 
+    public void addCardvalues(Integer value) {
+        cardValues.add(value);
+    }
+    public void clearCardValues() {
+        cardValues.clear();
+    }
+    public Integer getOneCardValue(Integer index) {
+        return cardValues.get(index);
+    }
+    public ArrayList<Integer> getCardValues() {
+        return cardValues;
+    }
 
     // Everything about how the monkeyAI thinks/works should be added under this section
 
     // Adds to small hand in CardDeck the 9 cards the monkey can pick amongst
-    private void makeMonkeyHand() {
+    public void makeMonkeyHand() {
         smallHandCardDeck.clear();
+        indexPickedCards.clear();
+        pickedCards.clear();
+
         monkeyCardDeck.shuffleDeck();
         smallHandCardDeck = monkeyCardDeck.dealCards(this);
     }
@@ -259,10 +282,9 @@ public class MonkeyAI implements IPlayer{
     }
 
     public void makeOneCardPick() {
-        makeMonkeyHand();
 
         for(int i = 0; i < lives; i++) {
-            if(cardCanNotKill(smallHandCardDeck.get(i))) {
+            if(cardCanNotKill(smallHandCardDeck.get(i)) && !indexPickedCards.contains(i)) {
                 pickedCards.add(smallHandCardDeck.get(i));
                 indexPickedCards.add(i);
                 break;
@@ -277,8 +299,8 @@ public class MonkeyAI implements IPlayer{
     private Boolean cardCanNotKill(Card card) {
         if(cardKillsGuineapig(card)) { return true; }
         else { return false; }
-
     }
+
     public void pickAllCards() {
         for(int i = 0; i < 5; i++){
             makeOneCardPick();
@@ -300,6 +322,7 @@ public class MonkeyAI implements IPlayer{
 
         if(guineapig.getPlayerState() == playerState.ALIVE && insideMap()) {
             System.out.println("The guineapig have passed all tests with the card: " + card.getCommand());
+            oldCoordinates.set(guineapig.getPlayerloc().cpy());
             return true; }
         else {
             System.out.println("##-----------------------Card did not pass the tests-------------------##");
@@ -318,6 +341,7 @@ public class MonkeyAI implements IPlayer{
     }
 
     public void playFullHand() {
+        System.out.println("funker");
         for(int i = 0; i < pickedCards.size(); i++) {
             pickedCards.get(i).playCard(this);
             setOldCoordinates();

@@ -26,6 +26,11 @@ public class Guineapig implements IPlayer{
     private TiledMapTileLayer playerLayer;
     private MainGameScreen game;
     // Player icon objects
+
+    // Card values
+    private ArrayList<Integer> cardValues= new ArrayList<Integer> ();
+
+
     private TiledMapTileLayer.Cell playerCell = new TiledMapTileLayer.Cell();
     private TiledMapTileLayer.Cell playerDiedCell = new TiledMapTileLayer.Cell();
     private TiledMapTileLayer.Cell playerWonCell = new TiledMapTileLayer.Cell();
@@ -232,5 +237,21 @@ public class Guineapig implements IPlayer{
 
     public void setLocation(Vector2 location) { this.playerLoc = location; }
 
+    public void playFullHand() {
+
+    }
+
+    public void addCardvalues(Integer value) {
+        cardValues.add(value);
+    }
+    public void clearCardValues() {
+        cardValues.clear();
+    }
+    public Integer getOneCardValue(Integer index) {
+        return cardValues.get(index);
+    }
+    public ArrayList<Integer> getCardValues() {
+        return cardValues;
+    }
 
 }

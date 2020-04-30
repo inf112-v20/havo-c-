@@ -13,6 +13,7 @@ import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.math.Vector2;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 public class MainGameScreen extends InputAdapter implements Screen {
 
@@ -33,6 +34,10 @@ public class MainGameScreen extends InputAdapter implements Screen {
     public ArrayList<IPlayer> players;
     private CardDeck deck = new CardDeck();
 
+    Random rand;
+    public Boolean temp = true;
+    int intTemp = 0;
+    private ArrayList<Card> guiCardhand = new ArrayList<Card>();
 
     // Width and Height og the grid
     private final int BOARD_WIDTH = gameBoard.getBoard().getWidth();
@@ -40,6 +45,9 @@ public class MainGameScreen extends InputAdapter implements Screen {
 
     // Array for tracking all the players
     public ArrayList<Vector2> allLoc = new ArrayList<Vector2>();
+
+    // Variables for handling AI
+    private boolean aiHavemadeThepicks = false;
 
     private int ticks = 0;
 
@@ -59,6 +67,7 @@ public class MainGameScreen extends InputAdapter implements Screen {
         players.add(player);
         players.add(monkey);
         addLoc();
+        rand = new Random();
 
     }
 
@@ -121,13 +130,12 @@ public class MainGameScreen extends InputAdapter implements Screen {
         }
 
 
-        //Sets in player
-        if (ticks == 60) {
-            monkey.makeOneCardPick();
-            monkey.playFullHand();
-            ticks = 0;
-        }
-        else {
+    // probably want to be a function
+        if (!aiHavemadeThepicks) {
+
+            monkey.makeMonkeyHand();
+            monkey.pickAllCards();
+            aiHavemadeThepicks = true;
 
         }
 
@@ -135,6 +143,15 @@ public class MainGameScreen extends InputAdapter implements Screen {
             player.setReady(false);
             doTurn();
         }
+
+        if (intTemp == 120) {
+            handleCardValues();
+            System.out.println(player.getCardValues());
+            intTemp = 0;
+        } else {
+            intTemp++;
+        }
+
         player.updatePlayerIcon();
         monkey.updatePlayerIcon();
 
@@ -192,8 +209,14 @@ public class MainGameScreen extends InputAdapter implements Screen {
             // Insert delay here that allows players to choose their cards
             for (Integer i = 0; i < players.get(j).getHand().size(); i++) {
                 // Must be improved to make card priority a thing
-                players.get(j).playHand(i);
-                System.out.println(player.getHand().get(i).getCommand());
+                if(players.get(j).equals(player)) {
+                    players.get(j).playHand(i);
+                    System.out.println(player.getHand().get(i).getCommand());
+                }
+                else {
+                    players.get(j).playHand(i);
+                    aiHavemadeThepicks = false;
+                }
 
                 // Must be improved so that the different parts act in the correct order
                 //gameBoard.checkForSpecialTiles(player);
@@ -261,6 +284,72 @@ public class MainGameScreen extends InputAdapter implements Screen {
         if(checkForPlayerCollision(movingPlayer)) {
             handleCollision(movingPlayer);
         }
+    }
+    public void handleCardValues() {
+        System.out.println("handle card values");
+        for(int i = 0; i < players.size(); i++) {
+
+            if(players.get(i).equals(player)) {
+                guiCardhand = gui.getCardHand();
+                System.out.println("test");
+                for (int p = 0; p < guiCardhand.size(); p++) {
+
+                    player.addCardvalues(cardValue(guiCardhand.get(p)));
+
+                }
+            }
+            else {
+                for (int j = 0; j < players.get(i).getHand().size(); j++) {
+                    players.get(i).addCardvalues(cardValue(players.get(i).getHand().get(j)));
+
+                }
+            }
+        }
+    }
+
+    /*
+    backup: 6 kort (430 - 480)
+    u-turn: 6 kort (10 - 60)
+    rotate right: 18 kort (80-420, intervall 20)
+    rotate left: 18 kort (70-410, intervall 20)
+    move 1: 18 kort (490 - 650, intervall 10)
+    move 2: 12 kort (670 - 780, intervall 10)
+    move 3: 6 kort (790 - 840, intervall 10)
+     */
+    private Integer cardValue(Card card) {
+
+        int value = 0;
+
+        if(card.getCommand() == "Move1") {
+            value = 490;
+            value = value + rand.nextInt(160);
+        }
+        else if (card.getCommand() == "Move2") {
+            value = 670;
+            value = value + rand.nextInt(110);
+        }
+        else if (card.getCommand() == "Move3") {
+            value = 790;
+            value =value + rand.nextInt(50);
+        }
+        else if (card.getCommand() == "TurnRight") {
+            value = 80;
+            value = value + rand.nextInt(340);
+        }
+        else if (card.getCommand() == "TurnLeft") {
+            value = 70;
+            value = value + rand.nextInt(340);
+        }
+        else if (card.getCommand() == "MoveBack") {
+            value = 430;
+            value = value + rand.nextInt(50);
+        }
+        else if (card.getCommand() == "Turn180") {
+            value = 10;
+            value = value + rand.nextInt(50);
+        }
+        System.out.println("new value " + value);
+        return value;
     }
 
 
