@@ -1,5 +1,7 @@
 package inf112.skeleton.app;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
@@ -29,6 +31,9 @@ public class Player implements IPlayer{
     private TiledMapTileLayer.Cell playerCell = new TiledMapTileLayer.Cell();
     private TiledMapTileLayer.Cell playerDiedCell = new TiledMapTileLayer.Cell();
     private TiledMapTileLayer.Cell playerWonCell = new TiledMapTileLayer.Cell();
+
+    private Sound wallcollisionsound = Gdx.audio.newSound(Gdx.files.internal("assets/sounds/wallboink.wav"));
+    private Sound gameoversound = Gdx.audio.newSound(Gdx.files.internal("assets/sounds/gameover.wav"));
 
     // Card values
     private ArrayList<Integer> cardValues= new ArrayList<Integer> ();
@@ -72,6 +77,9 @@ public class Player implements IPlayer{
                     setPlayerState(PlayerState.DEAD);
                 }
                 board.checkHoles(this);
+            }
+            else {
+                wallcollisionsound.play();
             }
         }
         game.collision(this);
@@ -168,6 +176,7 @@ public class Player implements IPlayer{
         // Game Over mechanics not implemented yet
         else {
             // Game Over mechanics go here
+            gameoversound.play();
         }
     }
     // Updates the player icon

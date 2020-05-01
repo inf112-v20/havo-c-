@@ -4,6 +4,8 @@ import com.badlogic.gdx.InputAdapter;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.audio.Music;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL30;
 import com.badlogic.gdx.graphics.OrthographicCamera;
@@ -50,6 +52,9 @@ public class MainGameScreen extends InputAdapter implements Screen {
     private boolean aiHavemadeThepicks = false;
 
     private int ticks = 0;
+
+    private Music backgroundSound = Gdx.audio.newMusic(Gdx.files.internal("assets/sounds/backgroundloop.mp3"));
+    private Sound collisionsound = Gdx.audio.newSound(Gdx.files.internal("assets/sounds/bruh2.wav"));
 
     public MainGameScreen(Robo robo) {
 
@@ -113,6 +118,10 @@ public class MainGameScreen extends InputAdapter implements Screen {
 
         // Renders map
         mapRenderer.render();
+
+        backgroundSound.play();
+        backgroundSound.setVolume(0.03f);
+        backgroundSound.setLooping(true);
 
         // When user touches the cards
         if(Gdx.input.getX() > 50 * 10 && Gdx.input.getX() < 50 * 13 &&
@@ -281,6 +290,7 @@ public class MainGameScreen extends InputAdapter implements Screen {
     public void collision(IPlayer movingPlayer) {
         if(checkForPlayerCollision(movingPlayer)) {
             handleCollision(movingPlayer);
+            collisionsound.play();
         }
     }
     public void handleCardValues() {
