@@ -119,7 +119,8 @@ public class MonkeyAI implements IPlayer{
         hand.add(card);
     }
     public void playHand(Integer i){
-        hand.get(i).playCard(this);
+        System.out.println("?????????????????????????????????????????????????Function runs");
+        pickedCards.get(i).playCard(this);
     }
     public void emptyHand(){
         hand = new ArrayList<>();
@@ -233,7 +234,7 @@ public class MonkeyAI implements IPlayer{
     }
 
     public ArrayList<Card> getHand() {
-        return hand;
+        return pickedCards;
     }
     public Boolean getPowerdown() { return powerdown; }
     public void setPlayerDir(Direction dir) {playerDir = dir; }
@@ -283,14 +284,25 @@ public class MonkeyAI implements IPlayer{
 
     public void makeOneCardPick() {
 
-        for(int i = 0; i < lives; i++) {
-            if(cardCanNotKill(smallHandCardDeck.get(i)) && !indexPickedCards.contains(i)) {
-                pickedCards.add(smallHandCardDeck.get(i));
-                indexPickedCards.add(i);
-                break;
+        for(int i = 0; i < hp; i++) {
+            System.out.println(i);
+            if(!indexPickedCards.contains(i)) {
+
+                if(cardCanNotKill(smallHandCardDeck.get(i))) {
+                    System.out.println("THis function runs i guess");
+                    pickedCards.add(smallHandCardDeck.get(i));
+                    indexPickedCards.add(i);
+                    break;
+                }
+;
             }
             else {
-                System.out.println("Denied cards: " + smallHandCardDeck.get(i).getCommand());
+                if(indexPickedCards.contains(i)) {
+                    System.out.println("Denied cards: " + smallHandCardDeck.get(i).getCommand() + " Since the card is already picked");
+                }
+                else {
+                    System.out.println("Denied cards: " + smallHandCardDeck.get(i).getCommand());
+                }
             }
 
         }
@@ -303,9 +315,13 @@ public class MonkeyAI implements IPlayer{
 
     public void pickAllCards() {
         for(int i = 0; i < 5; i++){
+
             makeOneCardPick();
+
+            System.out.println("###################################### AI have made pick number: " + (i + 1));
+            System.out.println();
         }
-        resetCard();
+
     }
 
     private void resetGuineapig() {
@@ -323,6 +339,9 @@ public class MonkeyAI implements IPlayer{
         if(guineapig.getPlayerState() == playerState.ALIVE && insideMap()) {
             System.out.println("The guineapig have passed all tests with the card: " + card.getCommand());
             oldCoordinates.set(guineapig.getPlayerloc().cpy());
+            oldDirection = guineapig.getPlayerDir();
+
+
             return true; }
         else {
             System.out.println("##-----------------------Card did not pass the tests-------------------##");

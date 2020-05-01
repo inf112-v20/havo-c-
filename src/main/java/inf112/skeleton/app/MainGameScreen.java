@@ -199,14 +199,17 @@ public class MainGameScreen extends InputAdapter implements Screen {
         gui.cards.clear();
         //deck.dealCards(player);
         for (int j = 0; players.size() > j; j++) {
+
             // Insert delay here that allows players to choose their cards
             for (Integer i = 0; i < players.get(j).getHand().size(); i++) {
                 // Must be improved to make card priority a thing
                 if(players.get(j).equals(player)) {
+
                     players.get(j).playHand(i);
                     System.out.println(player.getHand().get(i).getCommand());
                 }
                 else {
+
                     players.get(j).playHand(i);
                     aiHavemadeThepicks = false;
                 }
@@ -281,12 +284,11 @@ public class MainGameScreen extends InputAdapter implements Screen {
         }
     }
     public void handleCardValues() {
-        System.out.println("handle card values");
+
         for(int i = 0; i < players.size(); i++) {
 
             if(players.get(i).equals(player)) {
                 guiCardhand = gui.getCardHand();
-                System.out.println("test");
                 for (int p = 0; p < guiCardhand.size(); p++) {
 
                     player.addCardvalues(cardValue(guiCardhand.get(p)));
@@ -343,7 +345,7 @@ public class MainGameScreen extends InputAdapter implements Screen {
             value = 10;
             value = value + rand.nextInt(50);
         }
-        System.out.println("new value " + value);
+
         return value;
     }
 

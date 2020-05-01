@@ -239,7 +239,6 @@ public class Player implements IPlayer{
     }
 
     public void addCardvalues(Integer value) {
-        System.out.println(value);
         cardValues.add(value);
     }
     public void clearCardValues() {
