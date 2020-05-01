@@ -33,17 +33,18 @@ public class MonkeyAI implements IPlayer{
 
 
     // Card Values
-    private ArrayList<Integer> cardValues= new ArrayList<Integer> ();
+    private ArrayList<Integer> cardValues= new ArrayList ();
 
 
     // Variables just for the AI
     CardDeck monkeyCardDeck;
-    private ArrayList<Card> smallHandCardDeck = new ArrayList<Card>();
+    private ArrayList<Card> smallHandCardDeck = new ArrayList();
     Guineapig guineapig;
-    private ArrayList<Card> pickedCards = new ArrayList<Card>();
+    private ArrayList<Card> pickedCards = new ArrayList();
     private ArrayList<Integer> indexPickedCards = new ArrayList<Integer>();
-    Vector2 oldCoordinates = new Vector2();
+    Vector2 oldCoordinates = new Vector2(9, 0);
     Direction oldDirection;
+
 
     // Constructor
     public MonkeyAI(Vector2 location, Direction dir, Board board, MainGameScreen game){
@@ -58,11 +59,11 @@ public class MonkeyAI implements IPlayer{
         playerDiedCell.setTile(new StaticTiledMapTile(playerIcon[0][1]));
         playerWonCell.setTile(new StaticTiledMapTile(playerIcon[0][2]));
 
-        Vector2 guineapigStartLoc = new Vector2(0, 10);
-        guineapigStartLoc.set(playerLoc);
+        Vector2 guineapigStartLoc = new Vector2(9, 0);
+
         monkeyCardDeck = new CardDeck();
         guineapig = new Guineapig(guineapigStartLoc, dir, board, game);
-        oldDirection = playerDir;
+
 
     }
 
@@ -119,7 +120,6 @@ public class MonkeyAI implements IPlayer{
         hand.add(card);
     }
     public void playHand(Integer i){
-        System.out.println("?????????????????????????????????????????????????Function runs");
         pickedCards.get(i).playCard(this);
     }
     public void emptyHand(){
@@ -272,6 +272,8 @@ public class MonkeyAI implements IPlayer{
         indexPickedCards.clear();
         pickedCards.clear();
 
+
+        resetGuineapig();
         monkeyCardDeck.shuffleDeck();
         smallHandCardDeck = monkeyCardDeck.dealCards(this);
     }
@@ -289,7 +291,7 @@ public class MonkeyAI implements IPlayer{
             if(!indexPickedCards.contains(i)) {
 
                 if(cardCanNotKill(smallHandCardDeck.get(i))) {
-                    System.out.println("THis function runs i guess");
+                    System.out.println("Card added: " + smallHandCardDeck.get(i).getCommand());
                     pickedCards.add(smallHandCardDeck.get(i));
                     indexPickedCards.add(i);
                     break;
@@ -319,7 +321,7 @@ public class MonkeyAI implements IPlayer{
             makeOneCardPick();
 
             System.out.println("###################################### AI have made pick number: " + (i + 1));
-            System.out.println();
+            System.out.println("Current location of Guineapig: " + guineapig.getPlayerloc());
         }
 
     }
@@ -331,20 +333,25 @@ public class MonkeyAI implements IPlayer{
     }
 
     private Boolean cardKillsGuineapig(Card card) {
+        System.out.println("guineapig get locations before move: " + guineapig.getPlayerloc() + " AI get location before guineapig move " + this.playerLoc);
+        System.out.println("guineapig get dircetion before move: " + guineapig.getPlayerDir() + " AI get location before guineapig move " + this.playerDir);
         Card guineapigCard = new Card(card.getCommand());
 
         guineapigCard.playCard(guineapig);
 
-
+        System.out.println("Card up for testing " + guineapigCard.getCommand());
+        System.out.println("guineapig get locations: "+ guineapig.getPlayerloc() + " AI get location before guineapig move " + this.playerLoc);
+        System.out.println("guineapig get dircetion: " + guineapig.getPlayerDir() + " AI get location before guineapig move " + this.playerDir);
         if(guineapig.getPlayerState() == playerState.ALIVE && insideMap()) {
             System.out.println("The guineapig have passed all tests with the card: " + card.getCommand());
             oldCoordinates.set(guineapig.getPlayerloc().cpy());
             oldDirection = guineapig.getPlayerDir();
+            System.out.println("new oldCoordinates pos" + oldCoordinates);
 
 
             return true; }
         else {
-            System.out.println("##-----------------------Card did not pass the tests-------------------##");
+            System.out.println("##-----------------------Card " + guineapigCard.getCommand() + " did not pass the tests-------------------##");
 
             resetGuineapig();
             return false; }
@@ -352,15 +359,18 @@ public class MonkeyAI implements IPlayer{
     private Boolean insideMap() {
         if(guineapig.getX() >= 0 && guineapig.getX() <= 9
             && guineapig.getY() >= 0 && guineapig.getY() <= 9) {
+            System.out.println("Inside map");
             return true;
         }
         else {
+            System.out.println("getX: " + guineapig.getX());
+            System.out.println("getY: " + guineapig.getY());
             return  false;
         }
     }
 
     public void playFullHand() {
-        System.out.println("funker");
+
         for(int i = 0; i < pickedCards.size(); i++) {
             pickedCards.get(i).playCard(this);
             setOldCoordinates();

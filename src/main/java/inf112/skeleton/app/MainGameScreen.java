@@ -133,7 +133,7 @@ public class MainGameScreen extends InputAdapter implements Screen {
 
     // probably want to be a function
         if (!aiHavemadeThepicks) {
-
+            System.out.println("AI making all the card picks");
             monkey.makeMonkeyHand();
             monkey.pickAllCards();
             aiHavemadeThepicks = true;
