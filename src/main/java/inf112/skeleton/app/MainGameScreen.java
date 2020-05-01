@@ -37,8 +37,7 @@ public class MainGameScreen extends InputAdapter implements Screen {
     private CardDeck deck = new CardDeck();
 
     Random rand;
-    public Boolean temp = true;
-    int intTemp = 0;
+    DirCtrl dirCtrl = new DirCtrl();
     private ArrayList<Card> guiCardhand = new ArrayList<Card>();
 
     // Width and Height og the grid
@@ -285,7 +284,12 @@ public class MainGameScreen extends InputAdapter implements Screen {
         Direction movingPlayerDir = movingPlayer.getPlayerDir();
         System.out.println("movingplayer" + movingPlayer);
         System.out.println("collisionVictim: " + collisionVictim);
-        collisionVictim.Move(movingPlayerDir);
+        if (gameBoard.wallCheck(collisionVictim, movingPlayerDir,false)) {
+            collisionVictim.Move(movingPlayerDir);
+        }
+        else {
+            movingPlayer.Move(dirCtrl.invertDirection(movingPlayerDir));
+        }
     }
     public void collision(IPlayer movingPlayer) {
         if(checkForPlayerCollision(movingPlayer)) {
@@ -384,9 +388,5 @@ public class MainGameScreen extends InputAdapter implements Screen {
     public void dispose() {
 
     }
-
-
-
-
 }
 
