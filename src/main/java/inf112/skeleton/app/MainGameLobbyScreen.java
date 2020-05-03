@@ -9,6 +9,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 
 import java.awt.*;
+import java.util.ArrayList;
 
 public class MainGameLobbyScreen implements Screen {
 
@@ -46,11 +47,24 @@ public class MainGameLobbyScreen implements Screen {
 
 
     public Robo game;
-    Texture playButton;
-    Texture backButton;
-    Texture greenArrow;
-    Texture backArrow;
-    Texture menuLines;
+    private Texture playButton;
+    private Texture backButton;
+    private Texture greenArrow;
+    private Texture backArrow;
+    private Texture menuLines;
+    private Texture one;
+    private Texture two;
+    private Texture three;
+    private Texture four;
+    private Texture five;
+    private Texture clusterCross;
+    private Texture dizzyHighway;
+    private Texture testingGround;
+    private Texture pickMap;
+    private Texture pickEnemies;
+
+    private ArrayList<Texture> numbers;
+
 
     private BitmapFont font;
 
@@ -64,6 +78,7 @@ public class MainGameLobbyScreen implements Screen {
         backArrow = new Texture("assets/gameLobby/backArrow.png");
         menuLines = new Texture("assets/gameLobby/menyMal.png");
 
+        fillTextTexture();
         font = new BitmapFont();
         font.setColor(Color.MAGENTA);
 
@@ -83,8 +98,8 @@ public class MainGameLobbyScreen implements Screen {
 
         // My pitiful attempt at fixing the coordinate system
         // camera.setToOrtho(false, 500, 500);
-        if (Gdx.input.getY()  > 500 - Y_POS_STARTBUTTON - BUTTON_HEIGHT && Gdx.input.getY() < 500 - Y_POS_STARTBUTTON &&
-                Gdx.input.getX() > X_POS_BUTTON && Gdx.input.getX() < X_POS_BUTTON + BUTTON_WIDTH) {
+        if (Gdx.input.getY()  > 0 && Gdx.input.getY() < 50 &&
+                Gdx.input.getX() > 0 && Gdx.input.getX() < 700) {
             if (Gdx.input.isTouched()) {
                 drawNumberOfEnemeies(true);
 
@@ -156,5 +171,27 @@ public class MainGameLobbyScreen implements Screen {
 
     private void setFontSettings() {
         font.getData().setScale(5);
+    }
+
+    private void fillTextTexture() {
+        one = new Texture("assets/buttons/text/one.png");
+        two = new Texture("assets/buttons/text/two.png");
+        three = new Texture("assets/buttons/text/three.png");
+        four = new Texture("assets/buttons/text/four.png");
+        five = new Texture("assets/buttons/text/five.png");
+
+        numbers.add(one);
+        numbers.add(two);
+        numbers.add(three);
+        numbers.add(four);
+        numbers.add(five);
+
+
+        clusterCross = new Texture("assets/buttons/text/clusterCross.png");
+        dizzyHighway = new Texture("assets/buttons/text/DizzyHighway.png");
+        testingGround = new Texture("assets/buttons/text/TestingGround.png");
+        pickMap = new Texture("assets/buttons/text/pickMap.png");
+        pickEnemies = new Texture("assets/buttons/text/pickEnemies.png");
+
     }
 }
