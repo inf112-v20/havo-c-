@@ -9,6 +9,8 @@ import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.math.Vector2;
 
+import java.util.ArrayList;
+
 public class Board implements IBoard {
     // The map itself
     private TiledMap Map;
@@ -239,6 +241,29 @@ public class Board implements IBoard {
     }
     public TiledMapTileLayer getPlayerLayer(){
         return Players;
+    }
+
+    public ArrayList<Vector2> findAllFlags() {
+        ArrayList<Vector2> allFlags = new ArrayList<Vector2>();
+
+
+        Integer mapHeight = Flags.getHeight();
+        Integer mapWidth = Flags.getWidth();
+
+
+        for(Integer i = 0; i < mapHeight; i++){
+
+            for(Integer j = 0; j < mapWidth; j++){
+
+                if(Flags.getCell(j,i) != null){
+                    Vector2 flagLoc = new Vector2();
+                    flagLoc.set(j, i).cpy();
+                    allFlags.add(flagLoc);;
+                }
+            }
+        }
+
+        return allFlags;
     }
 
 

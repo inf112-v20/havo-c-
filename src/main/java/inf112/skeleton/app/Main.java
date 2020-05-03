@@ -11,6 +11,7 @@ public class Main {
         cfg.width = 700;
         cfg.height = 500;
 
+
         new LwjglApplication(new Robo(), cfg);
     }
 }

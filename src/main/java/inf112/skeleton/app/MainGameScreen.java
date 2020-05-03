@@ -50,8 +50,6 @@ public class MainGameScreen extends InputAdapter implements Screen {
     // Variables for handling AI
     private boolean aiHavemadeThepicks = false;
 
-    private int ticks = 0;
-
     private Music backgroundSound = Gdx.audio.newMusic(Gdx.files.internal("assets/sounds/backgroundloop.mp3"));
     private Sound collisionsound = Gdx.audio.newSound(Gdx.files.internal("assets/sounds/bruh2.wav"));
 
@@ -361,6 +359,10 @@ public class MainGameScreen extends InputAdapter implements Screen {
         }
 
         return value;
+    }
+
+    public Board getGameBoard() {
+        return gameBoard;
     }
 
 

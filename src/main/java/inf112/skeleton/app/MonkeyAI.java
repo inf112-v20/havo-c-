@@ -65,6 +65,8 @@ public class MonkeyAI implements IPlayer{
         guineapig = new Guineapig(guineapigStartLoc, dir, board, game);
 
 
+        SmarterMonkey smarterMonkey = new SmarterMonkey(game, this);
+
     }
 
     public void Move(Direction dir) {
