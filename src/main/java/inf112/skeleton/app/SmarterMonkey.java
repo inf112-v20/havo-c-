@@ -17,6 +17,8 @@ public class SmarterMonkey {
     MonkeyAI monkey;
     int test = 8;
 
+    Vector2 loaction;
+    Direction dir;
 
 
     public SmarterMonkey(MainGameScreen game, MonkeyAI monkey) {
@@ -25,8 +27,15 @@ public class SmarterMonkey {
 
         board = game.getGameBoard();
         findFlag();
+        System.out.println("nearby fields" + nearbyFields(monkey));
 
     }
+
+    private void setLocDir(IPlayer player) {
+        loaction = player.getPlayerloc().cpy();
+        dir = player.getPlayerDir();
+    }
+
 
 
 
@@ -86,6 +95,65 @@ public class SmarterMonkey {
         return output;
     }
 
+    // Gives all the fields around the player that can be moved to with one card
+    private ArrayList<Vector2> nearbyFields(IPlayer player) {
+        ArrayList<Vector2> closestFields= new ArrayList<>();
+        setLocDir(player);
+        Boolean addition = false;
+        Boolean moveAlongXAxis = false;
+
+        if(dir == Direction.EAST || dir == Direction.WEST) {
+            addition = additionOrSubtraktion(dir);
+            moveAlongXAxis = true;
+        }
+        else if (dir == Direction.NORTH || dir == Direction.SOUTH) {
+            addition = additionOrSubtraktion(dir);
+            moveAlongXAxis = false;
+        }
+
+
+
+        if(addition && moveAlongXAxis) {
+            for (int i = -1; 4 > i; i++) {
+                Vector2 temp = new Vector2();
+                temp.set(player.getX() + i, player.getY());
+                closestFields.add(temp);
+            }
+        }
+        else if (addition && !moveAlongXAxis) {
+            for (int i = -1; 4 > i; i++) {
+                Vector2 temp = new Vector2();
+                temp.set(player.getX(), player.getY() + i);
+                closestFields.add(temp);
+            }
+        }
+        else if (!addition && moveAlongXAxis) {
+            for (int i = 4; -1 < i; i--) {
+                Vector2 temp = new Vector2();
+                temp.set(player.getX() - i, player.getY());
+                closestFields.add(temp);
+            }
+        }
+        else if (!addition && !moveAlongXAxis) {
+            for (int i = 4; -1 < i; i--) {
+                Vector2 temp = new Vector2();
+                temp.set(player.getX() , player.getY() - i);
+                closestFields.add(temp);
+            }
+        }
+
+        return closestFields;
+    }
+
+    // Decide which direction the player can move to
+    private Boolean additionOrSubtraktion (Direction direction) {
+        if(direction == Direction.NORTH || direction == Direction.EAST) {
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
     private void smartPath() {
 
     }
