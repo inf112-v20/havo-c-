@@ -385,5 +385,8 @@ public class MonkeyAI implements IPlayer{
     private Vector2 getOldCoordinates() {
         return oldCoordinates;
     }
+    private void smarterAI() {
+
+    }
 
 }
