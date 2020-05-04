@@ -23,6 +23,7 @@ public class Board implements IBoard {
     private TiledMapTileLayer Players;
     private TiledMapTileLayer Laser;
     private TiledMapTileLayer Wall;
+    private TiledMapTileLayer RepairTiles;
     //Other values
     private Integer flagCount;
     //Sound effects
@@ -42,6 +43,7 @@ public class Board implements IBoard {
         this.Players = (TiledMapTileLayer) Map.getLayers().get("PlayerLayer");
         this.Laser = (TiledMapTileLayer) Map.getLayers().get("Laser");
         this.Wall = (TiledMapTileLayer) Map.getLayers().get("Walls");
+        this.RepairTiles = (TiledMapTileLayer) Map.getLayers().get("RepairTiles");
         this.flagCount = countFlags();
     }
     private Integer countFlags(){
@@ -67,6 +69,7 @@ public class Board implements IBoard {
         checkBelts(player , xLoc, yLoc);
         checkTurnGears(player, xLoc, yLoc);
         checkLasers(player, xLoc, yLoc);
+        checkRepairTiles(player, xLoc, yLoc);
         checkFlags(player, xLoc, yLoc);
     }
     private void checkFlags(IPlayer player, Integer xLoc, Integer yLoc){
@@ -112,6 +115,17 @@ public class Board implements IBoard {
             // Turn left
             else if(tileId == 53){
                 player.Turn(TurnDirection.LEFT);
+            }
+        }
+    }
+    private void checkRepairTiles(IPlayer player, Integer xLoc, Integer yLoc){
+        if (RepairTiles.getCell(xLoc, yLoc) != null){
+            Integer tileId = RepairTiles.getCell(xLoc, yLoc).getTile().getId();
+            if (tileId == 15){
+                player.takeDamage(-1);
+            }
+            else if(tileId == 7){
+                player.takeDamage(-2);
             }
         }
     }

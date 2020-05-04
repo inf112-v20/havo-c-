@@ -120,6 +120,9 @@ public class Player implements IPlayer{
                 setPlayerState(PlayerState.DEAD);
                 hp = 0;
             }
+            else if (hp > 9){
+                hp = 9;
+            }
         }
     }
     public void powerdown(){
