@@ -18,6 +18,7 @@ public class MonkeyAI implements IPlayer{
     private Integer flagsVisited = 0;
     private Boolean ready = false;
     private MainGameScreen game;
+    private Boolean player = true;
     // Control class
     private DirCtrl dirController = new DirCtrl();
     // Elements the Player needs to function on the board
@@ -265,6 +266,10 @@ public class MonkeyAI implements IPlayer{
     }
     public ArrayList<Integer> getCardValues() {
         return cardValues;
+    }
+
+    public Boolean isPlayer() {
+        return player;
     }
 
     // Everything about how the monkeyAI thinks/works should be added under this section

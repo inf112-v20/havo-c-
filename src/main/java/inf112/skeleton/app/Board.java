@@ -102,7 +102,10 @@ public class Board implements IBoard {
         Integer yLoc = player.getY();
         if (Holes.getCell(xLoc, yLoc) != null){
             player.setPlayerState(PlayerState.DEAD);
-            fallSound.play();
+            if(player.isPlayer()) {
+                System.out.println("---------------------------------->>>>>>>>>>>>>>>>>" + player);
+                fallSound.play();
+            }
         }
     }
     private void checkTurnGears(IPlayer player, Integer xLoc, Integer yLoc){

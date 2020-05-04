@@ -64,6 +64,8 @@ public interface IPlayer {
 
     ArrayList<Integer> getCardValues();
 
+    Boolean isPlayer();
+
 }
 
 

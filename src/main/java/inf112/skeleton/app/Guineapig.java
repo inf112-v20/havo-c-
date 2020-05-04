@@ -16,6 +16,7 @@ public class Guineapig implements IPlayer{
     private ArrayList<Card> hand = new ArrayList<>();
     private Integer flagsVisited = 0;
     private Boolean ready = false;
+    private Boolean player = false;
     // Control class
     private DirCtrl dirController = new DirCtrl();
     // Elements the Player needs to function on the board
@@ -252,6 +253,10 @@ public class Guineapig implements IPlayer{
     }
     public ArrayList<Integer> getCardValues() {
         return cardValues;
+    }
+
+    public Boolean isPlayer() {
+        return player;
     }
 
 }

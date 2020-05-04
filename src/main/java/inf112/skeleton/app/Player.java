@@ -18,6 +18,7 @@ public class Player implements IPlayer{
     private ArrayList<Card> hand = new ArrayList<>();
     private Integer flagsVisited = 0;
     private Boolean ready = false;
+    private Boolean player = true;
     // Control class
     private DirCtrl dirController = new DirCtrl();
     // Elements the Player needs to function on the board
@@ -261,5 +262,9 @@ public class Player implements IPlayer{
     }
     public ArrayList<Integer> getCardValues() {
         return cardValues;
+    }
+
+    public Boolean isPlayer() {
+        return player;
     }
 }

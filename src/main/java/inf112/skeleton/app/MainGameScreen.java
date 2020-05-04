@@ -13,6 +13,9 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.utils.Timer;
+import com.badlogic.gdx.utils.Timer.Task;
+
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -28,21 +31,22 @@ public class MainGameScreen extends InputAdapter implements Screen {
     private OrthogonalTiledMapRenderer mapRenderer;
     public OrthographicCamera camera = new OrthographicCamera();
     private TmxMapLoader mapLoader = new TmxMapLoader();
-    private Board gameBoard = new Board(mapLoader.load("assets/Testing Grounds.tmx"));
-
+    private Board gameBoard;
+    private Timer timer = new Timer();
     // Variables for Player
     private IPlayer player;
     private MonkeyAI monkey;
     public ArrayList<IPlayer> players;
     private CardDeck deck = new CardDeck();
 
+
     Random rand;
     DirCtrl dirCtrl = new DirCtrl();
     private ArrayList<Card> guiCardhand = new ArrayList<Card>();
 
     // Width and Height og the grid
-    private final int BOARD_WIDTH = gameBoard.getBoard().getWidth();
-    private final int BOARD_HEIGHT = gameBoard.getBoard().getHeight();
+    private int board_width;
+    private int boarg_height;
 
     // Array for tracking all the players
     public ArrayList<Vector2> allLoc = new ArrayList<Vector2>();
@@ -53,17 +57,20 @@ public class MainGameScreen extends InputAdapter implements Screen {
     private Music backgroundSound = Gdx.audio.newMusic(Gdx.files.internal("assets/sounds/backgroundloop.mp3"));
     private Sound collisionsound = Gdx.audio.newSound(Gdx.files.internal("assets/sounds/bruh2.wav"));
 
-    public MainGameScreen(Robo robo) {
+    public MainGameScreen(Robo robo, String mapName, int numberOfEnemies) {
 
         this.game = robo;
         Vector2 startLoc = new Vector2(0,0);
-
-
+        gameBoard = new Board(mapLoader.load(mapName));
         Vector2 tempStartLoc = new Vector2(9, 0);
         player = new Player(startLoc, Direction.NORTH, gameBoard, this);
         monkey = new MonkeyAI(tempStartLoc, Direction.NORTH, gameBoard, this);
         gui = new GUI(game, player);
         Gdx.input.setInputProcessor(this);
+
+        board_width = gameBoard.getBoard().getWidth();
+        boarg_height = gameBoard.getBoard().getHeight();
+
 
         players = new ArrayList<IPlayer>();
         players.add(player);
@@ -82,7 +89,7 @@ public class MainGameScreen extends InputAdapter implements Screen {
         // Input adapter shenanigans;
 
         // Code for setting up map
-        camera.setToOrtho(false, BOARD_WIDTH, BOARD_HEIGHT);
+        camera.setToOrtho(false, board_width, boarg_height);
         camera.update();
         mapRenderer = new OrthogonalTiledMapRenderer(gameBoard.getMap(), 1/300f);
         mapRenderer.setView(camera);
@@ -204,25 +211,29 @@ public class MainGameScreen extends InputAdapter implements Screen {
 
         gui.cards.clear();
         //deck.dealCards(player);
+
+
         for (int j = 0; players.size() > j; j++) {
 
             // Insert delay here that allows players to choose their cards
             for (Integer i = 0; i < players.get(j).getHand().size(); i++) {
-                // Must be improved to make card priority a thing
-                if(players.get(j).equals(player)) {
+
+                if (players.get(j).equals(player)) {
 
                     players.get(j).playHand(i);
+
                     System.out.println(player.getHand().get(i).getCommand());
-                }
-                else {
+                } else {
 
                     players.get(j).playHand(i);
                     aiHavemadeThepicks = false;
                 }
 
-                // Must be improved so that the different parts act in the correct order
-                //gameBoard.checkForSpecialTiles(player);
             }
+        }
+
+
+
             player.getHand().clear();
             gui.cardHand.clear();
             gui.cards.clear();
@@ -234,11 +245,15 @@ public class MainGameScreen extends InputAdapter implements Screen {
             gui.loadCards();
             player.clearCardValues();
             handleCardValues();
-        }
-        if (player.getPowerdown()) {
-            player.bootUp();
-        }
+
+            if (player.getPowerdown()) {
+                player.bootUp();
+            }
+
     }
+
+
+
 
     // Updates all the location in allLoc to the current position of the players
     private void updateLoc() {

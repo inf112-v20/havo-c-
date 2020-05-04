@@ -55,6 +55,7 @@ public class MainGameLobbyScreen implements Screen {
 
     private ArrayList<Texture> numbers = new ArrayList<>();
     private ArrayList<Texture> maps = new ArrayList<>();
+    private ArrayList<String> mapNames = new ArrayList<>();
 
     private int numberOfEnemies = 0;
     private int maxNumberOfEnemies = 5;
@@ -157,7 +158,8 @@ public class MainGameLobbyScreen implements Screen {
         // Start Game
         else if (getY > 350) {
             this.dispose();
-            game.setScreen(new MainGameScreen(game));
+            System.out.println(maps.get(mapNumber).toString());
+            game.setScreen(new MainGameScreen(game, mapNames.get(mapNumber), numberOfEnemies));
 
         }
     }
@@ -247,6 +249,10 @@ public class MainGameLobbyScreen implements Screen {
         maps.add(testingGround);
         maps.add(dizzyHighway);
         maps.add(clusterCross);
+
+        mapNames.add("assets/Testing Grounds.tmx");
+        mapNames.add("assets/Dizzy Highway.tmx");
+        mapNames.add("assets/Cluster Cross.tmx");
 
     }
     private void drawTexture() {
