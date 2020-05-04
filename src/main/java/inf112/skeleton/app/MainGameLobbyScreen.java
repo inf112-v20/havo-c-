@@ -61,6 +61,7 @@ public class MainGameLobbyScreen implements Screen {
     private Texture testingGround;
     private Texture pickMap;
     private Texture pickEnemies;
+    private Texture gameLobby;
 
     private ArrayList<Texture> numbers = new ArrayList<>();
     private ArrayList<Texture> maps = new ArrayList<>();
@@ -165,6 +166,11 @@ public class MainGameLobbyScreen implements Screen {
         game.batch.draw(playButton, X_PLACEMENT_MENU_LINES * 2 + DISTANCE_BETWEEN_MENU_LINES * 2 + 10, Y_PLACEMENT_MENU_LINES + 9, MENU_LINES_WIDTH, BUTTON_HEIGHT);
         game.batch.draw(backButton, X_PLACEMENT_MENU_LINES * 2 + DISTANCE_BETWEEN_MENU_LINES * 2 + 10,Y_PLACEMENT_MENU_LINES + 9 + BUTTON_HEIGHT + 10, MENU_LINES_WIDTH, BUTTON_HEIGHT);
 
+        // Draw the text
+        game.batch.draw(pickMap, X_PLACEMENT_ARROW + DISTANCE_BETWEEN_MENU_LINES + 5, 328 , 180, ARROW_HEIGHT -10);
+        game.batch.draw(pickEnemies, X_PLACEMENT_ARROW - 5, 328, 180, ARROW_HEIGHT);
+        game.batch.draw(gameLobby, X_PLACEMENT_MENU_LINES,400, 400, 68);
+
         drawNumbersOfEnemies(numberOfEnemies);
         drawMap(mapNumber);
     }
@@ -250,6 +256,7 @@ public class MainGameLobbyScreen implements Screen {
         testingGround = new Texture("assets/gameLobby/text/TestingGround.png");
         pickMap = new Texture("assets/gameLobby/text/pickMap.png");
         pickEnemies = new Texture("assets/gameLobby/text/pickEnemies.png");
+        gameLobby = new Texture("assets/gameLobby/text/GameLobby.png");
 
         maps.add(testingGround);
         maps.add(dizzyHighway);
