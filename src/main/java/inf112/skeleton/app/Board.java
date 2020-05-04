@@ -72,7 +72,7 @@ public class Board implements IBoard {
         checkRepairTiles(player, xLoc, yLoc);
         checkFlags(player, xLoc, yLoc);
     }
-    private void checkFlags(IPlayer player, Integer xLoc, Integer yLoc){
+    public void checkFlags(IPlayer player, Integer xLoc, Integer yLoc){
         if (Flags.getCell(xLoc, yLoc) != null) {
             Integer tileId = Flags.getCell(xLoc, yLoc).getTile().getId();
             if (tileId == 55 && player.getFlags() == 0){

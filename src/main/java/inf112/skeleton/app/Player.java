@@ -28,6 +28,7 @@ public class Player implements IPlayer{
     private Board board;
     private TiledMapTileLayer playerLayer;
     private MainGameScreen game;
+    private Board gameBoard;
     // Player icon objects
     private TiledMapTileLayer.Cell playerCell = new TiledMapTileLayer.Cell();
     private TiledMapTileLayer.Cell playerDiedCell = new TiledMapTileLayer.Cell();
@@ -35,6 +36,7 @@ public class Player implements IPlayer{
 
     private Sound wallcollisionsound = Gdx.audio.newSound(Gdx.files.internal("assets/sounds/wallboink.wav"));
     private Sound gameoversound = Gdx.audio.newSound(Gdx.files.internal("assets/sounds/gameover.wav"));
+
 
     // Card values
     private ArrayList<Integer> cardValues= new ArrayList<Integer> ();
@@ -51,6 +53,8 @@ public class Player implements IPlayer{
         playerCell.setTile(new StaticTiledMapTile(playerIcon[0][0]));
         playerDiedCell.setTile(new StaticTiledMapTile(playerIcon[0][1]));
         playerWonCell.setTile(new StaticTiledMapTile(playerIcon[0][2]));
+
+        gameBoard = game.getGameBoard();
     }
 
     public void Move(Direction dir) {
@@ -83,6 +87,7 @@ public class Player implements IPlayer{
                 wallcollisionsound.play();
             }
         }
+        gameBoard.checkFlags(this, getX(), getY());
         game.collision(this);
     }
     public void Turn(TurnDirection dir){

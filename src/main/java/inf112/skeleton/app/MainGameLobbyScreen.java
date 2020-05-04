@@ -158,7 +158,6 @@ public class MainGameLobbyScreen implements Screen {
         // Start Game
         else if (getY > 350) {
             this.dispose();
-            System.out.println(maps.get(mapNumber).toString());
             game.setScreen(new MainGameScreen(game, mapNames.get(mapNumber), numberOfEnemies));
 
         }
