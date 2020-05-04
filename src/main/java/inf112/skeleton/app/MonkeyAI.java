@@ -43,7 +43,7 @@ public class MonkeyAI implements IPlayer{
     private ArrayList<Card> pickedCards = new ArrayList();
     private ArrayList<Integer> indexPickedCards = new ArrayList<Integer>();
     Vector2 oldCoordinates = new Vector2(9, 0);
-    Direction oldDirection;
+    Direction oldDirection = Direction.NORTH;
 
 
     // Constructor
@@ -58,11 +58,12 @@ public class MonkeyAI implements IPlayer{
         playerCell.setTile(new StaticTiledMapTile(playerIcon[0][0]));
         playerDiedCell.setTile(new StaticTiledMapTile(playerIcon[0][1]));
         playerWonCell.setTile(new StaticTiledMapTile(playerIcon[0][2]));
-
+        oldDirection = dir;
+        Direction guineapigDir = Direction.NORTH;
         Vector2 guineapigStartLoc = new Vector2(9, 0);
 
         monkeyCardDeck = new CardDeck();
-        guineapig = new Guineapig(guineapigStartLoc, dir, board, game);
+        guineapig = new Guineapig(guineapigStartLoc, guineapigDir, board, game);
 
 
         SmarterMonkey smarterMonkey = new SmarterMonkey(game, this);
@@ -329,14 +330,16 @@ public class MonkeyAI implements IPlayer{
     }
 
     private void resetGuineapig() {
-        guineapig.setPlayerDir(playerDir);
+        guineapig.setPlayerDir(oldDirection);
         guineapig.setLocation(getOldCoordinates().cpy());
         guineapig.setPlayerState(playerState.ALIVE);
     }
 
     private Boolean cardKillsGuineapig(Card card) {
         System.out.println("guineapig get locations before move: " + guineapig.getPlayerloc() + " AI get location before guineapig move " + this.playerLoc);
-        System.out.println("guineapig get dircetion before move: " + guineapig.getPlayerDir() + " AI get location before guineapig move " + this.playerDir);
+        System.out.println("Old direction       " + oldDirection);
+        System.out.println("Guineapig direction " + guineapig.getPlayerDir());
+        System.out.println("monkey direction    " + playerDir);
         Card guineapigCard = new Card(card.getCommand());
 
         guineapigCard.playCard(guineapig);

@@ -266,7 +266,11 @@ public class GUI {
             //for(int i = 0; player.getHand().size() > i; i++) {
             //    player.playHand(i);
             //}
-
+            System.out.println();
+            System.out.println();
+            System.out.println("######################################################################################");
+            System.out.println();
+            System.out.println();
             player.setReady(true);
             //player.getHand().clear();
             //cardHand.clear();
