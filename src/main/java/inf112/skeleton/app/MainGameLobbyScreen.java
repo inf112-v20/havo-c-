@@ -25,7 +25,6 @@ public class MainGameLobbyScreen implements Screen {
     private static final int Y_POS_STARTBUTTON = 250;
     private static final int Y_POS_EXITBUTTON = 100;
 
-    private int pictureScalling = 1;
 
     // Coordinates for arrows
     private static final int X_PLACEMENT_ARROW = 32;
@@ -63,12 +62,20 @@ public class MainGameLobbyScreen implements Screen {
     private Texture pickMap;
     private Texture pickEnemies;
 
-    private ArrayList<Texture> numbers;
+    private ArrayList<Texture> numbers = new ArrayList<>();
+    private ArrayList<Texture> maps = new ArrayList<>();
 
+    private int numberOfEnemies = 0;
+    private int maxNumberOfEnemies = 5;
+    private int minNumberOfEnemies = 1;
+
+    private int mapNumber = 0;
+    private int maxMapNumber = 3;
+    private int minMapNumber = 1;
 
     private BitmapFont font;
 
-    private int numberOfEnemies = 1;
+
 
     public MainGameLobbyScreen (Robo robo) {
         this.game = robo;
@@ -98,17 +105,19 @@ public class MainGameLobbyScreen implements Screen {
 
         // My pitiful attempt at fixing the coordinate system
         // camera.setToOrtho(false, 500, 500);
-        if (Gdx.input.getY()  > 0 && Gdx.input.getY() < 50 &&
-                Gdx.input.getX() > 0 && Gdx.input.getX() < 700) {
-            if (Gdx.input.isTouched()) {
-                drawNumberOfEnemeies(true);
+        if (Gdx.input.getY()  > 190 && Gdx.input.getY() < 235 &&
+                Gdx.input.getX() > X_PLACEMENT_ARROW && Gdx.input.getX() < X_PLACEMENT_ARROW + DISTANCE_BETWEEN_ARROW + ARROW_WIDTH) {
+            if (Gdx.input.justTouched()) {
+                numberOfEnemies(Gdx.input.getX());
 
             }
         }
-        if (Gdx.input.getY() > 500 - Y_POS_EXITBUTTON - BUTTON_HEIGHT && Gdx.input.getY() < 500 - Y_POS_EXITBUTTON &&
-                Gdx.input.getX() > X_POS_BUTTON && Gdx.input.getX() < X_POS_BUTTON + BUTTON_WIDTH) {
-            if (Gdx.input.isTouched()) {
-                drawNumberOfEnemeies(false);
+
+        if (Gdx.input.getY() > 190  && Gdx.input.getY() < 235 &&
+                Gdx.input.getX() > X_PLACEMENT_ARROW + DISTANCE_BETWEEN_MENU_LINES + 10 && Gdx.input.getX() < X_PLACEMENT_ARROW + ARROW_WIDTH
+                + DISTANCE_BETWEEN_MENU_LINES + 10 + DISTANCE_BETWEEN_ARROW) {
+            if (Gdx.input.justTouched()) {
+                pickAMap(Gdx.input.getX());
             }
         }
         drawTexture();
@@ -156,17 +165,66 @@ public class MainGameLobbyScreen implements Screen {
         game.batch.draw(playButton, X_PLACEMENT_MENU_LINES * 2 + DISTANCE_BETWEEN_MENU_LINES * 2 + 10, Y_PLACEMENT_MENU_LINES + 9, MENU_LINES_WIDTH, BUTTON_HEIGHT);
         game.batch.draw(backButton, X_PLACEMENT_MENU_LINES * 2 + DISTANCE_BETWEEN_MENU_LINES * 2 + 10,Y_PLACEMENT_MENU_LINES + 9 + BUTTON_HEIGHT + 10, MENU_LINES_WIDTH, BUTTON_HEIGHT);
 
+        drawNumbersOfEnemies(numberOfEnemies);
+        drawMap(mapNumber);
     }
-    private void drawNumberOfEnemeies(Boolean addSub) {
-        setFontSettings();
-        if(addSub) {
-            numberOfEnemies++;
+    private void pickAMap(int getX) {
+
+        int arrowMidPoint = X_PLACEMENT_ARROW + ARROW_WIDTH + (DISTANCE_BETWEEN_ARROW - ARROW_WIDTH) / 2 + DISTANCE_BETWEEN_MENU_LINES;
+        if(getX > arrowMidPoint) {
+            handleMapNumber(true);
         } else {
-            numberOfEnemies--;
+            handleMapNumber(false);
+
+        }
+    }
+
+    private void numberOfEnemies(int getX) {
+        int arrowMidPoint = X_PLACEMENT_ARROW + ARROW_WIDTH + (DISTANCE_BETWEEN_ARROW - ARROW_WIDTH) / 2;
+        if(getX > arrowMidPoint) {
+
+            handleNumberOfEnemies(true);
+        } else {
+            handleNumberOfEnemies(false);
+
         }
 
-        font.draw(game.batch, Integer.toString(numberOfEnemies), X_POS_BUTTON, Y_POS_STARTBUTTON);
+    }
+    private void drawMap(int number) {
+        game.batch.draw(maps.get(number), X_PLACEMENT_MENU_LINES + DISTANCE_BETWEEN_MENU_LINES + 20, Y_PLACEMENT_MENU_LINES + 170, 200, 25);
+    }
 
+    private void drawNumbersOfEnemies(int number) {
+        game.batch.draw(numbers.get(number), X_PLACEMENT_MENU_LINES + ARROW_WIDTH, Y_PLACEMENT_MENU_LINES + 150, 50, 50);
+    }
+
+    private void handleMapNumber(Boolean newmap) {
+        if(newmap) {
+            if(mapNumber < maxMapNumber - 1) {
+
+                mapNumber++;
+            }
+        }
+        else {
+            if(mapNumber > minMapNumber - 1) {
+                mapNumber--;
+            }
+        }
+    }
+
+
+    // Makes sure that the max/min number of enemies is not breached
+    private void handleNumberOfEnemies(Boolean moreEnemies) {
+        if(moreEnemies) {
+            if(numberOfEnemies < maxNumberOfEnemies - 1) {
+                numberOfEnemies++;
+            }
+        }
+        else {
+            if(numberOfEnemies > minNumberOfEnemies - 1) {
+                numberOfEnemies--;
+            }
+        }
     }
 
     private void setFontSettings() {
@@ -174,11 +232,11 @@ public class MainGameLobbyScreen implements Screen {
     }
 
     private void fillTextTexture() {
-        one = new Texture("assets/buttons/text/one.png");
-        two = new Texture("assets/buttons/text/two.png");
-        three = new Texture("assets/buttons/text/three.png");
-        four = new Texture("assets/buttons/text/four.png");
-        five = new Texture("assets/buttons/text/five.png");
+        one = new Texture("assets/gameLobby/text/one.png");
+        two = new Texture("assets/gameLobby/text/two.png");
+        three = new Texture("assets/gameLobby/text/three.png");
+        four = new Texture("assets/gameLobby/text/four.png");
+        five = new Texture("assets/gameLobby/text/five.png");
 
         numbers.add(one);
         numbers.add(two);
@@ -187,11 +245,15 @@ public class MainGameLobbyScreen implements Screen {
         numbers.add(five);
 
 
-        clusterCross = new Texture("assets/buttons/text/clusterCross.png");
-        dizzyHighway = new Texture("assets/buttons/text/DizzyHighway.png");
-        testingGround = new Texture("assets/buttons/text/TestingGround.png");
-        pickMap = new Texture("assets/buttons/text/pickMap.png");
-        pickEnemies = new Texture("assets/buttons/text/pickEnemies.png");
+        clusterCross = new Texture("assets/gameLobby/text/clusterCross.png");
+        dizzyHighway = new Texture("assets/gameLobby/text/DizzyHighway.png");
+        testingGround = new Texture("assets/gameLobby/text/TestingGround.png");
+        pickMap = new Texture("assets/gameLobby/text/pickMap.png");
+        pickEnemies = new Texture("assets/gameLobby/text/pickEnemies.png");
+
+        maps.add(testingGround);
+        maps.add(dizzyHighway);
+        maps.add(clusterCross);
 
     }
 }
