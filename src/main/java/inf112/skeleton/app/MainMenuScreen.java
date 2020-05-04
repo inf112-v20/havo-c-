@@ -45,7 +45,7 @@ public class MainMenuScreen implements Screen {
                 Gdx.input.getX() > X_POS_BUTTON && Gdx.input.getX() < X_POS_BUTTON + BUTTON_WIDTH) {
             if (Gdx.input.isTouched()) {
                 this.dispose();
-                game.setScreen(new MainGameScreen(game));
+                game.setScreen(new MainGameLobbyScreen(game));
 
             }
         }
@@ -56,6 +56,7 @@ public class MainMenuScreen implements Screen {
                 Gdx.app.exit();
             }
         }
+
         game.batch.draw(playButton, X_POS_BUTTON, Y_POS_STARTBUTTON, BUTTON_WIDTH, BUTTON_HEIGHT);
         game.batch.draw(exitButton, X_POS_BUTTON,Y_POS_EXITBUTTON, BUTTON_WIDTH, BUTTON_HEIGHT);
         game.batch.end();
