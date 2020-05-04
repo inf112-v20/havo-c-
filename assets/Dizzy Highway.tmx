@@ -15,7 +15,7 @@
 5,5,5,5,5,5,5,5,5,5,5,5,0,0,0,0,
 </data>
  </layer>
- <layer id="2" name="ConvoyBelts" width="12" height="10" locked="1">
+ <layer id="2" name="ConveyorBelts" width="12" height="10" locked="1">
   <data encoding="csv">
 0,0,0,0,21,21,0,0,0,0,0,0,
 0,0,0,0,21,85,22,22,22,22,76,22,

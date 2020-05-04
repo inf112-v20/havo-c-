@@ -214,7 +214,9 @@ public class Player implements IPlayer{
     public Direction getPlayerDir(){
         return playerDir;
     }
-    public void setPlayerDir(Direction dir) {playerDir = dir; }
+    public void setPlayerDir(Direction dir){
+        playerDir = dir;
+    }
     public Integer getLives(){
         return lives;
     }
@@ -224,48 +226,46 @@ public class Player implements IPlayer{
     public PlayerState getPlayerState(){
         return playerState;
     }
-
-    public Integer getFlags() {
+    public Integer getFlags(){
         return flagsVisited;
     }
-    public void visitFlag() {
+    public void visitFlag(){
         flagsVisited++;
     }
-
-    public ArrayList<Card> getHand() {
+    public ArrayList<Card> getHand(){
         return hand;
     }
-    public Boolean getPowerdown() { return powerdown; }
-
-    public void setPowerdown(Boolean value) {
+    public Boolean getPowerdown(){
+        return powerdown;
+    }
+    public void setPowerdown(Boolean value){
         powerdown = value;
     }
-    public Boolean getReady() {
+    public Boolean getReady(){
         return ready;
     }
-
-    public void setReady(Boolean value) {
+    public void setReady(Boolean value){
         ready = value;
     }
-
-    public Vector2 getPlayerloc() { return playerLoc; }
-
+    public Vector2 getPlayerloc(){
+        return playerLoc;
+    }
 
     // This should be refactored:
     public void playFullHand() {
 
     }
 
-    public void addCardvalues(Integer value) {
+    public void addCardvalues(Integer value){
         cardValues.add(value);
     }
-    public void clearCardValues() {
+    public void clearCardValues(){
         cardValues.clear();
     }
-    public Integer getOneCardValue(Integer index) {
+    public Integer getOneCardValue(Integer index){
         return cardValues.get(index);
     }
-    public ArrayList<Integer> getCardValues() {
+    public ArrayList<Integer> getCardValues(){
         return cardValues;
     }
 

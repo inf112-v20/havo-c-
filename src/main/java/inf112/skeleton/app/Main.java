@@ -10,8 +10,6 @@ public class Main {
         cfg.title = "RoboRally";
         cfg.width = 700;
         cfg.height = 500;
-
-
         new LwjglApplication(new Robo(), cfg);
     }
 }
