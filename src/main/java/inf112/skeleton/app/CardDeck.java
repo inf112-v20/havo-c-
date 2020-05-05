@@ -10,13 +10,13 @@ public class CardDeck implements ICardDeck {
     // Constructor that calls the addCards function, the amount section makes it easier to nerf/buff card-rng
     // definition: "card-rng" the options the player/AI will have in card, will be random so therefore card-rng
     public CardDeck(){
-        addCards("Move1",10);
-        addCards("Move2",5);
-        addCards("Move3",3);
-        addCards("MoveBack",5);
-        addCards("TurnLeft",10);
-        addCards("TurnRight",10);
-        addCards("Turn180",5);
+        addCards("Move1",18);
+        addCards("Move2",12);
+        addCards("Move3",6);
+        addCards("MoveBack",6);
+        addCards("TurnLeft",18);
+        addCards("TurnRight",18);
+        addCards("Turn180",6);
 
         shuffleDeck();
     }

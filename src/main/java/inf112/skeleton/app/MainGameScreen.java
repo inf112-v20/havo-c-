@@ -68,7 +68,7 @@ public class MainGameScreen extends InputAdapter implements Screen {
 
         Vector2 startLoc = new Vector2(0,0);
         gameBoard = new Board(mapLoader.load(mapName));
-        Vector2 tempStartLoc = new Vector2(9, 0);
+        Vector2 tempStartLoc = new Vector2(0, 4);
         player = new Player(startLoc, Direction.NORTH, gameBoard, this);
         monkey = new MonkeyAI(tempStartLoc, Direction.NORTH, gameBoard, this);
 
@@ -361,31 +361,31 @@ public class MainGameScreen extends InputAdapter implements Screen {
 
         if(card.getCommand() == "Move1") {
             value = 490;
-            value = value + rand.nextInt(160);
+            value = value + rand.nextInt(16) * 10;
         }
         else if (card.getCommand() == "Move2") {
             value = 670;
-            value = value + rand.nextInt(110);
+            value = value + rand.nextInt(11) * 10;
         }
         else if (card.getCommand() == "Move3") {
             value = 790;
-            value =value + rand.nextInt(50);
+            value =value + rand.nextInt(5) * 10;
         }
         else if (card.getCommand() == "TurnRight") {
             value = 80;
-            value = value + rand.nextInt(340);
+            value = value + rand.nextInt(34) * 10;
         }
         else if (card.getCommand() == "TurnLeft") {
             value = 70;
-            value = value + rand.nextInt(340);
+            value = value + rand.nextInt(34) * 10;
         }
         else if (card.getCommand() == "MoveBack") {
             value = 430;
-            value = value + rand.nextInt(50);
+            value = value + rand.nextInt(5) * 10;
         }
         else if (card.getCommand() == "Turn180") {
             value = 10;
-            value = value + rand.nextInt(50);
+            value = value + rand.nextInt(5) * 10;
         }
 
         return value;
@@ -400,12 +400,10 @@ public class MainGameScreen extends InputAdapter implements Screen {
         Gdx.graphics.setWindowedMode(screenWidth, Gdx.graphics.getHeight());
         game.batch.getProjectionMatrix().setToOrtho2D(0, 0, screenWidth, 500);
 
+    }
+    private void handelCardOrder() {
 
     }
-
-
-
-
     @Override
     public void resize(int i, int i1) {
     }

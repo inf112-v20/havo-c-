@@ -49,7 +49,7 @@ public class MonkeyAI implements IPlayer{
     Guineapig guineapig;
     private ArrayList<Card> pickedCards = new ArrayList();
     private ArrayList<Integer> indexPickedCards = new ArrayList<Integer>();
-    Vector2 oldCoordinates = new Vector2(9, 0);
+    Vector2 oldCoordinates;
     Direction oldDirection = Direction.NORTH;
 
 
@@ -67,7 +67,8 @@ public class MonkeyAI implements IPlayer{
         playerWonCell.setTile(new StaticTiledMapTile(playerIcon[0][2]));
         oldDirection = dir;
         Direction guineapigDir = Direction.NORTH;
-        Vector2 guineapigStartLoc = new Vector2(9, 0);
+        Vector2 guineapigStartLoc = new Vector2(location.cpy());
+        oldCoordinates = new Vector2((location.cpy()));
 
         monkeyCardDeck = new CardDeck();
         guineapig = new Guineapig(guineapigStartLoc, guineapigDir, board, game);
