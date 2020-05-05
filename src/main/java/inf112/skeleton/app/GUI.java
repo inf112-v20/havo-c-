@@ -203,7 +203,6 @@ public class GUI {
         }
     }
 
-
     public void drawButtons() {
 
         game.batch.draw(resetcards, BUTTON_WIDTH * (rightRow4), BUTTON_HEIGHT * 0, 50, 50);
