@@ -113,7 +113,6 @@ public class GUI {
                 x = 0;
                 y--;
             }
-
             game.batch.draw(cards.get(i), BUTTON_WIDTH * (x_pos + x), BUTTON_HEIGHT * (y_pos + y), 50, 50);
             font.draw(game.batch, player.getOneCardValue(i).toString(), BUTTON_WIDTH * (x_pos + x) + 25, BUTTON_HEIGHT * (y_pos + y) + 10);
             x++;
@@ -175,7 +174,6 @@ public class GUI {
         int cardXY = cardX + (cardY * 3) - 1;
         System.out.println("cardXY " + cardXY);
         handleTouchedCards(cardXY);
-
     }
     public void movePlayer(int cardXY){
         // Gives the right command depending on which card the user touched

@@ -246,7 +246,6 @@ public class MainGameScreen extends InputAdapter implements Screen {
                     players.get(j).playHand(i);
                     aiHavemadeThepicks = false;
                 }
-
             }
         }
 
@@ -261,7 +260,14 @@ public class MainGameScreen extends InputAdapter implements Screen {
         player.clearCardValues();
         handleCardValues();
 
-        if (player.getPowerdown()) {
+        for (int l = 0; players.size() > l; l++){
+            if (players.get(l) != null) {
+                IPlayer currentActor = players.get(l);
+                gameBoard.checkForSpecialTiles(currentActor);
+            }
+        }
+
+        if (player.getPowerdown()){
             player.bootUp();
         }
 
