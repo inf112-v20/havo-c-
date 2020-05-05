@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.2" tiledversion="1.3.4" orientation="orthogonal" renderorder="right-down" width="12" height="12" tilewidth="300" tileheight="300" infinite="0" nextlayerid="10" nextobjectid="1">
+<map version="1.2" tiledversion="1.3.4" orientation="orthogonal" renderorder="right-down" width="12" height="12" tilewidth="300" tileheight="300" infinite="0" nextlayerid="11" nextobjectid="1">
  <tileset firstgid="1" source="RoboRally_tiles.tsx"/>
  <layer id="1" name="Board" width="12" height="12" locked="1">
   <data encoding="csv">
@@ -17,7 +17,23 @@
 5,5,5,5,5,5,5,5,5,5,5,5
 </data>
  </layer>
- <layer id="2" name="ConvoyBelts" width="12" height="12" locked="1">
+ <layer id="10" name="Spawn" width="12" height="12" locked="1">
+  <data encoding="csv">
+0,0,0,0,0,122,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,
+123,0,0,0,0,0,0,0,0,0,0,129,
+124,0,0,0,0,0,0,0,0,0,0,130,
+0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,121,0,0,0,0,0
+</data>
+ </layer>
+ <layer id="2" name="ConveyorBelts" width="12" height="12" locked="1">
   <data encoding="csv">
 0,0,33,51,34,0,0,33,51,34,0,0,
 0,0,0,0,49,0,0,50,0,49,0,0,
@@ -68,16 +84,16 @@
  <layer id="5" name="Holes" width="12" height="12" locked="1">
   <data encoding="csv">
 0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,92,0,0,0,0,0,
+0,0,0,0,0,0,125,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,
-0,92,0,0,0,92,0,0,0,0,0,0,
-0,0,0,0,0,0,92,0,0,0,92,0,
+0,125,0,0,0,92,0,0,0,0,0,0,
+0,0,0,0,0,0,92,0,0,0,125,0,
 0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,92,0,0,0,0,0,0,
+0,0,0,0,0,125,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0
 </data>
  </layer>
