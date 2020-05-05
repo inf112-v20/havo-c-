@@ -1,10 +1,7 @@
 package inf112.skeleton.app;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Input;
 import com.badlogic.gdx.audio.Sound;
-import com.badlogic.gdx.backends.lwjgl.audio.Wav;
-import com.badlogic.gdx.maps.MapObject;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.math.Vector2;
@@ -31,6 +28,8 @@ public class Board implements IBoard {
     private Sound flagSound = Gdx.audio.newSound(Gdx.files.internal("assets/sounds/flag.wav"));
     private Sound victorySound = Gdx.audio.newSound(Gdx.files.internal("assets/sounds/victory.mp3"));
 
+
+
     public Board(TiledMap Map){
         // Takes in tiledMap from input
         this.Map = Map;
@@ -45,6 +44,8 @@ public class Board implements IBoard {
         this.Wall = (TiledMapTileLayer) Map.getLayers().get("Walls");
         this.RepairTiles = (TiledMapTileLayer) Map.getLayers().get("RepairTiles");
         this.flagCount = countFlags();
+
+
     }
     private Integer countFlags(){
         Integer flagCount = 0;
@@ -259,6 +260,7 @@ public class Board implements IBoard {
     public TiledMapTileLayer getPlayerLayer(){
         return Players;
     }
+
 
     public ArrayList<Vector2> findAllFlags() {
         ArrayList<Vector2> allFlags = new ArrayList<Vector2>();

@@ -15,10 +15,13 @@ import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Timer;
 import com.badlogic.gdx.utils.Timer.Task;
+import com.badlogic.gdx.utils.viewport.ExtendViewport;
+import com.badlogic.gdx.utils.viewport.Viewport;
 
 
 import java.util.ArrayList;
 import java.util.Random;
+import java.util.concurrent.TimeUnit;
 
 public class MainGameScreen extends InputAdapter implements Screen {
 
@@ -31,8 +34,9 @@ public class MainGameScreen extends InputAdapter implements Screen {
     private OrthogonalTiledMapRenderer mapRenderer;
     public OrthographicCamera camera = new OrthographicCamera();
     private TmxMapLoader mapLoader = new TmxMapLoader();
+
     private Board gameBoard;
-    private Timer timer = new Timer();
+
     // Variables for Player
     private IPlayer player;
     private MonkeyAI monkey;
@@ -60,6 +64,8 @@ public class MainGameScreen extends InputAdapter implements Screen {
     public MainGameScreen(Robo robo, String mapName, int numberOfEnemies) {
 
         this.game = robo;
+
+
         Vector2 startLoc = new Vector2(0,0);
         gameBoard = new Board(mapLoader.load(mapName));
         Vector2 tempStartLoc = new Vector2(9, 0);
@@ -79,6 +85,8 @@ public class MainGameScreen extends InputAdapter implements Screen {
         rand = new Random();
         handleCardValues();
 
+
+        setRightScreenSize();
     }
 
 
@@ -118,6 +126,7 @@ public class MainGameScreen extends InputAdapter implements Screen {
         gui.drawHealthbar(player.getHp());
 
         game.batch.end();
+
 
 
         // Renders map
@@ -203,6 +212,8 @@ public class MainGameScreen extends InputAdapter implements Screen {
     }
 
     public void doTurn() {
+        player.setReady(false);
+
         if (player.getPowerdown()) {
             // Insert code for powerdown here
         }
@@ -231,7 +242,6 @@ public class MainGameScreen extends InputAdapter implements Screen {
 
             }
         }
-
 
 
             player.getHand().clear();
@@ -380,10 +390,16 @@ public class MainGameScreen extends InputAdapter implements Screen {
         return gameBoard;
     }
 
+    private void setRightScreenSize() {
+        int screenWidth = board_width * BUTTON_WIDTH;
+        Gdx.graphics.setWindowedMode(screenWidth, Gdx.graphics.getHeight());
+    }
+
+
+
 
     @Override
     public void resize(int i, int i1) {
-
     }
 
     @Override

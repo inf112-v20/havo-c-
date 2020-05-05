@@ -50,9 +50,19 @@ public class GUI {
     private Board gameBoard = new Board(mapLoader.load("assets/Testing Grounds.tmx"));
     // Variables for Player
     public CardDeck deck = new CardDeck();
+
+
+
+    // Variables for making the game more scalable in size
     // Width and Height og the grid
-    private final int BOARD_WIDTH = gameBoard.getPlayerLayer().getWidth();
-    private final int BOARD_HEIGHT = gameBoard.getPlayerLayer().getHeight();
+    private int boardWidth;
+    private int boardHeight;
+
+    private int rightRow;
+    private int rightRow2;
+    private int rightRow3;
+    private int rightRow4;
+
 
     public GUI (Robo robo, IPlayer player) {
         this.game = robo;
@@ -69,6 +79,19 @@ public class GUI {
         resetcards = new Texture("assets/buttons/resetcards1.png");
         poweroff = new Texture("assets/buttons/poweroff1.png");
         heart = new Texture("assets/heart.png");
+
+
+        // Variables for making the game more scalable in size
+        boardWidth = gameBoard.getBoard().getWidth();
+        boardHeight = gameBoard.getBoard().getHeight();
+
+        rightRow = boardWidth - 1;
+        rightRow2 = boardWidth - 2;
+        rightRow3 = boardWidth - 3;
+        rightRow4 = boardWidth - 4;
+
+        System.out.println("boardWidth " + boardWidth);
+
         loadCards();
         fillPickedCards();
         fillhealthbar();
@@ -78,7 +101,7 @@ public class GUI {
     }
     public void drawCards() {
         // The start of where we want to place the cards, these will not change during the for-loop
-        int x_pos = 10;
+        int x_pos = rightRow4;
         int y_pos = 5;
         // These will make sure the cards end up in the right spot
         int x = 0;
@@ -131,11 +154,11 @@ public class GUI {
         int cardX = 0;
         int cardY = 0;
         // These if-statements take care of x input and changes cardX to the correct column number(1-3)
-        if (x >= BUTTON_WIDTH * 10 && x < BUTTON_WIDTH * 11) {
+        if (x >= BUTTON_WIDTH * rightRow4 && x < BUTTON_WIDTH * rightRow3) {
             cardX = 1;
-        } else if (x >= BUTTON_WIDTH * 11 && x < BUTTON_WIDTH * 12) {
+        } else if (x >= BUTTON_WIDTH * rightRow3 && x < BUTTON_WIDTH * rightRow2) {
             cardX = 2;
-        } else if (x >= BUTTON_WIDTH * 12 && x <= BUTTON_WIDTH * 13) {
+        } else if (x >= BUTTON_WIDTH * rightRow2 && x <= BUTTON_WIDTH * rightRow){
             cardX = 3;
         }
         // These if-statements take care of y input and changes cardX to the correct column number(0-2)
@@ -178,31 +201,31 @@ public class GUI {
 
 
     public void drawButtons() {
-        // Draws
-        game.batch.draw(resetcards, BUTTON_WIDTH * 10, BUTTON_HEIGHT * 0, 50, 50);
-        game.batch.draw(startround, BUTTON_WIDTH * 11, BUTTON_HEIGHT * 0, 50, 50);
-        game.batch.draw(poweroff, BUTTON_WIDTH * 12, BUTTON_HEIGHT * 0, 50, 50);
+
+        game.batch.draw(resetcards, BUTTON_WIDTH * (rightRow4), BUTTON_HEIGHT * 0, 50, 50);
+        game.batch.draw(startround, BUTTON_WIDTH * (rightRow3), BUTTON_HEIGHT * 0, 50, 50);
+        game.batch.draw(poweroff, BUTTON_WIDTH * (rightRow2), BUTTON_HEIGHT * 0, 50, 50);
 
         for (Integer i=0; i<player.getLives(); i++ ){
-            game.batch.draw(heart, BUTTON_WIDTH *(10+i), BUTTON_HEIGHT * 9, 50, 50);
+            game.batch.draw(heart, BUTTON_WIDTH *(rightRow4 + i), BUTTON_HEIGHT * 9, 50, 50);
         }
     }
     public void drawHealthbar(int life) {
-        game.batch.draw(healthbar.get(life), BUTTON_WIDTH * 10, BUTTON_HEIGHT *8, BUTTON_WIDTH * 3, BUTTON_HEIGHT - 20);
+        game.batch.draw(healthbar.get(life), BUTTON_WIDTH * rightRow4, BUTTON_HEIGHT *8, BUTTON_WIDTH * 3, BUTTON_HEIGHT - 20);
     }
 
     public void touchedButtons(int x) {
         int cardX = 0;
         // These if-statments take care of x input and changes cardX to the correct column number(1-3)
-        if(x >= BUTTON_WIDTH * 10 && x < BUTTON_WIDTH * 11) {
+        if(x >= BUTTON_WIDTH * rightRow4 && x < BUTTON_WIDTH * rightRow3) {
             cardX = 1;
 
         }
-        else if(x >= BUTTON_WIDTH * 11 && x < BUTTON_WIDTH * 12) {
+        else if(x >= BUTTON_WIDTH * rightRow3 && x < BUTTON_WIDTH * rightRow2) {
             cardX = 2;
 
         }
-        else if (x >= BUTTON_WIDTH * 12 && x <= BUTTON_WIDTH * 13) {
+        else if (x >= BUTTON_WIDTH * rightRow2 && x <= BUTTON_WIDTH * rightRow) {
             cardX = 3;
 
         }
@@ -273,8 +296,6 @@ public class GUI {
     public ArrayList<Card> getCardHand () {
         return cardHand;
     }
-    private void drawCardvalue() {
 
-    }
 
 }

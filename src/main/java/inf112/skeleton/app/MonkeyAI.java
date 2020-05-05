@@ -1,13 +1,17 @@
 package inf112.skeleton.app;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.maps.tiled.tiles.StaticTiledMapTile;
 import com.badlogic.gdx.math.Vector2;
+
+
 import java.util.*;
 
 import java.util.ArrayList;
+import java.util.concurrent.TimeUnit;
 
 public class MonkeyAI implements IPlayer{
     // Variables of the player robot
@@ -31,6 +35,8 @@ public class MonkeyAI implements IPlayer{
     private TiledMapTileLayer.Cell playerCell = new TiledMapTileLayer.Cell();
     private TiledMapTileLayer.Cell playerDiedCell = new TiledMapTileLayer.Cell();
     private TiledMapTileLayer.Cell playerWonCell = new TiledMapTileLayer.Cell();
+
+
 
 
     // Card Values

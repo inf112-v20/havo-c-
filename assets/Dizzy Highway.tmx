@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.2" tiledversion="1.3.2" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="16" height="10" tilewidth="300" tileheight="300" infinite="0" nextlayerid="10" nextobjectid="1">
  <tileset firstgid="1" source="tiles.tsx"/>
- <layer id="1" name="Board" width="16" height="10" locked="1">
+ <layer id="1" name="Board" width="16" height="10" >
   <data encoding="csv">
 5,5,5,5,5,5,5,5,5,5,5,5,0,0,0,0,
 5,5,5,5,5,5,5,5,5,5,5,5,0,0,0,0,
@@ -15,7 +15,7 @@
 5,5,5,5,5,5,5,5,5,5,5,5,0,0,0,0,
 </data>
  </layer>
- <layer id="2" name="ConveyorBelts" width="12" height="10" locked="1">
+ <layer id="2" name="ConveyorBelts" width="12" height="10" >
   <data encoding="csv">
 0,0,0,0,21,21,0,0,0,0,0,0,
 0,0,0,0,21,85,22,22,22,22,76,22,
@@ -29,7 +29,7 @@
 0,0,0,0,0,0,0,0,0,13,13,0
 </data>
  </layer>
- <layer id="3" name="TurnGears" width="12" height="10" locked="1">
+ <layer id="3" name="TurnGears" width="12" height="10" >
   <data encoding="csv">
 0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,54,0,0,0,0,0,0,0,0,0,
@@ -43,7 +43,7 @@
 0,0,0,0,0,0,0,0,0,0,0,0
 </data>
  </layer>
- <layer id="4" name="RepairTiles" width="12" height="10" locked="1">
+ <layer id="4" name="RepairTiles" width="12" height="10" >
   <data encoding="csv">
 0,0,0,0,0,0,0,0,0,0,0,0,
 0,15,0,0,0,0,0,0,0,0,0,0,
@@ -57,7 +57,7 @@
 0,0,0,0,0,0,0,0,0,0,0,0
 </data>
  </layer>
- <layer id="5" name="Holes" width="12" height="10" locked="1">
+ <layer id="5" name="Holes" width="12" height="10" >
   <data encoding="csv">
 0,0,6,0,0,0,0,0,0,6,0,0,
 0,0,0,6,0,0,0,0,0,0,0,0,
@@ -71,7 +71,7 @@
 0,0,0,0,0,0,0,0,0,0,0,0
 </data>
  </layer>
- <layer id="6" name="Flags" width="12" height="10" locked="1">
+ <layer id="6" name="Flags" width="12" height="10" >
   <data encoding="csv">
 0,0,0,0,0,0,0,0,79,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,
@@ -85,7 +85,7 @@
 0,0,0,0,0,0,0,0,0,0,0,0
 </data>
  </layer>
- <layer id="7" name="PlayerLayer" width="12" height="10" locked="1">
+ <layer id="7" name="PlayerLayer" width="12" height="10" >
   <data encoding="csv">
 0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,
@@ -99,7 +99,7 @@
 0,0,0,0,0,0,0,0,0,0,0,0
 </data>
  </layer>
- <layer id="8" name="Laser" width="12" height="10" locked="1">
+ <layer id="8" name="Laser" width="12" height="10" >
   <data encoding="csv">
 0,0,0,0,0,0,0,0,102,47,0,0,
 0,0,0,0,0,0,0,0,102,47,0,0,
@@ -113,7 +113,7 @@
 0,0,0,0,0,0,0,0,0,0,0,0
 </data>
  </layer>
- <layer id="9" name="Walls" width="12" height="10" locked="1">
+ <layer id="9" name="Walls" width="12" height="10" >
   <data encoding="csv">
 0,0,16,0,0,0,0,0,94,0,0,0,
 0,0,0,0,0,29,29,111,29,37,0,0,
