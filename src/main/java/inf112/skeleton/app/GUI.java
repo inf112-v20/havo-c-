@@ -1,5 +1,7 @@
 package inf112.skeleton.app;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Graphics;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
@@ -43,11 +45,8 @@ public class GUI {
     private BitmapFont font;
     // Temp Var for player, I think this variable should be put into player class
     int tempCardPick = 0;
-    // Map related elements
-    private OrthogonalTiledMapRenderer mapRenderer;
-    public OrthographicCamera camera = new OrthographicCamera();
-    private TmxMapLoader mapLoader = new TmxMapLoader();
-    private Board gameBoard = new Board(mapLoader.load("assets/Testing Grounds.tmx"));
+
+    private Board gameboard;
     // Variables for Player
     public CardDeck deck = new CardDeck();
 
@@ -64,9 +63,12 @@ public class GUI {
     private int rightRow4;
 
 
-    public GUI (Robo robo, IPlayer player) {
+    public GUI (Robo robo, IPlayer player, Board gameboard) {
         this.game = robo;
         this.player = player;
+        this.gameboard = gameboard;
+
+
         // Loads textures
         move1 = new Texture("assets/cards/Move1.png");
         move2 = new Texture("assets/cards/move2.png");
@@ -82,9 +84,9 @@ public class GUI {
 
 
         // Variables for making the game more scalable in size
-        boardWidth = gameBoard.getBoard().getWidth();
-        boardHeight = gameBoard.getBoard().getHeight();
-
+        boardWidth = gameboard.getBoard().getWidth();
+        boardHeight = gameboard.getBoard().getHeight();
+        System.out.println(Gdx.graphics.getWidth());
         rightRow = boardWidth - 1;
         rightRow2 = boardWidth - 2;
         rightRow3 = boardWidth - 3;
@@ -111,6 +113,7 @@ public class GUI {
                 x = 0;
                 y--;
             }
+
             game.batch.draw(cards.get(i), BUTTON_WIDTH * (x_pos + x), BUTTON_HEIGHT * (y_pos + y), 50, 50);
             font.draw(game.batch, player.getOneCardValue(i).toString(), BUTTON_WIDTH * (x_pos + x) + 25, BUTTON_HEIGHT * (y_pos + y) + 10);
             x++;
@@ -170,6 +173,7 @@ public class GUI {
             cardY = 2;
         }
         int cardXY = cardX + (cardY * 3) - 1;
+        System.out.println("cardXY " + cardXY);
         handleTouchedCards(cardXY);
 
     }
@@ -177,7 +181,7 @@ public class GUI {
         // Gives the right command depending on which card the user touched
         Card activeCard = cardHand.get(cardXY);
         activeCard.playCard(player);
-        gameBoard.checkForSpecialTiles(player);
+        gameboard.checkForSpecialTiles(player);
         handleTouchedCards(cardXY);
     }
 

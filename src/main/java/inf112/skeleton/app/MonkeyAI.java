@@ -303,7 +303,6 @@ public class MonkeyAI implements IPlayer{
     public void makeOneCardPick() {
 
         for(int i = 0; i < hp; i++) {
-            System.out.println(i);
             if(!indexPickedCards.contains(i)) {
 
                 if(cardCanNotKill(smallHandCardDeck.get(i))) {
@@ -336,8 +335,6 @@ public class MonkeyAI implements IPlayer{
 
             makeOneCardPick();
 
-            System.out.println("###################################### AI have made pick number: " + (i + 1));
-            System.out.println("Current location of Guineapig: " + guineapig.getPlayerloc());
         }
 
     }
@@ -349,27 +346,23 @@ public class MonkeyAI implements IPlayer{
     }
 
     private Boolean cardKillsGuineapig(Card card) {
-        System.out.println("guineapig get locations before move: " + guineapig.getPlayerloc() + " AI get location before guineapig move " + this.playerLoc);
-        System.out.println("Old direction       " + oldDirection);
-        System.out.println("Guineapig direction " + guineapig.getPlayerDir());
-        System.out.println("monkey direction    " + playerDir);
+
         Card guineapigCard = new Card(card.getCommand());
 
         guineapigCard.playCard(guineapig);
 
-        System.out.println("Card up for testing " + guineapigCard.getCommand());
-        System.out.println("guineapig get locations: "+ guineapig.getPlayerloc() + " AI get location before guineapig move " + this.playerLoc);
-        System.out.println("guineapig get dircetion: " + guineapig.getPlayerDir() + " AI get location before guineapig move " + this.playerDir);
+
+
         if(guineapig.getPlayerState() == playerState.ALIVE && insideMap()) {
-            System.out.println("The guineapig have passed all tests with the card: " + card.getCommand());
+
             oldCoordinates.set(guineapig.getPlayerloc().cpy());
             oldDirection = guineapig.getPlayerDir();
-            System.out.println("new oldCoordinates pos" + oldCoordinates);
+
 
 
             return true; }
         else {
-            System.out.println("##-----------------------Card " + guineapigCard.getCommand() + " did not pass the tests-------------------##");
+
 
             resetGuineapig();
             return false; }
@@ -377,12 +370,11 @@ public class MonkeyAI implements IPlayer{
     private Boolean insideMap() {
         if(guineapig.getX() >= 0 && guineapig.getX() <= 9
             && guineapig.getY() >= 0 && guineapig.getY() <= 9) {
-            System.out.println("Inside map");
+
             return true;
         }
         else {
-            System.out.println("getX: " + guineapig.getX());
-            System.out.println("getY: " + guineapig.getY());
+
             return  false;
         }
     }

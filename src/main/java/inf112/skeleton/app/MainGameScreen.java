@@ -13,15 +13,12 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.utils.Timer;
-import com.badlogic.gdx.utils.Timer.Task;
-import com.badlogic.gdx.utils.viewport.ExtendViewport;
-import com.badlogic.gdx.utils.viewport.Viewport;
+
 
 
 import java.util.ArrayList;
 import java.util.Random;
-import java.util.concurrent.TimeUnit;
+
 
 public class MainGameScreen extends InputAdapter implements Screen {
 
@@ -34,14 +31,13 @@ public class MainGameScreen extends InputAdapter implements Screen {
     private OrthogonalTiledMapRenderer mapRenderer;
     public OrthographicCamera camera = new OrthographicCamera();
     private TmxMapLoader mapLoader = new TmxMapLoader();
-
+;
     private Board gameBoard;
 
     // Variables for Player
     private IPlayer player;
     private MonkeyAI monkey;
     public ArrayList<IPlayer> players;
-    private CardDeck deck = new CardDeck();
 
 
     Random rand;
@@ -50,7 +46,11 @@ public class MainGameScreen extends InputAdapter implements Screen {
 
     // Width and Height og the grid
     private int board_width;
-    private int boarg_height;
+    private int board_height;
+
+
+    private  int rightRow1;
+    private int rightRow4;
 
     // Array for tracking all the players
     public ArrayList<Vector2> allLoc = new ArrayList<Vector2>();
@@ -71,11 +71,22 @@ public class MainGameScreen extends InputAdapter implements Screen {
         Vector2 tempStartLoc = new Vector2(9, 0);
         player = new Player(startLoc, Direction.NORTH, gameBoard, this);
         monkey = new MonkeyAI(tempStartLoc, Direction.NORTH, gameBoard, this);
-        gui = new GUI(game, player);
-        Gdx.input.setInputProcessor(this);
 
         board_width = gameBoard.getBoard().getWidth();
-        boarg_height = gameBoard.getBoard().getHeight();
+        board_height = gameBoard.getBoard().getHeight();
+
+
+        rightRow1 = board_width -1;
+        rightRow4 = board_width - 4;
+
+
+
+
+
+        setRightScreenSize();
+        Gdx.input.setInputProcessor(this);
+        gui = new GUI(game, player, gameBoard);
+
 
 
         players = new ArrayList<IPlayer>();
@@ -86,7 +97,6 @@ public class MainGameScreen extends InputAdapter implements Screen {
         handleCardValues();
 
 
-        setRightScreenSize();
     }
 
 
@@ -97,7 +107,7 @@ public class MainGameScreen extends InputAdapter implements Screen {
         // Input adapter shenanigans;
 
         // Code for setting up map
-        camera.setToOrtho(false, board_width, boarg_height);
+        camera.setToOrtho(false, board_width, board_height);
         camera.update();
         mapRenderer = new OrthogonalTiledMapRenderer(gameBoard.getMap(), 1/300f);
         mapRenderer.setView(camera);
@@ -105,10 +115,8 @@ public class MainGameScreen extends InputAdapter implements Screen {
     }
 
 
-    private static final int BUTTON_HEIGHT = 50;
+
     private static final int BUTTON_WIDTH = 50;
-
-
 
 
 
@@ -137,7 +145,7 @@ public class MainGameScreen extends InputAdapter implements Screen {
         backgroundSound.setLooping(true);
 
         // When user touches the cards
-        if(Gdx.input.getX() > 50 * 10 && Gdx.input.getX() < 50 * 13 &&
+        if(Gdx.input.getX() > BUTTON_WIDTH * rightRow4 && Gdx.input.getX() < 50 * rightRow1 &&
                 Gdx.input.getY() > 50 * 4 && Gdx.input.getY() < 50 *7) {
             if (Gdx.input.justTouched()) {
                gui.touchCards(Gdx.input.getX(), Gdx.input.getY());
@@ -145,7 +153,7 @@ public class MainGameScreen extends InputAdapter implements Screen {
         }
 
         // When the user touches the buttons
-        if(Gdx.input.getX() > 50 * 10 && Gdx.input.getX() < 50 * 13 &&
+        if(Gdx.input.getX() > BUTTON_WIDTH * rightRow4 && Gdx.input.getX() < BUTTON_WIDTH * rightRow1 &&
                 Gdx.input.getY() > 50 * 9 && Gdx.input.getY() < 50 *10) {
             if (Gdx.input.justTouched()) {
                 gui.touchedButtons(Gdx.input.getX());
@@ -169,7 +177,6 @@ public class MainGameScreen extends InputAdapter implements Screen {
 
         player.updatePlayerIcon();
         monkey.updatePlayerIcon();
-
 
     }
 
@@ -243,22 +250,20 @@ public class MainGameScreen extends InputAdapter implements Screen {
             }
         }
 
+        player.getHand().clear();
+        gui.cardHand.clear();
+        gui.cards.clear();
+        gui.selectedCards.clear();
+        gui.indexSelectedCards.clear();
 
-            player.getHand().clear();
-            gui.cardHand.clear();
-            gui.cards.clear();
-            gui.selectedCards.clear();
-            gui.indexSelectedCards.clear();
+        gui.deck.shuffleDeck();
+        gui.loadCards();
+        player.clearCardValues();
+        handleCardValues();
 
-
-            gui.deck.shuffleDeck();
-            gui.loadCards();
-            player.clearCardValues();
-            handleCardValues();
-
-            if (player.getPowerdown()) {
-                player.bootUp();
-            }
+        if (player.getPowerdown()) {
+            player.bootUp();
+        }
 
     }
 
@@ -393,6 +398,9 @@ public class MainGameScreen extends InputAdapter implements Screen {
     private void setRightScreenSize() {
         int screenWidth = board_width * BUTTON_WIDTH;
         Gdx.graphics.setWindowedMode(screenWidth, Gdx.graphics.getHeight());
+        game.batch.getProjectionMatrix().setToOrtho2D(0, 0, screenWidth, 500);
+
+
     }
 
 
