@@ -14,7 +14,7 @@ public interface IPlayer {
 
     void setPlayerState(PlayerState newState);
 
-    void respawn(Integer xCoord, Integer yCoord, Direction dir);
+    void respawn(Direction dir);
 
     void updatePlayerIcon();
 
@@ -65,6 +65,8 @@ public interface IPlayer {
     ArrayList<Integer> getCardValues();
 
     Boolean isPlayer();
+
+    void setSpawnPoint(Vector2 spawnVector);
 
 }
 

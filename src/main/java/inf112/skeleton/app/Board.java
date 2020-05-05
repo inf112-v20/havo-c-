@@ -76,6 +76,8 @@ public class Board implements IBoard {
     public void checkFlags(IPlayer player, Integer xLoc, Integer yLoc){
         if (Flags.getCell(xLoc, yLoc) != null) {
             Integer tileId = Flags.getCell(xLoc, yLoc).getTile().getId();
+            Vector2 newSpawnPoint = new Vector2(xLoc, yLoc);
+            player.setSpawnPoint(newSpawnPoint);
             if (tileId == 55 && player.getFlags() == 0){
                 player.visitFlag();
                 flagSound.play();
