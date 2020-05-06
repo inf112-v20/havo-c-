@@ -101,11 +101,10 @@ public class Board implements IBoard {
                 player.setPlayerState(PlayerState.WINNER);
                 if (player.isYou()) {
                     victorySound.play(0.5f);
-                    if (player.isYou() == false) {
-                        gameoversound.play();
-                    }
                 }
-
+                else {
+                    gameoversound.play();
+                }
             }
         }
     }
