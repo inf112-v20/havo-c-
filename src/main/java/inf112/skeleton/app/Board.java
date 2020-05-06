@@ -29,7 +29,6 @@ public class Board implements IBoard {
     private Sound victorySound = Gdx.audio.newSound(Gdx.files.internal("assets/sounds/victory.mp3"));
 
 
-
     public Board(TiledMap Map){
         // Takes in tiledMap from input
         this.Map = Map;
