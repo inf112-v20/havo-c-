@@ -369,17 +369,13 @@ public class MonkeyAI implements IPlayer{
         guineapigCard.playCard(guineapig);
 
 
-
         if(guineapig.getPlayerState() == playerState.ALIVE && insideMap()) {
 
             oldCoordinates.set(guineapig.getPlayerloc().cpy());
             oldDirection = guineapig.getPlayerDir();
 
-
-
             return true; }
         else {
-
 
             resetGuineapig();
             return false; }
