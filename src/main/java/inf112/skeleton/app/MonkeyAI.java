@@ -317,7 +317,8 @@ public class MonkeyAI implements IPlayer{
     }
 
     public void makeOneCardPick() {
-
+        guineapig.setLocation(playerLoc.cpy());
+        oldCoordinates.set(playerLoc.cpy());
         for(int i = 0; i < hp; i++) {
             if(!indexPickedCards.contains(i)) {
 
@@ -362,7 +363,7 @@ public class MonkeyAI implements IPlayer{
     }
 
     private Boolean cardKillsGuineapig(Card card) {
-
+        System.out.println("Player location " + playerLoc + " old Location " + oldCoordinates + " guineapig location " + guineapig.getPlayerloc());
         Card guineapigCard = new Card(card.getCommand());
 
         guineapigCard.playCard(guineapig);

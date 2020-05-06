@@ -80,7 +80,10 @@ public class Guineapig implements IPlayer{
                 }
                 board.checkHoles(this);
             }
+
+
         }
+
 
     }
     public void Turn(TurnDirection dir){
