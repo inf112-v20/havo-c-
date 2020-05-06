@@ -31,6 +31,7 @@ public class Player implements IPlayer{
     private TiledMapTileLayer playerLayer;
     private MainGameScreen game;
     private Board gameBoard;
+    private Vector2 spawnPoint = new Vector2();
     // Player icon objects
     private TiledMapTileLayer.Cell playerCell = new TiledMapTileLayer.Cell();
     private TiledMapTileLayer.Cell playerDiedCell = new TiledMapTileLayer.Cell();
@@ -56,6 +57,8 @@ public class Player implements IPlayer{
         playerDiedCell.setTile(new StaticTiledMapTile(playerIcon[0][1]));
         playerWonCell.setTile(new StaticTiledMapTile(playerIcon[0][2]));
 
+        gameBoard = game.getGameBoard();
+        spawnPoint.set(playerLoc.cpy());
     }
 
     public void Move(Direction dir) {
@@ -190,13 +193,13 @@ public class Player implements IPlayer{
         playerState = newState;
     }
     // Respawns a dead player
-    public void respawn(Integer xCoord, Integer yCoord, Direction dir){
+    public void respawn(Direction dir){
         // Checks if player is out of lives
         if (lives > 0) {
             // Removes player from location of death
             playerLayer.setCell(getX(),getY(),null);
             // Sets the coordinates and direction the player is facing when respawning in addition of setting the playerState to alive
-            playerLoc.set(xCoord, yCoord);
+            playerLoc.set(spawnPoint.cpy());
             playerDir = dir;
             hp = 9;
             setPlayerState(PlayerState.ALIVE);
@@ -254,6 +257,9 @@ public class Player implements IPlayer{
     }
     public void visitFlag(){
         flagsVisited++;
+    }
+    public void setSpawnPoint(Vector2 spawnVector) {
+        spawnPoint.set(spawnVector.cpy());
     }
     public ArrayList<Card> getHand(){
         return hand;

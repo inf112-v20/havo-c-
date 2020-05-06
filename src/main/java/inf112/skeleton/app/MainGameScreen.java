@@ -18,6 +18,7 @@ import com.badlogic.gdx.math.Vector2;
 
 import java.util.ArrayList;
 import java.util.Random;
+import java.util.concurrent.TimeUnit;
 
 
 public class MainGameScreen extends InputAdapter implements Screen {
@@ -206,7 +207,7 @@ public class MainGameScreen extends InputAdapter implements Screen {
         // Checks if player is dead before allowing player to respawn
         else if (player.getPlayerState() == PlayerState.DEAD && keycode == Input.Keys.R){
             // Barebones respawn system that feeds in start coordinates and direction, a better one will be developed later
-            player.respawn(0,0, Direction.NORTH);
+            player.respawn(Direction.NORTH);
         }
         // Checks if player is standing on special tiles
         gameBoard.checkForSpecialTiles(player);
@@ -244,6 +245,7 @@ public class MainGameScreen extends InputAdapter implements Screen {
                     players.get(j).playHand(i);
                     aiHavemadeThepicks = false;
                 }
+
             }
         }
 

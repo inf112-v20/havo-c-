@@ -16,7 +16,7 @@ public class Board implements IBoard {
     private TiledMapTileLayer ConveyorBelts;
     private TiledMapTileLayer TurnGears;
     private TiledMapTileLayer Holes;
-    private TiledMapTileLayer Flags;
+    public TiledMapTileLayer Flags;
     private TiledMapTileLayer Players;
     private TiledMapTileLayer Laser;
     private TiledMapTileLayer Wall;
@@ -27,7 +27,6 @@ public class Board implements IBoard {
     private Sound fallSound = Gdx.audio.newSound(Gdx.files.internal("assets/sounds/fall.wav"));
     private Sound flagSound = Gdx.audio.newSound(Gdx.files.internal("assets/sounds/flag.wav"));
     private Sound victorySound = Gdx.audio.newSound(Gdx.files.internal("assets/sounds/victory.mp3"));
-
 
 
     public Board(TiledMap Map){
@@ -76,21 +75,26 @@ public class Board implements IBoard {
     public void checkFlags(IPlayer player, Integer xLoc, Integer yLoc){
         if (Flags.getCell(xLoc, yLoc) != null) {
             Integer tileId = Flags.getCell(xLoc, yLoc).getTile().getId();
+            Vector2 newSpawnPoint = new Vector2(xLoc, yLoc);
             if (tileId == 55 && player.getFlags() == 0){
                 player.visitFlag();
                 flagSound.play();
+                player.setSpawnPoint(newSpawnPoint);
             }
             else if (tileId == 63 && player.getFlags() == 1){
                 player.visitFlag();
                 flagSound.play();
+                player.setSpawnPoint(newSpawnPoint);
             }
             else if (tileId == 71 && player.getFlags() == 2){
                 player.visitFlag();
                 flagSound.play();
+                player.setSpawnPoint(newSpawnPoint);
             }
             else if (tileId == 79 && player.getFlags() == 3){
                 player.visitFlag();
                 flagSound.play();
+                player.setSpawnPoint(newSpawnPoint);
             }
             if (player.getFlags() == flagCount && player.getPlayerState() != PlayerState.WINNER) {
                 player.setPlayerState(PlayerState.WINNER);

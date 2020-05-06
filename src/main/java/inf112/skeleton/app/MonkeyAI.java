@@ -23,6 +23,7 @@ public class MonkeyAI implements IPlayer{
     private Boolean ready = false;
     private MainGameScreen game;
     private Boolean player = true;
+    private Vector2 spawnPoint = new Vector2();
     // Control class
     private DirCtrl dirController = new DirCtrl();
     // Elements the Player needs to function on the board
@@ -73,7 +74,7 @@ public class MonkeyAI implements IPlayer{
         monkeyCardDeck = new CardDeck();
         guineapig = new Guineapig(guineapigStartLoc, guineapigDir, board, game);
 
-
+        spawnPoint.set(playerLoc.cpy());
         SmarterMonkey smarterMonkey = new SmarterMonkey(game, this);
 
     }
@@ -186,13 +187,13 @@ public class MonkeyAI implements IPlayer{
         playerState = newState;
     }
     // Respawns a dead player
-    public void respawn(Integer xCoord, Integer yCoord, Direction dir){
+    public void respawn(Direction dir){
         // Checks if player is out of lives
         if (lives > 0) {
             // Removes player from location of death
             playerLayer.setCell(getX(),getY(),null);
             // Sets the coordinates and direction the player is facing when respawning in addition of setting the playerState to alive
-            playerLoc.set(xCoord, yCoord);
+            playerLoc.set(spawnPoint.cpy());
             playerDir = dir;
             hp = 9;
             setPlayerState(PlayerState.ALIVE);
@@ -202,9 +203,7 @@ public class MonkeyAI implements IPlayer{
             lives--;
         }
         // Game Over mechanics not implemented yet
-        else {
-            // Game Over mechanics go here
-        }
+
     }
     // Updates the player icon
     public void updatePlayerIcon(){
@@ -282,6 +281,10 @@ public class MonkeyAI implements IPlayer{
 
     public Boolean isPlayer() {
         return player;
+    }
+
+    public void setSpawnPoint(Vector2 spawnVector) {
+        spawnPoint.set(spawnVector.cpy());
     }
 
     // Everything about how the monkeyAI thinks/works should be added under this section

@@ -16,7 +16,7 @@ public interface IPlayer {
 
     void setPlayerState(PlayerState newState);
 
-    void respawn(Integer xCoord, Integer yCoord, Direction dir);
+    void respawn(Direction dir);
 
     void updatePlayerIcon();
 
@@ -27,13 +27,13 @@ public interface IPlayer {
     void playHand(Integer i);
 
     void addToHand(Card card);
+
     Integer getX();
     Integer getY();
     Direction getPlayerDir();
     Integer getLives();
     Integer getHp();
     PlayerState getPlayerState();
-
     Integer getFlags();
 
     void visitFlag();
@@ -46,6 +46,7 @@ public interface IPlayer {
     void setPowerdown(Boolean value);
 
     Boolean getReady();
+
     void setPlayerDir(Direction dir);
 
     void setReady(Boolean value);
@@ -67,6 +68,9 @@ public interface IPlayer {
     ArrayList<Integer> getCardValues();
 
     Boolean isPlayer();
+
+    void setSpawnPoint(Vector2 spawnVector);
+
 }
 
 

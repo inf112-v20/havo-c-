@@ -2,6 +2,7 @@ package inf112.skeleton.app;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
@@ -22,10 +23,14 @@ public class MainMenuScreen implements Screen {
     public Robo game;
     Texture playButton;
     Texture exitButton;
+
+    private Music mainmenusound = Gdx.audio.newMusic(Gdx.files.internal("assets/sounds/mainmenusound.mp3"));
+
     public MainMenuScreen (Robo robo) {
         this.game = robo;
         playButton = new Texture("assets/buttons/startKnapp.png");
         exitButton = new Texture("assets/buttons/ExitBtn.png");
+        mainmenusound.play();
     }
     @Override
     public void show() {
@@ -45,8 +50,8 @@ public class MainMenuScreen implements Screen {
                 Gdx.input.getX() > X_POS_BUTTON && Gdx.input.getX() < X_POS_BUTTON + BUTTON_WIDTH) {
             if (Gdx.input.isTouched()) {
                 this.dispose();
-                game.setScreen(new MainGameLobbyScreen(game));
 
+                game.setScreen(new MainGameLobbyScreen(game));
             }
         }
         if (Gdx.input.getY() > 500 - Y_POS_EXITBUTTON - BUTTON_HEIGHT && Gdx.input.getY() < 500 - Y_POS_EXITBUTTON &&
@@ -60,6 +65,7 @@ public class MainMenuScreen implements Screen {
         game.batch.draw(playButton, X_POS_BUTTON, Y_POS_STARTBUTTON, BUTTON_WIDTH, BUTTON_HEIGHT);
         game.batch.draw(exitButton, X_POS_BUTTON,Y_POS_EXITBUTTON, BUTTON_WIDTH, BUTTON_HEIGHT);
         game.batch.end();
+
 
     }
 

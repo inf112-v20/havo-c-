@@ -17,6 +17,7 @@ public class Guineapig implements IPlayer{
     private Integer flagsVisited = 0;
     private Boolean ready = false;
     private Boolean player = false;
+    private Vector2 spawnPoint = new Vector2();
     // Control class
     private DirCtrl dirController = new DirCtrl();
     // Elements the Player needs to function on the board
@@ -49,6 +50,7 @@ public class Guineapig implements IPlayer{
         playerCell.setTile(new StaticTiledMapTile(playerIcon[0][0]));
         playerDiedCell.setTile(new StaticTiledMapTile(playerIcon[0][1]));
         playerWonCell.setTile(new StaticTiledMapTile(playerIcon[0][2]));
+        spawnPoint.set(playerLoc.cpy());
     }
 
     public void Move(Direction dir) {
@@ -157,13 +159,13 @@ public class Guineapig implements IPlayer{
         playerState = newState;
     }
     // Respawns a dead player
-    public void respawn(Integer xCoord, Integer yCoord, Direction dir){
+    public void respawn(Direction dir){
         // Checks if player is out of lives
         if (lives > 0) {
             // Removes player from location of death
             playerLayer.setCell(getX(),getY(),null);
             // Sets the coordinates and direction the player is facing when respawning in addition of setting the playerState to alive
-            playerLoc.set(xCoord, yCoord);
+            playerLoc.set(spawnPoint.cpy());
             playerDir = dir;
             hp = 9;
             setPlayerState(PlayerState.ALIVE);
@@ -173,9 +175,7 @@ public class Guineapig implements IPlayer{
             lives--;
         }
         // Game Over mechanics not implemented yet
-        else {
-            // Game Over mechanics go here
-        }
+
     }
     // Updates the player icon
     public void updatePlayerIcon(){
@@ -240,6 +240,10 @@ public class Guineapig implements IPlayer{
     public Vector2 getPlayerloc() { return playerLoc; }
 
     public void setLocation(Vector2 location) { this.playerLoc = location; }
+
+    public void setSpawnPoint(Vector2 spawnVector) {
+        spawnPoint.set(spawnVector.cpy());
+    }
 
     public void playFullHand() {
 
