@@ -57,7 +57,6 @@ public class Player implements IPlayer{
         playerDiedCell.setTile(new StaticTiledMapTile(playerIcon[0][1]));
         playerWonCell.setTile(new StaticTiledMapTile(playerIcon[0][2]));
 
-        gameBoard = game.getGameBoard();
         spawnPoint.set(playerLoc.cpy());
     }
 
