@@ -1,4 +1,4 @@
-# Obligatorisk oppgave 3
+# Obligatorisk oppgave 4
 
 ## Deloppgave 1: Team og prosjekt
 
@@ -63,9 +63,9 @@ droppet vi den idéen og bestemte oss for å lage en AI. Har også prioritert at
 **Akseptanskriterier**
 
 - Spilleren kan velge én av tre vanskelighetsgrader av AI å spille mot
-- "Easy" vil gjøre trekk random
-- "Medium" vil gjøre x
-- "Hard" vil gjøre x
+- "Easy" vil gjøre trekk random, uten å dø med vilje
+- "Standard" vil finne alle rutene som er i nærheten av roboten som den kan gå til med de kortene, 
+og vil prøve å velge retningen som er smartest å gå 
 
 **Arbeidsoppgaver**
 
@@ -75,7 +75,7 @@ droppet vi den idéen og bestemte oss for å lage en AI. Har også prioritert at
 ---
 **Brukerhistorie**
 
-- Som spiller vil jeg at robotene skal skyte laser etter hver runde, for å få en optimal RoboRally opplevelse
+- Som spiller vil jeg at robotene skal skyte laser etter hver runde, for å få et gøyere gameplay
 
 **Akseptanskriterier**
 
@@ -87,7 +87,44 @@ droppet vi den idéen og bestemte oss for å lage en AI. Har også prioritert at
 - iejrgbfdsk
 
 ---
+**Brukerhistorie**
 
+- Som spiller vil jeg ha en game lobby screen, så jeg kan ha noen valg for hvordan gamet skal bli
+
+**Akseptanskriterier**
+
+- Når spiller har trykket på start, skal det komme opp en ny meny med valg
+- Spiller skal få valg om (og få velge) hvor mange motspillere å spille mot, og hvilke bane å spille på
+- Når spiller trykker på start skal spillet begynne med de valgene som er tatt
+- Når spiller trykker på back skal det gå tilbake til der hvor det står start og exit
+
+**Arbeidsoppgaver**
+
+- Sette opp en klasse som implementerer screen
+- Sette opp de rette grafikkene
+- Trenger touch fields, så spiller kan trykke på de ulike knappene
+- Linke game lobby til main game
+
+---
+**Brukerhistorie**
+
+- Som spiller ønsker jeg en indikasjon på om jeg har vunnet eller tapt
+
+**Akseptanskriterier**
+
+- Når spilleren vinner, skal det komme opp en victory screen
+- Når spilleren taper, skal det komme opp en game over screen
+
+**Arbeidsoppgaver**
+
+- hvafaen skal jeg skrive her?
+
+---
+**Brukerhistorie**
+
+- 
+
+---
 **Forklar kort hvilke hovedkrav dere anser som en del av MVP og hvorfor. Hvis det er gjort endringer i 
 rekkefølge utfra hva som er gitt fra kunde, hvorfor er dette gjort?**
 
@@ -100,17 +137,18 @@ Rekkefølgen på hva som er prioritert er vist på neste spørsmål.
 -	Muligheten til å vinne
 -	Kunne ta skade
 -	Roboten skal kunne miste alle liv og dø
--	Et GUI som er funksjonelt for spillet (Denne er egentlig noe som hele veien kan forbedres, og kommer til å bli forbedret etterhvert som flere funksjoner blir lagt til.)
+-	Et GUI som er funksjonelt for spillet 
 -	Velge kort fra en kortstokk
 -	Programmere robot med kort
 -	Nye kort hver runde
 -	Et gameplay system som er runde basert
--	Flag på brettet (Denne er allerede gjort, da den var med i tutorial på hvordan vi får programmet til å kjøre)
+-	Flag på brettet 
 -	Register at robot har vært innom flagg (Denne burde også være lenger oppe da den er allerede gjort.)
 -	Vegger og hindringer
 -	Rullebanen
 -	Roboten skal kunne skyte laser
 -   AI mulitplayer 
+
 
 # Bugs
 **Husk å skrive hvilke bugs som finnes i de kravene dere har utført (dersom det finnes bugs).**
@@ -189,3 +227,28 @@ WARNING: All illegal access operations will be denied in a future releas
 
 **Onsdag 29.04.20**: ca. 2 timer. Alle møtte opp
 - Fikset bugs på GUI i doTurn()
+- Endringer på AI
+- Laget victory og lobby screen (ikke ferdig implementert)
+
+**Fredag 01.05.20**: ca. 2 timer. Alle møtte opp
+- Implementerte AI inn i doTurn()
+- La til mer lydeffekter. Har nå bakgrunnsmusikk 
+- Fikset problem som oppsto når man pushet/ble pushet inn i en vegg
+
+**Mandag 04.05.20**: ca. 4 timer. Alle møtte opp
+- Implementerte en game lobby. Spiller kan nå velge antall motspillere (spillet fungerer foreløpig bare med 1),
+og kan også velge hvilke bane (har 2 valgmuligheter her)
+- Forbedringer til AI
+- Repair tiles er nå implementert
+- Spiller kan nå vinne ved å bruke kortene (tidligere kunne spiller bare vinne ved piltaster)
+- Begynte forberedelse til presentasjon + demo
+
+**Tirsdag 05.05.20**: ca 2 timer. Alle møtte opp
+- Fikset scaling problem på den nye banen.
+- Plasserte spawn til AI et annet sted
+- Koblet sammen kort og AI til checkforspecialtiles
+- Flagg er nå spawn points
+- Skaffet oss bedre oversikt over hva som mangler til innlevering fredag
+
+**Onsdag 06.05.20**: ca x timer. Alle møtte opp
+- oppdater her
