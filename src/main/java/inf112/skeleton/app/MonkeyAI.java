@@ -1,6 +1,7 @@
 package inf112.skeleton.app;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
@@ -23,6 +24,7 @@ public class MonkeyAI implements IPlayer{
     private Boolean ready = false;
     private MainGameScreen game;
     private Boolean player = true;
+    private Boolean you = false;
     private Vector2 spawnPoint = new Vector2();
     // Control class
     private DirCtrl dirController = new DirCtrl();
@@ -53,6 +55,8 @@ public class MonkeyAI implements IPlayer{
     Vector2 oldCoordinates;
     Direction oldDirection = Direction.NORTH;
 
+    //private Sound AIwinsound = Gdx.audio.newSound(Gdx.files.internal("assets/sounds/gameover.wav"));
+    //private Sound AIlosesound = Gdx.audio.newSound(Gdx.files.internal("assets/sounds/victory.wav"));
 
     // Constructor
     public MonkeyAI(Vector2 location, Direction dir, Board board, MainGameScreen game){
@@ -213,6 +217,7 @@ public class MonkeyAI implements IPlayer{
         // Updates player icon based on PlayerState
         if (playerState == PlayerState.WINNER){
             playerLayer.setCell(xLoc,yLoc, playerWonCell);
+
         }
         else if (playerState == PlayerState.DEAD){
             playerLayer.setCell(xLoc,yLoc, playerDiedCell);
@@ -281,6 +286,10 @@ public class MonkeyAI implements IPlayer{
 
     public Boolean isPlayer() {
         return player;
+    }
+
+    public Boolean isYou() {
+        return you;
     }
 
     public void setSpawnPoint(Vector2 spawnVector) {

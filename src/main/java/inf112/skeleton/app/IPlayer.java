@@ -71,6 +71,7 @@ public interface IPlayer {
 
     void setSpawnPoint(Vector2 spawnVector);
 
+    Boolean isYou();
 }
 
 

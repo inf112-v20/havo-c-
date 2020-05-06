@@ -17,6 +17,7 @@ public class Guineapig implements IPlayer{
     private Integer flagsVisited = 0;
     private Boolean ready = false;
     private Boolean player = false;
+    private Boolean you = false;
     private Vector2 spawnPoint = new Vector2();
     // Control class
     private DirCtrl dirController = new DirCtrl();
@@ -266,4 +267,7 @@ public class Guineapig implements IPlayer{
         return player;
     }
 
+    public Boolean isYou() {
+        return you;
+    }
 }

@@ -27,6 +27,7 @@ public class Board implements IBoard {
     private Sound fallSound = Gdx.audio.newSound(Gdx.files.internal("assets/sounds/fall.wav"));
     private Sound flagSound = Gdx.audio.newSound(Gdx.files.internal("assets/sounds/flag.wav"));
     private Sound victorySound = Gdx.audio.newSound(Gdx.files.internal("assets/sounds/victory.mp3"));
+    private Sound gameoversound = Gdx.audio.newSound(Gdx.files.internal("assets/sounds/gameover.wav"));
 
 
     public Board(TiledMap Map){
@@ -98,7 +99,13 @@ public class Board implements IBoard {
             }
             if (player.getFlags() == flagCount && player.getPlayerState() != PlayerState.WINNER) {
                 player.setPlayerState(PlayerState.WINNER);
-                victorySound.play(0.5f);
+                if (player.isYou()) {
+                    victorySound.play(0.5f);
+                    if (player.isYou() == false) {
+                        gameoversound.play();
+                    }
+                }
+
             }
         }
     }

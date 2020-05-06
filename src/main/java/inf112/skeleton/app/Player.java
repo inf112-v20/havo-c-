@@ -22,6 +22,7 @@ public class Player implements IPlayer{
     private Integer flagsVisited = 0;
     private Boolean ready = false;
     private Boolean player = true;
+    private Boolean you = true;
     // Control class
     private DirCtrl dirController = new DirCtrl();
     // Elements the Player needs to function on the board
@@ -299,5 +300,9 @@ public class Player implements IPlayer{
 
     public Boolean isPlayer() {
         return player;
+    }
+
+    public Boolean isYou() {
+        return you;
     }
 }
