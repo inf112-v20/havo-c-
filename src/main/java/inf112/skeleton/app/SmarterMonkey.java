@@ -15,9 +15,9 @@ public class SmarterMonkey {
     MainGameScreen game;
     Board board;
     MonkeyAI monkey;
-    int test = 8;
 
-    Vector2 loaction;
+
+    Vector2 location;
     Direction dir;
 
 
@@ -32,7 +32,7 @@ public class SmarterMonkey {
     }
 
     private void setLocDir(IPlayer player) {
-        loaction = player.getPlayerloc().cpy();
+        location = player.getPlayerloc().cpy();
         dir = player.getPlayerDir();
     }
 
@@ -43,14 +43,36 @@ public class SmarterMonkey {
     private ArrayList<Vector2> findFlag() {
        return board.findAllFlags();
     }
-    private Vector2 aiLocation() {
-        return monkey.getPlayerloc();
+
+    // Gets the the next flag that should be visited
+    private Vector2 findTheRightFlag() {
+
+        Vector2 rightFlag = new Vector2();
+        ArrayList<Vector2> findallFlags = findFlag();
+        int xLoc;
+        int yLoc;
+        for(int i = 0; i < findallFlags.size(); i++) {
+            xLoc = ((int) findallFlags.get(i).x);
+            yLoc = ((int) findallFlags.get(i).y);
+            if (board.Flags.getCell(xLoc, yLoc) != null) {
+                Integer tileId = board.Flags.getCell(xLoc, yLoc).getTile().getId();
+
+                if (tileId == 55 && monkey.getFlags() == 0) {
+                    rightFlag.set(xLoc, yLoc);
+                } else if (tileId == 63 && monkey.getFlags() == 1) {
+                    rightFlag.set(xLoc, yLoc);
+
+                } else if (tileId == 71 && monkey.getFlags() == 2) {
+                    rightFlag.set(xLoc, yLoc);
+
+                } else if (tileId == 79 && monkey.getFlags() == 3) {
+                    rightFlag.set(xLoc, yLoc);
+
+                }
+            }
+        }
+        return rightFlag;
     }
-
-    private void shortestPath(ArrayList<Vector2> allFlags, Vector2 playerLocation) {
-
-    }
-
 
     // Returns an ArrayList of the most valuable direction(s) based on what abs(x or y) is the biggest
     private ArrayList<Direction> mostValuableDirection(Vector2 flagXY) {
@@ -154,8 +176,49 @@ public class SmarterMonkey {
             return false;
         }
     }
-    private void smartPath() {
 
+
+    // Checks if the coordinates is inside the map
+    private Boolean insideMap(Vector2 pos) {
+        Boolean output = false;
+        if (0 <= pos.x && pos.x < board.getBoard().getWidth()) {
+            if (0 <= pos.y && pos.y < board.getBoard().getHeight()) {
+                output = true;
+            }
+        }
+        return output;
+    }
+
+    // Checks if the point given is closer to the flags
+    private Boolean closerToFlag(Vector2 pos) {
+        Vector2 flag = findFlag().get(0);
+
+        float distancePosToFlag = abs((flag.x - pos.x) + (flag.y - pos.y));
+        float distancePlayerToFlag = abs((flag.x - location.x) + (flag.y - location.y));
+
+        // Returns true if position to flag is closer or equal
+        if(distancePlayerToFlag >= distancePosToFlag) { return true; }
+
+        return false;
+
+    }
+
+    public ArrayList<Direction> smartestDirection() {
+        return mostValuableDirection(findTheRightFlag());
+
+    }
+
+    // Returns the smartest picks for the AI to make
+    public ArrayList<Vector2> smartPath() {
+        ArrayList<Vector2> nearbyfields = nearbyFields(monkey);
+        ArrayList<Vector2> valuableFields = new ArrayList<>();
+
+        for (int i = 0; nearbyfields.size() > i; i++) {
+            if(closerToFlag(nearbyfields.get(i)) && insideMap(nearbyfields.get(i))) {
+                valuableFields.add(nearbyfields.get(i).cpy());
+            }
+        }
+        return valuableFields;
     }
 
 

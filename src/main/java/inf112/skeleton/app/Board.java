@@ -16,7 +16,7 @@ public class Board implements IBoard {
     private TiledMapTileLayer ConveyorBelts;
     private TiledMapTileLayer TurnGears;
     private TiledMapTileLayer Holes;
-    private TiledMapTileLayer Flags;
+    public TiledMapTileLayer Flags;
     private TiledMapTileLayer Players;
     private TiledMapTileLayer Laser;
     private TiledMapTileLayer Wall;
@@ -77,22 +77,25 @@ public class Board implements IBoard {
         if (Flags.getCell(xLoc, yLoc) != null) {
             Integer tileId = Flags.getCell(xLoc, yLoc).getTile().getId();
             Vector2 newSpawnPoint = new Vector2(xLoc, yLoc);
-            player.setSpawnPoint(newSpawnPoint);
             if (tileId == 55 && player.getFlags() == 0){
                 player.visitFlag();
                 flagSound.play();
+                player.setSpawnPoint(newSpawnPoint);
             }
             else if (tileId == 63 && player.getFlags() == 1){
                 player.visitFlag();
                 flagSound.play();
+                player.setSpawnPoint(newSpawnPoint);
             }
             else if (tileId == 71 && player.getFlags() == 2){
                 player.visitFlag();
                 flagSound.play();
+                player.setSpawnPoint(newSpawnPoint);
             }
             else if (tileId == 79 && player.getFlags() == 3){
                 player.visitFlag();
                 flagSound.play();
+                player.setSpawnPoint(newSpawnPoint);
             }
             if (player.getFlags() == flagCount && player.getPlayerState() != PlayerState.WINNER) {
                 player.setPlayerState(PlayerState.WINNER);

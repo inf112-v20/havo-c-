@@ -18,6 +18,7 @@ import com.badlogic.gdx.math.Vector2;
 
 import java.util.ArrayList;
 import java.util.Random;
+import java.util.concurrent.TimeUnit;
 
 
 public class MainGameScreen extends InputAdapter implements Screen {
@@ -246,6 +247,7 @@ public class MainGameScreen extends InputAdapter implements Screen {
                     players.get(j).playHand(i);
                     aiHavemadeThepicks = false;
                 }
+
             }
         }
 
