@@ -75,7 +75,6 @@ public class MainGameScreen extends InputAdapter implements Screen {
         board_width = gameBoard.getBoard().getWidth();
         board_height = gameBoard.getBoard().getHeight();
 
-
         rightRow1 = board_width -1;
         rightRow4 = board_width - 4;
 
@@ -83,18 +82,13 @@ public class MainGameScreen extends InputAdapter implements Screen {
         Gdx.input.setInputProcessor(this);
         gui = new GUI(game, player, gameBoard);
 
-
-
         players = new ArrayList<IPlayer>();
         players.add(player);
         players.add(monkey);
         addLoc();
         rand = new Random();
         handleCardValues();
-
-
     }
-
 
     @Override
     public void show() {
@@ -110,12 +104,7 @@ public class MainGameScreen extends InputAdapter implements Screen {
         // Code for defining player and start location
     }
 
-
-
     private static final int BUTTON_WIDTH = 50;
-
-
-
     @Override
     public void render(float v) {
 
@@ -130,8 +119,6 @@ public class MainGameScreen extends InputAdapter implements Screen {
         gui.drawHealthbar(player.getHp());
 
         game.batch.end();
-
-
 
         // Renders map
         mapRenderer.render();
@@ -156,7 +143,6 @@ public class MainGameScreen extends InputAdapter implements Screen {
             }
         }
 
-
     // probably want to be a function
         if (!aiHavemadeThepicks) {
             System.out.println("AI making all the card picks");
@@ -171,9 +157,9 @@ public class MainGameScreen extends InputAdapter implements Screen {
             doTurn();
         }
 
-        player.updatePlayerIcon();
-        monkey.updatePlayerIcon();
-
+        for (Integer i = 0; i < players.size(); i++){
+            players.get(i).updatePlayerIcon();
+        }
     }
 
     public boolean keyUp(int keycode) {
@@ -210,8 +196,9 @@ public class MainGameScreen extends InputAdapter implements Screen {
             player.respawn(Direction.NORTH);
         }
         // Checks if player is standing on special tiles
-        gameBoard.checkForSpecialTiles(player);
-        gameBoard.checkForSpecialTiles(monkey);
+        for (Integer i = 0; i < players.size(); i++){
+            gameBoard.checkForSpecialTiles(players.get(i));
+        }
         updateLoc();
 
         return true;
@@ -272,9 +259,6 @@ public class MainGameScreen extends InputAdapter implements Screen {
         }
 
     }
-
-
-
 
     // Updates all the location in allLoc to the current position of the players
     private void updateLoc() {
@@ -434,4 +418,3 @@ public class MainGameScreen extends InputAdapter implements Screen {
 
     }
 }
-

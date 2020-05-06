@@ -5,6 +5,9 @@ import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.maps.MapObjects;
+import com.badlogic.gdx.maps.MapProperties;
+import com.badlogic.gdx.maps.tiled.TiledMapTile;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.maps.tiled.tiles.StaticTiledMapTile;
 import com.badlogic.gdx.math.Vector2;
@@ -37,6 +40,9 @@ public class Player implements IPlayer{
     private TiledMapTileLayer.Cell playerCell = new TiledMapTileLayer.Cell();
     private TiledMapTileLayer.Cell playerDiedCell = new TiledMapTileLayer.Cell();
     private TiledMapTileLayer.Cell playerWonCell = new TiledMapTileLayer.Cell();
+    // Player laser objects
+    private TiledMapTileLayer.Cell horLaser= new TiledMapTileLayer.Cell();
+    private TiledMapTileLayer.Cell verLaser= new TiledMapTileLayer.Cell();
 
     private Sound wallcollisionsound = Gdx.audio.newSound(Gdx.files.internal("assets/sounds/wallboink.wav"));
     private Sound gameoversound = Gdx.audio.newSound(Gdx.files.internal("assets/sounds/gameover.wav"));
@@ -57,6 +63,10 @@ public class Player implements IPlayer{
         playerCell.setTile(new StaticTiledMapTile(playerIcon[0][0]));
         playerDiedCell.setTile(new StaticTiledMapTile(playerIcon[0][1]));
         playerWonCell.setTile(new StaticTiledMapTile(playerIcon[0][2]));
+        // Graphics for player laser
+        TextureRegion[][] laser = new TextureRegion(new Texture("assets/biglaser.png")).split(300,300);
+        verLaser.setTile(new StaticTiledMapTile(laser[0][0]));
+        horLaser.setTile(new StaticTiledMapTile(laser[0][1]));
 
         spawnPoint.set(playerLoc.cpy());
     }
@@ -89,7 +99,6 @@ public class Player implements IPlayer{
             }
             else {
                 wallcollisionsound.play();
-
             }
         }
 
@@ -119,8 +128,18 @@ public class Player implements IPlayer{
     public void fireLaser(){
         Integer xCoord = getX();
         Integer yCoord = getY();
-        if(gameBoard.wallCheck(xCoord,yCoord,playerDir,false)) {
+        TiledMapTileLayer.Cell activeLaser = new TiledMapTileLayer.Cell();
+
+        if (playerDir == Direction.NORTH || playerDir == Direction.SOUTH){
+            activeLaser = verLaser;
+        }
+        else if (playerDir == Direction.WEST || playerDir == Direction.EAST){
+            activeLaser = horLaser;
+        }
+
+        if (gameBoard.wallCheck(xCoord,yCoord,playerDir,false)) {
             while (true) {
+                gameBoard.getLaserLayer().setCell(xCoord,yCoord,activeLaser);
                 if (playerDir == Direction.NORTH) {
                     yCoord++;
                 } else if (playerDir == Direction.SOUTH) {

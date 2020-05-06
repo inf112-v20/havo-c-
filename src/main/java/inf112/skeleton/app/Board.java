@@ -284,6 +284,9 @@ public class Board implements IBoard {
     public TiledMapTileLayer getPlayerLayer(){
         return Players;
     }
+    public TiledMapTileLayer getLaserLayer(){
+        return Laser;
+    }
 
 
     public ArrayList<Vector2> findAllFlags() {
