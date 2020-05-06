@@ -190,9 +190,17 @@ public class Board implements IBoard {
             }
         }
     }
-    public boolean wallCheck(IPlayer player, Direction dir, Boolean second){
-        Integer xLoc = player.getX();
-        Integer yLoc = player.getY();
+    public boolean checkForObstacles(Integer xLoc, Integer yLoc, Direction dir){
+        if(outOfBoundsCheck(xLoc,yLoc) || getPlayerLayer().getCell(xLoc,yLoc) != null || !wallCheck(xLoc,yLoc,dir,false)){
+            System.out.println("Found obstacle");
+            return true;
+        }
+        else {
+            System.out.println("No obstacle found");
+            return false;
+        }
+    }
+    public boolean wallCheck(Integer xLoc, Integer yLoc, Direction dir, Boolean second){
         Direction dirInUse = dir;
         if (second){
             if (dir == Direction.NORTH) {
@@ -243,11 +251,17 @@ public class Board implements IBoard {
             }
         }
         if (!second) {
-            if (!wallCheck(player, dir, true)){
+            if (!wallCheck(xLoc, yLoc, dir, true)){
                 return false;
             }
         }
         return true;
+    }
+    public boolean outOfBoundsCheck(Integer xLoc, Integer yLoc){
+        if (xLoc < 0 || xLoc >= Players.getWidth() || yLoc < 0 || yLoc >= Players.getHeight()){
+            return true;
+        }
+        return false;
     }
 
     // Methods to get elements from Board

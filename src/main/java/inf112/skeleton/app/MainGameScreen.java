@@ -65,11 +65,10 @@ public class MainGameScreen extends InputAdapter implements Screen {
 
         this.game = robo;
 
-
         Vector2 startLoc = new Vector2(0,0);
         gameBoard = new Board(mapLoader.load(mapName));
         Vector2 tempStartLoc = new Vector2(0, 4);
-        player = new Player(startLoc, Direction.NORTH, gameBoard, this);
+        player = new Player(startLoc, Direction.NORTH, this);
         monkey = new MonkeyAI(tempStartLoc, Direction.NORTH, gameBoard, this);
 
         board_width = gameBoard.getBoard().getWidth();
@@ -78,10 +77,6 @@ public class MainGameScreen extends InputAdapter implements Screen {
 
         rightRow1 = board_width -1;
         rightRow4 = board_width - 4;
-
-
-
-
 
         setRightScreenSize();
         Gdx.input.setInputProcessor(this);
@@ -193,6 +188,9 @@ public class MainGameScreen extends InputAdapter implements Screen {
                 player.Turn(TurnDirection.RIGHT);
             }
         }
+        else if (keycode == Input.Keys.L){
+            player.fireLaser();
+        }
         // Monkey test movement
         if (keycode == Input.Keys.DPAD_UP){
             monkey.Move(monkey.getPlayerDir());
@@ -303,14 +301,14 @@ public class MainGameScreen extends InputAdapter implements Screen {
 
     private IPlayer getCollisionVictim(IPlayer movingPlayer) {
         int movingPlayerInt = players.indexOf(movingPlayer);
-        IPlayer collisionVictim;
         for (int i = 0; i < players.size(); i++) {
             if (i != movingPlayerInt && players.get(i).getPlayerloc().equals(movingPlayer.getPlayerloc())) {
-                collisionVictim = players.get(i);
-                return collisionVictim;
+                //Returns collision victim
+                return players.get(i);
             }
         }
-        return  collisionVictim = movingPlayer;
+        //Returns the moving player
+        return movingPlayer;
     }
 
     private void handleCollision(IPlayer movingPlayer) {
@@ -318,7 +316,7 @@ public class MainGameScreen extends InputAdapter implements Screen {
         Direction movingPlayerDir = movingPlayer.getPlayerDir();
         System.out.println("movingplayer" + movingPlayer);
         System.out.println("collisionVictim: " + collisionVictim);
-        if (gameBoard.wallCheck(collisionVictim, movingPlayerDir,false)) {
+        if (gameBoard.wallCheck(collisionVictim.getX(), collisionVictim.getY(), movingPlayerDir,false)) {
             collisionVictim.Move(movingPlayerDir);
         }
         else {

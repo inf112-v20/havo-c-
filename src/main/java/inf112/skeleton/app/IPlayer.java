@@ -12,6 +12,8 @@ public interface IPlayer {
 
     void Turn(TurnDirection dir);
 
+    void fireLaser();
+
     void setPlayerState(PlayerState newState);
 
     void respawn(Integer xCoord, Integer yCoord, Direction dir);
@@ -25,13 +27,13 @@ public interface IPlayer {
     void playHand(Integer i);
 
     void addToHand(Card card);
-
     Integer getX();
     Integer getY();
     Direction getPlayerDir();
     Integer getLives();
     Integer getHp();
     PlayerState getPlayerState();
+
     Integer getFlags();
 
     void visitFlag();
@@ -44,8 +46,8 @@ public interface IPlayer {
     void setPowerdown(Boolean value);
 
     Boolean getReady();
-
     void setPlayerDir(Direction dir);
+
     void setReady(Boolean value);
 
     void bootUp();
@@ -65,7 +67,6 @@ public interface IPlayer {
     ArrayList<Integer> getCardValues();
 
     Boolean isPlayer();
-
 }
 
 

@@ -8,6 +8,7 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.maps.tiled.tiles.StaticTiledMapTile;
 import com.badlogic.gdx.math.Vector2;
+import org.lwjgl.opengl.EXTFogCoord;
 
 import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
@@ -27,7 +28,6 @@ public class Player implements IPlayer{
     private Vector2 playerLoc;
     private Direction playerDir;
     private PlayerState playerState = PlayerState.ALIVE;
-    private Board board;
     private TiledMapTileLayer playerLayer;
     private MainGameScreen game;
     private Board gameBoard;
@@ -44,19 +44,18 @@ public class Player implements IPlayer{
     private ArrayList<Integer> cardValues= new ArrayList<Integer> ();
 
     // Constructor
-    public Player(Vector2 location, Direction dir, Board board, MainGameScreen game){
+    public Player(Vector2 location, Direction dir, MainGameScreen game){
         this.playerLoc = location;
         this.playerDir = dir;
-        this.board = board;
-        this.playerLayer = board.getPlayerLayer();
         this.game = game;
+        this.gameBoard = game.getGameBoard();
+        this.playerLayer = gameBoard.getPlayerLayer();
         // Graphics for the player
         TextureRegion[][] playerIcon = new TextureRegion(new Texture("assets/Cyborg-Up.png")).split(300,300);
         playerCell.setTile(new StaticTiledMapTile(playerIcon[0][0]));
         playerDiedCell.setTile(new StaticTiledMapTile(playerIcon[0][1]));
         playerWonCell.setTile(new StaticTiledMapTile(playerIcon[0][2]));
 
-        gameBoard = game.getGameBoard();
     }
 
     public void Move(Direction dir) {
@@ -67,7 +66,7 @@ public class Player implements IPlayer{
             Integer xLoc = getX();
             Integer yLoc = getY();
             //Clears player icon from old location
-            if (board.wallCheck(this,dir,false)) {
+            if (gameBoard.wallCheck(xLoc, yLoc, dir,false)) {
                 playerLayer.setCell(xLoc, yLoc, null);
                 // Changes coordinates in the correct manner
                 if (dir == Direction.NORTH) {
@@ -80,10 +79,10 @@ public class Player implements IPlayer{
                     playerLoc.set(xLoc + 1, yLoc);
                 }
                 // Sets PlayerState of the player to dead if it is out of bounds
-                if (getX() < 0 || getX() > (playerLayer.getWidth() - 1) || getY() < 0 || getY() > playerLayer.getHeight()) {
+                if (gameBoard.outOfBoundsCheck(getX(),getY())) {
                     setPlayerState(PlayerState.DEAD);
                 }
-                board.checkHoles(this);
+                gameBoard.checkHoles(this);
             }
             else {
                 wallcollisionsound.play();
@@ -112,6 +111,26 @@ public class Player implements IPlayer{
             }
             // Updates rotation of player icon
             updateIconRotation();
+        }
+    }
+    public void fireLaser(){
+        Integer xCoord = getX();
+        Integer yCoord = getY();
+        if(gameBoard.wallCheck(xCoord,yCoord,playerDir,false)) {
+            while (true) {
+                if (playerDir == Direction.NORTH) {
+                    yCoord++;
+                } else if (playerDir == Direction.SOUTH) {
+                    yCoord--;
+                } else if (playerDir == Direction.WEST) {
+                    xCoord--;
+                } else if (playerDir == Direction.EAST) {
+                    xCoord++;
+                }
+                if(gameBoard.checkForObstacles(xCoord,yCoord,playerDir)){
+                    break;
+                }
+            }
         }
     }
     public void addToHand(Card card){

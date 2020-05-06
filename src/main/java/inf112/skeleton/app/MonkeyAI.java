@@ -86,7 +86,7 @@ public class MonkeyAI implements IPlayer{
             Integer xLoc = getX();
             Integer yLoc = getY();
             //Clears player icon from old location
-            if (board.wallCheck(this,dir,false)) {
+            if (board.wallCheck(xLoc,yLoc,dir,false)) {
                 playerLayer.setCell(xLoc, yLoc, null);
                 // Changes coordinates in the correct manner
                 if (dir == Direction.NORTH) {
@@ -128,6 +128,9 @@ public class MonkeyAI implements IPlayer{
             // Updates rotation of player icon
             updateIconRotation();
         }
+    }
+    public void fireLaser(){
+
     }
     public void addToHand(Card card){
         hand.add(card);

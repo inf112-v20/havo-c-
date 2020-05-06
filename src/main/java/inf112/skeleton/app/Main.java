@@ -13,4 +13,3 @@ public class Main {
         new LwjglApplication(new Robo(), cfg);
     }
 }
-
