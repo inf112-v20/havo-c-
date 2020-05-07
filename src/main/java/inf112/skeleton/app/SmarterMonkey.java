@@ -177,7 +177,6 @@ public class SmarterMonkey {
         }
     }
 
-
     // Checks if the coordinates is inside the map
     private Boolean insideMap(Vector2 pos) {
         Boolean output = false;
