@@ -23,6 +23,7 @@ public class MainGameOverScreen implements Screen {
     Texture gameButton;
     Texture exitButton;
     Texture gameOverButton;
+    int middleOfScreen = Gdx.graphics.getWidth()/2;
 
     public MainGameOverScreen(Robo robo) {
         this.game = robo;
@@ -61,9 +62,9 @@ public class MainGameOverScreen implements Screen {
             }
         }
 
-        game.batch.draw(gameOverButton, X_POS_BUTTON -120, Y_POS_GAMEOVER, BUTTON_WIDTH * 2, BUTTON_HEIGHT * 2);
-        game.batch.draw(gameButton, X_POS_BUTTON, Y_POS_GAMEBUTTON, BUTTON_WIDTH, BUTTON_HEIGHT);
-        game.batch.draw(exitButton, X_POS_BUTTON, Y_POS_EXITBUTTON, BUTTON_WIDTH, BUTTON_HEIGHT);
+        game.batch.draw(gameOverButton, middleOfScreen - 300, Y_POS_GAMEOVER, 600, 125);
+        game.batch.draw(gameButton, middleOfScreen - BUTTON_WIDTH/2, Y_POS_GAMEBUTTON, BUTTON_WIDTH, BUTTON_HEIGHT);
+        game.batch.draw(exitButton, middleOfScreen - BUTTON_WIDTH/2, Y_POS_EXITBUTTON, BUTTON_WIDTH, BUTTON_HEIGHT);
         game.batch.end();
 
     }

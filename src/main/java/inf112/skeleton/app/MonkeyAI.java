@@ -52,7 +52,7 @@ public class MonkeyAI implements IPlayer{
     Guineapig guineapig;
     private ArrayList<Card> pickedCards = new ArrayList();
     private ArrayList<Integer> indexPickedCards = new ArrayList<Integer>();
-    Vector2 oldCoordinates;
+    Vector2 oldCoordinates = new Vector2();
     Direction oldDirection = Direction.NORTH;
 
     //private Sound AIwinsound = Gdx.audio.newSound(Gdx.files.internal("assets/sounds/gameover.wav"));
@@ -72,8 +72,8 @@ public class MonkeyAI implements IPlayer{
         playerWonCell.setTile(new StaticTiledMapTile(playerIcon[0][2]));
         oldDirection = dir;
         Direction guineapigDir = Direction.NORTH;
-        Vector2 guineapigStartLoc = new Vector2(location.cpy());
-        oldCoordinates = new Vector2((location.cpy()));
+        Vector2 guineapigStartLoc = new Vector2(5,4);
+        oldCoordinates.set(5,4);
 
         monkeyCardDeck = new CardDeck();
         guineapig = new Guineapig(guineapigStartLoc, guineapigDir, gameBoard, game);
@@ -317,9 +317,8 @@ public class MonkeyAI implements IPlayer{
     }
 
     public void makeOneCardPick() {
-        guineapig.setLocation(playerLoc.cpy());
-        oldCoordinates.set(playerLoc.cpy());
-        for(int i = 0; i < hp; i++) {
+
+        for(int i = 0; i <= hp - 1; i++) {
             if(!indexPickedCards.contains(i)) {
 
                 if(cardCanNotKill(smallHandCardDeck.get(i))) {
@@ -348,6 +347,10 @@ public class MonkeyAI implements IPlayer{
     }
 
     public void pickAllCards() {
+        guineapig.setLocation(playerLoc.cpy());
+        oldCoordinates.set(playerLoc.cpy());
+        guineapig.setPlayerDir(playerDir);
+        oldDirection = playerDir;
         for(int i = 0; i < 5; i++){
 
             makeOneCardPick();
@@ -363,23 +366,37 @@ public class MonkeyAI implements IPlayer{
     }
 
     private Boolean cardKillsGuineapig(Card card) {
+        System.out.println("card up for judgment " + card.getCommand());
         System.out.println("Player location " + playerLoc + " old Location " + oldCoordinates + " guineapig location " + guineapig.getPlayerloc());
+        System.out.println("player direction " + playerDir + " old direction "+ oldDirection +" guineapig direction " + guineapig.getPlayerDir());
         Card guineapigCard = new Card(card.getCommand());
 
         guineapigCard.playCard(guineapig);
-        gameBoard.checkForSpecialTiles(guineapig);
+
 
         if(guineapig.getPlayerState() == playerState.ALIVE && insideMap()) {
-
             oldCoordinates.set(guineapig.getPlayerloc().cpy());
             oldDirection = guineapig.getPlayerDir();
 
-            return true; }
+            gameBoard.checkForSpecialTiles(guineapig);
+            if(guineapig.getPlayerState() == playerState.ALIVE) {
+                System.out.println(guineapig.getX() + "   " + guineapig.getY());
+                guineapig.setLocation(oldCoordinates.cpy());
+                guineapig.setPlayerDir(oldDirection);
+                return true;
+                }
+            else {
+                resetGuineapig();
+                return false;
+            }
+            }
         else {
             System.out.println("---------------------------------------------------------");
             resetGuineapig();
-            return false; }
+            return false;
+        }
     }
+
     private Boolean insideMap() {
         if(guineapig.getX() >= 0 && guineapig.getX() <= 9
             && guineapig.getY() >= 0 && guineapig.getY() <= 9) {
@@ -403,7 +420,7 @@ public class MonkeyAI implements IPlayer{
     }
     private void setOldCoordinates() {
 
-        oldCoordinates.set(playerLoc);
+        oldCoordinates.set(playerLoc.cpy());
     }
     private Vector2 getOldCoordinates() {
         return oldCoordinates;
