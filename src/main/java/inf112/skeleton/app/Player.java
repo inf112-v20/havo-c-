@@ -42,8 +42,8 @@ public class Player implements IPlayer{
     private TiledMapTileLayer.Cell playerDiedCell = new TiledMapTileLayer.Cell();
     private TiledMapTileLayer.Cell playerWonCell = new TiledMapTileLayer.Cell();
     // Player laser objects
-    private TiledMapTileLayer.Cell horLaser= new TiledMapTileLayer.Cell();
-    private TiledMapTileLayer.Cell verLaser= new TiledMapTileLayer.Cell();
+    private TiledMapTileLayer.Cell horLaser = new TiledMapTileLayer.Cell();
+    private TiledMapTileLayer.Cell verLaser = new TiledMapTileLayer.Cell();
 
     private Sound wallcollisionsound = Gdx.audio.newSound(Gdx.files.internal("assets/sounds/wallboink.wav"));
     private Sound gameoversound = Gdx.audio.newSound(Gdx.files.internal("assets/sounds/gameover.wav"));
@@ -167,25 +167,7 @@ public class Player implements IPlayer{
             Timer.schedule(new Timer.Task() {
                 @Override
                 public void run() {
-                    Integer xCoord = getX();
-                    Integer yCoord = getY();
-                    if (gameBoard.wallCheck(xCoord,yCoord,playerDir,false)) {
-                        while (true) {
-                            if (playerDir == Direction.NORTH) {
-                                yCoord++;
-                            } else if (playerDir == Direction.SOUTH) {
-                                yCoord--;
-                            } else if (playerDir == Direction.WEST) {
-                                xCoord--;
-                            } else if (playerDir == Direction.EAST) {
-                                xCoord++;
-                            }
-                            gameBoard.getLaserLayer().setCell(xCoord,yCoord,null);
-                            if(gameBoard.outOfBoundsCheck(xCoord,yCoord)){
-                                break;
-                            }
-                        }
-                    }
+                    gameBoard.clearLasers();
                 }
             }, 1);
         }

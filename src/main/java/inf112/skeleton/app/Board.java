@@ -24,6 +24,7 @@ public class Board implements IBoard {
     //Other values
     private Integer flagCount;
     private ArrayList<IPlayer> players;
+    private ArrayList<LaserWall> laserWallLists;
     //Sound effects
     private Sound fallSound = Gdx.audio.newSound(Gdx.files.internal("assets/sounds/fall.wav"));
     private Sound flagSound = Gdx.audio.newSound(Gdx.files.internal("assets/sounds/flag.wav"));
@@ -45,6 +46,7 @@ public class Board implements IBoard {
         this.Wall = (TiledMapTileLayer) Map.getLayers().get("Walls");
         this.RepairTiles = (TiledMapTileLayer) Map.getLayers().get("RepairTiles");
         this.flagCount = countFlags();
+        this.laserWallLists = setUpLaserWalls();
     }
     private Integer countFlags(){
         Integer flagCount = 0;
@@ -68,7 +70,6 @@ public class Board implements IBoard {
         // Checks through maplayers for overlap and gives appropriate response
         checkBelts(player , xLoc, yLoc);
         checkTurnGears(player, xLoc, yLoc);
-        checkLasers(player, xLoc, yLoc);
         checkRepairTiles(player, xLoc, yLoc);
         checkFlags(player, xLoc, yLoc);
     }
@@ -182,23 +183,6 @@ public class Board implements IBoard {
             player.Move(Direction.WEST);
         }
     }
-    private void checkLasers(IPlayer player, Integer xLoc, Integer yLoc){
-        if (Laser.getCell(xLoc, yLoc) != null){
-            Integer tileId = Laser.getCell(xLoc, yLoc).getTile().getId();
-            // Single laser
-            if(tileId == 39 || tileId == 47){
-                player.takeDamage(1);
-            }
-            // Single laser intersection or double laser
-            else if(tileId == 40 || tileId == 101 || tileId == 103){
-                player.takeDamage(2);
-            }
-            // Double laser intersection
-            else if(tileId == 102){
-                player.takeDamage(4);
-            }
-        }
-    }
     public boolean checkForObstacles(Integer xLoc, Integer yLoc, Direction dir){
         if(outOfBoundsCheck(xLoc,yLoc) || getPlayerLayer().getCell(xLoc,yLoc) != null || !wallCheck(xLoc,yLoc,dir,false)){
             System.out.println("Found obstacle");
@@ -294,19 +278,13 @@ public class Board implements IBoard {
         return players;
     }
 
-
+    //Finding objects of spesific types on board
     public ArrayList<Vector2> findAllFlags() {
         ArrayList<Vector2> allFlags = new ArrayList<Vector2>();
-
-
         Integer mapHeight = Flags.getHeight();
         Integer mapWidth = Flags.getWidth();
-
-
         for(Integer i = 0; i < mapHeight; i++){
-
             for(Integer j = 0; j < mapWidth; j++){
-
                 if(Flags.getCell(j,i) != null){
                     Vector2 flagLoc = new Vector2();
                     flagLoc.set(j, i).cpy();
@@ -314,9 +292,40 @@ public class Board implements IBoard {
                 }
             }
         }
-
         return allFlags;
     }
 
-
+    public ArrayList<LaserWall> setUpLaserWalls(){
+        ArrayList<LaserWall> theList = new ArrayList<>();
+        Integer mapHeight = Laser.getHeight();
+        Integer mapWidth = Laser.getWidth();
+        for(Integer i = 0; i < mapHeight; i++){
+            for(Integer j = 0; j < mapWidth; j++){
+                if(Wall.getCell(j,i) != null){
+                    Integer tileId = Wall.getCell(j,i).getTile().getId();
+                    if(tileId == 37 || tileId == 38 || tileId == 45 || tileId == 46 ||
+                            tileId == 87 || tileId == 93 || tileId == 94 || tileId == 95){
+                        theList.add(new LaserWall(tileId, new Vector2(j,i),this));
+                    }
+                }
+            }
+        }
+        return theList;
+    }
+    public void fireAllLasers(){
+        if(!laserWallLists.isEmpty()) {
+            for (Integer i = 0; i < laserWallLists.size(); i++){
+                laserWallLists.get(i).fireLaser();
+            }
+        }
+    }
+    public void clearLasers(){
+        Integer mapHeight = Laser.getHeight();
+        Integer mapWidth = Laser.getWidth();
+        for(Integer i = 0; i < mapHeight; i++){
+            for(Integer j = 0; j < mapWidth; j++){
+                Laser.setCell(j,i,null);
+            }
+        }
+    }
 }
