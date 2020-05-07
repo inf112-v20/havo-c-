@@ -192,6 +192,9 @@ public class MainGameScreen extends InputAdapter implements Screen {
         }
         else if (keycode == Input.Keys.D) {
             player.takeDamage(1);
+            if(player.getHp() < 5) {
+                gui.handleBurntCards(player.getHp());
+            }
         }
         // Monkey test movement
         if (keycode == Input.Keys.DPAD_UP){
@@ -209,6 +212,8 @@ public class MainGameScreen extends InputAdapter implements Screen {
         else if (player.getPlayerState() == PlayerState.DEAD && keycode == Input.Keys.R){
             // Barebones respawn system that feeds in start coordinates and direction, a better one will be developed later
             player.respawn(Direction.NORTH);
+            gui.resestBurntCards();
+            gui.resetcards();
         }
         // Checks if player is standing on special tiles
         for (Integer i = 0; i < players.size(); i++){
@@ -231,7 +236,7 @@ public class MainGameScreen extends InputAdapter implements Screen {
         gui.cards.clear();
         //deck.dealCards(player);
 
-
+        int playerHpBefore = player.getHp();
         for (int j = 0; players.size() > j; j++) {
 
             // Insert delay here that allows players to choose their cards
@@ -246,6 +251,9 @@ public class MainGameScreen extends InputAdapter implements Screen {
 
                     players.get(j).playHand(i);
                     aiHavemadeThepicks = false;
+                }
+                if(player.getHp() < playerHpBefore && player.getHp() <= 5) {
+                    gui.handleBurntCards(player.getHp());
                 }
 
             }

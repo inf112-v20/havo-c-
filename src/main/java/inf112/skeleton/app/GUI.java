@@ -31,18 +31,21 @@ public class GUI {
     Texture heart;
     Texture warningTriangle;
     // Arraylist filled with the textures to the cards
-    ArrayList<Texture> cards = new ArrayList<Texture>();
+    ArrayList<Texture> cards = new ArrayList<>();
     // Arraylist Random numbers
     ArrayList<Card> cardHand = new ArrayList<>();
     // This array contain the numbers 1 to 5
-    ArrayList<Texture> pickedCards = new ArrayList<Texture>();
+    ArrayList<Texture> pickedCards = new ArrayList<>();
     // This array contains which cards the user have selected
-    ArrayList<Texture> selectedCards = new ArrayList<Texture>();
+    ArrayList<Texture> selectedCards = new ArrayList<>();
     // Temp this array contains the index of the selected cards
-    ArrayList<Integer> indexSelectedCards = new ArrayList<Integer>();
+    ArrayList<Integer> indexSelectedCards = new ArrayList<>();
     // This array will contain the graphics for the healthbar
-    public ArrayList<Texture> healthbar = new ArrayList<Texture>();
-    // Contains an ArrayList of warningTriangles
+    public ArrayList<Texture> healthbar = new ArrayList<>();
+    // Contains texture of those cards that have burnt into register
+    ArrayList<Texture> burntCardsTexture = new ArrayList<>();
+    // Contains ArrayList of the cards that is burnt into the register
+    ArrayList<Card> burntCards = new ArrayList<>();
 
     private BitmapFont font;
     // Temp Var for player, I think this variable should be put into player class
@@ -248,7 +251,11 @@ public class GUI {
             System.out.println("######################################################################################");
             System.out.println();
             System.out.println();
-            player.setReady(true);
+
+            if(selectedCards.size() + burntCardsTexture.size() == 5) {
+                player.setReady(true);
+            }
+
         }
         // power down
         else if (cardX == 3) {
@@ -262,19 +269,61 @@ public class GUI {
     private void showPickedCards(){
         int x_pos = rightRow4;
         int y_pos = 2;
+        int burntCardIndex = 0;
         // These will make sure the cards end up in the right spot
         int x = 0;
         int y = 0;
-        for (int i = 0; i < selectedCards.size(); i++) {
+        for (int i = 0; i < (selectedCards.size()); i++) {
+            System.out.println("Select Cards " + selectedCards.size());
             // The start of where we want to place the cards, these will not change during the for-loop
             if(x == 3) {
                 x = 0;
                 y--;
             }
-            game.batch.draw(selectedCards.get(i), BUTTON_WIDTH * (x_pos + x) + (BUTTON_WIDTH - 30)/2, BUTTON_HEIGHT * (y_pos + y) + (BUTTON_HEIGHT - 30)/2 - 3, 30, 30);
-            font.draw(game.batch, i + 1 + "." , BUTTON_WIDTH * (x_pos + x), BUTTON_HEIGHT * (y_pos + y) + 10);
+            if(player.getHp() <= 5 && burntCards.size() > 0 && i >= player.getHp()) {
+                System.out.println("burnCards " + burntCards.size());
+                game.batch.draw(burntCardsTexture.get(burntCardIndex), BUTTON_WIDTH * (x_pos + x) + (BUTTON_WIDTH - 30) / 2, BUTTON_HEIGHT * (y_pos + y) + (BUTTON_HEIGHT - 30) / 2 - 3, 30, 30);
+                game.batch.draw(warningTriangle, BUTTON_WIDTH * (x_pos + x) + BUTTON_WIDTH / 2, BUTTON_HEIGHT * (y_pos + y), 25, 25);
+                font.draw(game.batch, i + 1 + ".", BUTTON_WIDTH * (x_pos + x), BUTTON_HEIGHT * (y_pos + y) + 10);
+                burntCardIndex++;
+
+            }
+            else {
+                game.batch.draw(selectedCards.get(i), BUTTON_WIDTH * (x_pos + x) + (BUTTON_WIDTH - 30) / 2, BUTTON_HEIGHT * (y_pos + y) + (BUTTON_HEIGHT - 30) / 2 - 3, 30, 30);
+                font.draw(game.batch, i + 1 + ".", BUTTON_WIDTH * (x_pos + x), BUTTON_HEIGHT * (y_pos + y) + 10);
+            }
             x++;
         }
+    }
+    public void handleBurntCards(Integer cardIndex) {
+        // I made this if - statement mainly for testing the burnt card system
+        if(player.getHand().size() == 0) {
+            System.out.println("Something went wrong");
+            burntCards.add(cardHand.get(cardIndex));
+            burntCardsTexture.add(cards.get(cardIndex));
+        }
+        else {
+            System.out.println(cardIndex);
+            burntCardsTexture.add(0,selectedCards.get(cardIndex));
+            burntCards.add(0,player.getHand().get(cardIndex));
+        }
+    }
+    public void resestBurntCards() {
+        burntCards.clear();
+        burntCardsTexture.clear();
+    }
+    public void resetcards() {
+
+        cards.clear();
+        cardHand.clear();
+        cards.clear();
+
+        selectedCards.clear();
+        indexSelectedCards.clear();
+        deck.shuffleDeck();
+        loadCards();
+
+
     }
 
     private void fillPickedCards() {
