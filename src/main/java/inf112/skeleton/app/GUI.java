@@ -29,6 +29,7 @@ public class GUI {
     Texture resetcards;
     Texture poweroff;
     Texture heart;
+    Texture warningTriangle;
     // Arraylist filled with the textures to the cards
     ArrayList<Texture> cards = new ArrayList<Texture>();
     // Arraylist Random numbers
@@ -41,6 +42,7 @@ public class GUI {
     ArrayList<Integer> indexSelectedCards = new ArrayList<Integer>();
     // This array will contain the graphics for the healthbar
     public ArrayList<Texture> healthbar = new ArrayList<Texture>();
+    // Contains an ArrayList of warningTriangles
 
     private BitmapFont font;
     // Temp Var for player, I think this variable should be put into player class
@@ -81,6 +83,7 @@ public class GUI {
         resetcards = new Texture("assets/buttons/resetcards1.png");
         poweroff = new Texture("assets/buttons/poweroff1.png");
         heart = new Texture("assets/heart.png");
+        warningTriangle = new Texture("assets/warningTriangle.png");
 
 
         // Variables for making the game more scalable in size
@@ -113,8 +116,13 @@ public class GUI {
                 x = 0;
                 y--;
             }
-            game.batch.draw(cards.get(i), BUTTON_WIDTH * (x_pos + x), BUTTON_HEIGHT * (y_pos + y), 50, 50);
-            font.draw(game.batch, player.getOneCardValue(i).toString(), BUTTON_WIDTH * (x_pos + x) + 25, BUTTON_HEIGHT * (y_pos + y) + 10);
+            if (i >= player.getHp()) {
+                game.batch.draw(warningTriangle, BUTTON_WIDTH * (x_pos + x), BUTTON_HEIGHT * (y_pos + y), BUTTON_WIDTH, BUTTON_HEIGHT);
+            }
+            else {
+                game.batch.draw(cards.get(i), BUTTON_WIDTH * (x_pos + x), BUTTON_HEIGHT * (y_pos + y), BUTTON_WIDTH, BUTTON_HEIGHT);
+                font.draw(game.batch, player.getOneCardValue(i).toString(), BUTTON_WIDTH * (x_pos + x) + 25, BUTTON_HEIGHT * (y_pos + y) + 10);
+            }
             x++;
         }
         showPickedCards();
@@ -176,18 +184,12 @@ public class GUI {
         System.out.println("cardXY " + cardXY);
         handleTouchedCards(cardXY);
     }
-    public void movePlayer(int cardXY){
-        // Gives the right command depending on which card the user touched
-        Card activeCard = cardHand.get(cardXY);
-        activeCard.playCard(player);
-        gameboard.checkForSpecialTiles(player);
-        handleTouchedCards(cardXY);
-    }
+
 
     // This function changes the touched cards to a number so that the user can pick 5 cards
     public void handleTouchedCards(int cardXY) {
-        if(tempCardPick == 5 || player.getPlayerState() != PlayerState.ALIVE || indexSelectedCards.contains(cardXY)) {
-            System.out.println("stopper");
+        if(tempCardPick == 5 || player.getPlayerState() != PlayerState.ALIVE || indexSelectedCards.contains(cardXY) || cardXY >= player.getHp()) {
+            System.out.println("Invalid");
         }
         else {
             // Adds the Texture and integer of touched card into a Arraylist
@@ -312,6 +314,7 @@ public class GUI {
         healthbar.add(Healthbar_8);
         healthbar.add(Healthbar_full);
     }
+
     public ArrayList<Card> getCardHand () {
         return cardHand;
     }
