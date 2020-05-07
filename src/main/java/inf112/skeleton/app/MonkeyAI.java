@@ -25,6 +25,7 @@ public class MonkeyAI implements IPlayer{
     private MainGameScreen game;
     private Boolean player = true;
     private Boolean you = false;
+    private Board gameBoard;
     private Vector2 spawnPoint = new Vector2();
     // Control class
     private DirCtrl dirController = new DirCtrl();
@@ -32,7 +33,6 @@ public class MonkeyAI implements IPlayer{
     private Vector2 playerLoc;
     private Direction playerDir;
     private PlayerState playerState = PlayerState.ALIVE;
-    private Board board;
     private TiledMapTileLayer playerLayer;
     // Player icon objects
     private TiledMapTileLayer.Cell playerCell = new TiledMapTileLayer.Cell();
@@ -59,12 +59,12 @@ public class MonkeyAI implements IPlayer{
     //private Sound AIlosesound = Gdx.audio.newSound(Gdx.files.internal("assets/sounds/victory.wav"));
 
     // Constructor
-    public MonkeyAI(Vector2 location, Direction dir, Board board, MainGameScreen game){
+    public MonkeyAI(Vector2 location, Direction dir, MainGameScreen game){
         this.playerLoc = location;
         this.playerDir = dir;
-        this.board = board;
-        this.playerLayer = board.getPlayerLayer();
         this.game = game;
+        this.gameBoard = game.getGameBoard();
+        this.playerLayer = gameBoard.getPlayerLayer();
         // Graphics for the player
         TextureRegion[][] playerIcon = new TextureRegion(new Texture("assets/enemy.png")).split(300,300);
         playerCell.setTile(new StaticTiledMapTile(playerIcon[0][0]));
@@ -76,7 +76,7 @@ public class MonkeyAI implements IPlayer{
         oldCoordinates = new Vector2((location.cpy()));
 
         monkeyCardDeck = new CardDeck();
-        guineapig = new Guineapig(guineapigStartLoc, guineapigDir, board, game);
+        guineapig = new Guineapig(guineapigStartLoc, guineapigDir, gameBoard, game);
 
         spawnPoint.set(playerLoc.cpy());
         SmarterMonkey smarterMonkey = new SmarterMonkey(game, this);
@@ -91,7 +91,7 @@ public class MonkeyAI implements IPlayer{
             Integer xLoc = getX();
             Integer yLoc = getY();
             //Clears player icon from old location
-            if (board.wallCheck(xLoc,yLoc,dir,false)) {
+            if (gameBoard.wallCheck(xLoc,yLoc,dir,false)) {
                 playerLayer.setCell(xLoc, yLoc, null);
                 // Changes coordinates in the correct manner
                 if (dir == Direction.NORTH) {
@@ -107,9 +107,9 @@ public class MonkeyAI implements IPlayer{
                 if (getX() < 0 || getX() > (playerLayer.getWidth() - 1) || getY() < 0 || getY() > playerLayer.getHeight()) {
                     setPlayerState(PlayerState.DEAD);
                 }
-                board.checkHoles(this);
+                gameBoard.checkHoles(this);
             }
-            board.checkFlags(this, getX(), getY());
+            gameBoard.checkFlags(this, getX(), getY());
         }
 
         game.collision(this);
