@@ -67,7 +67,7 @@ public class MainGameScreen extends InputAdapter implements Screen {
         this.game = robo;
 
         Vector2 startLoc = new Vector2(0,0);
-        Vector2 tempStartLoc = new Vector2(0, 4);
+        Vector2 tempStartLoc = new Vector2(5, 4);
         gameBoard = new Board(mapLoader.load(mapName));
         player = new Player(startLoc, Direction.NORTH, this);
         monkey = new MonkeyAI(tempStartLoc, Direction.NORTH, this);

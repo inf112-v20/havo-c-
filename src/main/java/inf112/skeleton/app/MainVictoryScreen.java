@@ -27,8 +27,8 @@ public class MainVictoryScreen implements Screen {
 
     public MainVictoryScreen(Robo robo) {
         this.game = robo;
-        gameButton = new Texture("assets/NextgameBtn.png");
-        exitButton = new Texture("assets/ExitBtn.png");
+        //gameButton = new Texture("assets/NextgameBtn.png");
+        exitButton = new Texture("assets/buttons/ExitBtn.png");
         victorypic = new Texture("assets/victory.v2.png");
     }
 
@@ -61,8 +61,8 @@ public class MainVictoryScreen implements Screen {
                 Gdx.app.exit();
             }
         }
-        game.batch.draw(victorypic, X_POS_BUTTON, Y_POS_VICTORY, BUTTON_WIDTH, BUTTON_HEIGHT);
-        game.batch.draw(gameButton, X_POS_BUTTON, Y_POS_GAMEBUTTON, BUTTON_WIDTH, BUTTON_HEIGHT);
+        game.batch.draw(victorypic, -30, 250, BUTTON_WIDTH * 3, BUTTON_HEIGHT * 2);
+        //game.batch.draw(gameButton, X_POS_BUTTON, Y_POS_GAMEBUTTON, BUTTON_WIDTH, BUTTON_HEIGHT);
         game.batch.draw(exitButton, X_POS_BUTTON, Y_POS_EXITBUTTON, BUTTON_WIDTH, BUTTON_HEIGHT);
         game.batch.end();
 

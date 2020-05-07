@@ -367,7 +367,7 @@ public class MonkeyAI implements IPlayer{
         Card guineapigCard = new Card(card.getCommand());
 
         guineapigCard.playCard(guineapig);
-
+        gameBoard.checkForSpecialTiles(guineapig);
 
         if(guineapig.getPlayerState() == playerState.ALIVE && insideMap()) {
 
@@ -376,7 +376,7 @@ public class MonkeyAI implements IPlayer{
 
             return true; }
         else {
-
+            System.out.println("---------------------------------------------------------");
             resetGuineapig();
             return false; }
     }
