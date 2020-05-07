@@ -33,9 +33,9 @@ public class GUI {
     ArrayList<Texture> cards = new ArrayList<Texture>();
     // Arraylist Random numbers
     ArrayList<Card> cardHand = new ArrayList<>();
-    // Temp this array contain the numbers 1 to 7
+    // This array contain the numbers 1 to 5
     ArrayList<Texture> pickedCards = new ArrayList<Texture>();
-    // Temp this array contains which cards the user have selected
+    // This array contains which cards the user have selected
     ArrayList<Texture> selectedCards = new ArrayList<Texture>();
     // Temp this array contains the index of the selected cards
     ArrayList<Integer> indexSelectedCards = new ArrayList<Integer>();
@@ -117,6 +117,7 @@ public class GUI {
             font.draw(game.batch, player.getOneCardValue(i).toString(), BUTTON_WIDTH * (x_pos + x) + 25, BUTTON_HEIGHT * (y_pos + y) + 10);
             x++;
         }
+        showPickedCards();
     }
     // This function loads the right cards into the hand the player can pick amongst, then loads the right textures into
     // an new array "cards" that contains the right texture for the right command in the right order.
@@ -192,7 +193,6 @@ public class GUI {
             // Adds the Texture and integer of touched card into a Arraylist
             selectedCards.add(cards.get(cardXY));
             indexSelectedCards.add(cardXY);
-
             cards.set(cardXY, pickedCards.get(tempCardPick));
 
             player.addToHand(cardHand.get(cardXY));
@@ -254,6 +254,24 @@ public class GUI {
             player.powerdown();
 
             player.getHand();
+        }
+    }
+
+    private void showPickedCards(){
+        int x_pos = rightRow4;
+        int y_pos = 2;
+        // These will make sure the cards end up in the right spot
+        int x = 0;
+        int y = 0;
+        for (int i = 0; i < selectedCards.size(); i++) {
+            // The start of where we want to place the cards, these will not change during the for-loop
+            if(x == 3) {
+                x = 0;
+                y--;
+            }
+            game.batch.draw(selectedCards.get(i), BUTTON_WIDTH * (x_pos + x) + (BUTTON_WIDTH - 30)/2, BUTTON_HEIGHT * (y_pos + y) + (BUTTON_HEIGHT - 30)/2 - 3, 30, 30);
+            font.draw(game.batch, i + 1 + "." , BUTTON_WIDTH * (x_pos + x), BUTTON_HEIGHT * (y_pos + y) + 10);
+            x++;
         }
     }
 
