@@ -251,7 +251,7 @@ public class MainGameLobbyScreen implements Screen {
 
         mapNames.add("assets/Testing Grounds.tmx");
         mapNames.add("assets/Dizzy Highway.tmx");
-        mapNames.add("assets/Cluster Cross.tmx");
+        mapNames.add("assets/RoboRallyMap2.tmx");
 
     }
     private void drawTexture() {
