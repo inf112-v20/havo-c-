@@ -1,6 +1,7 @@
 package inf112.skeleton.app;
 
 import com.badlogic.gdx.Input;
+import com.badlogic.gdx.utils.Timer;
 
 import java.util.InputMismatchException;
 
@@ -18,8 +19,9 @@ public class Card implements ICard {
             owner.Move(owner.getPlayerDir());
         }
         else if(command == "Move2"){
-            owner.Move(owner.getPlayerDir());
-            owner.Move(owner.getPlayerDir());
+            for (Integer i=0; i < 2; i++) {
+                owner.Move(owner.getPlayerDir());
+            }
         }
         else if(command == "Move3"){
             for (Integer i=0; i < 3; i++) {

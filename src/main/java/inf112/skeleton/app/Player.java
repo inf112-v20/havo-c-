@@ -154,6 +154,16 @@ public class Player implements IPlayer{
                     break;
                 }
             }
+            if (gameBoard.getPlayerLayer().getCell(xCoord,yCoord) != null){
+                ArrayList<IPlayer> players = gameBoard.getPlayers();
+                for(Integer i = 0; i < players.size(); i++){
+                    IPlayer actor = players.get(i);
+                    if(actor.getX() == xCoord && actor.getY() == yCoord){
+                        actor.takeDamage(1);
+                        System.out.println(actor.getHp());
+                    }
+                }
+            }
             Timer.schedule(new Timer.Task() {
                 @Override
                 public void run() {
@@ -171,7 +181,7 @@ public class Player implements IPlayer{
                                 xCoord++;
                             }
                             gameBoard.getLaserLayer().setCell(xCoord,yCoord,null);
-                            if(gameBoard.checkForObstacles(xCoord,yCoord,playerDir)){
+                            if(gameBoard.outOfBoundsCheck(xCoord,yCoord)){
                                 break;
                             }
                         }

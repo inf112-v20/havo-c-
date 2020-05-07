@@ -17,12 +17,13 @@ public class Board implements IBoard {
     private TiledMapTileLayer TurnGears;
     private TiledMapTileLayer Holes;
     public TiledMapTileLayer Flags;
-    private TiledMapTileLayer Players;
+    private TiledMapTileLayer PlayerLayer;
     private TiledMapTileLayer Laser;
     private TiledMapTileLayer Wall;
     private TiledMapTileLayer RepairTiles;
     //Other values
     private Integer flagCount;
+    private ArrayList<IPlayer> players;
     //Sound effects
     private Sound fallSound = Gdx.audio.newSound(Gdx.files.internal("assets/sounds/fall.wav"));
     private Sound flagSound = Gdx.audio.newSound(Gdx.files.internal("assets/sounds/flag.wav"));
@@ -39,13 +40,11 @@ public class Board implements IBoard {
         this.TurnGears = (TiledMapTileLayer) Map.getLayers().get("TurnGears");
         this.Holes = (TiledMapTileLayer) Map.getLayers().get("Holes");
         this.Flags = (TiledMapTileLayer) Map.getLayers().get("Flags");
-        this.Players = (TiledMapTileLayer) Map.getLayers().get("PlayerLayer");
+        this.PlayerLayer = (TiledMapTileLayer) Map.getLayers().get("PlayerLayer");
         this.Laser = (TiledMapTileLayer) Map.getLayers().get("Laser");
         this.Wall = (TiledMapTileLayer) Map.getLayers().get("Walls");
         this.RepairTiles = (TiledMapTileLayer) Map.getLayers().get("RepairTiles");
         this.flagCount = countFlags();
-
-
     }
     private Integer countFlags(){
         Integer flagCount = 0;
@@ -268,10 +267,14 @@ public class Board implements IBoard {
         return true;
     }
     public boolean outOfBoundsCheck(Integer xLoc, Integer yLoc){
-        if (xLoc < 0 || xLoc >= Players.getWidth() || yLoc < 0 || yLoc >= Players.getHeight()){
+        if (xLoc < 0 || xLoc >= PlayerLayer.getWidth() || yLoc < 0 || yLoc >= PlayerLayer.getHeight()){
             return true;
         }
         return false;
+    }
+
+    public void acquirePlayers(ArrayList<IPlayer> playerList){
+        players = playerList;
     }
 
     // Methods to get elements from Board
@@ -282,10 +285,13 @@ public class Board implements IBoard {
         return Board;
     }
     public TiledMapTileLayer getPlayerLayer(){
-        return Players;
+        return PlayerLayer;
     }
     public TiledMapTileLayer getLaserLayer(){
         return Laser;
+    }
+    public ArrayList<IPlayer> getPlayers(){
+        return players;
     }
 
 
