@@ -161,6 +161,15 @@ public class MainGameScreen extends InputAdapter implements Screen {
         for (Integer i = 0; i < players.size(); i++){
             players.get(i).updatePlayerIcon();
         }
+
+        if (player.getPlayerState() == PlayerState.WINNER || monkey.getPlayerState() == PlayerState.DEAD) {
+            game.setScreen(new MainVictoryScreen(game));
+            this.dispose();
+        }
+        if (player.getPlayerState() == PlayerState.DEAD || monkey.getPlayerState() == PlayerState.WINNER) {
+            game.setScreen(new MainGameOverScreen(game));
+            this.dispose();
+        }
     }
 
     public boolean keyUp(int keycode) {
