@@ -15,9 +15,9 @@ public class MainVictoryScreen implements Screen {
     private static final int BUTTON_HEIGHT = 100;
 
     private static final int X_POS_BUTTON = 250;
-    private static final int Y_POS_VICTORY = 400;
-    private static final int Y_POS_GAMEBUTTON = 250;
-    private static final int Y_POS_EXITBUTTON = 100;
+    private static final int Y_POS_VICTORY = 250;
+    private static final int Y_POS_GAMEBUTTON = 150;
+    private static final int Y_POS_EXITBUTTON = 50;
 
 
     public Robo game;
@@ -48,7 +48,7 @@ public class MainVictoryScreen implements Screen {
         // camera.setToOrtho(false, 500, 500);
         if (Gdx.input.getY() > 500 - Y_POS_GAMEBUTTON - BUTTON_HEIGHT && Gdx.input.getY() < 500 - Y_POS_GAMEBUTTON &&
                 Gdx.input.getX() > X_POS_BUTTON && Gdx.input.getX() < X_POS_BUTTON + BUTTON_WIDTH) {
-            if (Gdx.input.isTouched()) {
+            if (Gdx.input.justTouched()) {
                 this.dispose();
                 game.setScreen(new MainMenuScreen(game));
 
@@ -56,14 +56,14 @@ public class MainVictoryScreen implements Screen {
         }
         if (Gdx.input.getY() > 500 - Y_POS_EXITBUTTON - BUTTON_HEIGHT && Gdx.input.getY() < 500 - Y_POS_EXITBUTTON &&
                 Gdx.input.getX() > X_POS_BUTTON && Gdx.input.getX() < X_POS_BUTTON + BUTTON_WIDTH) {
-            if (Gdx.input.isTouched()) {
+            if (Gdx.input.justTouched()) {
                 this.dispose();
                 Gdx.app.exit();
             }
         }
-        game.batch.draw(victorypic, -30, 250, BUTTON_WIDTH * 3, BUTTON_HEIGHT * 2);
-        game.batch.draw(gameButton, X_POS_BUTTON, Y_POS_GAMEBUTTON - 100, BUTTON_WIDTH, BUTTON_HEIGHT);
-        game.batch.draw(exitButton, X_POS_BUTTON, Y_POS_EXITBUTTON - 50, BUTTON_WIDTH, BUTTON_HEIGHT);
+        game.batch.draw(victorypic, -30, Y_POS_VICTORY, BUTTON_WIDTH * 3, BUTTON_HEIGHT * 2);
+        game.batch.draw(gameButton, X_POS_BUTTON, Y_POS_GAMEBUTTON, BUTTON_WIDTH, BUTTON_HEIGHT);
+        game.batch.draw(exitButton, X_POS_BUTTON, Y_POS_EXITBUTTON, BUTTON_WIDTH, BUTTON_HEIGHT);
         game.batch.end();
 
     }
