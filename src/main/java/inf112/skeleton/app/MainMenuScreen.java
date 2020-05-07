@@ -4,14 +4,13 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.GL20;
-import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 
-import java.awt.*;
+
 
 public class MainMenuScreen implements Screen {
 
-    public OrthographicCamera camera = new OrthographicCamera();
+
     private static final int BUTTON_WIDTH = 250;
     private static final int BUTTON_HEIGHT = 100;
 
@@ -24,12 +23,12 @@ public class MainMenuScreen implements Screen {
     Texture playButton;
     Texture exitButton;
 
-    private Music mainmenusound = Gdx.audio.newMusic(Gdx.files.internal("assets/sounds/mainmenusound.mp3"));
 
     public MainMenuScreen (Robo robo) {
         this.game = robo;
         playButton = new Texture("assets/buttons/startKnapp.png");
         exitButton = new Texture("assets/buttons/ExitBtn.png");
+        Music mainmenusound = Gdx.audio.newMusic(Gdx.files.internal("assets/sounds/mainmenusound.mp3"));
         mainmenusound.play();
     }
     @Override
