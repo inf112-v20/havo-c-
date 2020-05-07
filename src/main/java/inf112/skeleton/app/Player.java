@@ -276,6 +276,7 @@ public class Player implements IPlayer{
         // Updates player icon based on PlayerState
         if (playerState == PlayerState.WINNER){
             playerLayer.setCell(xLoc,yLoc, playerWonCell);
+
         }
         else if (playerState == PlayerState.DEAD){
             playerLayer.setCell(xLoc,yLoc, playerDiedCell);
