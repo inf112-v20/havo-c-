@@ -11,6 +11,7 @@ import com.badlogic.gdx.maps.tiled.TiledMapTile;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.maps.tiled.tiles.StaticTiledMapTile;
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.utils.Timer;
 import org.lwjgl.opengl.EXTFogCoord;
 
 import java.util.ArrayList;
@@ -139,7 +140,6 @@ public class Player implements IPlayer{
 
         if (gameBoard.wallCheck(xCoord,yCoord,playerDir,false)) {
             while (true) {
-                gameBoard.getLaserLayer().setCell(xCoord,yCoord,activeLaser);
                 if (playerDir == Direction.NORTH) {
                     yCoord++;
                 } else if (playerDir == Direction.SOUTH) {
@@ -149,10 +149,35 @@ public class Player implements IPlayer{
                 } else if (playerDir == Direction.EAST) {
                     xCoord++;
                 }
+                gameBoard.getLaserLayer().setCell(xCoord,yCoord,activeLaser);
                 if(gameBoard.checkForObstacles(xCoord,yCoord,playerDir)){
                     break;
                 }
             }
+            Timer.schedule(new Timer.Task() {
+                @Override
+                public void run() {
+                    Integer xCoord = getX();
+                    Integer yCoord = getY();
+                    if (gameBoard.wallCheck(xCoord,yCoord,playerDir,false)) {
+                        while (true) {
+                            if (playerDir == Direction.NORTH) {
+                                yCoord++;
+                            } else if (playerDir == Direction.SOUTH) {
+                                yCoord--;
+                            } else if (playerDir == Direction.WEST) {
+                                xCoord--;
+                            } else if (playerDir == Direction.EAST) {
+                                xCoord++;
+                            }
+                            gameBoard.getLaserLayer().setCell(xCoord,yCoord,null);
+                            if(gameBoard.checkForObstacles(xCoord,yCoord,playerDir)){
+                                break;
+                            }
+                        }
+                    }
+                }
+            }, 1);
         }
     }
     public void addToHand(Card card){
