@@ -52,6 +52,7 @@ public class MainGameScreen extends InputAdapter implements Screen {
 
     private  int rightRow1;
     private int rightRow4;
+    private int middleRow;
 
     // Array for tracking all the players
     public ArrayList<Vector2> allLoc = new ArrayList<Vector2>();
@@ -61,6 +62,7 @@ public class MainGameScreen extends InputAdapter implements Screen {
 
     private Music backgroundSound = Gdx.audio.newMusic(Gdx.files.internal("assets/sounds/backgroundloop.mp3"));
     private Sound collisionsound = Gdx.audio.newSound(Gdx.files.internal("assets/sounds/bruh2.wav"));
+
 
     public MainGameScreen(Robo robo, String mapName, int numberOfEnemies) {
 
@@ -76,6 +78,7 @@ public class MainGameScreen extends InputAdapter implements Screen {
 
         rightRow1 = board_width - 1;
         rightRow4 = board_width - 4;
+        middleRow = board_height/2;
 
         setRightScreenSize();
         Gdx.input.setInputProcessor(this);
@@ -129,7 +132,7 @@ public class MainGameScreen extends InputAdapter implements Screen {
 
         // When user touches the cards
         if(Gdx.input.getX() > BUTTON_WIDTH * rightRow4 && Gdx.input.getX() < 50 * rightRow1 &&
-                Gdx.input.getY() > 50 * 4 && Gdx.input.getY() < 50 *7) {
+                Gdx.input.getY() > BUTTON_WIDTH * (middleRow - 1) && Gdx.input.getY() < BUTTON_WIDTH * (middleRow + 2)) {
             if (Gdx.input.justTouched()) {
                gui.touchCards(Gdx.input.getX(), Gdx.input.getY());
             }
@@ -137,7 +140,7 @@ public class MainGameScreen extends InputAdapter implements Screen {
 
         // When the user touches the buttons
         if(Gdx.input.getX() > BUTTON_WIDTH * rightRow4 && Gdx.input.getX() < BUTTON_WIDTH * rightRow1 &&
-                Gdx.input.getY() > 50 * 9 && Gdx.input.getY() < 50 *10) {
+                Gdx.input.getY() > BUTTON_WIDTH * (middleRow + 4) && Gdx.input.getY() < BUTTON_WIDTH *(middleRow + 5)) {
             if (Gdx.input.justTouched()) {
                 gui.touchedButtons(Gdx.input.getX());
             }
@@ -169,6 +172,7 @@ public class MainGameScreen extends InputAdapter implements Screen {
             game.setScreen(new MainGameOverScreen(game));
             this.dispose();
         }
+
     }
 
     public boolean keyUp(int keycode) {
