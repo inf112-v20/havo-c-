@@ -188,6 +188,9 @@ public class MainGameScreen extends InputAdapter implements Screen {
         else if (keycode == Input.Keys.L){
             player.fireLaser();
         }
+        else if (keycode == Input.Keys.K){
+            gameBoard.fireAllLasers();
+        }
         // Monkey test movement
         if (keycode == Input.Keys.DPAD_UP){
             monkey.Move(monkey.getPlayerDir());
