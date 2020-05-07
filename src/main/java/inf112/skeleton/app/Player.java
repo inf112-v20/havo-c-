@@ -95,6 +95,7 @@ public class Player implements IPlayer{
                 // Sets PlayerState of the player to dead if it is out of bounds
                 if (gameBoard.outOfBoundsCheck(getX(),getY())) {
                     setPlayerState(PlayerState.DEAD);
+                    gameoversound.play();
                 }
                 gameBoard.checkHoles(this);
             }
