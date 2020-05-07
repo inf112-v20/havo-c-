@@ -49,7 +49,7 @@ public class MainGameOverScreen implements Screen {
                 Gdx.input.getX() > X_POS_BUTTON && Gdx.input.getX() < X_POS_BUTTON + BUTTON_WIDTH) {
             if (Gdx.input.isTouched()) {
                 this.dispose();
-                //game.setScreen(new MainGameScreen(game));
+                game.setScreen(new MainMenuScreen(game));
 
             }
         }
@@ -61,9 +61,9 @@ public class MainGameOverScreen implements Screen {
             }
         }
 
-        game.batch.draw(gameOverButton, X_POS_BUTTON, Y_POS_GAMEOVER, BUTTON_WIDTH, BUTTON_HEIGHT);
-        game.batch.draw(gameButton, X_POS_BUTTON, Y_POS_GAMEBUTTON, BUTTON_WIDTH, BUTTON_HEIGHT);
-        game.batch.draw(exitButton, X_POS_BUTTON, Y_POS_EXITBUTTON, BUTTON_WIDTH, BUTTON_HEIGHT);
+        game.batch.draw(gameOverButton, X_POS_BUTTON -120, 250, BUTTON_WIDTH * 2, BUTTON_HEIGHT * 2);
+        game.batch.draw(gameButton, X_POS_BUTTON, Y_POS_GAMEBUTTON - 100, BUTTON_WIDTH, BUTTON_HEIGHT);
+        game.batch.draw(exitButton, X_POS_BUTTON, Y_POS_EXITBUTTON - 50, BUTTON_WIDTH, BUTTON_HEIGHT);
         game.batch.end();
 
     }
