@@ -66,16 +66,15 @@ public class MainGameScreen extends InputAdapter implements Screen {
 
         this.game = robo;
 
-        Vector2 startLoc = new Vector2(0,0);
-        Vector2 tempStartLoc = new Vector2(5, 4);
         gameBoard = new Board(mapLoader.load(mapName));
-        player = new Player(startLoc, Direction.NORTH, this);
-        monkey = new MonkeyAI(tempStartLoc, Direction.NORTH, this);
+
+        player = new Player(gameBoard.getSpawnPoint(1).getSpawnLoc(), Direction.NORTH, this);
+        monkey = new MonkeyAI(gameBoard.getSpawnPoint(2).getSpawnLoc(), Direction.NORTH, this);
 
         board_width = gameBoard.getBoard().getWidth();
         board_height = gameBoard.getBoard().getHeight();
 
-        rightRow1 = board_width -1;
+        rightRow1 = board_width - 1;
         rightRow4 = board_width - 4;
 
         setRightScreenSize();

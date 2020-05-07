@@ -5,6 +5,7 @@ import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.math.Vector2;
+import org.lwjgl.Sys;
 
 import java.util.ArrayList;
 
@@ -16,6 +17,7 @@ public class Board implements IBoard {
     private TiledMapTileLayer ConveyorBelts;
     private TiledMapTileLayer TurnGears;
     private TiledMapTileLayer Holes;
+    private TiledMapTileLayer Spawnpoints;
     public TiledMapTileLayer Flags;
     private TiledMapTileLayer PlayerLayer;
     private TiledMapTileLayer Laser;
@@ -25,6 +27,7 @@ public class Board implements IBoard {
     private Integer flagCount;
     private ArrayList<IPlayer> players;
     private ArrayList<LaserWall> laserWallLists;
+    private ArrayList<Spawnpoint> spawnpointList;
     //Sound effects
     private Sound fallSound = Gdx.audio.newSound(Gdx.files.internal("assets/sounds/fall.wav"));
     private Sound flagSound = Gdx.audio.newSound(Gdx.files.internal("assets/sounds/flag.wav"));
@@ -40,6 +43,7 @@ public class Board implements IBoard {
         this.ConveyorBelts = (TiledMapTileLayer) Map.getLayers().get("ConveyorBelts");
         this.TurnGears = (TiledMapTileLayer) Map.getLayers().get("TurnGears");
         this.Holes = (TiledMapTileLayer) Map.getLayers().get("Holes");
+        this.Spawnpoints = (TiledMapTileLayer) Map.getLayers().get("Spawn");
         this.Flags = (TiledMapTileLayer) Map.getLayers().get("Flags");
         this.PlayerLayer = (TiledMapTileLayer) Map.getLayers().get("PlayerLayer");
         this.Laser = (TiledMapTileLayer) Map.getLayers().get("Laser");
@@ -47,6 +51,7 @@ public class Board implements IBoard {
         this.RepairTiles = (TiledMapTileLayer) Map.getLayers().get("RepairTiles");
         this.flagCount = countFlags();
         this.laserWallLists = setUpLaserWalls();
+        this.spawnpointList = findSpawnPoints();
     }
     private Integer countFlags(){
         Integer flagCount = 0;
@@ -294,25 +299,37 @@ public class Board implements IBoard {
         }
         return allFlags;
     }
-    /*
-    public ArrayList<Vector2> findSpawnPoints(){
-        ArrayList<Vector2> theList = new ArrayList<>();
-        Integer mapHeight = Laser.getHeight();
-        Integer mapWidth = Laser.getWidth();
+
+    public ArrayList<Spawnpoint> findSpawnPoints(){
+        System.out.println("Spawnpoint search started");
+        ArrayList<Spawnpoint> theList = new ArrayList<>();
+        Integer mapHeight = Spawnpoints.getHeight();
+        Integer mapWidth = Spawnpoints.getWidth();
         for(Integer i = 0; i < mapHeight; i++){
             for(Integer j = 0; j < mapWidth; j++){
-                if(Wall.getCell(j,i) != null){
-                    Integer tileId = Wall.getCell(j,i).getTile().getId();
-                    if(tileId == 37 || tileId == 38 || tileId == 45 || tileId == 46 ||
-                            tileId == 87 || tileId == 93 || tileId == 94 || tileId == 95){
-                        theList.add(new LaserWall(tileId, new Vector2(j,i),this));
+                if(Spawnpoints.getCell(j,i) != null){
+                    Integer tileId = Spawnpoints.getCell(j,i).getTile().getId();
+                    if(tileId == 121 || tileId == 122 || tileId == 123 || tileId == 124 ||
+                            tileId == 129 || tileId == 130 || tileId == 131 || tileId == 132){
+                        System.out.println("Spawnpoint found");
+                        Spawnpoint point = new Spawnpoint(new Vector2(j,i),tileId);
+                        theList.add(point);
                     }
                 }
             }
         }
         return theList;
     }
-    */
+    public Spawnpoint getSpawnPoint(Integer pointId){
+        Spawnpoint point = null;
+        for(Integer i = 0; i < spawnpointList.size(); i++){
+            if (pointId == spawnpointList.get(i).getSpawnId()){
+                point = spawnpointList.get(i);
+            }
+        }
+        return point;
+    }
+
     public ArrayList<LaserWall> setUpLaserWalls(){
         ArrayList<LaserWall> theList = new ArrayList<>();
         Integer mapHeight = Laser.getHeight();
