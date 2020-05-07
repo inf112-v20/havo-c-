@@ -410,8 +410,9 @@ public class MainGameScreen extends InputAdapter implements Screen {
 
     private void setRightScreenSize() {
         int screenWidth = board_width * BUTTON_WIDTH;
-        Gdx.graphics.setWindowedMode(screenWidth, Gdx.graphics.getHeight());
-        game.batch.getProjectionMatrix().setToOrtho2D(0, 0, screenWidth, 500);
+        int screenHeight = board_height * BUTTON_WIDTH;
+        Gdx.graphics.setWindowedMode(screenWidth, screenHeight);
+        game.batch.getProjectionMatrix().setToOrtho2D(0, 0, screenWidth, screenHeight);
 
     }
     private void handelCardOrder() {
