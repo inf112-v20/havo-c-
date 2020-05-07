@@ -15,7 +15,7 @@ public class MainVictoryScreen implements Screen {
     private static final int BUTTON_HEIGHT = 100;
 
     private static final int X_POS_BUTTON = 250;
-    //private static final int Y_POS_VICTORY = 400;
+    private static final int Y_POS_VICTORY = 400;
     private static final int Y_POS_GAMEBUTTON = 250;
     private static final int Y_POS_EXITBUTTON = 100;
 
@@ -23,11 +23,13 @@ public class MainVictoryScreen implements Screen {
     public Robo game;
     Texture gameButton;
     Texture exitButton;
+    Texture victorypic;
 
     public MainVictoryScreen(Robo robo) {
         this.game = robo;
         gameButton = new Texture("assets/NextgameBtn.png");
         exitButton = new Texture("assets/ExitBtn.png");
+        victorypic = new Texture("assets/victory.v2.png");
     }
 
     @Override
@@ -59,6 +61,7 @@ public class MainVictoryScreen implements Screen {
                 Gdx.app.exit();
             }
         }
+        game.batch.draw(victorypic, X_POS_BUTTON, Y_POS_VICTORY, BUTTON_WIDTH, BUTTON_HEIGHT);
         game.batch.draw(gameButton, X_POS_BUTTON, Y_POS_GAMEBUTTON, BUTTON_WIDTH, BUTTON_HEIGHT);
         game.batch.draw(exitButton, X_POS_BUTTON, Y_POS_EXITBUTTON, BUTTON_WIDTH, BUTTON_HEIGHT);
         game.batch.end();
