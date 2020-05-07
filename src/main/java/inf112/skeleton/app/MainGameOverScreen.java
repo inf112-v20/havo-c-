@@ -26,8 +26,8 @@ public class MainGameOverScreen implements Screen {
 
     public MainGameOverScreen(Robo robo) {
         this.game = robo;
-        gameButton = new Texture("assets/NextgameBtn.png");
-        exitButton = new Texture("assets/ExitBtn.png");
+        gameButton = new Texture("assets/buttons/NextgameBtn.png");
+        exitButton = new Texture("assets/buttons/ExitBtn.png");
         gameOverButton = new Texture("assets/gameover.png");
     }
 

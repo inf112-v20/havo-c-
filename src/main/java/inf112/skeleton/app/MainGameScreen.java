@@ -162,11 +162,11 @@ public class MainGameScreen extends InputAdapter implements Screen {
             players.get(i).updatePlayerIcon();
         }
 
-        if (player.getPlayerState() == PlayerState.WINNER || monkey.getPlayerState() == PlayerState.DEAD) {
+        if (player.getPlayerState() == PlayerState.WINNER || monkey.getLives() == 0) {
             game.setScreen(new MainVictoryScreen(game));
             this.dispose();
         }
-        if (player.getPlayerState() == PlayerState.DEAD || monkey.getPlayerState() == PlayerState.WINNER) {
+        if (player.getLives() == 0 || monkey.getPlayerState() == PlayerState.WINNER) {
             game.setScreen(new MainGameOverScreen(game));
             this.dispose();
         }
