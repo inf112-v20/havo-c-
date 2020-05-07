@@ -304,13 +304,26 @@ public class GUI {
         }
         else {
             System.out.println(cardIndex);
-            burntCardsTexture.add(selectedCards.get(cardIndex));
-            burntCards.add(player.getHand().get(cardIndex));
+            burntCardsTexture.add(0,selectedCards.get(cardIndex));
+            burntCards.add(0,player.getHand().get(cardIndex));
         }
     }
     public void resestBurntCards() {
         burntCards.clear();
         burntCardsTexture.clear();
+    }
+    public void resetcards() {
+
+        cards.clear();
+        cardHand.clear();
+        cards.clear();
+
+        selectedCards.clear();
+        indexSelectedCards.clear();
+        deck.shuffleDeck();
+        loadCards();
+
+
     }
 
     private void fillPickedCards() {

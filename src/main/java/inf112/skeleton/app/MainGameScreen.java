@@ -213,6 +213,8 @@ public class MainGameScreen extends InputAdapter implements Screen {
         else if (player.getPlayerState() == PlayerState.DEAD && keycode == Input.Keys.R){
             // Barebones respawn system that feeds in start coordinates and direction, a better one will be developed later
             player.respawn(Direction.NORTH);
+            gui.resestBurntCards();
+            gui.resetcards();
         }
         // Checks if player is standing on special tiles
         for (Integer i = 0; i < players.size(); i++){
