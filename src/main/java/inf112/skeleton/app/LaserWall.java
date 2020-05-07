@@ -22,7 +22,7 @@ public class LaserWall {
         this.wallLoc = loc;
         this.gameBoard = board;
         // Setting up texture regions
-        TextureRegion[][] singleLaser = new TextureRegion(new Texture("assets/biglaser.png")).split(300,300);
+        TextureRegion[][] singleLaser = new TextureRegion(new Texture("assets/laser.png")).split(300,300);
         TextureRegion[][] doubleLaser = new TextureRegion(new Texture("assets/doubleLaser.png")).split(300,300);
         // Checks if it is a double laser wall or not
         if(tileId == 87 || tileId == 93 || tileId == 94 || tileId == 95){

@@ -65,7 +65,7 @@ public class Player implements IPlayer{
         playerDiedCell.setTile(new StaticTiledMapTile(playerIcon[0][1]));
         playerWonCell.setTile(new StaticTiledMapTile(playerIcon[0][2]));
         // Graphics for player laser
-        TextureRegion[][] laser = new TextureRegion(new Texture("assets/biglaser.png")).split(300,300);
+        TextureRegion[][] laser = new TextureRegion(new Texture("assets/laser.png")).split(300,300);
         verLaser.setTile(new StaticTiledMapTile(laser[0][0]));
         horLaser.setTile(new StaticTiledMapTile(laser[0][1]));
 

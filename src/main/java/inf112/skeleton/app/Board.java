@@ -279,7 +279,7 @@ public class Board implements IBoard {
     }
 
     //Finding objects of spesific types on board
-    public ArrayList<Vector2> findAllFlags() {
+    public ArrayList<Vector2> findAllFlags(){
         ArrayList<Vector2> allFlags = new ArrayList<Vector2>();
         Integer mapHeight = Flags.getHeight();
         Integer mapWidth = Flags.getWidth();
@@ -294,7 +294,25 @@ public class Board implements IBoard {
         }
         return allFlags;
     }
-
+    /*
+    public ArrayList<Vector2> findSpawnPoints(){
+        ArrayList<Vector2> theList = new ArrayList<>();
+        Integer mapHeight = Laser.getHeight();
+        Integer mapWidth = Laser.getWidth();
+        for(Integer i = 0; i < mapHeight; i++){
+            for(Integer j = 0; j < mapWidth; j++){
+                if(Wall.getCell(j,i) != null){
+                    Integer tileId = Wall.getCell(j,i).getTile().getId();
+                    if(tileId == 37 || tileId == 38 || tileId == 45 || tileId == 46 ||
+                            tileId == 87 || tileId == 93 || tileId == 94 || tileId == 95){
+                        theList.add(new LaserWall(tileId, new Vector2(j,i),this));
+                    }
+                }
+            }
+        }
+        return theList;
+    }
+    */
     public ArrayList<LaserWall> setUpLaserWalls(){
         ArrayList<LaserWall> theList = new ArrayList<>();
         Integer mapHeight = Laser.getHeight();
