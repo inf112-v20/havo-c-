@@ -15,19 +15,20 @@ public class MainGameOverScreen implements Screen {
     private static final int BUTTON_HEIGHT = 100;
 
     private static final int X_POS_BUTTON = 250;
-    //private static final int Y_POS_VICTORY = 400;
+    private static final int Y_POS_GAMEOVER = 400;
     private static final int Y_POS_GAMEBUTTON = 250;
     private static final int Y_POS_EXITBUTTON = 100;
-    //bruh
 
     public Robo game;
     Texture gameButton;
     Texture exitButton;
+    Texture gameOverButton;
 
     public MainGameOverScreen(Robo robo) {
         this.game = robo;
         gameButton = new Texture("assets/NextgameBtn.png");
         exitButton = new Texture("assets/ExitBtn.png");
+        gameOverButton = new Texture("assets/gameover.png");
     }
 
     @Override
@@ -59,6 +60,8 @@ public class MainGameOverScreen implements Screen {
                 Gdx.app.exit();
             }
         }
+
+        game.batch.draw(gameOverButton, X_POS_BUTTON, Y_POS_GAMEOVER, BUTTON_WIDTH, BUTTON_HEIGHT);
         game.batch.draw(gameButton, X_POS_BUTTON, Y_POS_GAMEBUTTON, BUTTON_WIDTH, BUTTON_HEIGHT);
         game.batch.draw(exitButton, X_POS_BUTTON, Y_POS_EXITBUTTON, BUTTON_WIDTH, BUTTON_HEIGHT);
         game.batch.end();
