@@ -30,7 +30,7 @@ public class MainGameOverScreen implements Screen {
         exitButton = new Texture("assets/buttons/ExitBtn.png");
         gameOverButton = new Texture("assets/gameover.png");
     }
-    //push rejected? fakk det
+
     @Override
     public void show() {
 
