@@ -53,4 +53,8 @@ public class CardDeck implements ICardDeck {
     public int getSize(){
         return deck.size();
     }
+
+    public ArrayList<Card> getDeck() {
+        return deck;
+    }
 }
