@@ -137,6 +137,8 @@ Disse kravene trengte finpuss fra sist innlevering og fikk dermed nødvendige fo
 - Lage MainGameOverScreen
 
 ---
+### Brukerhistorie som ikke 100% er implementert riktig
+
 **Brukerhistorie: AI som ikke dreper seg selv**
 - Som spiller vil jeg kunne spille mot et AI som ikke velger kort som dreper seg selv, slik at jeg som spiller ikke mister alle fiendene mine til deres dårlige kort valg.
 
@@ -144,16 +146,22 @@ Disse kravene trengte finpuss fra sist innlevering og fikk dermed nødvendige fo
 - Roboten faller ikke ned i hull.
 - Roboten går ikke av banen.
 - Roboten tar med i beregningen av rullebaner da hull og banens grenser sjekkes for.
+
 **Arbeidsoppgaver:**
+
 - Sette opp en forsøkskanin («guineapig»).
 - Sjekke om neste kort sender AI i hull.
 - Sjekke om neste kort sender AI ut av banen.
 - Sjekke om hull og ut av banen inntreffer, etter at rullebanen er aktivert.
 
+ **Hva som mangler til denne innleveringen:**
+ - Etter siste doTurn update velger nå AI bare tilfeldige kort. Den har funket tidligere, altså valgt kort som ikke dreper AI, men den siste updaten til doTurn ble ansatt som viktigere. AI velger nå kort som dreper AI
+ 
 ---
-### Brukerhistorie som ikke 100% er implementert riktig
+
 **Brukerhistorie: Kort verdisystem**
 - Som spiller vi jeg at kortene jeg velger skal bli prioritert i en synlig rekkefølge slik at det er lettere å planlegge hvilken rekkefølge kortene skal spilles i.
+
 
 **Akseptanskriterier**
  - Kortene spilles i riktig rekkefølge.
