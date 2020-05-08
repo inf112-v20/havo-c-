@@ -359,8 +359,10 @@ og kan også velge hvilke bane (har 2 valgmuligheter her)
 - Startet implementering av kort som brennes fast når spiller tar damage + får mindre kort i henhold til damage
 
 **Fredag 08.05.20**: 6 timer. Alle møtte opp
-- bruh
-
+- doturn fungerer odentlig 
+- MYE bugfixing
+- Gjort koden penere
+- Skrevet ferdig obligatoriskoppgave4.md
 
 ### Retrospektiv til denne innlevering
 I likhet med det som ble gjort til forrige innlevering, så har vi problemer som oppstår når vi ikke får kodet sammen.
