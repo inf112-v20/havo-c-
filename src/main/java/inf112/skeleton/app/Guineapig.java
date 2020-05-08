@@ -5,10 +5,14 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.maps.tiled.tiles.StaticTiledMapTile;
 import com.badlogic.gdx.math.Vector2;
+import inf112.skeleton.app.Enums.Direction;
+import inf112.skeleton.app.Enums.PlayerState;
+import inf112.skeleton.app.Enums.TurnDirection;
+import inf112.skeleton.app.Interfaces.IPlayer;
 
 import java.util.ArrayList;
 
-public class Guineapig implements IPlayer{
+public class Guineapig implements IPlayer {
     // Variables of the player robot
     private Integer lives = 3;
     private Integer hp = 9;

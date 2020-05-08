@@ -1,5 +1,8 @@
 package inf112.skeleton.app;
 
+import inf112.skeleton.app.Interfaces.ICardDeck;
+import inf112.skeleton.app.Interfaces.IPlayer;
+
 import java.util.ArrayList;
 import java.util.Collections;
 

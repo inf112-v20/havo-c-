@@ -5,7 +5,11 @@ import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.math.Vector2;
-import org.lwjgl.Sys;
+import inf112.skeleton.app.Enums.Direction;
+import inf112.skeleton.app.Enums.PlayerState;
+import inf112.skeleton.app.Enums.TurnDirection;
+import inf112.skeleton.app.Interfaces.IBoard;
+import inf112.skeleton.app.Interfaces.IPlayer;
 
 import java.util.ArrayList;
 

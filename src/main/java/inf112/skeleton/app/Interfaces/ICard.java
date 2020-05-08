@@ -1,4 +1,4 @@
-package inf112.skeleton.app;
+package inf112.skeleton.app.Interfaces;
 
 public interface ICard {
     void playCard(IPlayer owner);

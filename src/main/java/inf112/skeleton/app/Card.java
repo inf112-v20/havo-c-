@@ -1,9 +1,8 @@
 package inf112.skeleton.app;
 
-import com.badlogic.gdx.Input;
-import com.badlogic.gdx.utils.Timer;
-
-import java.util.InputMismatchException;
+import inf112.skeleton.app.Enums.TurnDirection;
+import inf112.skeleton.app.Interfaces.ICard;
+import inf112.skeleton.app.Interfaces.IPlayer;
 
 public class Card implements ICard {
     String command;

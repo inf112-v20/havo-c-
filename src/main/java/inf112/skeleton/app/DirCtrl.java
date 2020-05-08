@@ -1,4 +1,8 @@
 package inf112.skeleton.app;
+
+import inf112.skeleton.app.Enums.Direction;
+import inf112.skeleton.app.Interfaces.IDirCtrl;
+
 /*
     This class control the direction control/system.
  */

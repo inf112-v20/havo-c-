@@ -1,21 +1,20 @@
 package inf112.skeleton.app;
 
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.maps.tiled.tiles.StaticTiledMapTile;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Timer;
+import inf112.skeleton.app.Enums.Direction;
+import inf112.skeleton.app.Enums.PlayerState;
+import inf112.skeleton.app.Enums.TurnDirection;
+import inf112.skeleton.app.Interfaces.IPlayer;
 
-
-import java.util.*;
 
 import java.util.ArrayList;
-import java.util.concurrent.TimeUnit;
 
-public class MonkeyAI implements IPlayer{
+public class MonkeyAI implements IPlayer {
     // Variables of the player robot
     private Integer lives = 3;
     private Integer hp = 9;

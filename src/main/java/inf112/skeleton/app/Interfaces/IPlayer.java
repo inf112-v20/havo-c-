@@ -1,6 +1,10 @@
-package inf112.skeleton.app;
+package inf112.skeleton.app.Interfaces;
 
 import com.badlogic.gdx.math.Vector2;
+import inf112.skeleton.app.Card;
+import inf112.skeleton.app.Enums.Direction;
+import inf112.skeleton.app.Enums.PlayerState;
+import inf112.skeleton.app.Enums.TurnDirection;
 
 import java.util.ArrayList;
 

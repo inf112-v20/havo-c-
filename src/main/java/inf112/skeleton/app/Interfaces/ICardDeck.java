@@ -1,4 +1,6 @@
-package inf112.skeleton.app;
+package inf112.skeleton.app.Interfaces;
+
+import inf112.skeleton.app.Card;
 
 import java.util.ArrayList;
 

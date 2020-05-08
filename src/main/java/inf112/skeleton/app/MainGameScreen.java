@@ -14,12 +14,15 @@ import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Timer;
+import inf112.skeleton.app.Enums.Direction;
+import inf112.skeleton.app.Enums.PlayerState;
+import inf112.skeleton.app.Enums.TurnDirection;
+import inf112.skeleton.app.Interfaces.IPlayer;
 
 
 import java.util.Collections;
 import java.util.ArrayList;
 import java.util.Random;
-import java.util.concurrent.TimeUnit;
 
 
 public class MainGameScreen extends InputAdapter implements Screen {
