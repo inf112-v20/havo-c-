@@ -30,7 +30,7 @@ er veldig lurt før vi skal begynne å jobbe med det.
 **Legg ved skjermdump av project board ved innlevering. Sørg for at det er oppdatert med siste status
   ved innlevering.**
 
-Ligger i deliverables som filen uml_oblig4.png
+Ligger i deliverables som filen projectBoard_oblig4.png
 
 ---
 **Hvordan fungerer gruppedynamikken og kommunikasjonen nå i forhold til i starten? Hvordan påvirket
