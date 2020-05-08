@@ -244,11 +244,7 @@ public class GUI {
         }
         // Start round
         else if (cardX == 2) {
-            System.out.println();
-            System.out.println();
-            System.out.println("######################################################################################");
-            System.out.println();
-            System.out.println();
+
 
             if(selectedCards.size() + burntCardsTexture.size() == 5) {
                 player.setReady(true);

@@ -1,7 +1,7 @@
 package inf112.skeleton.app;
 
 import com.badlogic.gdx.math.Vector2;
-import org.lwjgl.Sys;
+
 
 public class Spawnpoint {
     private Vector2 SpawnLoc;

@@ -123,7 +123,6 @@ public class Board implements IBoard {
         if (Holes.getCell(xLoc, yLoc) != null){
             player.setPlayerState(PlayerState.DEAD);
             if(player.isPlayer()) {
-                System.out.println("---------------------------------->>>>>>>>>>>>>>>>>" + player);
                 fallSound.play();
             }
         }

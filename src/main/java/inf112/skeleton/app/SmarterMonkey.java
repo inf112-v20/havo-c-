@@ -29,7 +29,7 @@ public class SmarterMonkey {
 
         board = game.getGameBoard();
         findFlag();
-        System.out.println("nearby fields" + nearbyFields(monkey));
+
 
     }
 

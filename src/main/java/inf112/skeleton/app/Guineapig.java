@@ -35,7 +35,7 @@ public class Guineapig implements IPlayer {
     // Player icon objects
 
     // Card values
-    private ArrayList<Integer> cardValues= new ArrayList<Integer> ();
+    private ArrayList<Integer> cardValues= new ArrayList<> ();
 
 
     private TiledMapTileLayer.Cell playerCell = new TiledMapTileLayer.Cell();
