@@ -149,6 +149,12 @@ Rekkefølgen på hva som er prioritert er vist på neste spørsmål.
 -	Roboten skal kunne skyte laser
 -   AI mulitplayer 
 
+Vi har prøvd etter beste evne å få til flere av kravene fra kunde, og har fått til at 
+
+- Flytte brikker utfra prioritet på kort
+- Kunne legge igjen backup
+- Får du skade får du mindre kort i henhold til skaden du har
+- For mye skade brenner fast programkort fra runde til runde
 
 # Bugs
 **Husk å skrive hvilke bugs som finnes i de kravene dere har utført (dersom det finnes bugs).**
@@ -163,6 +169,15 @@ WARNING: Please consider reporting this to the maintainers of org.lwjgl.LWJGLUti
 WARNING: Use --illegal-access=warn to enable warnings of further illegal reflective access operations
 
 WARNING: All illegal access operations will be denied in a future releas
+
+---
+- Får ikke loopen til bakgrunnsmusikken i spillet til å slå seg av (med mindre du avslutter programmet), som 
+fører til at det spilles på nytt over den forrige loopen om du trykker next game etter å ha vunnet/tapt. 
+
+---
+- skriv flere bugs
+
+---
 
 ## Referat
 
@@ -250,5 +265,49 @@ og kan også velge hvilke bane (har 2 valgmuligheter her)
 - Flagg er nå spawn points
 - Skaffet oss bedre oversikt over hva som mangler til innlevering fredag
 
-**Onsdag 06.05.20**: ca x timer. Alle møtte opp
-- oppdater her
+**Onsdag 06.05.20**: ca 5 timer. Alle møtte opp
+- Startet implementering av lasersystem
+- Fortsatte å prøve å få til en smartere AI
+- Skrevet brukerhistoreier etc. 
+
+**Torsdag 07.05.20**: ca 9 timer. Andreas, Otso og Heine møtte opp.
+- Ferdig implementerte lasersystem
+- Skrev noe tester
+- Implementerte vicyory og game over screen
+- Fikset vanlig AI, smartere AI fortsatt in the works
+- Kan nå se bedre hvilke kort som er valgt, skal hjelpe når kort blir brent fast
+- Startet implementering av kort som brennes fast når spiller tar damage + får mindre kort i henhold til damage
+
+**Fredag 08.05.20**: 6 timer. Alle møtte opp
+- bruh
+
+
+### Retrospektiv til denne innlevering
+I likhet med det som ble gjort til forrige innlevering, så har vi problemer som oppstår når vi ikke får kodet sammen.
+
+Arbeidet vårt foregår fortsatt over discord, og problemene/utfordringene med det er de samme som sist. Vi har vært bedre 
+til å bruke screen share for å få til en form for parprogrammering når noen står fast på noe. Dette har hjulpet oss, 
+og har løst noen problemer. Vi har også klart å unngå store merge konflikter, og er generelt blitt flinkere til å løse disse
+problemene. Så alt i alt er fortsatt problemene/utfordringene med discord der fortsatt, men vi er blitt flinkere til å 
+løse disse nå til denne innleveringen. 
+
+Etter at vi fikk ned systemet på 3 møter i uken, en stund etter nedstengningen, har vi klart å holde det oppe veldig godt. 
+Dette fungerer veldig bra, spesielt siden vi som regel er inne uansett, og det ikke er så mye annet som skjer for tiden. 
+Nå frem mot denne innleveringen har vi hatt litt hyppigere møter og kanskje litt lengre, for å prøve å få gjort så mye som
+mulig ferdig før fristen. 
+
+Nå som prosjektet er ferdig, ser vi at det er en del vi burde gjort annerledes. Det meste av dette er hvordan vi arbeidet 
+i starten av prosjektet. De første ukene hadde vi svært få møter utenom obligatorisk møte, noe som gjorde at vi hang litt 
+etter der vi burde vært. Dette har hjemsøkt oss nå frem mot denne siste innleveringen, i og med at vi fortsatt henger litt
+bak. Vi har fått gjort ferdig våre egne MVP, men når vi (litt for sent) begynte på kunde sine MVP merket vi at det var lite
+tid igjen, og en del av det er svært buggy/ikke brukbart. Dette er noe som hadde vært unngått dersom vi hadde jobbet mer 
+effektivt tidligere, slik at vi ikke hadde hengt bak skjema. 
+
+### Kommunikasjon (Hvordan vi deler og overfører kunnskap)
+
+All kommunikasjon skjer fortsatt over Discord. Dette fungerer fortsatt greit for kommunikasjonsdelen, men det er så klart 
+fortsatt ikke like optimalt som å sitte sammen og kode. Selv om vi er blitt flinkere å løse problemer over Discord (med 
+for eksempel screen share), er det fortsatt ikke helt optimalt. Alle er fortsatt tilgjengelige på voice chat, så når vi 
+lurer på noe er det bare for oss å spørre i vei. Gruppedynamikken blir bare bedre, og vi kan lett snakke om og spørre om 
+koden dersom noe er litt uklart. Større avgjørelser som blir tatt med tanke på koden blir diskutert og gjennomgått med alle
+før de blir tatt. 
