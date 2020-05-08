@@ -104,7 +104,6 @@ public class Player implements IPlayer{
             }
         }
 
-        gameBoard.checkFlags(this, getX(), getY());
         game.collision(this);
     }
     public void Turn(TurnDirection dir){

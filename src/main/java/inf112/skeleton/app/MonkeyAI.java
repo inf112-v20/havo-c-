@@ -114,7 +114,6 @@ public class MonkeyAI implements IPlayer{
                 }
                 gameBoard.checkHoles(this);
             }
-            gameBoard.checkFlags(this, getX(), getY());
         }
 
         game.collision(this);
