@@ -12,17 +12,20 @@ the player the specified amount of spaces into the direction the player is point
 pointing to the sides will turn the player left and right based on what direction the arrow is
 pointing.
 
-In Game lobby you can pick among 4 maps
+**In Game lobby you can pick among 4 maps**
+
 Cluster Cross and Hell have little bug testing and can be somewhat buggy.
+
 You can only play against 1 enemy in current version.
 
-Other ways to controll the player
+**Other ways to controll the player**
 The GUI on the side gives you 9 card options, you can pick 5 and then start the turn, the player and enemy will move accordingly.
 
-D button: player takes 1 damaged
-L button: fire player laser
-K button: fire all lasers
-R button: respawn
+**D button:** player takes 1 damaged
+
+**L button:** fire player laser
+**K button:** fire all lasers
+**R button:* respawn
 
 Our manual-tests are located in test/manual-tests and the Junit ones are located in
 test/java/inf112.skeleton.app.
