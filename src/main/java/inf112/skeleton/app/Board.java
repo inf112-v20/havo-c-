@@ -190,11 +190,9 @@ public class Board implements IBoard {
     }
     public boolean checkForObstacles(Integer xLoc, Integer yLoc, Direction dir){
         if(outOfBoundsCheck(xLoc,yLoc) || getPlayerLayer().getCell(xLoc,yLoc) != null || !wallCheck(xLoc,yLoc,dir,false)){
-            System.out.println("Found obstacle");
             return true;
         }
         else {
-            System.out.println("No obstacle found");
             return false;
         }
     }

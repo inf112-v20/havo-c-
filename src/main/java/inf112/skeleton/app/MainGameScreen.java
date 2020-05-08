@@ -34,6 +34,7 @@ public class MainGameScreen extends InputAdapter implements Screen {
     private TmxMapLoader mapLoader = new TmxMapLoader();
 ;
     private Board gameBoard;
+    private Integer register = 0;
 
     // Variables for Player
     private IPlayer player;
@@ -239,27 +240,46 @@ public class MainGameScreen extends InputAdapter implements Screen {
 
         gui.cards.clear();
 
-        int playerHpBefore = player.getHp();
-        for (int j = 0; players.size() > j; j++) {
-            IPlayer currentActor = players.get(j);
-            for (Integer i = 0; i < currentActor.getHand().size(); i++) {
-                //Playing cards
-                if (currentActor.equals(player)) {
-                    currentActor.playHand(i);
-                    System.out.println(player.getHand().get(i).getCommand());
+        for (int j = 0; j < 5; j++) {
+            Timer.schedule(new Timer.Task() {
+                @Override
+                public void run() {
+                    int playerHpBefore = player.getHp();
+                    for (Integer i = 0; i < players.size(); i++) {
+                        IPlayer currentActor = players.get(i);
+                        //Playing cards
+                        currentActor.playHand(register);
+                        if (currentActor.equals(player)) {
+                            System.out.println(currentActor.getHand().get(register).getCommand());
+                        } else {
+                            aiHavemadeThepicks = false;
+                        }
+                        // Burnt in cards system
+                        if (player.getHp() < playerHpBefore && player.getHp() <= 5) {
+                            gui.handleBurntCards(player.getHp());
+                        }
+                    }
+                    for (int i = 0; players.size() > i; i++) {
+                        IPlayer currentActor = players.get(i);
+                        gameBoard.checkForSpecialTiles(currentActor);
+                    }
+                    register++;
+                    Timer.schedule(new Timer.Task() {
+                        @Override
+                        public void run() {
+                            gameBoard.fireAllLasers();
+                            for (int i = 0; players.size() > i; i++) {
+                                IPlayer currentActor = players.get(i);
+                                if (currentActor.getPlayerState() == PlayerState.ALIVE) {
+                                    currentActor.fireLaser();
+                                }
+                            }
+                        }
+                    }, 1);
                 }
-                else {
-                    currentActor.playHand(i);
-                    aiHavemadeThepicks = false;
-                }
-                // Burnt in cards system
-                if(player.getHp() < playerHpBefore && player.getHp() <= 5) {
-                    gui.handleBurntCards(player.getHp());
-                }
-            }
+            },2*j);
         }
 
-        player.getHand().clear();
         gui.cardHand.clear();
         gui.cards.clear();
         gui.selectedCards.clear();
@@ -267,32 +287,19 @@ public class MainGameScreen extends InputAdapter implements Screen {
 
         gui.deck.shuffleDeck();
         gui.loadCards();
-        player.clearCardValues();
-        handleCardValues();
 
-        for (int i = 0; players.size() > i; i++){
-            IPlayer currentActor = players.get(i);
-            gameBoard.checkForSpecialTiles(currentActor);
-        }
         Timer.schedule(new Timer.Task() {
             @Override
             public void run() {
-                gameBoard.fireAllLasers();
-                for (int i = 0; players.size() > i; i++){
-                    IPlayer currentActor = players.get(i);
-                    if(currentActor.getPlayerState() == PlayerState.ALIVE) {
-                        currentActor.fireLaser();
-                    }
+                player.getHand().clear();
+
+                player.clearCardValues();
+                handleCardValues();
+
+                if (player.getPowerdown()){
+                    player.bootUp();
                 }
-            }
-        }, 1);
 
-        if (player.getPowerdown()){
-            player.bootUp();
-        }
-        Timer.schedule(new Timer.Task() {
-            @Override
-            public void run() {
                 for (int i = 0; players.size() > i; i++){
                     if (players.get(i) != null) {
                         IPlayer currentActor = players.get(i);
@@ -301,8 +308,9 @@ public class MainGameScreen extends InputAdapter implements Screen {
                         }
                     }
                 }
+                register = 0;
             }
-        }, 3);
+        }, 13);
     }
 
     // Updates all the location in allLoc to the current position of the players

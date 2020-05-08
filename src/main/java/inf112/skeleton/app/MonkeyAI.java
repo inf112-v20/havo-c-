@@ -176,7 +176,7 @@ public class MonkeyAI implements IPlayer{
                     }
                 }
             }
-            com.badlogic.gdx.utils.Timer.schedule(new Timer.Task() {
+            Timer.schedule(new Timer.Task() {
                 @Override
                 public void run() {
                     gameBoard.clearLasers();
