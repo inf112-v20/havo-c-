@@ -120,10 +120,92 @@ og vil prøve å velge retningen som er smartest å gå
 - hvafaen skal jeg skrive her?
 
 ---
-**Brukerhistorie**
+**Brukerhistorie: AI som ikke dreper seg selv**
+- Som spiller vil jeg kunne spille mot et AI som ikke velger kort som dreper seg selv, slik at jeg som spiller ikke mister alle fiendene mine til deres dårlige kort valg.
 
-- 
+**Akseptansekriterier:**
+- Roboten faller ikke ned i hull.
+- Roboten går ikke av banen.
+- Roboten tar med i beregningen av rullebaner da hull og banens grenser sjekkes for.
+**Arbeidsoppgaver:**
+- Sette opp en forsøkskanin («guineapig»).
+- Sjekke om neste kort sender AI i hull.
+- Sjekke om neste kort sender AI ut av banen.
+- Sjekke om hull og ut av banen inntreffer, etter at rullebanen er aktivert.
 
+
+### Brukerhistorie som ikke 100% er implementert riktig
+**Brukerhistorie: Kort verdisystem**
+- Som spiller vi jeg at kortene jeg velger skal bli prioritert i en synlig rekkefølge slik at det er lettere å planlegge hvilken rekkefølge kortene skal spilles i.
+
+**Akseptanskriterier**
+ - Kortene spilles i riktig rekkefølge.
+ - Som spiller vi jeg at kortene jeg velger skal bli prioritert i en synlig rekkefølge slik at det er lettere å planlegge hvilken rekkefølge kortene skal spilles i.
+ 
+ **Arbeidsoppgaver**
+ - Sette opp Card klassen slik at den får en owner og en value per kort.
+ - Designere riktig owner og verdi i CardDeck klassen.
+ - Sette opp et system som sorter kortene i riktig rekkefølge.
+ - Sette soteringsystemet inn i doTurn() slik at kortene spilles i riktig rekkefølge
+ 
+ **Hva som mangler til denne innleveringen:**
+ - Sette soteringsystemet inn i doTurn() slik at kortene spilles i riktig rekkefølge.
+ 
+ **Bruker historie: Periode System (doTurn())**
+ - Som spiller vil jeg at kortene og hendelsene på brettet skal skje i den rekkefølgen beskrevet i regelboken til Robo Rally, slik at jeg vet når og hvorfor ting skjer, men også slik at jeg kan planlegge der etter.
+ 
+ **Aksepteneskriterier**
+ - Alt skjer i riktig rekkefølge.
+ - Vi kan se hvilken rekkefølge det skjer i.
+ 
+ **Arbeidsoppgaver:**
+ - Sette opp doTurn() slik at den går 5 ganger for hver runde.
+ - La alt skje med noe delay, slik at brukeren kan se hvilke rekkefølger ting skjer i, istedenfor å bare teleporters rundt.
+ - Binde sammen kortsortering og banen slik at de riktige kortene og bane elementene går av til riktig tid.
+ 
+ **Hva som mangler til denne innleveringen:**
+ - Binde sammen kortsortering og banen slik at de riktige kortene og bane elementene går av til riktig tid.
+ 
+ **Brukerhistorie: Et smartere AI**
+ - Som spiller ønsker jeg et AI som utfordrer meg slik at det å vinne spillet faktisk blir vanskelig.
+ 
+ **Akseptansekriterier:**
+ - AI må kunne finne den beste retningen.
+ - AI finner de nærmeste rutene og plukke ut uaktuelle ruter.
+ - Koblet sammen med monkeyAI så hvis at den ikke finner kort som er smartere velger den kort som ikke dreper.
+ 
+ **Arbeidsoppgaver:**
+ - Sette opp en smarterAI klasse
+ - Funksjonene som finne smarteste retning
+ - Funksjon som finner alle rutene roboten kan gå til med neste kort.
+ - Finne de rutene som er nærmere flagg, enn posisjonen til roboten.
+ - Koble alt sammen med MonkeyAI slik den først sjekker etter smartere tiles og retning, hvis ingen smartere retning eller rute er mulig finn et kort som ikke dreper.
+ 
+ **Hva som mangler til denne innleveringen:**
+ - Koble alt sammen med MonkeyAI slik den først sjekker etter smartere tiles og retning, hvis ingen smartere retning eller rute er mulig finn et kort som ikke dreper.
+ 
+ **Brukerhistorie: hvis roboten tar skade og kort brenner fast**
+ - Som bruker vil jeg at skade skal begrense mine kort og hvis for mye skade skal kort brennes fast i registeret slik at skade har en konsekvens for spilleren.
+ 
+ **Akseptansekriterier:**
+ - Kort brennes fast.
+ - Skade begrenser kort valg.
+ - Hvis spiller får hp tilbake øker antall kort valg og de kortene som brennes fast er ikke lenger brent fast.
+ 
+  **Arbeidsoppgaver:**
+- System som begrenser kort valg for spilleren.
+- System som begrenser kort valg for AI.
+- Kort brennes fast for spiller.
+- Kort brennes fast for AI.
+- Om robot får hp tilbake blir fast brente kort resett.
+- Om robot får hp tilbake blir antall valg økt.
+**Hva som mangler til denne innleveringen:**
+Vi fikk ikke til å tilfredsstille akseptansekriterier:
+- Hvis spiller får hp tilbake øker antall kort valg og de kortene som brennes fast er ikke lenger brent fast.
+Beskrivelse av hvorfor dette skjer kan finnes i bugg forklaringen og manuelle tester, men endel av koden her er kommentert ut slik at det ikke ødelegger spillet.
+
+
+ 
 ---
 **Forklar kort hvilke hovedkrav dere anser som en del av MVP og hvorfor. Hvis det er gjort endringer i 
 rekkefølge utfra hva som er gitt fra kunde, hvorfor er dette gjort?**
