@@ -16,6 +16,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Timer;
 
 
+import java.util.Collections;
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
@@ -63,6 +64,10 @@ public class MainGameScreen extends InputAdapter implements Screen {
     private Music backgroundSound = Gdx.audio.newMusic(Gdx.files.internal("assets/sounds/backgroundloop.mp3"));
     private Sound collisionsound = Gdx.audio.newSound(Gdx.files.internal("assets/sounds/bruh2.wav"));
 
+    // Which order cards should be played in
+    ArrayList<Card> cardOrder = new ArrayList<>();
+    private int cardOrderIndex = 0;
+    private int roundNumber = 0;
 
     public MainGameScreen(Robo robo, String mapName, int numberOfEnemies) {
 
@@ -252,10 +257,10 @@ public class MainGameScreen extends InputAdapter implements Screen {
                     currentActor.playHand(i);
                     aiHavemadeThepicks = false;
                 }
-                // Burnt in cards system
                 if(player.getHp() < playerHpBefore && player.getHp() <= 5) {
                     gui.handleBurntCards(player.getHp());
                 }
+
             }
         }
 
@@ -438,7 +443,41 @@ public class MainGameScreen extends InputAdapter implements Screen {
 
     }
     private void handelCardOrder() {
+        ArrayList<Card> oneTurn = new ArrayList<>();
+        for (int i = 0; i < 5; i++) {
+            // Insert delay here that allows players to choose their cards
+            for (int j = 0; j < players.size(); j++) {
+                oneTurn.add(players.get(j).getHand().get(i));
+            }
+            cardOrder.addAll(sortOneTurn(oneTurn));
+            oneTurn.clear();
+        }
+    }
 
+    private ArrayList<Card> sortOneTurn(ArrayList<Card> unordered) {
+
+        System.out.println("unordered size " + unordered.size());
+        Card temp;
+        for (int i = 0; i < unordered.size() - 1; i++) {
+            System.out.println(unordered.size());
+            int min_index = i;
+            for(int j = i + 1; j < unordered.size(); j++) {
+                if(unordered.get(j).getValue() < unordered.get(min_index).getValue()) {
+                    min_index = j;
+                }
+                System.out.println("ping");
+                temp = unordered.get(min_index);
+                unordered.set(min_index, unordered.get(i));
+                unordered.set(i, temp);
+            }
+        }
+        ArrayList<Card> orderedList = new ArrayList<>();
+        orderedList.addAll(unordered);
+        Collections.reverse(orderedList);
+        return orderedList;
+    }
+    private void playCard() {
+        cardOrder.get(cardOrderIndex).playCard(cardOrder.get(cardOrderIndex).getOwner());
     }
     @Override
     public void resize(int i, int i1) {

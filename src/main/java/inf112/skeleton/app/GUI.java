@@ -93,14 +93,13 @@ public class GUI {
         // Variables for making the game more scalable in size
         boardWidth = gameboard.getBoard().getWidth();
         boardHeight = gameboard.getBoard().getHeight();
-        System.out.println(Gdx.graphics.getWidth());
         rightRow = boardWidth - 1;
         rightRow2 = boardWidth - 2;
         rightRow3 = boardWidth - 3;
         rightRow4 = boardWidth - 4;
         middleRow = boardHeight/2;
 
-        System.out.println("boardWidth " + boardWidth);
+
 
         loadCards();
         fillPickedCards();
@@ -186,7 +185,7 @@ public class GUI {
             cardY = 2;
         }
         int cardXY = cardX + (cardY * 3) - 1;
-        System.out.println("cardXY " + cardXY);
+
         handleTouchedCards(cardXY);
     }
 
@@ -194,7 +193,7 @@ public class GUI {
     // This function changes the touched cards to a number so that the user can pick 5 cards
     public void handleTouchedCards(int cardXY) {
         if(tempCardPick == 5 || player.getPlayerState() != PlayerState.ALIVE || indexSelectedCards.contains(cardXY) || cardXY >= player.getHp()) {
-            System.out.println("Invalid");
+
         }
         else {
             // Adds the Texture and integer of touched card into a Arraylist
@@ -276,14 +275,13 @@ public class GUI {
         int x = 0;
         int y = 0;
         for (int i = 0; i < (selectedCards.size()); i++) {
-            System.out.println("Select Cards " + selectedCards.size());
+
             // The start of where we want to place the cards, these will not change during the for-loop
             if(x == 3) {
                 x = 0;
                 y--;
             }
             if(player.getHp() <= 5 && burntCards.size() > 0 && i >= player.getHp()) {
-                System.out.println("burnCards " + burntCards.size());
                 game.batch.draw(burntCardsTexture.get(burntCardIndex), BUTTON_WIDTH * (x_pos + x) + (BUTTON_WIDTH - 30) / 2, BUTTON_HEIGHT * (y_pos + y) + (BUTTON_HEIGHT - 30) / 2 - 3, 30, 30);
                 game.batch.draw(warningTriangle, BUTTON_WIDTH * (x_pos + x) + BUTTON_WIDTH / 2, BUTTON_HEIGHT * (y_pos + y), 25, 25);
                 font.draw(game.batch, i + 1 + ".", BUTTON_WIDTH * (x_pos + x), BUTTON_HEIGHT * (y_pos + y) + 10);
@@ -300,12 +298,10 @@ public class GUI {
     public void handleBurntCards(Integer cardIndex) {
         // I made this if - statement mainly for testing the burnt card system
         if(player.getHand().size() == 0) {
-            System.out.println("Something went wrong");
             burntCards.add(cardHand.get(cardIndex));
             burntCardsTexture.add(cards.get(cardIndex));
         }
         else {
-            System.out.println(cardIndex);
             burntCardsTexture.add(0,selectedCards.get(cardIndex));
             burntCards.add(0,player.getHand().get(cardIndex));
         }
