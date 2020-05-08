@@ -7,7 +7,9 @@ import java.util.InputMismatchException;
 
 public class Card implements ICard {
     String command;
+    private int value;
     DirCtrl dirCtrl = new DirCtrl();
+    IPlayer owner;
 
     public Card(String command){
         this.command = command;
@@ -41,7 +43,21 @@ public class Card implements ICard {
             owner.Turn(TurnDirection.BACKWARDS);
         }
     }
+
+    // Setup for card value system
     public String getCommand(){
         return command;
     }
+
+    public Integer getValue() { return value;}
+
+    public  void setValue(Integer newValue) {value = newValue;}
+
+    public void setOwner(IPlayer player) {owner = player;}
+
+    public  IPlayer getOwner() {return owner;}
+
+    public  void clearOwner() {owner = null;}
+
+
 }

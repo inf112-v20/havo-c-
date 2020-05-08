@@ -66,6 +66,7 @@ public class GUI {
     private int rightRow2;
     private int rightRow3;
     private int rightRow4;
+    private int middleRow;
 
 
     public GUI (Robo robo, IPlayer player, Board gameboard) {
@@ -97,6 +98,7 @@ public class GUI {
         rightRow2 = boardWidth - 2;
         rightRow3 = boardWidth - 3;
         rightRow4 = boardWidth - 4;
+        middleRow = boardHeight/2;
 
         System.out.println("boardWidth " + boardWidth);
 
@@ -110,7 +112,7 @@ public class GUI {
     public void drawCards() {
         // The start of where we want to place the cards, these will not change during the for-loop
         int x_pos = rightRow4;
-        int y_pos = 5;
+        int y_pos = middleRow;
         // These will make sure the cards end up in the right spot
         int x = 0;
         int y = 0;
@@ -176,11 +178,11 @@ public class GUI {
             cardX = 3;
         }
         // These if-statements take care of y input and changes cardX to the correct column number(0-2)
-        if (y >= BUTTON_HEIGHT * 4 && y < BUTTON_HEIGHT * 5) {
+        if (y >= BUTTON_HEIGHT * (middleRow - 1 ) && y < BUTTON_HEIGHT * (middleRow)) {
             cardY = 0;
-        } else if (y >= BUTTON_HEIGHT * 5 && y < BUTTON_HEIGHT * 6) {
+        } else if (y >= BUTTON_HEIGHT * (middleRow) && y < BUTTON_HEIGHT * (middleRow + 1)) {
             cardY = 1;
-        } else if (y >= BUTTON_HEIGHT * 6 && y <= BUTTON_HEIGHT * 7) {
+        } else if (y >= BUTTON_HEIGHT * (middleRow + 1) && y <= BUTTON_HEIGHT * (middleRow + 2)) {
             cardY = 2;
         }
         int cardXY = cardX + (cardY * 3) - 1;
@@ -208,16 +210,16 @@ public class GUI {
 
     public void drawButtons() {
 
-        game.batch.draw(resetcards, BUTTON_WIDTH * (rightRow4), BUTTON_HEIGHT * 0, 50, 50);
-        game.batch.draw(startround, BUTTON_WIDTH * (rightRow3), BUTTON_HEIGHT * 0, 50, 50);
-        game.batch.draw(poweroff, BUTTON_WIDTH * (rightRow2), BUTTON_HEIGHT * 0, 50, 50);
+        game.batch.draw(resetcards, BUTTON_WIDTH * (rightRow4), BUTTON_HEIGHT * (middleRow - 5), 50, 50);
+        game.batch.draw(startround, BUTTON_WIDTH * (rightRow3), BUTTON_HEIGHT * (middleRow - 5), 50, 50);
+        game.batch.draw(poweroff, BUTTON_WIDTH * (rightRow2), BUTTON_HEIGHT * (middleRow - 5), 50, 50);
 
         for (Integer i=0; i<player.getLives(); i++ ){
-            game.batch.draw(heart, BUTTON_WIDTH *(rightRow4 + i), BUTTON_HEIGHT * 9, 50, 50);
+            game.batch.draw(heart, BUTTON_WIDTH *(rightRow4 + i), BUTTON_HEIGHT * (middleRow + 4), 50, 50);
         }
     }
     public void drawHealthbar(int life) {
-        game.batch.draw(healthbar.get(life), BUTTON_WIDTH * rightRow4, BUTTON_HEIGHT *8, BUTTON_WIDTH * 3, BUTTON_HEIGHT - 20);
+        game.batch.draw(healthbar.get(life), BUTTON_WIDTH * rightRow4, BUTTON_HEIGHT * (middleRow + 3), BUTTON_WIDTH * 3, BUTTON_HEIGHT - 20);
     }
 
     public void touchedButtons(int x) {
@@ -268,7 +270,7 @@ public class GUI {
 
     private void showPickedCards(){
         int x_pos = rightRow4;
-        int y_pos = 2;
+        int y_pos = middleRow - 3;
         int burntCardIndex = 0;
         // These will make sure the cards end up in the right spot
         int x = 0;

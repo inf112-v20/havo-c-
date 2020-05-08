@@ -41,14 +41,6 @@ public class MainGameLobbyScreen implements Screen {
     private Texture greenArrow;
     private Texture backArrow;
     private Texture menuLines;
-    private Texture one;
-    private Texture two;
-    private Texture three;
-    private Texture four;
-    private Texture five;
-    private Texture clusterCross;
-    private Texture dizzyHighway;
-    private Texture testingGround;
     private Texture pickMap;
     private Texture pickEnemies;
     private Texture gameLobby;
@@ -56,13 +48,14 @@ public class MainGameLobbyScreen implements Screen {
     private ArrayList<Texture> numbers = new ArrayList<>();
     private ArrayList<Texture> maps = new ArrayList<>();
     private ArrayList<String> mapNames = new ArrayList<>();
+    private ArrayList<Texture> mapsPng = new ArrayList<>();
 
     private int numberOfEnemies = 0;
-    private int maxNumberOfEnemies = 5;
+    private int maxNumberOfEnemies = 4;
     private int minNumberOfEnemies = 1;
 
     private int mapNumber = 0;
-    private int maxMapNumber = 3;
+    private int maxMapNumber = 4;
     private int minMapNumber = 1;
 
     private BitmapFont font;
@@ -187,6 +180,7 @@ public class MainGameLobbyScreen implements Screen {
     }
     private void drawMap(int number) {
         game.batch.draw(maps.get(number), X_PLACEMENT_MENU_LINES + DISTANCE_BETWEEN_MENU_LINES + 20, Y_PLACEMENT_MENU_LINES + 170, 200, 25);
+        game.batch.draw(mapsPng.get(number), X_PLACEMENT_MENU_LINES + DISTANCE_BETWEEN_MENU_LINES + 43, Y_PLACEMENT_MENU_LINES + 15, 150,150);
     }
 
     private void drawNumbersOfEnemies(int number) {
@@ -225,6 +219,20 @@ public class MainGameLobbyScreen implements Screen {
 
 
     private void fillTextTexture() {
+       Texture one;
+        Texture two;
+        Texture three;
+        Texture four;
+        Texture five;
+        Texture clusterCross;
+        Texture dizzyHighway;
+        Texture testingGround;
+        Texture hell;
+        Texture clusterCrossPng;
+        Texture dizzyHighwayPng;
+        Texture testingGroundsPng;
+        Texture hellPng;
+
         one = new Texture("assets/gameLobby/text/one.png");
         two = new Texture("assets/gameLobby/text/two.png");
         three = new Texture("assets/gameLobby/text/three.png");
@@ -241,17 +249,31 @@ public class MainGameLobbyScreen implements Screen {
         clusterCross = new Texture("assets/gameLobby/text/clusterCross.png");
         dizzyHighway = new Texture("assets/gameLobby/text/DizzyHighway.png");
         testingGround = new Texture("assets/gameLobby/text/TestingGround.png");
+        hell = new Texture("assets/gameLobby/text/Hell.png");
         pickMap = new Texture("assets/gameLobby/text/pickMap.png");
         pickEnemies = new Texture("assets/gameLobby/text/pickEnemies.png");
         gameLobby = new Texture("assets/gameLobby/text/GameLobby.png");
 
+        clusterCrossPng = new Texture("assets/Maps/clusterCross.png");
+        dizzyHighwayPng = new Texture("assets/Maps/dizzyHighway.png");
+        testingGroundsPng = new Texture("assets/Maps/testingGrounds.png");
+        hellPng = new Texture("assets/Maps/hell.png");
+
         maps.add(testingGround);
         maps.add(dizzyHighway);
         maps.add(clusterCross);
+        maps.add(hell);
+
+        mapsPng.add(testingGroundsPng);
+        mapsPng.add(dizzyHighwayPng);
+        mapsPng.add(clusterCrossPng);
+        mapsPng.add(hellPng);
+
 
         mapNames.add("assets/Testing Grounds.tmx");
         mapNames.add("assets/Dizzy Highway.tmx");
         mapNames.add("assets/Cluster Cross.tmx");
+        mapNames.add("assets/Hell.tmx");
 
     }
     private void drawTexture() {

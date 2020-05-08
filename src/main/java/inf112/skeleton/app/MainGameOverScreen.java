@@ -23,13 +23,15 @@ public class MainGameOverScreen implements Screen {
     Texture gameButton;
     Texture exitButton;
     Texture gameOverButton;
-    int middleOfScreen = Gdx.graphics.getWidth()/2;
+    int middleOfScreen;
 
     public MainGameOverScreen(Robo robo) {
         this.game = robo;
+        resize(700, 500);
         gameButton = new Texture("assets/buttons/NextgameBtn.png");
         exitButton = new Texture("assets/buttons/ExitBtn.png");
         gameOverButton = new Texture("assets/gameover.png");
+        middleOfScreen = Gdx.graphics.getWidth()/2;
     }
 
     @Override
@@ -71,7 +73,10 @@ public class MainGameOverScreen implements Screen {
 
     @Override
     public void resize(int width, int height) {
-
+        int screenWidth = width;
+        int screenHeight = height;
+        Gdx.graphics.setWindowedMode(screenWidth, screenHeight);
+        game.batch.getProjectionMatrix().setToOrtho2D(0, 0, screenWidth, screenHeight);
     }
 
     @Override
