@@ -13,7 +13,7 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.math.Vector2;
-
+import com.badlogic.gdx.utils.Timer;
 
 
 import java.util.ArrayList;
@@ -234,28 +234,24 @@ public class MainGameScreen extends InputAdapter implements Screen {
         gui.tempCardPick = 0;
 
         gui.cards.clear();
-        //deck.dealCards(player);
 
         int playerHpBefore = player.getHp();
         for (int j = 0; players.size() > j; j++) {
-
-            // Insert delay here that allows players to choose their cards
-            for (Integer i = 0; i < players.get(j).getHand().size(); i++) {
-
-                if (players.get(j).equals(player)) {
-
-                    players.get(j).playHand(i);
-
+            IPlayer currentActor = players.get(j);
+            for (Integer i = 0; i < currentActor.getHand().size(); i++) {
+                //Playing cards
+                if (currentActor.equals(player)) {
+                    currentActor.playHand(i);
                     System.out.println(player.getHand().get(i).getCommand());
-                } else {
-
-                    players.get(j).playHand(i);
+                }
+                else {
+                    currentActor.playHand(i);
                     aiHavemadeThepicks = false;
                 }
+                // Burnt in cards system
                 if(player.getHp() < playerHpBefore && player.getHp() <= 5) {
                     gui.handleBurntCards(player.getHp());
                 }
-
             }
         }
 
@@ -270,17 +266,39 @@ public class MainGameScreen extends InputAdapter implements Screen {
         player.clearCardValues();
         handleCardValues();
 
-        for (int l = 0; players.size() > l; l++){
-            if (players.get(l) != null) {
-                IPlayer currentActor = players.get(l);
-                gameBoard.checkForSpecialTiles(currentActor);
-            }
+        for (int i = 0; players.size() > i; i++){
+            IPlayer currentActor = players.get(i);
+            gameBoard.checkForSpecialTiles(currentActor);
         }
+        Timer.schedule(new Timer.Task() {
+            @Override
+            public void run() {
+                gameBoard.fireAllLasers();
+                for (int i = 0; players.size() > i; i++){
+                    IPlayer currentActor = players.get(i);
+                    if(currentActor.getPlayerState() == PlayerState.ALIVE) {
+                        currentActor.fireLaser();
+                    }
+                }
+            }
+        }, 1);
 
         if (player.getPowerdown()){
             player.bootUp();
         }
-
+        Timer.schedule(new Timer.Task() {
+            @Override
+            public void run() {
+                for (int i = 0; players.size() > i; i++){
+                    if (players.get(i) != null) {
+                        IPlayer currentActor = players.get(i);
+                        if (currentActor.getPlayerState() == PlayerState.DEAD) {
+                            currentActor.respawn(currentActor.getPlayerDir());
+                        }
+                    }
+                }
+            }
+        }, 3);
     }
 
     // Updates all the location in allLoc to the current position of the players

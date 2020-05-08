@@ -7,6 +7,7 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.maps.tiled.tiles.StaticTiledMapTile;
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.utils.Timer;
 
 
 import java.util.*;
@@ -38,13 +39,12 @@ public class MonkeyAI implements IPlayer{
     private TiledMapTileLayer.Cell playerCell = new TiledMapTileLayer.Cell();
     private TiledMapTileLayer.Cell playerDiedCell = new TiledMapTileLayer.Cell();
     private TiledMapTileLayer.Cell playerWonCell = new TiledMapTileLayer.Cell();
-
-
-
+    // Player laser objects
+    private TiledMapTileLayer.Cell horLaser = new TiledMapTileLayer.Cell();
+    private TiledMapTileLayer.Cell verLaser = new TiledMapTileLayer.Cell();
 
     // Card Values
     private ArrayList<Integer> cardValues= new ArrayList ();
-
 
     // Variables just for the AI
     CardDeck monkeyCardDeck;
@@ -70,6 +70,11 @@ public class MonkeyAI implements IPlayer{
         playerCell.setTile(new StaticTiledMapTile(playerIcon[0][0]));
         playerDiedCell.setTile(new StaticTiledMapTile(playerIcon[0][1]));
         playerWonCell.setTile(new StaticTiledMapTile(playerIcon[0][2]));
+        // Graphics for player laser
+        TextureRegion[][] laser = new TextureRegion(new Texture("assets/laser.png")).split(300,300);
+        verLaser.setTile(new StaticTiledMapTile(laser[0][0]));
+        horLaser.setTile(new StaticTiledMapTile(laser[0][1]));
+
         oldDirection = dir;
         Direction guineapigDir = Direction.NORTH;
         Vector2 guineapigStartLoc = new Vector2(5,4);
@@ -135,7 +140,49 @@ public class MonkeyAI implements IPlayer{
         }
     }
     public void fireLaser(){
+        Integer xCoord = getX();
+        Integer yCoord = getY();
+        TiledMapTileLayer.Cell activeLaser = new TiledMapTileLayer.Cell();
 
+        if (playerDir == Direction.NORTH || playerDir == Direction.SOUTH){
+            activeLaser = verLaser;
+        }
+        else if (playerDir == Direction.WEST || playerDir == Direction.EAST){
+            activeLaser = horLaser;
+        }
+
+        if (gameBoard.wallCheck(xCoord,yCoord,playerDir,false)) {
+            while (true) {
+                if (playerDir == Direction.NORTH) {
+                    yCoord++;
+                } else if (playerDir == Direction.SOUTH) {
+                    yCoord--;
+                } else if (playerDir == Direction.WEST) {
+                    xCoord--;
+                } else if (playerDir == Direction.EAST) {
+                    xCoord++;
+                }
+                gameBoard.getLaserLayer().setCell(xCoord,yCoord,activeLaser);
+                if(gameBoard.checkForObstacles(xCoord,yCoord,playerDir)){
+                    break;
+                }
+            }
+            if (gameBoard.getPlayerLayer().getCell(xCoord,yCoord) != null){
+                ArrayList<IPlayer> players = gameBoard.getPlayers();
+                for(Integer i = 0; i < players.size(); i++){
+                    IPlayer actor = players.get(i);
+                    if(actor.getX() == xCoord && actor.getY() == yCoord){
+                        actor.takeDamage(1);
+                    }
+                }
+            }
+            com.badlogic.gdx.utils.Timer.schedule(new Timer.Task() {
+                @Override
+                public void run() {
+                    gameBoard.clearLasers();
+                }
+            }, 1);
+        }
     }
     public void addToHand(Card card){
         hand.add(card);

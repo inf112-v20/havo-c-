@@ -161,7 +161,6 @@ public class Player implements IPlayer{
                     IPlayer actor = players.get(i);
                     if(actor.getX() == xCoord && actor.getY() == yCoord){
                         actor.takeDamage(1);
-                        System.out.println(actor.getHp());
                     }
                 }
             }
