@@ -18,7 +18,6 @@ public class MainVictoryScreen implements Screen {
     private static final int Y_POS_GAMEBUTTON = 150;
     private static final int Y_POS_EXITBUTTON = 50;
 
-
     public Robo game;
     Texture gameButton;
     Texture exitButton;
@@ -65,7 +64,6 @@ public class MainVictoryScreen implements Screen {
         game.batch.draw(gameButton, X_POS_BUTTON, Y_POS_GAMEBUTTON, BUTTON_WIDTH, BUTTON_HEIGHT);
         game.batch.draw(exitButton, X_POS_BUTTON, Y_POS_EXITBUTTON, BUTTON_WIDTH, BUTTON_HEIGHT);
         game.batch.end();
-
     }
 
     @Override

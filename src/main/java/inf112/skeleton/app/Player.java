@@ -44,10 +44,9 @@ public class Player implements IPlayer{
     // Player laser objects
     private TiledMapTileLayer.Cell horLaser = new TiledMapTileLayer.Cell();
     private TiledMapTileLayer.Cell verLaser = new TiledMapTileLayer.Cell();
-
+    // Sound objects
     private Sound wallcollisionsound = Gdx.audio.newSound(Gdx.files.internal("assets/sounds/wallboink.wav"));
     private Sound gameoversound = Gdx.audio.newSound(Gdx.files.internal("assets/sounds/gameover.wav"));
-
 
     // Card values
     private ArrayList<Integer> cardValues= new ArrayList<Integer> ();
@@ -103,7 +102,6 @@ public class Player implements IPlayer{
                 wallcollisionsound.play();
             }
         }
-
         game.collision(this);
     }
     public void Turn(TurnDirection dir){
@@ -337,7 +335,6 @@ public class Player implements IPlayer{
     public Boolean isPlayer() {
         return player;
     }
-
     public Boolean isYou() {
         return you;
     }

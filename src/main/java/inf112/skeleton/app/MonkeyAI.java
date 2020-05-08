@@ -115,7 +115,6 @@ public class MonkeyAI implements IPlayer{
                 gameBoard.checkHoles(this);
             }
         }
-
         game.collision(this);
     }
     public void Turn(TurnDirection dir){

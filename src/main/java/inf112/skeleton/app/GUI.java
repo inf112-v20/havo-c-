@@ -311,17 +311,12 @@ public class GUI {
         burntCardsTexture.clear();
     }
     public void resetcards() {
-
         cards.clear();
         cardHand.clear();
-        cards.clear();
-
         selectedCards.clear();
         indexSelectedCards.clear();
         deck.shuffleDeck();
         loadCards();
-
-
     }
 
     private void fillPickedCards() {
@@ -330,7 +325,6 @@ public class GUI {
         Texture three = new Texture("assets/pickedCards/three.png");
         Texture four = new Texture("assets/pickedCards/four.png");
         Texture five = new Texture("assets/pickedCards/five.png");
-
         pickedCards.add(one);
         pickedCards.add(two);
         pickedCards.add(three);
@@ -365,6 +359,4 @@ public class GUI {
     public ArrayList<Card> getCardHand () {
         return cardHand;
     }
-
-
 }
