@@ -55,25 +55,28 @@ droppet vi den idéen og bestemte oss for å lage en AI. Har også prioritert at
 
 **For hvert krav dere jobber med, må dere lage 1) ordentlige brukerhistorier, 2) akseptansekriterier og 3)
   arbeidsoppgaver. Husk at akseptansekriterier ofte skrives mer eller mindre som tester**
+  
 
-**Brukerhistorie:**
+**Brukerhistorie: Motspiller/spillere**
 
-- Som spiller vil jeg spille mot andre roboter
+- Som spiller vil jeg spille mot andre roboter slik at spilleren ikke kun beveger seg rundt i et brett uten motstand.
 
 **Akseptanskriterier**
 
-- Spilleren kan velge én av tre vanskelighetsgrader av AI å spille mot
-- "Easy" vil gjøre trekk random, uten å dø med vilje
-- "Standard" vil finne alle rutene som er i nærheten av roboten som den kan gå til med de kortene, 
-og vil prøve å velge retningen som er smartest å gå 
+- Det er en eller flere motstandere på brettet
+- Mostander kan vinne spillet
+- Mostander kan påvirke spiller skade/kollisjon
 
 **Arbeidsoppgaver**
 
 - Lage AI klasse
-- Lage noe greier på den andre klassen lmao
+- Få AI som kan bevege seg
+- Lage AI har liv og tar skade
+- Lage AI kan respawne 
+
 
 ---
-**Brukerhistorie**
+**Brukerhistorie: Laser**
 
 - Som spiller vil jeg at robotene skal skyte laser etter hver runde, for å få et gøyere gameplay
 
@@ -84,10 +87,12 @@ og vil prøve å velge retningen som er smartest å gå
 
 **Arbeidsoppgaver**
 
-- iejrgbfdsk
+- Implementere laser på gameboard
+- lage skyt laser funskjon i hver player/robot
+- Få doTurn() til å skyte laser i riktig rekkefølge
 
 ---
-**Brukerhistorie**
+**Brukerhistorie: Game lobby**
 
 - Som spiller vil jeg ha en game lobby screen, så jeg kan ha noen valg for hvordan gamet skal bli
 
@@ -106,9 +111,9 @@ og vil prøve å velge retningen som er smartest å gå
 - Linke game lobby til main game
 
 ---
-**Brukerhistorie**
+**Brukerhistorie: Game over/Victory - Screen**
 
-- Som spiller ønsker jeg en indikasjon på om jeg har vunnet eller tapt
+- Som spiller ønsker jeg en indikasjon på om jeg har vunnet eller tapt.
 
 **Akseptanskriterier**
 
@@ -117,7 +122,8 @@ og vil prøve å velge retningen som er smartest å gå
 
 **Arbeidsoppgaver**
 
-- hvafaen skal jeg skrive her?
+- Lage MainVictoryScreen
+- Lage MainGameOverScreen
 
 ---
 **Brukerhistorie: AI som ikke dreper seg selv**
@@ -133,7 +139,7 @@ og vil prøve å velge retningen som er smartest å gå
 - Sjekke om neste kort sender AI ut av banen.
 - Sjekke om hull og ut av banen inntreffer, etter at rullebanen er aktivert.
 
-
+---
 ### Brukerhistorie som ikke 100% er implementert riktig
 **Brukerhistorie: Kort verdisystem**
 - Som spiller vi jeg at kortene jeg velger skal bli prioritert i en synlig rekkefølge slik at det er lettere å planlegge hvilken rekkefølge kortene skal spilles i.
@@ -150,7 +156,7 @@ og vil prøve å velge retningen som er smartest å gå
  
  **Hva som mangler til denne innleveringen:**
  - Sette soteringsystemet inn i doTurn() slik at kortene spilles i riktig rekkefølge.
- 
+ ---
  **Bruker historie: Periode System (doTurn())**
  - Som spiller vil jeg at kortene og hendelsene på brettet skal skje i den rekkefølgen beskrevet i regelboken til Robo Rally, slik at jeg vet når og hvorfor ting skjer, men også slik at jeg kan planlegge der etter.
  
@@ -165,7 +171,7 @@ og vil prøve å velge retningen som er smartest å gå
  
  **Hva som mangler til denne innleveringen:**
  - Binde sammen kortsortering og banen slik at de riktige kortene og bane elementene går av til riktig tid.
- 
+ ---
  **Brukerhistorie: Et smartere AI**
  - Som spiller ønsker jeg et AI som utfordrer meg slik at det å vinne spillet faktisk blir vanskelig.
  
@@ -183,7 +189,7 @@ og vil prøve å velge retningen som er smartest å gå
  
  **Hva som mangler til denne innleveringen:**
  - Koble alt sammen med MonkeyAI slik den først sjekker etter smartere tiles og retning, hvis ingen smartere retning eller rute er mulig finn et kort som ikke dreper.
- 
+ ---
  **Brukerhistorie: hvis roboten tar skade og kort brenner fast**
  - Som bruker vil jeg at skade skal begrense mine kort og hvis for mye skade skal kort brennes fast i registeret slik at skade har en konsekvens for spilleren.
  
@@ -231,6 +237,12 @@ Rekkefølgen på hva som er prioritert er vist på neste spørsmål.
 -	Roboten skal kunne skyte laser
 -   AI mulitplayer 
 
+Vi har prøvd etter beste evne å få til flere av kravene fra kunde, og har fått til at 
+
+- Flytte brikker utfra prioritet på kort
+- Kunne legge igjen backup
+- Får du skade får du mindre kort i henhold til skaden du har
+- For mye skade brenner fast programkort fra runde til runde
 
 # Bugs
 **Husk å skrive hvilke bugs som finnes i de kravene dere har utført (dersom det finnes bugs).**
@@ -251,13 +263,9 @@ WARNING: All illegal access operations will be denied in a future releas
 fører til at det spilles på nytt over den forrige loopen om du trykker next game etter å ha vunnet/tapt. 
 
 ---
-- Både mapet "Hell" og "Cluster Cross" har tiles som ikke helt fungerer, og blir buggy
+- skriv flere bugs
 
---
-- Når du velger 5 kort, tar skade ned til 1 hp, og trykker start round, vil spillet crashe
-
---
-- Når du velger 5 kort, tar skade ned til 0 hp, og respawner, vil spillet crashe
+---
 
 ## Referat
 
@@ -359,10 +367,8 @@ og kan også velge hvilke bane (har 2 valgmuligheter her)
 - Startet implementering av kort som brennes fast når spiller tar damage + får mindre kort i henhold til damage
 
 **Fredag 08.05.20**: 6 timer. Alle møtte opp
-- doturn fungerer odentlig 
-- MYE bugfixing
-- Gjort koden penere
-- Skrevet ferdig obligatoriskoppgave4.md
+- bruh
+
 
 ### Retrospektiv til denne innlevering
 I likhet med det som ble gjort til forrige innlevering, så har vi problemer som oppstår når vi ikke får kodet sammen.
