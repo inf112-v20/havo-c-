@@ -19,6 +19,7 @@ Cluster Cross and Hell have little bug testing and can be somewhat buggy.
 You can only play against 1 enemy in current version.
 
 **Other ways to controll the player**
+
 The GUI on the side gives you 9 card options, you can pick 5 and then start the turn, the player and enemy will move accordingly.
 
 **D button:** player takes 1 damaged
