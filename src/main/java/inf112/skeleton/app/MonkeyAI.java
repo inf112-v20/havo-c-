@@ -188,7 +188,7 @@ public class MonkeyAI implements IPlayer{
         hand.add(card);
     }
     public void playHand(Integer i){
-        if(getPlayerState() != PlayerState.DEAD) {
+        if(!getHand().isEmpty()) {
             pickedCards.get(i).playCard(this);
         }
     }
