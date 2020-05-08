@@ -46,10 +46,21 @@ har også ført at vi lettere kan kan ha møter oftere, siden vi alle er stuck i
 ## Deloppgave 2: Krav
 
 **Oppdater hvilke krav dere har prioritert, hvor langt dere har kommet og hva dere har gjort siden forrige gang.** 
+Til denne innleveringen er disse MVP-kravene prioritert, mer info kommer under brukerhistorier.
+- Et gamplay system som er runde basert
+- Vegger og hindringer
+- Roboten skal kunne skyte laser
+- Game Lobby
+- Game over skjerm
+- Victory skjerm
+- AI
+- Velge flere maps
 
-Holder på med multiplayer. Etter en stund med å prøve å forstå oss på hvordan online spill ville fungert, 
-droppet vi den idéen og bestemte oss for å lage en AI. Har også prioritert at vegger og hindringer stopper roboten, og 
-å få til lasersystem. 
+Disse kravene trengte finpuss fra sist innlevering og fikk dermed nødvendige forbedringer:
+- Velge kort fra en kortstokk
+- Programmere kort
+- Nye kort hver runde
+
 
 ---
 
@@ -237,7 +248,23 @@ Rekkefølgen på hva som er prioritert er vist på neste spørsmål.
 -	Roboten skal kunne skyte laser
 -   AI mulitplayer 
 
-Vi har prøvd etter beste evne å få til flere av kravene fra kunde, og har fått til at 
+Vi har prøvd etter beste evne å få til flere av kravene fra kunde:
+- Når spiller tar skade reduseres antall kort den kan velge blant.
+- Når spiller tar skader brennes kort fast.
+- Flere vanskelighetsgrader på AI
+- Victory screen
+- Game over screen
+- Game lobby
+
+Av nevnte krav er:
+- Når spiller tar skade reduseres antall kort den kan velge blant.
+- Når spiller tar skader brennes kort fast.
+- Flere vanskelighetsgrader på AI
+I en tilstand der det enda ikke fungerer helt riktig. Vi har beskrevet mer detaljert hva som mangler på disse kravene i brukerhistorie seksjonen over.
+
+Vi har også kodet mye av koden for flere AI, men vi kom ikke langt nok til å implementere hvordan de spawner inn, så maks antall enemies er foreløpig 1.
+
+
 
 # Bugs
 **Husk å skrive hvilke bugs som finnes i de kravene dere har utført (dersom det finnes bugs).**
