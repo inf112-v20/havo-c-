@@ -10,7 +10,6 @@ import java.awt.*;
 
 public class MainVictoryScreen implements Screen {
 
-    public OrthographicCamera camera = new OrthographicCamera();
     private static final int BUTTON_WIDTH = 250;
     private static final int BUTTON_HEIGHT = 100;
 
@@ -26,6 +25,7 @@ public class MainVictoryScreen implements Screen {
     Texture victorypic;
 
     public MainVictoryScreen(Robo robo) {
+        resize(700, 500);
         this.game = robo;
         gameButton = new Texture("assets/buttons/NextgameBtn.png");
         exitButton = new Texture("assets/buttons/ExitBtn.png");
@@ -70,7 +70,10 @@ public class MainVictoryScreen implements Screen {
 
     @Override
     public void resize(int width, int height) {
-
+        int screenWidth = width;
+        int screenHeight = height;
+        Gdx.graphics.setWindowedMode(screenWidth, screenHeight);
+        game.batch.getProjectionMatrix().setToOrtho2D(0, 0, screenWidth, screenHeight);
     }
 
     @Override
