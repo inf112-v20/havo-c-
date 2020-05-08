@@ -33,7 +33,7 @@ public class MainGameScreen extends InputAdapter implements Screen {
     private OrthogonalTiledMapRenderer mapRenderer;
     public OrthographicCamera camera = new OrthographicCamera();
     private TmxMapLoader mapLoader = new TmxMapLoader();
-;
+
     private Board gameBoard;
     private Integer register = 0;
 
@@ -315,7 +315,7 @@ public class MainGameScreen extends InputAdapter implements Screen {
                 }
                 register = 0;
             }
-        }, 13);
+        }, 11);
     }
 
     // Updates all the location in allLoc to the current position of the players
