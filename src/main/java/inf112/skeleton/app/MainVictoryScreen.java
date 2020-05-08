@@ -25,11 +25,11 @@ public class MainVictoryScreen implements Screen {
     Texture victorypic;
 
     public MainVictoryScreen(Robo robo) {
-        resize(700, 500);
         this.game = robo;
         gameButton = new Texture("assets/buttons/NextgameBtn.png");
         exitButton = new Texture("assets/buttons/ExitBtn.png");
         victorypic = new Texture("assets/victory.v2.png");
+        resize(700, 500);
     }
 
     @Override
