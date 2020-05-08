@@ -62,6 +62,7 @@ move 3: 6 kort (790 - 840, intervall 10)
         for(Integer i = 0; i < 9; i++) {
             Card currentCard = deck.get(i);
             hand.add(currentCard);
+            currentCard.setOwner(owner);
         }
         return hand;
     }

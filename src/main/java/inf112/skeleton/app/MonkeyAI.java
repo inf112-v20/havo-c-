@@ -369,22 +369,11 @@ public class MonkeyAI implements IPlayer{
             if(!indexPickedCards.contains(i)) {
 
                 if(cardCanNotKill(smallHandCardDeck.get(i))) {
-                    System.out.println("Card added: " + smallHandCardDeck.get(i).getCommand());
                     pickedCards.add(smallHandCardDeck.get(i));
                     indexPickedCards.add(i);
                     break;
                 }
-;
             }
-            else {
-                if(indexPickedCards.contains(i)) {
-                    System.out.println("Denied cards: " + smallHandCardDeck.get(i).getCommand() + " Since the card is already picked");
-                }
-                else {
-                    System.out.println("Denied cards: " + smallHandCardDeck.get(i).getCommand());
-                }
-            }
-
         }
     }
 
@@ -413,9 +402,6 @@ public class MonkeyAI implements IPlayer{
     }
 
     private Boolean cardKillsGuineapig(Card card) {
-        System.out.println("card up for judgment " + card.getCommand());
-        System.out.println("Player location " + playerLoc + " old Location " + oldCoordinates + " guineapig location " + guineapig.getPlayerloc());
-        System.out.println("player direction " + playerDir + " old direction "+ oldDirection +" guineapig direction " + guineapig.getPlayerDir());
         Card guineapigCard = new Card(card.getCommand());
 
         guineapigCard.playCard(guineapig);
@@ -427,7 +413,6 @@ public class MonkeyAI implements IPlayer{
 
             gameBoard.checkForSpecialTiles(guineapig);
             if(guineapig.getPlayerState() == playerState.ALIVE) {
-                System.out.println(guineapig.getX() + "   " + guineapig.getY());
                 guineapig.setLocation(oldCoordinates.cpy());
                 guineapig.setPlayerDir(oldDirection);
                 return true;
@@ -438,7 +423,6 @@ public class MonkeyAI implements IPlayer{
             }
             }
         else {
-            System.out.println("---------------------------------------------------------");
             resetGuineapig();
             return false;
         }
@@ -472,6 +456,8 @@ public class MonkeyAI implements IPlayer{
     private Vector2 getOldCoordinates() {
         return oldCoordinates;
     }
+
+    // Implement smartAI here, sadly our time ran out, see README for the smarterAI logic logic
     private void smarterAI() {
 
     }
