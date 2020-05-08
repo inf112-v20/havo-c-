@@ -231,12 +231,6 @@ Rekkefølgen på hva som er prioritert er vist på neste spørsmål.
 -	Roboten skal kunne skyte laser
 -   AI mulitplayer 
 
-Vi har prøvd etter beste evne å få til flere av kravene fra kunde, og har fått til at 
-
-- Flytte brikker utfra prioritet på kort
-- Kunne legge igjen backup
-- Får du skade får du mindre kort i henhold til skaden du har
-- For mye skade brenner fast programkort fra runde til runde
 
 # Bugs
 **Husk å skrive hvilke bugs som finnes i de kravene dere har utført (dersom det finnes bugs).**
@@ -257,9 +251,13 @@ WARNING: All illegal access operations will be denied in a future releas
 fører til at det spilles på nytt over den forrige loopen om du trykker next game etter å ha vunnet/tapt. 
 
 ---
-- skriv flere bugs
+- Både mapet "Hell" og "Cluster Cross" har tiles som ikke helt fungerer, og blir buggy
 
----
+--
+- Når du velger 5 kort, tar skade ned til 1 hp, og trykker start round, vil spillet crashe
+
+--
+- Når du velger 5 kort, tar skade ned til 0 hp, og respawner, vil spillet crashe
 
 ## Referat
 
